@@ -1,0 +1,46 @@
+﻿@model CreateNewGraphViewModel
+
+@{
+    ViewBag.Title = "Create New Graph";
+}
+
+
+<h2>Create New Graph</h2>
+@using (Html.BeginForm("CreateGraph", "Admin", FormMethod.Post, new { role = "form", @class = "form-horizontal" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Title, new { @class = "col-sm-2 control-label" })
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.LinkName, new { @class = "col-sm-2 control-label" })
+
+        @Html.TextBoxFor(m => m.LinkName, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ReportType, new { @class = "col-sm-2 control-label" })
+        @Html.DropDownListFor(m => m.ReportType, new ReportType().ToSelectListItems(), "Choose...", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description, new { @class = "col-sm-2 control-label" })
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Sql, new { @class = "col-sm-2 control-label" })
+        @Html.TextAreaFor(m => m.Sql, new { @class = "form-control", rows = 7 })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.JavaScript, new { @class = "col-sm-2 control-label" })
+        @Html.TextAreaFor(m => m.JavaScript, new { @class = "form-control", rows = 7 })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Css, new { @class = "col-sm-2 control-label" })
+        @Html.TextAreaFor(m => m.Css, new { @class = "form-control", rows = 7 })
+    </div>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <input type="submit" value="Create" class="btn btn-default" />
+    </div>
+}
