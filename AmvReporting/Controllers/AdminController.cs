@@ -1,18 +1,17 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using AmvReporting.Commands;
 
 namespace AmvReporting.Controllers
 {
     public class AdminController : BaseController
     {
-        public ActionResult CreateGraph()
+        public ActionResult CreateReport()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult CreateGraph(CreateGraphCommand command)
+        public ActionResult CreateReport(CreateReportCommand command)
         {
             return ProcessForm(command, RedirectToAction("Index", "Home"));
         }

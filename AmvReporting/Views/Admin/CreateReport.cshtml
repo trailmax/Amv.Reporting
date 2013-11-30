@@ -1,4 +1,4 @@
-﻿@model CreateNewGraphViewModel
+﻿@model CreateNewReportViewModel
 
 @{
     ViewBag.Title = "Create New Graph";
@@ -6,7 +6,7 @@
 
 
 <h2>Create New Graph</h2>
-@using (Html.BeginForm("CreateGraph", "Admin", FormMethod.Post, new { role = "form", @class = "form-horizontal" }))
+@using (Html.BeginForm("CreateReport", "Admin", FormMethod.Post, new { role = "form", @class = "form-horizontal" }))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.Title, new { @class = "col-sm-2 control-label" })

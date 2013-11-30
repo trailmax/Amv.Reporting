@@ -5,7 +5,7 @@ using AmvReporting.Models;
 
 namespace AmvReporting.Commands
 {
-    public class CreateGraphCommand : ICommand
+    public class CreateReportCommand : ICommand
     {
         [Required]
         public String Title { get; set; }
@@ -30,9 +30,9 @@ namespace AmvReporting.Commands
         public String Css { get; set; }
     }
 
-    public class CreateGraphCommandHandler : ICommandHandler<CreateGraphCommand>
+    public class CreateReportCommandHandler : ICommandHandler<CreateReportCommand>
     {
-        public void Handle(CreateGraphCommand command)
+        public void Handle(CreateReportCommand command)
         {
             throw new NotImplementedException();
         }

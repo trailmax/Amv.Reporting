@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Wintellect.Sterling.Database;
 using Wintellect.Sterling.Serialization;
 using Xunit;
@@ -41,7 +38,6 @@ namespace AmvReporting.Tests
         
         public int Key { get; set; }
 
-        private static int Idx;
          
         public const int SampleConstant = 2;
 

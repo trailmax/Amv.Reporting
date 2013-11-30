@@ -143,7 +143,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Commands\CreateGraphCommand.cs" />
+    <Compile Include="Commands\CreateReportCommand.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Infrastructure\ActionResults\FormActionResult.cs" />
     <Compile Include="Infrastructure\ActionResults\JsonFormActionResult.cs" />
@@ -174,7 +174,7 @@
     <Compile Include="Models\DomainException.cs" />
     <Compile Include="Models\ReportType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\CreateNewGraphViewModel.cs" />
+    <Compile Include="ViewModels\CreateNewReportViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -210,7 +210,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Admin\CreateGraph.cshtml" />
+    <Content Include="Views\Admin\CreateReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
