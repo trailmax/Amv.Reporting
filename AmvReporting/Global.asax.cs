@@ -4,6 +4,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using AmvReporting.Infrastructure;
+using AmvReporting.Infrastructure.Autofac;
+using Autofac.Integration.Mvc;
 
 namespace AmvReporting
 {
@@ -19,6 +21,9 @@ namespace AmvReporting
 
             // make sure we do separate words with spaces
             ModelMetadataProviders.Current = new ConventionProvider();
+
+            var container = AutofacConfig.Configure();
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
     }
 }

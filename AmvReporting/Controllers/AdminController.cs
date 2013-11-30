@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using AmvReporting.Commands;
 
 namespace AmvReporting.Controllers
 {
@@ -7,6 +9,12 @@ namespace AmvReporting.Controllers
         public ActionResult CreateGraph()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateGraph(CreateGraphCommand command)
+        {
+            return ProcessForm(command, RedirectToAction("Index", "Home"));
         }
     }
 }

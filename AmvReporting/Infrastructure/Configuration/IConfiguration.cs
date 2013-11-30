@@ -6,12 +6,4 @@ namespace AmvReporting.Infrastructure.Configuration
     {
         String GetDatabaseConnectionString();
     }
-
-    public class DomainConfiguration : IConfiguration
-    {
-        public string GetDatabaseConnectionString()
-        {
-            throw new NotImplementedException();
-        }
-    }
 }
