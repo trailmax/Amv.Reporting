@@ -32,6 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.1.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.1.0\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="NSubstitute">
       <HintPath>..\packages\NSubstitute.1.4.3.0\lib\NET40\NSubstitute.dll</HintPath>
     </Reference>
@@ -59,6 +65,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\EditReportCommandHandlerTests.cs" />
+    <Compile Include="Infrastructure\Automappings\AutoMapperBootstrapperTests.cs" />
     <Compile Include="ZeroFriction\AssertionHelpers.cs" />
     <Compile Include="ZeroFriction\AssertionHelpersTests.cs" />
     <Compile Include="Commands\CreateReportCommandHandlerTests.cs" />

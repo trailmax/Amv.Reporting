@@ -1,0 +1,17 @@
+﻿@model EditReportDetailsViewModel
+
+@{
+    ViewBag.Title = "Edit Report";
+}
+
+<h2>Edit Report</h2>
+@using (Html.BeginForm("EditReport", "Admin", FormMethod.Post, new { role = "form", @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(m => m.Id)
+    @Html.Partial("_CreateEdit", Model)
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <input type="submit" value="Save" class="btn btn-default" />
+        @Html.ActionLink("Back To List", "Index", null, new { @class = "btn btn-default" })
+    </div>
+}

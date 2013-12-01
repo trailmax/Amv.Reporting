@@ -1,4 +1,5 @@
 ﻿using AmvReporting.Infrastructure.CQRS;
+using AmvReporting.Infrastructure.ModelEnrichers;
 using Autofac;
 
 namespace AmvReporting.Infrastructure.Autofac
@@ -35,6 +36,14 @@ namespace AmvReporting.Infrastructure.Autofac
             //Register All Query Handlers
             builder.RegisterTypes(types)
                 .AsClosedTypesOf(typeof(IQueryHandler<,>))
+                .InstancePerLifetimeScope();
+
+
+            builder.RegisterType<AutofacMediator>().As<IMediator>();
+
+
+            builder.RegisterTypes(types)
+                .AsClosedTypesOf(typeof(IModelEnricher<>))
                 .InstancePerLifetimeScope();
 
 

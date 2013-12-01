@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ReportDetails>
+
+@{
+    ViewBag.Title = "All Reports";
+}
+
+<h2>All Reports</h2>
+
+<div class="row">
+    <div class="col-md-9">
+        <p>
+            @Html.ActionLink("Create New Report", "CreateReport", null, new { @class = "btn btn-primary btn-lg" })
+        </p>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th style="width: 150px;">@Html.DisplayNameFor(m => m.FirstOrDefault().LinkName)</th>
+                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Title)</th>
+                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Description)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="col-sm-2"> @Html.ActionLink(item.LinkName, "EditReport", new {linkName = item.LinkName})</td>
+                        <td>@Html.DisplayFor(_ => item.Title)</td>
+                        <td>@Html.DisplayFor(_ => item.Description)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>

@@ -42,8 +42,10 @@ namespace AmvReporting.Commands
 
         public void Handle(CreateReportCommand command)
         {
+            var report = CreateReportDetails(command);
 
-            throw new NotImplementedException();
+            ravenSession.Store(report);
+            ravenSession.SaveChanges();
         }
 
         public ReportDetails CreateReportDetails(CreateReportCommand command)

@@ -1,6 +1,6 @@
-﻿using Autofac;
+﻿using AmvReporting.Infrastructure.Configuration;
+using Autofac;
 using Raven.Client;
-using Raven.Client.Document;
 using Raven.Client.Embedded;
 
 namespace AmvReporting.Infrastructure.Autofac
@@ -13,7 +13,10 @@ namespace AmvReporting.Infrastructure.Autofac
             // initializing it on first use.
             builder.Register(x =>
             {
-                var store = new EmbeddableDocumentStore { DataDirectory = "Data"};
+                var store = new EmbeddableDocumentStore
+                            {
+                                DataDirectory = ConfigurationContext.Current.GetRavenDataPath()
+                            };
                 store.Initialize();
                 return store;
             }).As<IDocumentStore>()

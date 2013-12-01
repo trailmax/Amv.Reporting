@@ -2,8 +2,9 @@
 
 namespace AmvReporting.Infrastructure.Configuration
 {
-    public interface IConfiguration
+    public interface IDomainConfiguration
     {
         String GetDatabaseConnectionString();
+        string GetRavenDataPath();
     }
 }

@@ -4,15 +4,15 @@ namespace AmvReporting.Infrastructure.Configuration
 {
     public static class ConfigurationContext
     {
-        private static IConfiguration configuration;
+        private static IDomainConfiguration configuration;
 
-        public static IConfiguration Current
+        public static IDomainConfiguration Current
         {
             get
             {
                 if (configuration == null)
                 {
-                    configuration = new DomainConfiguration();
+                    configuration = new DomainDomainConfiguration();
                 }
                 return configuration;
             }
@@ -28,7 +28,7 @@ namespace AmvReporting.Infrastructure.Configuration
 
         public static void ResetToDefault()
         {
-            configuration = new DomainConfiguration();
+            configuration = new DomainDomainConfiguration();
         }
     }
 }

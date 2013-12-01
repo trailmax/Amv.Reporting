@@ -52,8 +52,15 @@
     <Reference Include="Autofac.Integration.Mvc">
       <HintPath>..\packages\Autofac.Mvc5.3.0.0\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.1.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.1.0\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions, Version=2.5.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
@@ -154,15 +161,20 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Commands\CreateReportCommand.cs" />
+    <Compile Include="Commands\EditReportCommand.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Infrastructure\ActionResults\AutoMapViewResult.cs" />
+    <Compile Include="Infrastructure\ActionResults\EnrichViewResult.cs" />
     <Compile Include="Infrastructure\ActionResults\FormActionResult.cs" />
     <Compile Include="Infrastructure\ActionResults\JsonFormActionResult.cs" />
     <Compile Include="Infrastructure\Autofac\AmvReportingModule.cs" />
     <Compile Include="Infrastructure\Autofac\AutofacConfig.cs" />
     <Compile Include="Infrastructure\Autofac\RavenDbModule.cs" />
+    <Compile Include="Infrastructure\Automappings\AutoMapperBootstrapper.cs" />
     <Compile Include="Infrastructure\Configuration\ConfigurationContext.cs" />
-    <Compile Include="Infrastructure\Configuration\DomainConfiguration.cs" />
-    <Compile Include="Infrastructure\Configuration\IConfiguration.cs" />
+    <Compile Include="Infrastructure\Configuration\DomainDomainConfiguration.cs" />
+    <Compile Include="Infrastructure\Configuration\IDomainConfiguration.cs" />
+    <Compile Include="Infrastructure\CQRS\IMediator.cs" />
     <Compile Include="Infrastructure\CQRS\IQuery.cs" />
     <Compile Include="Infrastructure\CQRS\IQueryHandler.cs" />
     <Compile Include="Infrastructure\CQRS\IRedirectingCommand.cs" />
@@ -182,11 +194,16 @@
     <Compile Include="Infrastructure\ConventionProvider.cs" />
     <Compile Include="Infrastructure\Helpers\EnumExtensions.cs" />
     <Compile Include="Infrastructure\Helpers\StringExtensions.cs" />
+    <Compile Include="Infrastructure\ModelEnrichers\IModelEnricher.cs" />
+    <Compile Include="Infrastructure\RestoreModelStateAttribute.cs" />
     <Compile Include="Models\DomainException.cs" />
     <Compile Include="Models\ReportDetails.cs" />
     <Compile Include="Models\ReportType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\CreateNewReportViewModel.cs" />
+    <Compile Include="Queries\AllReportsQuery.cs" />
+    <Compile Include="Queries\SingleReportQuery.cs" />
+    <Compile Include="ViewModels\EditReportDetailsViewModel.cs" />
+    <Compile Include="ViewModels\ReportDetailsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -223,6 +240,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Admin\CreateReport.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\EditReport.cshtml" />
+    <Content Include="Views\Admin\_CreateEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -2,7 +2,7 @@
 
 namespace AmvReporting.ViewModels
 {
-    public class CreateNewReportViewModel : CreateReportCommand
+    public class ReportDetailsViewModel : CreateReportCommand
     {
     }
 }
