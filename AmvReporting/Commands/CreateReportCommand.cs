@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Models;
+using Raven.Client;
 
 namespace AmvReporting.Commands
 {
@@ -32,9 +33,33 @@ namespace AmvReporting.Commands
 
     public class CreateReportCommandHandler : ICommandHandler<CreateReportCommand>
     {
+        private readonly IDocumentSession ravenSession;
+
+        public CreateReportCommandHandler(IDocumentSession ravenSession)
+        {
+            this.ravenSession = ravenSession;
+        }
+
         public void Handle(CreateReportCommand command)
         {
+
             throw new NotImplementedException();
+        }
+
+        public ReportDetails CreateReportDetails(CreateReportCommand command)
+        {
+            var result = new ReportDetails()
+                         {
+                             Title = command.Title,
+                             LinkName = command.LinkName,
+                             ReportType = command.ReportType,
+                             Description = command.Description,
+                             Sql = command.Sql,
+                             JavaScript = command.JavaScript,
+                             Css = command.Css,
+                         };
+
+            return result;
         }
     }
 }

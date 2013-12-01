@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Autofac;
-using Autofac.Core;
+﻿using Autofac;
 using Autofac.Integration.Mvc;
 
 namespace AmvReporting.Infrastructure.Autofac
@@ -23,6 +18,7 @@ namespace AmvReporting.Infrastructure.Autofac
             builder.RegisterSource(new ViewRegistrationSource());
 
             builder.RegisterModule(new AmvReportingModule());
+            builder.RegisterModule(new RavenDbModule());
 
             var container = builder.Build();
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 
 namespace AmvReporting.Infrastructure.Configuration
 {
@@ -6,7 +7,8 @@ namespace AmvReporting.Infrastructure.Configuration
     {
         public string GetDatabaseConnectionString()
         {
-            throw new NotImplementedException();
+            var connectionString = ConfigurationManager.AppSettings["DatabaseConnectionString"];
+            return connectionString;
         }
     }
 }
