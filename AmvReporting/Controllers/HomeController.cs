@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using AmvReporting.Infrastructure.CQRS;
+using AmvReporting.Models;
 using AmvReporting.Queries;
 
 namespace AmvReporting.Controllers
@@ -21,10 +23,16 @@ namespace AmvReporting.Controllers
         }
 
 
-        public ActionResult Report(int id)
+        public ActionResult Report(String linkName)
         {
-            var query = new ReportResultQuery(id);
-            throw new System.NotImplementedException();
+            var query = new ReportResultQuery(linkName);
+            var result = mediator.Request(query);
+
+            if (result.ReportType == ReportType.Table)
+            {
+                return View("Table", result);
+            }
+            return View(result);
         }
     }
 }

@@ -52,7 +52,7 @@ namespace AmvReporting.Controllers
         [HttpPost]
         public ActionResult EditReport(EditReportCommand command)
         {
-            return ProcessForm(command, RedirectToAction("EditReport", new { Id = command.Id}), RedirectToAction("Index"));
+            return ProcessForm(command, RedirectToAction("EditReport", new { LinkName = command.LinkName}), RedirectToAction("Index"));
         }
 
 

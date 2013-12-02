@@ -1,0 +1,23 @@
+﻿@model ReportResult
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h2>@Model.Title</h2>
+
+|
+<div id="report"></div>
+
+@section scripts{
+
+    <script src="@Url.Content("~/Scripts/flot/jquery.flot.min.js")"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var columns = @Html.Raw(Model.Columns);
+            var data = @Html.Raw(Model.Data);
+            @Html.Raw(Model.JavaScript)
+        });
+    </script>
+}
