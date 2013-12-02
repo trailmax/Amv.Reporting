@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMinimal.cshtml";
+}
+@section scripts{
+    @RenderSection("scripts", required: false)
+}
+@section css
+{
+    @RenderSection("css", required: false)
+}
+
+
+<div class="container body-content">
+    @RenderBody()
+</div>

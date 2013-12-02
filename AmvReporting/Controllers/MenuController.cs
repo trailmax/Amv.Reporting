@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace AmvReporting.Controllers
 {
-    public class MenuController : BaseController
+    public partial class MenuController : BaseController
     {
-        public PartialViewResult AdminMenu()
+        public virtual PartialViewResult AdminMenu()
         {
             return PartialView();
         }

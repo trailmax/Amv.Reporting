@@ -8,7 +8,7 @@ using AmvReporting.ViewModels;
 
 namespace AmvReporting.Controllers
 {
-    public class AdminController : BaseController
+    public partial class AdminController : BaseController
     {
         private readonly IMediator mediator;
 
@@ -17,7 +17,7 @@ namespace AmvReporting.Controllers
             this.mediator = mediator;
         }
 
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             var reports = mediator.Request(new AllReportsQuery());
 
@@ -26,20 +26,20 @@ namespace AmvReporting.Controllers
 
 
         [RestoreModelState]
-        public ActionResult CreateReport()
+        public virtual ActionResult CreateReport()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult CreateReport(CreateReportCommand command)
+        public virtual ActionResult CreateReport(CreateReportCommand command)
         {
             return ProcessForm(command, RedirectToAction("CreateReport"), RedirectToAction("Index", "Admin"));
         }
 
 
         [RestoreModelState]
-        public ActionResult EditReport(String linkName)
+        public virtual ActionResult EditReport(String linkName)
         {
             var query = new SingleReportQuery(linkName);
 
@@ -50,13 +50,13 @@ namespace AmvReporting.Controllers
 
 
         [HttpPost]
-        public ActionResult EditReport(EditReportCommand command)
+        public virtual ActionResult EditReport(EditReportCommand command)
         {
             return ProcessForm(command, RedirectToAction("EditReport", new { LinkName = command.LinkName}), RedirectToAction("Index"));
         }
 
 
-        public ActionResult DeleteReport(String linkName)
+        public virtual ActionResult DeleteReport(String linkName)
         {
             var query = new SingleReportQuery(linkName);
             var report = mediator.Request(query);
@@ -65,7 +65,7 @@ namespace AmvReporting.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeleteReport(DeleteReportCommand command)
+        public virtual ActionResult DeleteReport(DeleteReportCommand command)
         {
             return ProcessForm(command, RedirectToAction("Index"));
         }

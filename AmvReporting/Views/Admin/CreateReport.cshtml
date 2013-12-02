@@ -3,15 +3,21 @@
 @{
     ViewBag.Title = "Create New Graph";
 }
+@section scripts{
+    @Html.Partial(MVC.Admin.Views._CommonJavaScript)
+}
+@section css{
+    
+}
 
 
 <h2>Create New Graph</h2>
-@using (Html.BeginForm("CreateReport", "Admin", FormMethod.Post, new { role = "form", @class = "form-horizontal" }))
+@using (Html.BeginForm(MVC.Admin.CreateReport(), FormMethod.Post, new { role = "form"}))
 {
-    @Html.Partial("_CreateEdit", Model)
+    @Html.Partial(MVC.Admin.Views._CreateEdit , Model)
     <div class="row">
         <div class="col-sm-2"></div>
         <input type="submit" value="Create" class="btn btn-default" />
-        @Html.ActionLink("Back To List", "Index", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Back To List", MVC.Admin.Index(), new { @class = "btn btn-default" })
     </div>
 }

@@ -6,7 +6,7 @@ using AmvReporting.Queries;
 
 namespace AmvReporting.Controllers
 {
-    public class HomeController : BaseController
+    public partial class HomeController : BaseController
     {
         private readonly IMediator mediator;
 
@@ -15,7 +15,7 @@ namespace AmvReporting.Controllers
             this.mediator = mediator;
         }
 
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             var reports = mediator.Request(new AllReportsQuery());
 
@@ -23,7 +23,7 @@ namespace AmvReporting.Controllers
         }
 
 
-        public ActionResult Report(String linkName)
+        public virtual ActionResult Report(String linkName)
         {
             var query = new ReportResultQuery(linkName);
             var result = mediator.Request(query);

@@ -18,5 +18,5 @@
 {
     @Html.HiddenFor(d => d.Id)
     <input type="submit" value="Delete" class="btn btn-default" />
-    @Html.ActionLink("Back To List", "Index", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("Back To List",  MVC.Admin.Index(), new { @class = "btn btn-default" })
 }

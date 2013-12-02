@@ -3,16 +3,24 @@
 @{
     ViewBag.Title = "Edit Report";
 }
+@section scripts{
+    @Html.Partial(MVC.Admin.Views._CommonJavaScript)
+}
+@section css{
+    
+}
+
+
 
 <h2>Edit Report</h2>
-@using (Html.BeginForm("EditReport", "Admin", FormMethod.Post, new { role = "form", @class = "form-horizontal" }))
+@using (Html.BeginForm(MVC.Admin.EditReport(), FormMethod.Post, new { role = "form"}))
 {
     @Html.ValidationSummary(false)
     @Html.HiddenFor(m => m.Id)
-    @Html.Partial("_CreateEdit", Model)
+    @Html.Partial(MVC.Admin.Views._CreateEdit, Model)
     <div class="row">
-        <div class="col-sm-2"></div>
+        
         <input type="submit" value="Save" class="btn btn-default" />
-        @Html.ActionLink("Back To List", "Index", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Back To List", MVC.Admin.Index(), new { @class = "btn btn-default" })
     </div>
 }

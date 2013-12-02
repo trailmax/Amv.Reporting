@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("css", required: false)
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -20,18 +21,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 @{ Html.RenderAction("AdminMenu", "Menu"); }
-                @*<ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="navbar-text">Hello, @User.Identity.Name!</li>
-                    </ul>*@
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-    </div>
+
+    @RenderBody()
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

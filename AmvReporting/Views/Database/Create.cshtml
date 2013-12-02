@@ -1,0 +1,40 @@
+﻿@model DatabaseDetails
+
+@{
+    ViewBag.Title = "New Database Configuration";
+}
+
+<h2>New Database Configuration</h2>
+@using (Html.BeginForm(MVC.Database.Create(), FormMethod.Post, new { role = "form" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConnectionString, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.ConnectionString, new { @class = "form-control" })
+        <a id="checkConnection">CheckConnection</a>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description, new { @class = "control-label" })
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <input type="submit" value="Create" class="btn btn-default" />
+        @Html.ActionLink("Back To List", MVC.Database.Index(), new { @class = "btn btn-default" })
+    </div>
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function() {
+            
+        });
+    </script>
+}

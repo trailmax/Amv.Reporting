@@ -1,33 +1,55 @@
 ﻿@model ReportDetailsViewModel
 
-<div class="form-group">
-    @Html.LabelFor(m => m.Title, new { @class = "col-sm-2 control-label" })
-    @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
-</div>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs">
+    <li><a href="#basic" data-toggle="tab">Basic Details</a></li>
+    <li><a href="#code" data-toggle="tab">Code</a></li>
+</ul>
 
-<div class="form-group">
-    @Html.LabelFor(m => m.LinkName, new { @class = "col-sm-2 control-label" })
+<!-- Tab panes -->
+<div class="tab-content">
+    <div class="tab-pane active" id="basic">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Title, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+        </div>
 
-    @Html.TextBoxFor(m => m.LinkName, new { @class = "form-control" })
-</div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.LinkName, new { @class = "control-label" })
 
-<div class="form-group">
-    @Html.LabelFor(m => m.ReportType, new { @class = "col-sm-2 control-label" })
-    @Html.DropDownListFor(m => m.ReportType, new ReportType().ToSelectListItems(), "Choose...", new { @class = "form-control" })
-</div>
-<div class="form-group">
-    @Html.LabelFor(m => m.Description, new { @class = "col-sm-2 control-label" })
-    @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
-</div>
-<div class="form-group">
-    @Html.LabelFor(m => m.Sql, new { @class = "col-sm-2 control-label" })
-    @Html.TextAreaFor(m => m.Sql, new { @class = "form-control", rows = 7 })
-</div>
-<div class="form-group">
-    @Html.LabelFor(m => m.JavaScript, new { @class = "col-sm-2 control-label" })
-    @Html.TextAreaFor(m => m.JavaScript, new { @class = "form-control", rows = 7 })
-</div>
-<div class="form-group">
-    @Html.LabelFor(m => m.Css, new { @class = "col-sm-2 control-label" })
-    @Html.TextAreaFor(m => m.Css, new { @class = "form-control", rows = 7 })
+            @Html.TextBoxFor(m => m.LinkName, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.ReportType, new { @class = "control-label" })
+            @Html.DropDownListFor(m => m.ReportType, new ReportType().ToSelectListItems(), "Choose...", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Description, new { @class = "control-label" })
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="tab-pane" id="code">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Sql, new { @class = "control-label" })
+                        @Html.TextAreaFor(m => m.Sql, new { @class = "form-control", rows = 10 })
+                        <a id="previewJson">Preview Data >></a>
+                    </div>
+                </div>
+                <div class="col-md-6" id="jsonPreview">
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.JavaScript, new { @class = "control-label" })
+                @Html.TextAreaFor(m => m.JavaScript, new { @class = "form-control", rows = 10 })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Css, new { @class = "control-label" })
+                @Html.TextAreaFor(m => m.Css, new { @class = "form-control", rows = 7 })
+            </div>
+        </div>
+    </div>
 </div>

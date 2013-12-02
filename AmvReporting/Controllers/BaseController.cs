@@ -5,7 +5,7 @@ using AmvReporting.Infrastructure.CQRS;
 
 namespace AmvReporting.Controllers
 {
-    public abstract class BaseController : Controller
+    public abstract partial class BaseController : Controller
     {
         protected FormActionResult<TForm> ProcessForm<TForm>(TForm form, ActionResult both) where TForm : ICommand
         {
