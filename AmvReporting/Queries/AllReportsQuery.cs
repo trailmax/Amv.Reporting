@@ -21,7 +21,9 @@ namespace AmvReporting.Queries
 
         public IEnumerable<ReportDetails> Handle(AllReportsQuery query)
         {
-            var reports = ravenSession.Query<ReportDetails>().ToList();
+            var reports = ravenSession.Query<ReportDetails>()
+                .ToList();
+
             return reports;
         }
     }

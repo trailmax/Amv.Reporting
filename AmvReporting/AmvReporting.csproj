@@ -161,8 +161,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Commands\CreateReportCommand.cs" />
+    <Compile Include="Commands\DeleteReportCommand.cs" />
     <Compile Include="Commands\EditReportCommand.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Infrastructure\ActionResults\AutoMapViewResult.cs" />
     <Compile Include="Infrastructure\ActionResults\EnrichViewResult.cs" />
     <Compile Include="Infrastructure\ActionResults\FormActionResult.cs" />
@@ -193,6 +195,7 @@
     </Compile>
     <Compile Include="Infrastructure\ConventionProvider.cs" />
     <Compile Include="Infrastructure\Helpers\EnumExtensions.cs" />
+    <Compile Include="Infrastructure\Helpers\RavenIdResolver.cs" />
     <Compile Include="Infrastructure\Helpers\StringExtensions.cs" />
     <Compile Include="Infrastructure\ModelEnrichers\IModelEnricher.cs" />
     <Compile Include="Infrastructure\RestoreModelStateAttribute.cs" />
@@ -201,6 +204,7 @@
     <Compile Include="Models\ReportType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\AllReportsQuery.cs" />
+    <Compile Include="Queries\ReportResultQuery.cs" />
     <Compile Include="Queries\SingleReportQuery.cs" />
     <Compile Include="ViewModels\EditReportDetailsViewModel.cs" />
     <Compile Include="ViewModels\ReportDetailsViewModel.cs" />
@@ -243,6 +247,8 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\EditReport.cshtml" />
     <Content Include="Views\Admin\_CreateEdit.cshtml" />
+    <Content Include="Views\Admin\DeleteReport.cshtml" />
+    <Content Include="Views\Menu\AdminMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

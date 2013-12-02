@@ -24,8 +24,10 @@ namespace AmvReporting.Infrastructure.ActionResults
             // get the model from ViewData dictionary
             var model = ViewData.Model;
 
-            // Mapper.Map(object Source, Type SourceType, Type DestinationType)
-            ViewData.Model = Mapper.Map(model, model.GetType(), typeof(TDestination));
+            if (model != null)
+            {
+                ViewData.Model = Mapper.Map(model, model.GetType(), typeof(TDestination));
+            }
 
             base.ExecuteResult(context);
         }

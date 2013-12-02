@@ -52,7 +52,22 @@ namespace AmvReporting.Controllers
         [HttpPost]
         public ActionResult EditReport(EditReportCommand command)
         {
-            return ProcessForm(command, RedirectToAction("EditReport", new { linkName = command.LinkName }), RedirectToAction("Index"));
+            return ProcessForm(command, RedirectToAction("EditReport", new { Id = command.Id}), RedirectToAction("Index"));
+        }
+
+
+        public ActionResult DeleteReport(String linkName)
+        {
+            var query = new SingleReportQuery(linkName);
+            var report = mediator.Request(query);
+
+            return AutoMappedView<EditReportDetailsViewModel>(report);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteReport(DeleteReportCommand command)
+        {
+            return ProcessForm(command, RedirectToAction("Index"));
         }
     }
 }

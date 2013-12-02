@@ -19,12 +19,13 @@
                 @Html.ActionLink("Home", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
+                @{ Html.RenderAction("AdminMenu", "Menu"); }
                 @*<ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="navbar-text">Hello, @User.Identity.Name!</li>
-                </ul>*@
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="navbar-text">Hello, @User.Identity.Name!</li>
+                    </ul>*@
             </div>
         </div>
     </div>

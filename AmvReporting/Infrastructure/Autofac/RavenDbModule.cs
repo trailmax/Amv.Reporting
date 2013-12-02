@@ -1,6 +1,7 @@
 ﻿using AmvReporting.Infrastructure.Configuration;
 using Autofac;
 using Raven.Client;
+using Raven.Client.Document;
 using Raven.Client.Embedded;
 
 namespace AmvReporting.Infrastructure.Autofac
@@ -17,6 +18,7 @@ namespace AmvReporting.Infrastructure.Autofac
                             {
                                 DataDirectory = ConfigurationContext.Current.GetRavenDataPath()
                             };
+                store.Conventions.DefaultQueryingConsistency = ConsistencyOptions.AlwaysWaitForNonStaleResultsAsOfLastWrite;
                 store.Initialize();
                 return store;
             }).As<IDocumentStore>()

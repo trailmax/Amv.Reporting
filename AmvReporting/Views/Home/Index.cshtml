@@ -1,6 +1,36 @@
-﻿@{
+﻿@model IEnumerable<ReportDetails>
+
+@{
     ViewBag.Title = "Home Page";
 }
+
+<h2>All Reports</h2>
+
+<div class="row">
+    <div class="col-md-9">
+        
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Title)</th>
+                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Description)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.ActionLink(item.Title, "Report", new { Id = item.Id.ResolveRavenId() })</td>
+                        <td>@Html.DisplayFor(_ => item.Description)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
 
 @*<div class="jumbotron">
     <h1>ASP.NET</h1>
