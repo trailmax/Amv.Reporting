@@ -65,6 +65,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\CreateDatabaseDetailsCommandHandlerTests.cs" />
     <Compile Include="Commands\EditReportCommandHandlerTests.cs" />
     <Compile Include="Infrastructure\Automappings\AutoMapperBootstrapperTests.cs" />
     <Compile Include="ZeroFriction\AssertionHelpers.cs" />

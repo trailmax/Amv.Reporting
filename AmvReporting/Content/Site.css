@@ -42,28 +42,47 @@ input[type="checkbox"].input-validation-error {
 }
 
 .admin-container {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: 15px;
-  margin-left: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: 15px;
+    margin-left: 15px;
 }
 
-.admin-container:before,
-.admin-container:after {
-  display: table;
-  content: " ";
+    .admin-container:before,
+    .admin-container:after {
+        display: table;
+        content: " ";
+    }
+
+    .admin-container:after {
+        clear: both;
+    }
+
+    .admin-container:before,
+    .admin-container:after {
+        display: table;
+        content: " ";
+    }
+
+    .admin-container:after {
+        clear: both;
+    }
+
+a {
+    cursor: pointer;
 }
 
-.admin-container:after {
-  clear: both;
-}
+    a:hover, a.hover {
+        text-decoration: underline;
+    }
 
-.admin-container:before,
-.admin-container:after {
-  display: table;
-  content: " ";
-}
 
-.admin-container:after {
-  clear: both;
+/*For error messages on the screen from the custom validations*/
+.green {
+    color: green;
+    font-weight: bold;
+}
+.red {
+    color: red;
+    font-weight: bold;
 }

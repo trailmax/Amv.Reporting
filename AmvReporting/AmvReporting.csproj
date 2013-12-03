@@ -166,6 +166,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Commands\CreateDatabaseDetailsCommand.cs" />
     <Compile Include="Commands\CreateReportCommand.cs" />
     <Compile Include="Commands\DeleteReportCommand.cs" />
     <Compile Include="Commands\EditReportCommand.cs" />
@@ -208,10 +209,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\ConventionProvider.cs" />
+    <Compile Include="Infrastructure\CQRS\StringErrorMessageFormatter.cs" />
     <Compile Include="Infrastructure\Helpers\EnumExtensions.cs" />
     <Compile Include="Infrastructure\Helpers\RavenIdResolver.cs" />
     <Compile Include="Infrastructure\Helpers\StringExtensions.cs" />
     <Compile Include="Infrastructure\ModelEnrichers\IModelEnricher.cs" />
+    <Compile Include="Infrastructure\Raven\CreateIndexes.cs" />
     <Compile Include="Infrastructure\RestoreModelStateAttribute.cs" />
     <Compile Include="MenuController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -226,6 +229,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\AllDatabasesQuery.cs" />
     <Compile Include="Queries\AllReportsQuery.cs" />
+    <Compile Include="Queries\CheckDatabaseConnectivityQuery.cs" />
     <Compile Include="Queries\PreviewDataQuery.cs" />
     <Compile Include="Queries\ReportResultQuery.cs" />
     <Compile Include="Queries\SingleReportQuery.cs" />

@@ -53,6 +53,12 @@ namespace AmvReporting.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult CheckDatabaseConnection()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CheckDatabaseConnection);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public DatabaseController Actions { get { return MVC.Database; } }
@@ -73,6 +79,7 @@ namespace AmvReporting.Controllers
             public readonly string Create = "Create";
             public readonly string Edit = "Edit";
             public readonly string Delete = "Delete";
+            public readonly string CheckDatabaseConnection = "CheckDatabaseConnection";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -82,6 +89,7 @@ namespace AmvReporting.Controllers
             public const string Create = "Create";
             public const string Edit = "Edit";
             public const string Delete = "Delete";
+            public const string CheckDatabaseConnection = "CheckDatabaseConnection";
         }
 
 
@@ -100,6 +108,14 @@ namespace AmvReporting.Controllers
         public class ActionParamsClass_Delete
         {
             public readonly string dbid = "dbid";
+        }
+        static readonly ActionParamsClass_CheckDatabaseConnection s_params_CheckDatabaseConnection = new ActionParamsClass_CheckDatabaseConnection();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_CheckDatabaseConnection CheckDatabaseConnectionParams { get { return s_params_CheckDatabaseConnection; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_CheckDatabaseConnection
+        {
+            public readonly string connectionString = "connectionString";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -161,6 +177,16 @@ namespace AmvReporting.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "dbid", dbid);
             DeleteOverride(callInfo, dbid);
+            return callInfo;
+        }
+
+        partial void CheckDatabaseConnectionOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string connectionString);
+
+        public override System.Web.Mvc.ActionResult CheckDatabaseConnection(string connectionString)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CheckDatabaseConnection);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "connectionString", connectionString);
+            CheckDatabaseConnectionOverride(callInfo, connectionString);
             return callInfo;
         }
 
