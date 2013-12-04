@@ -31,8 +31,8 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     <script type="text/javascript" language="javascript">
-        jQuery.showAlert = function (message, alertLevel) {
-            $('#alert-placeholder').html('<div class="in alert '+ alertLevel + '" id="alert-message"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>');
+        showAlert = function(message, alertLevel) {
+            $('#alert-placeholder').html('<div class="alert '+ alertLevel + '" id="alert-message"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>');
             window.setTimeout(function() {
                 $("#alert-message").fadeTo(500, 0).slideUp(500, function() {
                     $(this).remove();
@@ -40,12 +40,14 @@
             }, 3000);
         };
 
-        jQuery.showWarning = function (message) {
-            $.showAlert(message, 'alert-danger');
+        showWarning = function (message) {
+            showAlert(message, '');
         };
-        jQuery.showSuccess = function (message) {
-            $.showAlert(message, 'alert-success');
+        bootstrap_alert.warning = function (message) {
+            $('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>');
         };
+
+
     </script>
     @RenderSection("scripts", required: false)
 </body>

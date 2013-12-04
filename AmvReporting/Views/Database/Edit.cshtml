@@ -1,17 +1,17 @@
 ﻿@model DatabaseDetails
 
 @{
-    ViewBag.Title = "New Database Configuration";
+    ViewBag.Title = "Edit Database Details";
 }
 
-<h2>New Database Configuration</h2>
-@using (Html.BeginForm(MVC.Database.Create(), FormMethod.Post, new { role = "form" }))
+<h2>Edit Database Details</h2>
+@using (Html.BeginForm(MVC.Database.Edit(), FormMethod.Post, new { role = "form" }))
 {
-
+    @Html.HiddenFor(m => m.Id)
     @Html.Partial(MVC.Database.Views._CreateEdit)
     <div class="row">
         <div class="col-sm-2"></div>
-        <input type="submit" value="Create" class="btn btn-default" />
+        <input type="submit" value="Save" class="btn btn-default" />
         @Html.ActionLink("Back To List", MVC.Database.Index(), new { @class = "btn btn-default" })
     </div>
 }

@@ -93,13 +93,22 @@ namespace AmvReporting.Controllers
         }
 
 
+        static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Create
+        {
+            public readonly string command = "command";
+        }
         static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Edit
         {
-            public readonly string linkname = "linkname";
+            public readonly string dbId = "dbId";
+            public readonly string command = "command";
         }
         static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -107,7 +116,7 @@ namespace AmvReporting.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Delete
         {
-            public readonly string dbid = "dbid";
+            public readonly string command = "command";
         }
         static readonly ActionParamsClass_CheckDatabaseConnection s_params_CheckDatabaseConnection = new ActionParamsClass_CheckDatabaseConnection();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -127,12 +136,18 @@ namespace AmvReporting.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string _CommonScripts = "_CommonScripts";
+                public readonly string _CreateEdit = "_CreateEdit";
                 public readonly string _ViewStart = "_ViewStart";
                 public readonly string Create = "Create";
+                public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
             }
+            public readonly string _CommonScripts = "~/Views/Database/_CommonScripts.cshtml";
+            public readonly string _CreateEdit = "~/Views/Database/_CreateEdit.cshtml";
             public readonly string _ViewStart = "~/Views/Database/_ViewStart.cshtml";
             public readonly string Create = "~/Views/Database/Create.cshtml";
+            public readonly string Edit = "~/Views/Database/Edit.cshtml";
             public readonly string Index = "~/Views/Database/Index.cshtml";
         }
     }
@@ -160,23 +175,43 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, object linkname);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Commands.CreateDatabaseDetailsCommand command);
 
-        public override System.Web.Mvc.ActionResult Edit(object linkname)
+        public override System.Web.Mvc.ActionResult Create(AmvReporting.Commands.CreateDatabaseDetailsCommand command)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "linkname", linkname);
-            EditOverride(callInfo, linkname);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
+            CreateOverride(callInfo, command);
             return callInfo;
         }
 
-        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string dbid);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string dbId);
 
-        public override System.Web.Mvc.ActionResult Delete(string dbid)
+        public override System.Web.Mvc.ActionResult Edit(string dbId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "dbId", dbId);
+            EditOverride(callInfo, dbId);
+            return callInfo;
+        }
+
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Commands.EditDatabaseDetailsCommand command);
+
+        public override System.Web.Mvc.ActionResult Edit(AmvReporting.Commands.EditDatabaseDetailsCommand command)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
+            EditOverride(callInfo, command);
+            return callInfo;
+        }
+
+        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Commands.DeleteDatabaseCommand command);
+
+        public override System.Web.Mvc.ActionResult Delete(AmvReporting.Commands.DeleteDatabaseCommand command)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "dbid", dbid);
-            DeleteOverride(callInfo, dbid);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
+            DeleteOverride(callInfo, command);
             return callInfo;
         }
 

@@ -1,0 +1,25 @@
+﻿<script type="text/javascript">
+        $(document).ready(function() {
+            $('#checkConnection').on('click', function() {
+                var self = $(this);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action(MVC.Database.CheckDatabaseConnection())',
+                    data: { connectionString: $('#ConnectionString').val() },
+                    error: function() {
+                        alert('Communication problem. Could not reach server.');
+                    },
+                    success: function(result) {
+                        if (result.IsConnected) {
+                            $('#connectionCheckingResult').html("OK")
+                                .removeClass("red").addClass("green");
+                        } else {
+                            $('#connectionCheckingResult').html(result.ExceptionMessage)
+                                .removeClass("green").addClass("red");
+                        }
+                    }
+                });
+            });
+        });
+</script>

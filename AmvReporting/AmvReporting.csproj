@@ -168,7 +168,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Commands\CreateDatabaseDetailsCommand.cs" />
     <Compile Include="Commands\CreateReportCommand.cs" />
+    <Compile Include="Commands\DeleteDatabaseCommand.cs" />
     <Compile Include="Commands\DeleteReportCommand.cs" />
+    <Compile Include="Commands\EditDatabaseDetailsCommand.cs" />
     <Compile Include="Commands\EditReportCommand.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DatabaseController.cs" />
@@ -211,10 +213,11 @@
     <Compile Include="Infrastructure\ConventionProvider.cs" />
     <Compile Include="Infrastructure\CQRS\StringErrorMessageFormatter.cs" />
     <Compile Include="Infrastructure\Helpers\EnumExtensions.cs" />
+    <Compile Include="Infrastructure\Helpers\ExpressionHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\HtmlHelpers.cs" />
     <Compile Include="Infrastructure\Helpers\RavenIdResolver.cs" />
     <Compile Include="Infrastructure\Helpers\StringExtensions.cs" />
     <Compile Include="Infrastructure\ModelEnrichers\IModelEnricher.cs" />
-    <Compile Include="Infrastructure\Raven\CreateIndexes.cs" />
     <Compile Include="Infrastructure\RestoreModelStateAttribute.cs" />
     <Compile Include="MenuController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -230,6 +233,7 @@
     <Compile Include="Queries\AllDatabasesQuery.cs" />
     <Compile Include="Queries\AllReportsQuery.cs" />
     <Compile Include="Queries\CheckDatabaseConnectivityQuery.cs" />
+    <Compile Include="Queries\DatabaseQuery.cs" />
     <Compile Include="Queries\PreviewDataQuery.cs" />
     <Compile Include="Queries\ReportResultQuery.cs" />
     <Compile Include="Queries\SingleReportQuery.cs" />
@@ -243,6 +247,7 @@
     </Compile>
     <Compile Include="ViewModels\EditReportDetailsViewModel.cs" />
     <Compile Include="ViewModels\ReportDetailsViewModel.cs" />
+    <None Include="Views\Database\_CommonScripts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -463,6 +468,8 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </None>
+    <Content Include="Views\Database\Edit.cshtml" />
+    <Content Include="Views\Database\_CreateEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

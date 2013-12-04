@@ -28,20 +28,31 @@ namespace AmvReporting.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Create(CreateDatabaseDetailsCommand command)
+        [HttpPost, ValidateAntiForgeryToken]
+        public virtual ActionResult Create(CreateDatabaseDetailsCommand command)
         {
             return ProcessForm(command, RedirectToAction(MVC.Database.Create()), RedirectToAction(MVC.Database.Index()));
         }
 
-        public virtual ActionResult Edit(object linkname)
+        [RestoreModelState]
+        public virtual ActionResult Edit(String dbId)
         {
-            throw new System.NotImplementedException();
+            var database = mediator.Request(new DatabaseQuery(dbId));
+
+            return View(database);
         }
 
-        public virtual ActionResult Delete(string dbid)
+        [HttpPost, ValidateAntiForgeryToken]
+        public virtual ActionResult Edit(EditDatabaseDetailsCommand command)
         {
-            throw new System.NotImplementedException();
+            return ProcessForm(command, RedirectToAction(MVC.Database.Edit(command.Id)), RedirectToAction(MVC.Database.Index()));
+        }
+
+
+        [HttpPost]
+        public virtual ActionResult Delete(DeleteDatabaseCommand command)
+        {
+            return ProcessJsonForm(command, "Database Detail record deleted");
         }
 
 

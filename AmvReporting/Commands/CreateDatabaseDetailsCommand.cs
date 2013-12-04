@@ -37,6 +37,7 @@ namespace AmvReporting.Commands
         }
     }
 
+
     public class CreateDatabaseDetailsCommandHandler : ICommandHandler<CreateDatabaseDetailsCommand>
     {
         private readonly IDocumentSession ravenSession;
