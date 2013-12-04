@@ -5,7 +5,7 @@
 
 // Make sure the compiler doesn't complain about missing Xml comments
 
-using AmvReporting.Domain.DatabaseConnections.Commands;
+using AmvReporting.Domain.ReportDetails.Commands;
 #pragma warning disable 1591
 #region T4MVC
 
@@ -24,10 +24,10 @@ using System.Web.Routing;
 using T4MVC;
 namespace AmvReporting.Controllers
 {
-    public partial class DatabaseController
+    public partial class ReportController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected DatabaseController(Dummy d) { }
+        protected ReportController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -55,21 +55,15 @@ namespace AmvReporting.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
         }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult CheckDatabaseConnection()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CheckDatabaseConnection);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public DatabaseController Actions { get { return MVC.Database; } }
+        public ReportController Actions { get { return MVC.Report; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Database";
+        public readonly string Name = "Report";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Database";
+        public const string NameConst = "Report";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -81,7 +75,6 @@ namespace AmvReporting.Controllers
             public readonly string Create = "Create";
             public readonly string Edit = "Edit";
             public readonly string Delete = "Delete";
-            public readonly string CheckDatabaseConnection = "CheckDatabaseConnection";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -91,7 +84,6 @@ namespace AmvReporting.Controllers
             public const string Create = "Create";
             public const string Edit = "Edit";
             public const string Delete = "Delete";
-            public const string CheckDatabaseConnection = "CheckDatabaseConnection";
         }
 
 
@@ -109,7 +101,7 @@ namespace AmvReporting.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Edit
         {
-            public readonly string dbId = "dbId";
+            public readonly string linkName = "linkName";
             public readonly string command = "command";
         }
         static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
@@ -119,14 +111,6 @@ namespace AmvReporting.Controllers
         public class ActionParamsClass_Delete
         {
             public readonly string command = "command";
-        }
-        static readonly ActionParamsClass_CheckDatabaseConnection s_params_CheckDatabaseConnection = new ActionParamsClass_CheckDatabaseConnection();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_CheckDatabaseConnection CheckDatabaseConnectionParams { get { return s_params_CheckDatabaseConnection; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_CheckDatabaseConnection
-        {
-            public readonly string connectionString = "connectionString";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -138,26 +122,28 @@ namespace AmvReporting.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string _CommonScripts = "_CommonScripts";
+                public readonly string _CommonJavaScript = "_CommonJavaScript";
                 public readonly string _CreateEdit = "_CreateEdit";
                 public readonly string _ViewStart = "_ViewStart";
                 public readonly string Create = "Create";
+                public readonly string Delete = "Delete";
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
             }
-            public readonly string _CommonScripts = "~/Views/Database/_CommonScripts.cshtml";
-            public readonly string _CreateEdit = "~/Views/Database/_CreateEdit.cshtml";
-            public readonly string _ViewStart = "~/Views/Database/_ViewStart.cshtml";
-            public readonly string Create = "~/Views/Database/Create.cshtml";
-            public readonly string Edit = "~/Views/Database/Edit.cshtml";
-            public readonly string Index = "~/Views/Database/Index.cshtml";
+            public readonly string _CommonJavaScript = "~/Views/Report/_CommonJavaScript.cshtml";
+            public readonly string _CreateEdit = "~/Views/Report/_CreateEdit.cshtml";
+            public readonly string _ViewStart = "~/Views/Report/_ViewStart.cshtml";
+            public readonly string Create = "~/Views/Report/Create.cshtml";
+            public readonly string Delete = "~/Views/Report/Delete.cshtml";
+            public readonly string Edit = "~/Views/Report/Edit.cshtml";
+            public readonly string Index = "~/Views/Report/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_DatabaseController : AmvReporting.Controllers.DatabaseController
+    public partial class T4MVC_ReportController : AmvReporting.Controllers.ReportController
     {
-        public T4MVC_DatabaseController() : base(Dummy.Instance) { }
+        public T4MVC_ReportController() : base(Dummy.Instance) { }
 
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
@@ -177,9 +163,9 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, CreateDatabaseDetailsCommand command);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, CreateReportCommand command);
 
-        public override System.Web.Mvc.ActionResult Create(CreateDatabaseDetailsCommand command)
+        public override System.Web.Mvc.ActionResult Create(CreateReportCommand command)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
@@ -187,19 +173,19 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string dbId);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string linkName);
 
-        public override System.Web.Mvc.ActionResult Edit(string dbId)
+        public override System.Web.Mvc.ActionResult Edit(string linkName)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "dbId", dbId);
-            EditOverride(callInfo, dbId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "linkName", linkName);
+            EditOverride(callInfo, linkName);
             return callInfo;
         }
 
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, EditDatabaseDetailsCommand command);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, EditReportCommand command);
 
-        public override System.Web.Mvc.ActionResult Edit(EditDatabaseDetailsCommand command)
+        public override System.Web.Mvc.ActionResult Edit(EditReportCommand command)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
@@ -207,23 +193,13 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
-        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, DeleteDatabaseCommand command);
+        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, DeleteReportCommand command);
 
-        public override System.Web.Mvc.ActionResult Delete(DeleteDatabaseCommand command)
+        public override System.Web.Mvc.ActionResult Delete(DeleteReportCommand command)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
             DeleteOverride(callInfo, command);
-            return callInfo;
-        }
-
-        partial void CheckDatabaseConnectionOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string connectionString);
-
-        public override System.Web.Mvc.ActionResult CheckDatabaseConnection(string connectionString)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CheckDatabaseConnection);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "connectionString", connectionString);
-            CheckDatabaseConnectionOverride(callInfo, connectionString);
             return callInfo;
         }
 

@@ -1,0 +1,26 @@
+﻿@model EditReportDetailsViewModel
+
+@{
+    ViewBag.Title = "Edit Report";
+}
+@section scripts{
+    @Html.Partial(MVC.Report.Views._CommonJavaScript)
+}
+@section css{
+    
+}
+
+
+
+<h2>Edit Report</h2>
+@using (Html.BeginForm(MVC.Report.Edit(), FormMethod.Post, new { role = "form"}))
+{
+    @Html.ValidationSummary(false)
+    @Html.HiddenFor(m => m.Id)
+    @Html.Partial(MVC.Report.Views._CreateEdit, Model)
+    <div class="row">
+        
+        <input type="submit" value="Save" class="btn btn-default" />
+        @Html.ActionLink("Back To List", MVC.Report.Index(), new { @class = "btn btn-default" })
+    </div>
+}

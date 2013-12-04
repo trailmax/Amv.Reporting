@@ -1,5 +1,5 @@
-﻿using AmvReporting.Models;
-using AmvReporting.ViewModels;
+﻿using AmvReporting.Domain.ReportDetails;
+using AmvReporting.Domain.ReportDetails.ViewModels;
 using AutoMapper;
 
 namespace AmvReporting.Infrastructure.Automappings
@@ -9,6 +9,7 @@ namespace AmvReporting.Infrastructure.Automappings
         public static void Initialize()
         {
             Mapper.CreateMap<Report, EditReportDetailsViewModel>();
+            Mapper.AddGlobalIgnore("Possible");
         }
     }
 }

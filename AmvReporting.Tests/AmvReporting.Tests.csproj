@@ -65,14 +65,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\CreateDatabaseDetailsCommandHandlerTests.cs" />
+    <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommandHandlerTests.cs" />
     <Compile Include="Commands\EditDatabaseDetailsCommandHandlerTests.cs" />
-    <Compile Include="Commands\EditReportCommandHandlerTests.cs" />
+    <Compile Include="Domain\Reports\EditReportCommandHandlerTests.cs" />
     <Compile Include="Infrastructure\Helpers\ExpressionHelperTests.cs" />
     <Compile Include="Infrastructure\Automappings\AutoMapperBootstrapperTests.cs" />
     <Compile Include="ZeroFriction\AssertionHelpers.cs" />
     <Compile Include="ZeroFriction\AssertionHelpersTests.cs" />
-    <Compile Include="Commands\CreateReportCommandHandlerTests.cs" />
+    <Compile Include="Domain\Reports\CreateReportCommandHandlerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ZeroFriction\AutoMoqDataAttribute.cs" />
   </ItemGroup>

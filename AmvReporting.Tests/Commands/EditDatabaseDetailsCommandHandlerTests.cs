@@ -1,5 +1,5 @@
-﻿using AmvReporting.Commands;
-using AmvReporting.Models;
+﻿using AmvReporting.Domain.DatabaseConnections;
+using AmvReporting.Domain.DatabaseConnections.Commands;
 using AmvReporting.Tests.ZeroFriction;
 using Xunit.Extensions;
 

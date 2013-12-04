@@ -28,7 +28,7 @@ public static class MVC
     public static AmvReporting.Controllers.HomeController Home = new AmvReporting.Controllers.T4MVC_HomeController();
     public static AmvReporting.Controllers.MenuController Menu = new AmvReporting.Controllers.T4MVC_MenuController();
     public static AmvReporting.Controllers.PreviewController Preview = new AmvReporting.Controllers.T4MVC_PreviewController();
-    public static AmvReporting.Controllers.ReportDetailsController ReportDetails = new AmvReporting.Controllers.T4MVC_ReportDetailsController();
+    public static AmvReporting.Controllers.ReportController Report = new AmvReporting.Controllers.T4MVC_ReportController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 

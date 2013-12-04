@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
+using AmvReporting.Domain;
 using AmvReporting.Infrastructure.CQRS;
-using AmvReporting.Models;
 
 namespace AmvReporting.Infrastructure.ActionResults
 {

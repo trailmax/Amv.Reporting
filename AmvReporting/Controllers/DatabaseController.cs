@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
-using AmvReporting.Commands;
+using AmvReporting.Domain.DatabaseConnections.Commands;
+using AmvReporting.Domain.DatabaseConnections.Queries;
 using AmvReporting.Infrastructure;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Queries;

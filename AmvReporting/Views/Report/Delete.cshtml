@@ -1,0 +1,22 @@
+﻿@model EditReportDetailsViewModel
+
+@{
+    ViewBag.Title = "Please Confirm";
+}
+
+<h2>Are you sure?</h2>
+
+<h3>
+    Please confirm you would like to delete this report
+</h3>
+    <p>
+        @Html.DisplayNameFor(d => d.Title)
+        <strong>@Html.DisplayFor(d => d.Title)</strong>
+    </p>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(d => d.Id)
+    <input type="submit" value="Delete" class="btn btn-default" />
+    @Html.ActionLink("Back To List",  MVC.Report.Index(), new { @class = "btn btn-default" })
+}
