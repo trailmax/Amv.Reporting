@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AmvReporting.Domain.ReportDetails
+namespace AmvReporting.Domain.Reports
 {
     public class Report
     {

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using AmvReporting.Domain.ReportDetails.Commands;
+using AmvReporting.Domain.Reports.Commands;
 
-namespace AmvReporting.Domain.ReportDetails.ViewModels
+namespace AmvReporting.Domain.Reports.ViewModels
 {
     public class ReportDetailsViewModel : CreateReportCommand
     {

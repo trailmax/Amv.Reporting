@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AmvReporting.Domain.ReportDetails.ViewModels
+namespace AmvReporting.Domain.Reports.ViewModels
 {
     public class EditReportDetailsViewModel : ReportDetailsViewModel
     {

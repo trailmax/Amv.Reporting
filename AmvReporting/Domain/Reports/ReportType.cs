@@ -1,4 +1,4 @@
-﻿namespace AmvReporting.Domain.ReportDetails
+﻿namespace AmvReporting.Domain.Reports
 {
     public enum ReportType
     {

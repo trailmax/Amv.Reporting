@@ -3,7 +3,7 @@ using System.Linq;
 using AmvReporting.Infrastructure.CQRS;
 using Raven.Client;
 
-namespace AmvReporting.Domain.ReportDetails.Queries
+namespace AmvReporting.Domain.Reports.Queries
 {
     public class SingleReportQuery : IQuery<Report>
     {

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using AmvReporting.Infrastructure.CQRS;
 using Raven.Client;
 
-namespace AmvReporting.Domain.ReportDetails.Commands
+namespace AmvReporting.Domain.Reports.Commands
 {
     public class CreateReportCommand : ICommand
     {

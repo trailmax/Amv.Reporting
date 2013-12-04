@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
-using AmvReporting.Domain.ReportDetails;
-using AmvReporting.Domain.ReportDetails.Queries;
+using AmvReporting.Domain.Reports;
+using AmvReporting.Domain.Reports.Queries;
 using AmvReporting.Infrastructure.CQRS;
 
 namespace AmvReporting.Controllers

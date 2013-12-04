@@ -7,7 +7,7 @@ using AmvReporting.Infrastructure.CQRS;
 using Newtonsoft.Json;
 using Raven.Client;
 
-namespace AmvReporting.Domain.ReportDetails.Queries
+namespace AmvReporting.Domain.Reports.Queries
 {
     public class ReportResult
     {

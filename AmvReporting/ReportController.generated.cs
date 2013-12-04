@@ -5,7 +5,7 @@
 
 // Make sure the compiler doesn't complain about missing Xml comments
 
-using AmvReporting.Domain.ReportDetails.Commands;
+using AmvReporting.Domain.Reports.Commands;
 #pragma warning disable 1591
 #region T4MVC
 

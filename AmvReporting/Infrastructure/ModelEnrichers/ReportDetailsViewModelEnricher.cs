@@ -1,5 +1,5 @@
 ﻿using AmvReporting.Domain.DatabaseConnections.Queries;
-using AmvReporting.Domain.ReportDetails.ViewModels;
+using AmvReporting.Domain.Reports.ViewModels;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Helpers;
 using AmvReporting.Queries;

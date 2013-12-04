@@ -1,5 +1,5 @@
-﻿using AmvReporting.Domain.ReportDetails;
-using AmvReporting.Domain.ReportDetails.ViewModels;
+﻿using AmvReporting.Domain.Reports;
+using AmvReporting.Domain.Reports.ViewModels;
 using AutoMapper;
 
 namespace AmvReporting.Infrastructure.Automappings

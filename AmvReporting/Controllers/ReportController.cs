@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Web.Mvc;
-using AmvReporting.Domain.ReportDetails.Commands;
-using AmvReporting.Domain.ReportDetails.Queries;
-using AmvReporting.Domain.ReportDetails.ViewModels;
+using AmvReporting.Domain.Reports.Commands;
+using AmvReporting.Domain.Reports.Queries;
+using AmvReporting.Domain.Reports.ViewModels;
 using AmvReporting.Infrastructure;
 using AmvReporting.Infrastructure.CQRS;
 
