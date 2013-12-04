@@ -159,9 +159,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -205,7 +202,7 @@
     <Compile Include="Infrastructure\CQRS\IErrorMessageFormatter.cs" />
     <Compile Include="Infrastructure\CQRS\NullObjectCommandValidator.cs" />
     <Compile Include="Infrastructure\CQRS\StringErrorMessage.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ReportDetailsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -237,6 +234,9 @@
     <Compile Include="Queries\PreviewDataQuery.cs" />
     <Compile Include="Queries\ReportResultQuery.cs" />
     <Compile Include="Queries\SingleReportQuery.cs" />
+    <Compile Include="ReportDetailsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -448,18 +448,18 @@
     <Content Include="Views\Shared\_LayoutClient.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Admin\CreateReport.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\EditReport.cshtml" />
-    <Content Include="Views\Admin\_CreateEdit.cshtml" />
-    <Content Include="Views\Admin\DeleteReport.cshtml" />
+    <Content Include="Views\ReportDetails\Create.cshtml" />
+    <Content Include="Views\ReportDetails\Index.cshtml" />
+    <Content Include="Views\ReportDetails\Edit.cshtml" />
+    <Content Include="Views\ReportDetails\_CreateEdit.cshtml" />
+    <Content Include="Views\ReportDetails\Delete.cshtml" />
     <Content Include="Views\Menu\AdminMenu.cshtml" />
     <Content Include="Views\Home\Table.cshtml" />
     <Content Include="Views\Home\Report.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutMinimal.cshtml" />
-    <Content Include="Views\Admin\_ViewStart.cshtml" />
-    <Content Include="Views\Admin\_CommonJavaScript.cshtml" />
+    <Content Include="Views\ReportDetails\_ViewStart.cshtml" />
+    <Content Include="Views\ReportDetails\_CommonJavaScript.cshtml" />
     <Content Include="Views\Database\Index.cshtml" />
     <Content Include="Views\Database\_ViewStart.cshtml" />
     <Content Include="Views\Database\Create.cshtml" />

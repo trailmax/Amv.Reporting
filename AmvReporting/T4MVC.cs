@@ -24,11 +24,11 @@ using T4MVC;
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 public static class MVC
 {
-    public static AmvReporting.Controllers.AdminController Admin = new AmvReporting.Controllers.T4MVC_AdminController();
     public static AmvReporting.Controllers.DatabaseController Database = new AmvReporting.Controllers.T4MVC_DatabaseController();
     public static AmvReporting.Controllers.HomeController Home = new AmvReporting.Controllers.T4MVC_HomeController();
     public static AmvReporting.Controllers.MenuController Menu = new AmvReporting.Controllers.T4MVC_MenuController();
     public static AmvReporting.Controllers.PreviewController Preview = new AmvReporting.Controllers.T4MVC_PreviewController();
+    public static AmvReporting.Controllers.ReportDetailsController ReportDetails = new AmvReporting.Controllers.T4MVC_ReportDetailsController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 

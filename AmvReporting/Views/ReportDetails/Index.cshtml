@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-9">
         <p>
-            @Html.ActionLink("Create New Report", MVC.Admin.CreateReport(), new { @class = "btn btn-primary btn-lg" })
+            @Html.ActionLink("Create New Report", MVC.ReportDetails.Create(), new { @class = "btn btn-primary btn-lg" })
         </p>
         <table class="table table-bordered">
             <thead>
@@ -24,8 +24,8 @@
                 {
                     <tr>
                         <td class="col-sm-2">
-                        @Html.ActionLink("Edit", MVC.Admin.EditReport(item.LinkName)) |
-                            @Html.ActionLink("Delete", MVC.Admin.DeleteReport(item.LinkName))
+                            @Html.ActionLink("Edit", MVC.ReportDetails.Edit(item.LinkName)) 
+                            @Url.AjaxDeleteButton(MVC.ReportDetails.Delete(), item, i => i.Id)
                         </td>
                         <td>@Html.DisplayFor(_ => item.Title)</td>
                         <td>@Html.DisplayFor(_ => item.Description)</td>
