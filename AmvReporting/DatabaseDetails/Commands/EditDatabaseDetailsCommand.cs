@@ -59,16 +59,16 @@ namespace AmvReporting.Commands
 
         public void Handle(EditDatabaseDetailsCommand command)
         {
-            var databaseDetail = ravenSession.Load<DatabaseDetails>(command.Id);
+            var databaseDetail = ravenSession.Load<DatabaseConnection>(command.Id);
             Update(databaseDetail, command);
             ravenSession.SaveChanges();
         }
 
-        public void Update(DatabaseDetails databaseDetail, EditDatabaseDetailsCommand command)
+        public void Update(DatabaseConnection databaseConnection, EditDatabaseDetailsCommand command)
         {
-            databaseDetail.Name = command.Name;
-            databaseDetail.ConnectionString = command.ConnectionString;
-            databaseDetail.Description = command.Description;
+            databaseConnection.Name = command.Name;
+            databaseConnection.ConnectionString = command.ConnectionString;
+            databaseConnection.Description = command.Description;
         }
     }
 }

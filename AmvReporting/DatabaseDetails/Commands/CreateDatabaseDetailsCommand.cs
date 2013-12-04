@@ -55,9 +55,9 @@ namespace AmvReporting.Commands
         }
 
 
-        public DatabaseDetails CreateModel(CreateDatabaseDetailsCommand command)
+        public DatabaseConnection CreateModel(CreateDatabaseDetailsCommand command)
         {
-            var model = new DatabaseDetails()
+            var model = new DatabaseConnection()
                         {
                             Name = command.Name,
                             ConnectionString = command.ConnectionString,

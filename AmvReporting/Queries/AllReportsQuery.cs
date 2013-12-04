@@ -6,11 +6,11 @@ using Raven.Client;
 
 namespace AmvReporting.Queries
 {
-    public class AllReportsQuery : IQuery<IEnumerable<ReportDetails>>
+    public class AllReportsQuery : IQuery<IEnumerable<Report>>
     {
     }
 
-    public class AllReportsQueryHandler : IQueryHandler<AllReportsQuery, IEnumerable<ReportDetails>>
+    public class AllReportsQueryHandler : IQueryHandler<AllReportsQuery, IEnumerable<Report>>
     {
         private readonly IDocumentSession ravenSession;
 
@@ -19,9 +19,9 @@ namespace AmvReporting.Queries
             this.ravenSession = ravenSession;
         }
 
-        public IEnumerable<ReportDetails> Handle(AllReportsQuery query)
+        public IEnumerable<Report> Handle(AllReportsQuery query)
         {
-            var reports = ravenSession.Query<ReportDetails>()
+            var reports = ravenSession.Query<Report>()
                 .ToList();
 
             return reports;

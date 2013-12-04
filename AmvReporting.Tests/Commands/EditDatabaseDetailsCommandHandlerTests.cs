@@ -8,11 +8,11 @@ namespace AmvReporting.Tests.Commands
     public class EditDatabaseDetailsCommandHandlerTests
     {
         [Theory, AutoMoqData]
-        public void Update_Always_MatchesAllDetails(EditDatabaseDetailsCommand command, DatabaseDetails databaseDetail, EditDatabaseDetailsCommandHandler sut)
+        public void Update_Always_MatchesAllDetails(EditDatabaseDetailsCommand command, DatabaseConnection databaseConnection, EditDatabaseDetailsCommandHandler sut)
         {
-            sut.Update(databaseDetail, command);
+            sut.Update(databaseConnection, command);
 
-            AssertionHelpers.PropertiesAreEqual(command, databaseDetail, "Id");
+            AssertionHelpers.PropertiesAreEqual(command, databaseConnection, "Id");
         }
     }
 }

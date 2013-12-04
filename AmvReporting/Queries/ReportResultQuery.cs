@@ -44,7 +44,7 @@ namespace AmvReporting.Queries
 
         public ReportResult Handle(ReportResultQuery query)
         {
-            var report = ravenSession.Query<ReportDetails>().FirstOrDefault(r => r.LinkName == query.LinkName);
+            var report = ravenSession.Query<Report>().FirstOrDefault(r => r.LinkName == query.LinkName);
 
             var result = new ReportResult()
                          {

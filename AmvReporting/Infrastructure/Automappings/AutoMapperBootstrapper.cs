@@ -8,7 +8,7 @@ namespace AmvReporting.Infrastructure.Automappings
     {
         public static void Initialize()
         {
-            Mapper.CreateMap<ReportDetails, EditReportDetailsViewModel>();
+            Mapper.CreateMap<Report, EditReportDetailsViewModel>();
         }
     }
 }

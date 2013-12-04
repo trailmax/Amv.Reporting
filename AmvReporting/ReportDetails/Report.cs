@@ -2,7 +2,7 @@
 
 namespace AmvReporting.Models
 {
-    public class ReportDetails
+    public class Report
     {
         public String Id { get; set; }
 
@@ -19,5 +19,7 @@ namespace AmvReporting.Models
         public String JavaScript { get; set; }
 
         public String Css { get; set; }
+
+        public String DatabaseId { get; set; }
     }
 }

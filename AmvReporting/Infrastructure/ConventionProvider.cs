@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using AmvReporting.Infrastructure.Helpers;
 
@@ -24,8 +22,7 @@ namespace AmvReporting.Infrastructure
             if (meta.DisplayName == null && meta.PropertyName != null)
             {
                 meta.DisplayName = meta.PropertyName;
-                if (meta.ModelType.FullName.Contains("Int") &&
-                    meta.DisplayName.Substring(meta.DisplayName.Length - 2, 2).Equals("Id", StringComparison.Ordinal))
+                if (meta.DisplayName.Substring(meta.DisplayName.Length - 2, 2).Equals("Id", StringComparison.Ordinal))
                 {
                     meta.DisplayName = meta.DisplayName.Remove(meta.DisplayName.Length - 2);
                 }

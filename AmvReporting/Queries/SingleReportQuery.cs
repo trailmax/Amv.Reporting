@@ -6,7 +6,7 @@ using Raven.Client;
 
 namespace AmvReporting.Queries
 {
-    public class SingleReportQuery : IQuery<ReportDetails>
+    public class SingleReportQuery : IQuery<Report>
     {
         public string LinkName { get; set; }
 
@@ -16,7 +16,7 @@ namespace AmvReporting.Queries
         }
     }
 
-    public class SingleReportQueryHandler : IQueryHandler<SingleReportQuery, ReportDetails>
+    public class SingleReportQueryHandler : IQueryHandler<SingleReportQuery, Report>
     {
         private readonly IDocumentSession ravenSession;
 
@@ -25,10 +25,10 @@ namespace AmvReporting.Queries
             this.ravenSession = ravenSession;
         }
 
-        public ReportDetails Handle(SingleReportQuery query)
+        public Report Handle(SingleReportQuery query)
         {
             var report = ravenSession
-                .Query<ReportDetails>()
+                .Query<Report>()
                 .SingleOrDefault(r => r.LinkName == query.LinkName);
 
             return report;

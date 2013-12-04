@@ -5,7 +5,7 @@ using Raven.Client;
 
 namespace AmvReporting.Queries
 {
-    public class DatabaseQuery : IQuery<DatabaseDetails>
+    public class DatabaseQuery : IQuery<DatabaseConnection>
     {
         public string Id { get; set; }
 
@@ -16,7 +16,7 @@ namespace AmvReporting.Queries
     }
 
 
-    public class DatabaseQueryHandler : IQueryHandler<DatabaseQuery, DatabaseDetails>
+    public class DatabaseQueryHandler : IQueryHandler<DatabaseQuery, DatabaseConnection>
     {
         private readonly IDocumentSession ravenSession;
 
@@ -25,9 +25,9 @@ namespace AmvReporting.Queries
             this.ravenSession = ravenSession;
         }
 
-        public DatabaseDetails Handle(DatabaseQuery query)
+        public DatabaseConnection Handle(DatabaseQuery query)
         {
-            var databaseDetails = ravenSession.Load<DatabaseDetails>(query.Id);
+            var databaseDetails = ravenSession.Load<DatabaseConnection>(query.Id);
 
             return databaseDetails;
         }

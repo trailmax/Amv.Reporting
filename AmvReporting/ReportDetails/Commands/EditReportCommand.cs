@@ -22,24 +22,25 @@ namespace AmvReporting.Commands
 
         public void Handle(EditReportCommand command)
         {
-            var report = ravenSession.Load<ReportDetails>(command.Id);
+            var report = ravenSession.Load<Report>(command.Id);
 
             UpdateReport(command, report);
 
             ravenSession.SaveChanges();
         }
 
-        public ReportDetails UpdateReport(EditReportCommand command, ReportDetails reportDetails)
+        public Report UpdateReport(EditReportCommand command, Report report)
         {
-            reportDetails.Title = command.Title;
-            reportDetails.LinkName = command.LinkName;
-            reportDetails.ReportType = command.ReportType;
-            reportDetails.Description = command.Description;
-            reportDetails.Sql = command.Sql;
-            reportDetails.JavaScript = command.JavaScript;
-            reportDetails.Css = command.Css;
+            report.Title = command.Title;
+            report.LinkName = command.LinkName;
+            report.ReportType = command.ReportType;
+            report.Description = command.Description;
+            report.Sql = command.Sql;
+            report.JavaScript = command.JavaScript;
+            report.Css = command.Css;
+            report.DatabaseId = command.DatabaseId;
 
-            return reportDetails;
+            return report;
         }
     }
 }

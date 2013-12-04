@@ -29,6 +29,9 @@ namespace AmvReporting.Commands
 
         [DataType(DataType.MultilineText)]
         public String Css { get; set; }
+
+        [Required]
+        public String DatabaseId { get; set; }
     }
 
     public class CreateReportCommandHandler : ICommandHandler<CreateReportCommand>
@@ -48,9 +51,9 @@ namespace AmvReporting.Commands
             ravenSession.SaveChanges();
         }
 
-        public ReportDetails CreateReportDetails(CreateReportCommand command)
+        public Report CreateReportDetails(CreateReportCommand command)
         {
-            var result = new ReportDetails()
+            var result = new Report()
                          {
                              Title = command.Title,
                              LinkName = command.LinkName,
@@ -59,6 +62,7 @@ namespace AmvReporting.Commands
                              Sql = command.Sql,
                              JavaScript = command.JavaScript,
                              Css = command.Css,
+                             DatabaseId = command.DatabaseId
                          };
 
             return result;

@@ -22,7 +22,8 @@ namespace AmvReporting.Controllers
         {
             var query = new PreviewDataQuery(sql);
             var result = mediator.Request(query);
-            return View();
+            throw new NotImplementedException();
+            //return View();
         }
     }
 }

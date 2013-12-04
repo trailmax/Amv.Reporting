@@ -21,7 +21,7 @@ namespace AmvReporting.Commands
 
         public void Handle(DeleteReportCommand command)
         {
-            var toBeDeleted = session.Load<ReportDetails>(command.Id);
+            var toBeDeleted = session.Load<Report>(command.Id);
 
             session.Delete(toBeDeleted);
             session.SaveChanges();

@@ -28,7 +28,7 @@ namespace AmvReporting.Controllers
         [RestoreModelState]
         public virtual ActionResult Create()
         {
-            return View();
+            return EnrichedView(new ReportDetailsViewModel());
         }
 
         [HttpPost, ValidateAntiForgeryToken]

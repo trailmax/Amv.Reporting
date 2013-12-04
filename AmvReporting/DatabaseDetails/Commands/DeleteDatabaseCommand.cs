@@ -22,7 +22,7 @@ namespace AmvReporting.Commands
 
         public void Handle(DeleteDatabaseCommand command)
         {
-            var toBeDeleted = ravenSession.Load<DatabaseDetails>(command.Id);
+            var toBeDeleted = ravenSession.Load<DatabaseConnection>(command.Id);
 
             ravenSession.Delete(toBeDeleted);
             ravenSession.SaveChanges();
