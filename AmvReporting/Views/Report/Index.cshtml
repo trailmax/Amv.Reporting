@@ -15,6 +15,7 @@
             <thead>
                 <tr>
                     <th style="width: 150px;"></th>
+                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().LinkName)</th>
                     <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Title)</th>
                     <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Description)</th>
                 </tr>
@@ -27,6 +28,7 @@
                             @Html.ActionLink("Edit", MVC.Report.Edit(item.LinkName)) 
                             @Url.AjaxDeleteButton(MVC.Report.Delete(), item, i => i.Id)
                         </td>
+                        <td>@Html.DisplayFor(_ => item.LinkName)</td>
                         <td>@Html.DisplayFor(_ => item.Title)</td>
                         <td>@Html.DisplayFor(_ => item.Description)</td>
                     </tr>

@@ -1,5 +1,4 @@
 ﻿using Ploeh.AutoFixture;
-using Ploeh.AutoFixture.AutoNSubstitute;
 using Ploeh.AutoFixture.Xunit;
 
 namespace AmvReporting.Tests.ZeroFriction
@@ -7,7 +6,14 @@ namespace AmvReporting.Tests.ZeroFriction
     public class AutoMoqDataAttribute : AutoDataAttribute
     {
         public AutoMoqDataAttribute()
-            : base(new Fixture().Customize(new AutoNSubstituteCustomization()))
+            : base(new Fixture().Customize(new AmvReportingCustomisation()))
+        {
+        }
+    }
+
+    public class AutoRavenDataAttribute : AutoDataAttribute
+    {
+        public AutoRavenDataAttribute() : base(new Fixture().Customize(new AutoRavenData()))
         {
         }
     }

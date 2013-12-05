@@ -3,7 +3,7 @@ using AmvReporting.Domain.DatabaseConnections.Commands;
 using AmvReporting.Tests.ZeroFriction;
 using Xunit.Extensions;
 
-namespace AmvReporting.Tests.Commands
+namespace AmvReporting.Tests.Domain.DatabaseConnections.Commands
 {
     public class EditDatabaseDetailsCommandHandlerTests
     {

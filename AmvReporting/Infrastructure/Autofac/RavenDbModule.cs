@@ -3,7 +3,7 @@ using Autofac;
 using Raven.Client;
 using Raven.Client.Document;
 using Raven.Client.Embedded;
-using Raven.Client.Indexes;
+
 
 namespace AmvReporting.Infrastructure.Autofac
 {
@@ -17,9 +17,10 @@ namespace AmvReporting.Infrastructure.Autofac
             {
                 var store = new EmbeddableDocumentStore
                             {
-                                DataDirectory = ConfigurationContext.Current.GetRavenDataPath()
+                                DataDirectory = ConfigurationContext.Current.GetRavenDataPath(),
                             };
                 store.Conventions.DefaultQueryingConsistency = ConsistencyOptions.AlwaysWaitForNonStaleResultsAsOfLastWrite;
+
                 store.Initialize();
 
                 return store;

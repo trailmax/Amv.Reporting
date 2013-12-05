@@ -6,15 +6,12 @@
 @section scripts{
     @Html.Partial(MVC.Report.Views._CommonJavaScript)
 }
-@section css{
-    
-}
-
 
 <h2>Create New Graph</h2>
-@using (Html.BeginForm(MVC.Report.Create(), FormMethod.Post, new { role = "form"}))
+@using (Html.BeginForm(MVC.Report.Create(), FormMethod.Post, new { role = "form" }))
 {
-    @Html.Partial(MVC.Report.Views._CreateEdit , Model)
+    @Html.ValidationSummary(false)
+    @Html.Partial(MVC.Report.Views._CreateEdit, Model)
     <div class="row">
         <div class="col-sm-2"></div>
         <input type="submit" value="Create" class="btn btn-default" />

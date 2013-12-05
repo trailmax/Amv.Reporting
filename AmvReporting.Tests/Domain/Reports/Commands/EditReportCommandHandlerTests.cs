@@ -3,7 +3,7 @@ using AmvReporting.Domain.Reports.Commands;
 using AmvReporting.Tests.ZeroFriction;
 using Xunit.Extensions;
 
-namespace AmvReporting.Tests.Domain.Reports
+namespace AmvReporting.Tests.Domain.Reports.Commands
 {
     public class EditReportCommandHandlerTests
     {
