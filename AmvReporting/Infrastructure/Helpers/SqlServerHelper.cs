@@ -4,27 +4,35 @@ using AmvReporting.Domain;
 
 namespace AmvReporting.Infrastructure.Helpers
 {
-    public static class SqlServerHelper
+    public class SqlServerHelper : IDisposable
     {
-        public static SqlDataReader ExecuteSqlQuery(String sql, String connectionString)
+        private SqlConnection connection;
+
+        public SqlDataReader ExecuteQuery(String sql, String connectionString)
         {
             try
             {
-                using (var connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
+                connection = new SqlConnection(connectionString);
 
-                    var command = new SqlCommand(sql, connection);
+                connection.Open();
 
-                    var reader = command.ExecuteReader();
+                var command = new SqlCommand(sql, connection);
 
-                    return reader;
-                }
+                var reader = command.ExecuteReader();
+
+                return reader;
+
             }
             catch (Exception exception)
             {
+                connection.Close();
                 throw new DomainException("Unable to query database", exception.Message);
             }
+        }
+
+        public void Dispose()
+        {
+            connection.Close();
         }
     }
 }

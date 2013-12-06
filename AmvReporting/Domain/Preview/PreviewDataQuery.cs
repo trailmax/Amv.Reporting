@@ -44,18 +44,16 @@ namespace AmvReporting.Domain.Preview
             var result = new SqlPreviewResult()
                          {
                              IsSuccess = false,
-                             ExceptionMessage = "Query Not Executed",
                          };
-
             try
             {
-                var dataReader = SqlServerHelper.ExecuteSqlQuery(query.Sql, database.ConnectionString);
-                result = new SqlPreviewResult()
-                             {
-                                 IsSuccess = true,
-                                 Data = SqlDataSerialiserHelper.GetDataJson(dataReader),
-                                 Columns = SqlDataSerialiserHelper.GetColumnsJson(dataReader),
-                             };
+                using (var sqlHelper = new SqlServerHelper())
+                {
+                    var dataReader = sqlHelper.ExecuteQuery(query.Sql, database.ConnectionString);
+                    result.IsSuccess = true;
+                    result.Data = SqlDataSerialiserHelper.GetDataJson(dataReader);
+                    result.Columns = SqlDataSerialiserHelper.GetColumnsJson(dataReader);
+                }
             }
             catch (Exception exception)
             {

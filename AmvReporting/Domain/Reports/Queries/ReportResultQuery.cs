@@ -65,10 +65,13 @@ namespace AmvReporting.Domain.Reports.Queries
                              ReportType = report.ReportType,
                          };
 
-            var dataReader = SqlServerHelper.ExecuteSqlQuery(report.Sql, dbConnection.ConnectionString);
 
-            result.Data = SqlDataSerialiserHelper.GetDataJson(dataReader);
-            result.Columns = SqlDataSerialiserHelper.GetColumnsJson(dataReader);
+            using (var sqlServerHelper = new SqlServerHelper())
+            {
+                var dataReader = sqlServerHelper.ExecuteQuery(report.Sql, dbConnection.ConnectionString);
+                result.Data = SqlDataSerialiserHelper.GetDataJson(dataReader);
+                result.Columns = SqlDataSerialiserHelper.GetColumnsJson(dataReader);
+            }
 
             return result;
         }
