@@ -6,15 +6,13 @@
 
 @if (Model.IsSuccess)
 {
-    <h3>Columns</h3>
-    <pre>
-    @Model.Columns
-    </pre>
+    <div style="overflow-y: scroll; height: 250px;">
+        <h3>Columns</h3>
+        <pre>@Model.Columns</pre>
 
-    <h3>Data</h3>
-    <pre>
-    @Model.Data;
-    </pre>
+        <h3>Data</h3>
+        <pre>@Model.Data;</pre>
+    </div>
 }
 else
 {

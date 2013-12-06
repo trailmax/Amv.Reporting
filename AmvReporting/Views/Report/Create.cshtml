@@ -1,7 +1,7 @@
 ﻿@model ReportDetailsViewModel
 
 @{
-    ViewBag.Title = "Create New Graph";
+    ViewBag.Title = "Create New Report";
 }
 @section scripts{
     @Html.Partial(MVC.Report.Views._CommonJavaScript)
@@ -10,11 +10,7 @@
 <h2>Create New Graph</h2>
 @using (Html.BeginForm(MVC.Report.Create(), FormMethod.Post, new { role = "form" }))
 {
-    @Html.ValidationSummary(false)
-    @Html.Partial(MVC.Report.Views._CreateEdit, Model)
     <div class="row">
-        <div class="col-sm-2"></div>
-        <input type="submit" value="Create" class="btn btn-default" />
-        @Html.ActionLink("Back To List", MVC.Report.Index(), new { @class = "btn btn-default" })
+    @Html.Partial(MVC.Report.Views._CreateEdit, Model)
     </div>
 }
