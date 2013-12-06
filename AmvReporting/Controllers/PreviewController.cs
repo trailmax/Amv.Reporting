@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using AmvReporting.Domain.Preview;
 using AmvReporting.Infrastructure.CQRS;
-using AmvReporting.Queries;
 
 namespace AmvReporting.Controllers
 {
@@ -18,12 +15,12 @@ namespace AmvReporting.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult Data(String sql)
+        public virtual ActionResult Data(String sql, String databaseId)
         {
-            var query = new PreviewDataQuery(sql);
+            var query = new PreviewDataQuery(sql, databaseId);
             var result = mediator.Request(query);
-            throw new NotImplementedException();
-            //return View();
+
+            return PartialView(result);
         }
     }
 }

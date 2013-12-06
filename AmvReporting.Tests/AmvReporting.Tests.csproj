@@ -92,6 +92,7 @@
     <Compile Include="Domain\DatabaseConnections\Commands\EditDatabaseDetailsCommandHandlerTests.cs" />
     <Compile Include="Domain\Reports\Commands\CreateReportCommandValidatorTest.cs" />
     <Compile Include="Domain\Reports\Commands\EditReportCommandHandlerTests.cs" />
+    <Compile Include="Domain\Reports\Commands\EditReportCommandValidatorTests.cs" />
     <Compile Include="Infrastructure\Helpers\ExpressionHelperTests.cs" />
     <Compile Include="Infrastructure\Automappings\AutoMapperBootstrapperTests.cs" />
     <Compile Include="ZeroFriction\AmvReportingCustomisation.cs" />

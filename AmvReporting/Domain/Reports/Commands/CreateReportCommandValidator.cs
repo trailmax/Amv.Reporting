@@ -4,12 +4,12 @@ using Raven.Client;
 
 namespace AmvReporting.Domain.Reports.Commands
 {
-    public class ModifyReportCommandValidator : ICommandValidator<CreateReportCommand>, ICommandValidator<EditReportCommand>
+    public class CreateReportCommandValidator : ICommandValidator<CreateReportCommand>
     {
         private readonly IDocumentSession ravenSession;
         public ErrorList Errors { get; private set; }
 
-        public ModifyReportCommandValidator(IDocumentSession ravenSession)
+        public CreateReportCommandValidator(IDocumentSession ravenSession)
         {
             this.ravenSession = ravenSession;
             Errors = new ErrorList();
@@ -18,20 +18,6 @@ namespace AmvReporting.Domain.Reports.Commands
 
         public bool IsValid(CreateReportCommand command)
         {
-            return ValidateCommand(command);
-        }
-
-
-        public bool IsValid(EditReportCommand command)
-        {
-            return ValidateCommand(command);
-        }
-
-
-        private bool ValidateCommand(CreateReportCommand command)
-        {
-            var allReports = ravenSession.Query<Report>().ToList();
-
             var isDuplicated = ravenSession.Query<Report>().Any(r => r.LinkName == command.LinkName);
 
             if (isDuplicated)

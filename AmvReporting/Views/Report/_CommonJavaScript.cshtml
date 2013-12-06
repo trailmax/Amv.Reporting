@@ -1,3 +1,22 @@
 ﻿<script language="javascript">
-    
+    $(document).ready(function() {
+        $('#previewJson').on('click', function() {
+            var postData = {};
+            postData['sql'] = $('#Sql').val();
+            postData['databaseId'] = $('#DatabaseId').val();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action(MVC.Preview.Data())',
+                data: postData,
+                error: function () {
+                    $.showWarning('Communication Error: could not connect to the server');
+                },
+                success: function (data) {
+                    $('#jsonPreview').html(data);
+                },
+
+            });
+        });
+    });
 </script>

@@ -1,0 +1,22 @@
+﻿@model SqlPreviewResult
+
+@{
+    Layout = null;
+}
+
+@if (Model.IsSuccess)
+{
+    <h3>Columns</h3>
+    <pre>
+    @Model.Columns
+    </pre>
+
+    <h3>Data</h3>
+    <pre>
+    @Model.Data;
+    </pre>
+}
+else
+{
+    <h4>Error: @Model.ExceptionMessage</h4>
+}

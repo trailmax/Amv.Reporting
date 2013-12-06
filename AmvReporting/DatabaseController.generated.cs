@@ -4,8 +4,6 @@
 // to the .tt file (i.e. the T4 template) and save it to regenerate this file.
 
 // Make sure the compiler doesn't complain about missing Xml comments
-
-using AmvReporting.Domain.DatabaseConnections.Commands;
 #pragma warning disable 1591
 #region T4MVC
 
@@ -177,9 +175,9 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, CreateDatabaseDetailsCommand command);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.DatabaseConnections.Commands.CreateDatabaseDetailsCommand command);
 
-        public override System.Web.Mvc.ActionResult Create(CreateDatabaseDetailsCommand command)
+        public override System.Web.Mvc.ActionResult Create(AmvReporting.Domain.DatabaseConnections.Commands.CreateDatabaseDetailsCommand command)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
@@ -197,9 +195,9 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, EditDatabaseDetailsCommand command);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.DatabaseConnections.Commands.EditDatabaseDetailsCommand command);
 
-        public override System.Web.Mvc.ActionResult Edit(EditDatabaseDetailsCommand command)
+        public override System.Web.Mvc.ActionResult Edit(AmvReporting.Domain.DatabaseConnections.Commands.EditDatabaseDetailsCommand command)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
@@ -207,9 +205,9 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
-        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, DeleteDatabaseCommand command);
+        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.DatabaseConnections.Commands.DeleteDatabaseCommand command);
 
-        public override System.Web.Mvc.ActionResult Delete(DeleteDatabaseCommand command)
+        public override System.Web.Mvc.ActionResult Delete(AmvReporting.Domain.DatabaseConnections.Commands.DeleteDatabaseCommand command)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);

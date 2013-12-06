@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using AmvReporting.Domain.DatabaseConnections;
 using AmvReporting.Infrastructure.Configuration;
 using AmvReporting.Infrastructure.CQRS;
+using AmvReporting.Infrastructure.Helpers;
 using Newtonsoft.Json;
 using Raven.Client;
 
@@ -43,7 +45,16 @@ namespace AmvReporting.Domain.Reports.Queries
 
         public ReportResult Handle(ReportResultQuery query)
         {
-            var report = ravenSession.Query<Report>().FirstOrDefault(r => r.LinkName == query.LinkName);
+            var report = ravenSession.Query<Report>()
+                .Customize(x => x.Include<Report>(r => r.DatabaseId)) // load Database 
+                .FirstOrDefault(r => r.LinkName == query.LinkName);
+
+            if (report == null)
+            {
+                throw new DomainException("Unable to find report on this path");
+            }
+
+            var dbConnection = ravenSession.Load<DatabaseConnection>(report.DatabaseId);
 
             var result = new ReportResult()
                          {
@@ -54,80 +65,10 @@ namespace AmvReporting.Domain.Reports.Queries
                              ReportType = report.ReportType,
                          };
 
-            var connectionString = ConfigurationContext.Current.GetDatabaseConnectionString();
-            using (var connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
+            var dataReader = SqlServerHelper.ExecuteSqlQuery(report.Sql, dbConnection.ConnectionString);
 
-                    var command = new SqlCommand(report.Sql, connection);
-
-                    var reader = command.ExecuteReader();
-
-                    var dataDictionary = GetDataDictionary(reader);
-                    result.Data = JsonConvert.SerializeObject(dataDictionary, Formatting.Indented);
-
-                    var columnsDictionary = GetColumnsDictionary(reader);
-                    result.Columns = JsonConvert.SerializeObject(columnsDictionary, Formatting.Indented);
-                }
-                catch (SqlException exception)
-                {
-                    Console.WriteLine("Unable to query database. See exception");
-                    Console.WriteLine(exception);
-                }
-            }
-
-            return result;
-        }
-
-
-        public class ColumnsDefinition
-        {
-            // ReSharper disable InconsistentNaming
-            public String mData { get; set; }
-            // ReSharper restore InconsistentNaming
-        }
-
-        public List<ColumnsDefinition> GetColumnsDictionary(SqlDataReader dataReader)
-        {
-            var cols = new List<ColumnsDefinition>();
-            for (var i = 0; i < dataReader.FieldCount; i++)
-            {
-                var pair = new ColumnsDefinition()
-                           {
-                               mData = dataReader.GetName(i),
-                           };
-                cols.Add(pair); ;
-            }
-            return cols;
-        }
-
-        public IEnumerable<Dictionary<string, object>> GetDataDictionary(SqlDataReader reader)
-        {
-            var results = new List<Dictionary<string, object>>();
-            var cols = new List<string>();
-            for (var i = 0; i < reader.FieldCount; i++)
-            {
-                cols.Add(reader.GetName(i));
-            }
-
-            while (reader.Read())
-            {
-                results.Add(SerializeRow(cols, reader));
-            }
-
-            return results;
-        }
-
-        private Dictionary<string, object> SerializeRow(IEnumerable<string> cols, SqlDataReader reader)
-        {
-            var result = new Dictionary<string, object>();
-
-            foreach (var col in cols)
-            {
-                result.Add(col, reader[col]);
-            }
+            result.Data = SqlDataSerialiserHelper.GetDataJson(dataReader);
+            result.Columns = SqlDataSerialiserHelper.GetColumnsJson(dataReader);
 
             return result;
         }

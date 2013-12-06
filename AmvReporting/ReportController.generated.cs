@@ -4,8 +4,6 @@
 // to the .tt file (i.e. the T4 template) and save it to regenerate this file.
 
 // Make sure the compiler doesn't complain about missing Xml comments
-
-using AmvReporting.Domain.Reports.Commands;
 #pragma warning disable 1591
 #region T4MVC
 
@@ -126,7 +124,6 @@ namespace AmvReporting.Controllers
                 public readonly string _CreateEdit = "_CreateEdit";
                 public readonly string _ViewStart = "_ViewStart";
                 public readonly string Create = "Create";
-                public readonly string Delete = "Delete";
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
             }
@@ -134,7 +131,6 @@ namespace AmvReporting.Controllers
             public readonly string _CreateEdit = "~/Views/Report/_CreateEdit.cshtml";
             public readonly string _ViewStart = "~/Views/Report/_ViewStart.cshtml";
             public readonly string Create = "~/Views/Report/Create.cshtml";
-            public readonly string Delete = "~/Views/Report/Delete.cshtml";
             public readonly string Edit = "~/Views/Report/Edit.cshtml";
             public readonly string Index = "~/Views/Report/Index.cshtml";
         }
@@ -163,9 +159,9 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, CreateReportCommand command);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.Reports.Commands.CreateReportCommand command);
 
-        public override System.Web.Mvc.ActionResult Create(CreateReportCommand command)
+        public override System.Web.Mvc.ActionResult Create(AmvReporting.Domain.Reports.Commands.CreateReportCommand command)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
@@ -183,9 +179,9 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, EditReportCommand command);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.Reports.Commands.EditReportCommand command);
 
-        public override System.Web.Mvc.ActionResult Edit(EditReportCommand command)
+        public override System.Web.Mvc.ActionResult Edit(AmvReporting.Domain.Reports.Commands.EditReportCommand command)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
@@ -193,9 +189,9 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
-        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, DeleteReportCommand command);
+        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.Reports.Commands.DeleteReportCommand command);
 
-        public override System.Web.Mvc.ActionResult Delete(DeleteReportCommand command)
+        public override System.Web.Mvc.ActionResult Delete(AmvReporting.Domain.Reports.Commands.DeleteReportCommand command)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);

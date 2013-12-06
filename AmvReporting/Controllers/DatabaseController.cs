@@ -4,7 +4,6 @@ using AmvReporting.Domain.DatabaseConnections.Commands;
 using AmvReporting.Domain.DatabaseConnections.Queries;
 using AmvReporting.Infrastructure;
 using AmvReporting.Infrastructure.CQRS;
-using AmvReporting.Queries;
 
 namespace AmvReporting.Controllers
 {

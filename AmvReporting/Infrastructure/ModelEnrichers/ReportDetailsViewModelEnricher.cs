@@ -2,7 +2,6 @@
 using AmvReporting.Domain.Reports.ViewModels;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Helpers;
-using AmvReporting.Queries;
 
 namespace AmvReporting.Infrastructure.ModelEnrichers
 {

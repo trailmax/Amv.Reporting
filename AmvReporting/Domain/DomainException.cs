@@ -8,5 +8,11 @@ namespace AmvReporting.Domain
             : base(message)
         {
         }
+
+        public DomainException(string formattedString, params object[] args)
+            : base(String.Format(formattedString, args))
+        {
+
+        }
     }
 }
