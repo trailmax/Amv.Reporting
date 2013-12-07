@@ -1,0 +1,18 @@
+﻿@model ReportResultPreview
+
+@{
+    Layout = null;
+}
+
+
+<style>
+        @Model.Css
+</style>
+
+<table id="report"></table>
+
+<script type="text/javascript">
+        var columns = @Html.Raw(Model.Columns);
+        var data = @Html.Raw(Model.Data);
+        @Html.Raw(Model.JavaScript)
+</script>

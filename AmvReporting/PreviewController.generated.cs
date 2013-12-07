@@ -47,6 +47,12 @@ namespace AmvReporting.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Data);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Report()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Report);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public PreviewController Actions { get { return MVC.Preview; } }
@@ -64,12 +70,14 @@ namespace AmvReporting.Controllers
         public class ActionNamesClass
         {
             public readonly string Data = "Data";
+            public readonly string Report = "Report";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Data = "Data";
+            public const string Report = "Report";
         }
 
 
@@ -82,6 +90,14 @@ namespace AmvReporting.Controllers
             public readonly string sql = "sql";
             public readonly string databaseId = "databaseId";
         }
+        static readonly ActionParamsClass_Report s_params_Report = new ActionParamsClass_Report();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Report ReportParams { get { return s_params_Report; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Report
+        {
+            public readonly string model = "model";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -92,7 +108,11 @@ namespace AmvReporting.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string Data = "Data";
+                public readonly string Report = "Report";
             }
+            public readonly string Data = "~/Views/Preview/Data.cshtml";
+            public readonly string Report = "~/Views/Preview/Report.cshtml";
         }
     }
 
@@ -109,6 +129,16 @@ namespace AmvReporting.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sql", sql);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "databaseId", databaseId);
             DataOverride(callInfo, sql, databaseId);
+            return callInfo;
+        }
+
+        partial void ReportOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.Preview.ViewModels.PreviewReportModel model);
+
+        public override System.Web.Mvc.ActionResult Report(AmvReporting.Domain.Preview.ViewModels.PreviewReportModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Report);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            ReportOverride(callInfo, model);
             return callInfo;
         }
 

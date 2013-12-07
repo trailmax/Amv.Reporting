@@ -170,7 +170,11 @@
     <Compile Include="Domain\DatabaseConnections\Queries\AllDatabasesQuery.cs" />
     <Compile Include="Domain\DatabaseConnections\Queries\CheckDatabaseConnectivityQuery.cs" />
     <Compile Include="Domain\DatabaseConnections\Queries\DatabaseQuery.cs" />
+    <Compile Include="Domain\Preview\ViewModels\PreviewReportModel.cs" />
+    <Compile Include="Domain\Preview\ViewModels\ReportResultPreview.cs" />
+    <Compile Include="Domain\Reports\Commands\CreateReportCommandHandler.cs" />
     <Compile Include="Domain\Reports\Commands\CreateReportCommandValidator.cs" />
+    <Compile Include="Domain\Reports\Commands\DeleteReportCommandHandler.cs" />
     <Compile Include="Domain\Reports\Commands\EditReportCommandValidator.cs" />
     <Compile Include="Infrastructure\Helpers\SqlDataSerialiserHelper.cs" />
     <Compile Include="Infrastructure\Helpers\SqlServerHelper.cs" />
@@ -240,7 +244,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Domain\Reports\Queries\AllReportsQuery.cs" />
-    <Compile Include="Domain\Preview\PreviewDataQuery.cs" />
+    <Compile Include="Domain\Preview\Queries\PreviewDataQuery.cs" />
     <Compile Include="Domain\Reports\Queries\ReportResultQuery.cs" />
     <Compile Include="Domain\Reports\Queries\SingleReportQuery.cs" />
     <Compile Include="SharedController.generated.cs">
@@ -255,6 +259,7 @@
     <Compile Include="Domain\Reports\ViewModels\ReportDetailsViewModel.cs" />
     <None Include="Views\Database\_CommonScripts.cshtml" />
     <Content Include="Views\Preview\Data.cshtml" />
+    <Content Include="Views\Preview\Report.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -482,7 +487,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

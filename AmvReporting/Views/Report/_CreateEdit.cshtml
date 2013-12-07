@@ -47,12 +47,14 @@
                 @Html.LabelFor(m => m.Sql, new { @class = "control-label" })
                 @Html.TextAreaFor(m => m.Sql, new { @class = "form-control", rows = 10 })
                 @Html.ValidationMessageFor(m => m.Sql)
-                <a id="previewJson">Preview Data >></a>
+                <a id="previewData">Preview Data <span class="glyphicon glyphicon-forward"></span></a>
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.JavaScript, new { @class = "control-label" })
+                <div>Report element is #report. So you'll need JS to point to this element</div>
                 @Html.TextAreaFor(m => m.JavaScript, new { @class = "form-control", rows = 10 })
                 @Html.ValidationMessageFor(m => m.JavaScript)
+                <a id="previewFullReport">Preview Report <span class="glyphicon glyphicon-forward"></span></a>
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Css, new { @class = "control-label" })
@@ -63,4 +65,4 @@
     <input type="submit" value="Save" class="btn btn-default" />
     @Html.ActionLink("Back To List", MVC.Report.Index(), new { @class = "btn btn-default" })
 </div>
-<div class="col-md-5" id="jsonPreview" style="height: 250px;"></div>
+<div class="col-md-5" id="previewContainer"></div>

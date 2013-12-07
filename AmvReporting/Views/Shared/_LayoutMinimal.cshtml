@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
     @RenderSection("css", required: false)
 </head>
 <body>
@@ -30,6 +31,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/js")
     <script type="text/javascript" language="javascript">
         jQuery.showAlert = function (message, alertLevel) {
             $('#alert-placeholder').html('<div class="in alert '+ alertLevel + '" id="alert-message"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>');
@@ -48,5 +50,6 @@
         };
     </script>
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

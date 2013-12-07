@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
-using AmvReporting.Domain.Preview;
+using AmvReporting.Domain.Preview.Queries;
+using AmvReporting.Domain.Preview.ViewModels;
 using AmvReporting.Infrastructure.CQRS;
 
 namespace AmvReporting.Controllers
@@ -14,6 +15,7 @@ namespace AmvReporting.Controllers
             this.mediator = mediator;
         }
 
+
         [HttpPost]
         public virtual ActionResult Data(String sql, String databaseId)
         {
@@ -21,6 +23,24 @@ namespace AmvReporting.Controllers
             var result = mediator.Request(query);
 
             return PartialView(result);
+        }
+
+
+        [HttpPost]
+        public virtual ActionResult Report(PreviewReportModel model)
+        {
+            var query = new PreviewDataQuery(model.Sql, model.DatabaseId);
+            var queryResult = mediator.Request(query);
+
+            var outModel = new ReportResultPreview()
+                           {
+                               Data = queryResult.Data,
+                               Columns = queryResult.Columns,
+                               JavaScript = model.JavaScript,
+                               Css = model.Css,
+                           };
+
+            return PartialView(outModel);
         }
     }
 }

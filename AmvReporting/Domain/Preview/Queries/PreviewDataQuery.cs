@@ -1,11 +1,10 @@
 using System;
-using System.Data.SqlClient;
 using AmvReporting.Domain.DatabaseConnections;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Helpers;
 using Raven.Client;
 
-namespace AmvReporting.Domain.Preview
+namespace AmvReporting.Domain.Preview.Queries
 {
     public class PreviewDataQuery : IQuery<SqlPreviewResult>
     {

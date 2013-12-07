@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using AmvReporting.Domain.DatabaseConnections;
-using AmvReporting.Infrastructure.Configuration;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Helpers;
-using Newtonsoft.Json;
 using Raven.Client;
 
 namespace AmvReporting.Domain.Reports.Queries
