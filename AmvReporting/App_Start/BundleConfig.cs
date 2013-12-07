@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace AmvReporting
 {
@@ -25,8 +24,13 @@ namespace AmvReporting
                       "~/Content/Datatables-1.9.4/media/css/jquery.*"));
 
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
-                    "~/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.min.js"
+                    "~/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.min.js",
+                    "~/Scripts/flot/jquery.*",
+                    "~/Scripts/flot/excanvas.js"
                 ));
+#if !DEBUG
+            BundleTable.EnableOptimizations = true;
+#endif
         }
     }
 }

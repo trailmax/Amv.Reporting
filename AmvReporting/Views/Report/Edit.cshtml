@@ -3,9 +3,6 @@
 @{
     ViewBag.Title = "Edit Report";
 }
-@section scripts{
-    @Html.Partial(MVC.Report.Views._CommonJavaScript)
-}
 
 <h2>Edit Report</h2>
 @using (Html.BeginForm(MVC.Report.Edit(), FormMethod.Post, new { role = "form" }))
