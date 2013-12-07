@@ -15,6 +15,7 @@ namespace AmvReporting.Infrastructure.Helpers
                 var pair = new ColumnsDefinition()
                            {
                                mData = dataReader.GetName(i),
+                               sTitle = dataReader.GetName(i),
                            };
                 cols.Add(pair); ;
             }
@@ -28,6 +29,7 @@ namespace AmvReporting.Infrastructure.Helpers
         {
             // ReSharper disable InconsistentNaming
             public String mData { get; set; }
+            public String sTitle { get; set; }
             // ReSharper restore InconsistentNaming
         }
 
