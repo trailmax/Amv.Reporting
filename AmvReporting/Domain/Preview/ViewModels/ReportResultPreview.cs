@@ -1,4 +1,5 @@
 using System;
+using AmvReporting.Domain.Reports;
 
 namespace AmvReporting.Domain.Preview.ViewModels
 {
@@ -8,5 +9,6 @@ namespace AmvReporting.Domain.Preview.ViewModels
         public String Columns { get; set; }
         public String JavaScript { get; set; }
         public String Css { get; set; }
+        public ReportType ReportType { get; set; }
     }
 }

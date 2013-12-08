@@ -7,15 +7,30 @@
     @Model.Css
 </style>
 
-<table id="report"></table>
-<div class="demo-container" style="width:900px;">
-    <div id="placeholder" class="demo-placeholder" style="float: left; width: 675px; height: 500px;"></div>
-    <p id="choices" style="float: right; width: 200px; "></p>
-</div>
+<div id="javascriptError"></div>
 
+@if (Model.ReportType == ReportType.Table)
+{
+    <table id="report"></table>
+}
+@if (Model.ReportType == ReportType.LineChart)
+{
+    <div class="row">
+        <div class="col-md-8 graph-container">
+            <div id="report" style="height: 600px;"></div>
+        </div>
+        <div class="col-md-4" id="choices">
+
+        </div>
+    </div>
+}
 
 <script type="text/javascript">
-    var columns = @Html.Raw(Model.Columns);
-    var data = @Html.Raw(Model.Data);
-    @Html.Raw(Model.JavaScript)
+    try {
+        var columns = @Html.Raw(Model.Columns);
+        var data = @Html.Raw(Model.Data);
+        @Html.Raw(Model.JavaScript)
+    } catch (e) {
+        $('#javascriptError').html('<span class="glyphicon glyphicon-remove-circle"></span> JavaScript Error: ' + e.message).addClass('alert-danger javascriptError');
+    } 
 </script>

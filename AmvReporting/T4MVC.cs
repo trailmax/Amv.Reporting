@@ -952,6 +952,8 @@ namespace Links
         
         }
     
+        public static readonly string flot_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/flot.min.css") ? Url("flot.min.css") : Url("flot.css");
+             
         public static readonly string Site_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Site.min.css") ? Url("Site.min.css") : Url("Site.css");
              
     }

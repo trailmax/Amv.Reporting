@@ -96,12 +96,10 @@ namespace AmvReporting.Controllers
                 public readonly string _ViewStart = "_ViewStart";
                 public readonly string Index = "Index";
                 public readonly string Report = "Report";
-                public readonly string Table = "Table";
             }
             public readonly string _ViewStart = "~/Views/Home/_ViewStart.cshtml";
             public readonly string Index = "~/Views/Home/Index.cshtml";
             public readonly string Report = "~/Views/Home/Report.cshtml";
-            public readonly string Table = "~/Views/Home/Table.cshtml";
         }
     }
 
