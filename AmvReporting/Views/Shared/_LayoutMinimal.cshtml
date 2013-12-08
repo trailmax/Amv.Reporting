@@ -22,6 +22,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 @{ Html.RenderAction("AdminMenu", "Menu"); }
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="navbar-text">Hello, @Context.User.Identity.Name !</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -35,9 +39,9 @@
     @Scripts.Render("~/bundles/flot")
     <script type="text/javascript" language="javascript">
         jQuery.showAlert = function (message, alertLevel) {
-            $('#alert-placeholder').html('<div class="in alert '+ alertLevel + '" id="alert-message"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>');
-            window.setTimeout(function() {
-                $("#alert-message").fadeTo(500, 0).slideUp(500, function() {
+            $('#alert-placeholder').html('<div class="in alert ' + alertLevel + '" id="alert-message"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>');
+            window.setTimeout(function () {
+                $("#alert-message").fadeTo(500, 0).slideUp(500, function () {
                     $(this).remove();
                 });
             }, 3000);
