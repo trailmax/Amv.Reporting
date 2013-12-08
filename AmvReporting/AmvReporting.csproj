@@ -260,7 +260,7 @@
     <Compile Include="Domain\Reports\ViewModels\ReportDetailsViewModel.cs" />
     <None Include="Views\Database\_CommonScripts.cshtml" />
     <Content Include="Content\flot.css" />
-    <Content Include="Views\Preview\TableData.cshtml" />
+    <Content Include="Views\Preview\Data.cshtml" />
     <Content Include="Views\Preview\Report.cshtml" />
     <Content Include="Views\Preview\Test.cshtml" />
   </ItemGroup>
@@ -468,7 +468,6 @@
     <Content Include="Views\Report\Edit.cshtml" />
     <Content Include="Views\Report\_CreateEdit.cshtml" />
     <Content Include="Views\Menu\AdminMenu.cshtml" />
-    <Content Include="Views\Home\Table.cshtml" />
     <Content Include="Views\Home\Report.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutMinimal.cshtml" />

@@ -31,7 +31,7 @@ namespace AmvReporting.Controllers
             return EnrichedView(new ReportDetailsViewModel());
         }
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
         public virtual ActionResult Create(CreateReportCommand command)
         {
             return ProcessForm(command, RedirectToAction(MVC.Report.Create()), RedirectToAction(MVC.Report.Index()));
@@ -49,7 +49,7 @@ namespace AmvReporting.Controllers
         }
 
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
         public virtual ActionResult Edit(EditReportCommand command)
         {
             return ProcessForm(command, RedirectToAction(MVC.Report.Edit(command.LinkName)), RedirectToAction(MVC.Report.Index()));

@@ -28,10 +28,6 @@ namespace AmvReporting.Controllers
             var query = new ReportResultQuery(linkName);
             var result = mediator.Request(query);
 
-            if (result.ReportType == ReportType.Table)
-            {
-                return View("Table", result);
-            }
             return View(result);
         }
     }

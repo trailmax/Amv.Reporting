@@ -3,16 +3,34 @@
 @{
     ViewBag.Title = Model.Title;
 }
+@section css
+{
+    <style>
+        @Model.Css
+    </style>
+}
 
 <h2>@Model.Title</h2>
 
-|
-<div id="report"></div>
+@if (Model.ReportType == ReportType.Table)
+{
+    <table id="report"></table>
+}
+@if (Model.ReportType == ReportType.LineChart)
+{
+    <div class="row">
+        <div class="col-md-8 graph-container">
+            <div id="report" style="height: 600px;"></div>
+        </div>
+        <div class="col-md-4" id="choices">
+            
+        </div>
+    </div>
+}
 
-@section scripts{
 
-    <script src="@Url.Content("~/Scripts/flot/jquery.flot.min.js")"></script>
-
+@section scripts
+{
     <script type="text/javascript">
         $(document).ready(function() {
             var columns = @Html.Raw(Model.Columns);

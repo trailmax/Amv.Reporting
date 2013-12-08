@@ -1,18 +1,21 @@
 ﻿@model ReportResultPreview
-
 @{
     Layout = null;
 }
 
-
 <style>
-        @Model.Css
+    @Model.Css
 </style>
 
 <table id="report"></table>
+<div class="demo-container" style="width:900px;">
+    <div id="placeholder" class="demo-placeholder" style="float: left; width: 675px; height: 500px;"></div>
+    <p id="choices" style="float: right; width: 200px; "></p>
+</div>
+
 
 <script type="text/javascript">
-        var columns = @Html.Raw(Model.Columns);
-        var data = @Html.Raw(Model.Data);
-        @Html.Raw(Model.JavaScript)
+    var columns = @Html.Raw(Model.Columns);
+    var data = @Html.Raw(Model.Data);
+    @Html.Raw(Model.JavaScript)
 </script>

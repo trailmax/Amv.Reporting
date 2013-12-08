@@ -4,6 +4,5 @@
     {
         Table,
         LineChart,
-        BarChart,
     }
 }
