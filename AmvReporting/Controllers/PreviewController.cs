@@ -2,6 +2,8 @@
 using System.Web.Mvc;
 using AmvReporting.Domain.Preview.Queries;
 using AmvReporting.Domain.Preview.ViewModels;
+using AmvReporting.Domain.Reports;
+using AmvReporting.Infrastructure;
 using AmvReporting.Infrastructure.CQRS;
 
 namespace AmvReporting.Controllers
@@ -17,19 +19,31 @@ namespace AmvReporting.Controllers
 
 
         [HttpPost]
-        public virtual ActionResult Data(String sql, String databaseId)
+        public virtual ActionResult Data(String sql, String databaseId, ReportType reportType)
         {
-            var query = new PreviewDataQuery(sql, databaseId);
-            var result = mediator.Request(query);
+            if (reportType == ReportType.Table)
+            {
+                var query = new PreviewTableQuery(sql, databaseId);
+                var result = mediator.Request(query);
 
-            return PartialView(result);
+                return PartialView("TableData", result);
+               
+            }
+            if (reportType == ReportType.LineChart)
+            {
+                var query = new PreviewLineQuery(sql, databaseId);
+                var result = mediator.Request(query);
+
+                return PartialView("LineData", result);
+            }
+            throw new NotImplementedException();
         }
 
 
         [HttpPost]
         public virtual ActionResult Report(PreviewReportModel model)
         {
-            var query = new PreviewDataQuery(model.Sql, model.DatabaseId);
+            var query = new PreviewTableQuery(model.Sql, model.DatabaseId);
             var queryResult = mediator.Request(query);
 
             var outModel = new ReportResultPreview()
@@ -41,6 +55,12 @@ namespace AmvReporting.Controllers
                            };
 
             return PartialView(outModel);
+        }
+
+        [RestoreModelState]
+        public ActionResult Test()
+        {
+            return View();
         }
     }
 }

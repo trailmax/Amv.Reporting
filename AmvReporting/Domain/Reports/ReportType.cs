@@ -2,7 +2,8 @@
 {
     public enum ReportType
     {
+        Table,
         LineChart,
-        Table
+        BarChart,
     }
 }

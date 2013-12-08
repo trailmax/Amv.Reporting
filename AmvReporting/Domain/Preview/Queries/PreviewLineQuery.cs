@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using AmvReporting.Domain.DatabaseConnections;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Helpers;
@@ -6,52 +6,51 @@ using Raven.Client;
 
 namespace AmvReporting.Domain.Preview.Queries
 {
-    public class PreviewDataQuery : IQuery<SqlPreviewResult>
+    public class PreviewLineQuery : IQuery<PreviewLineResult>
     {
         public string Sql { get; set; }
-        public String DatabaseId { get; set; }
+        public string DatabaseId { get; set; }
 
-        public PreviewDataQuery(String sql, string databaseId)
+        public PreviewLineQuery(String sql, String databaseId)
         {
             Sql = sql;
             DatabaseId = databaseId;
         }
     }
 
-    public class SqlPreviewResult
+    public class PreviewLineResult
     {
         public bool IsSuccess { get; set; }
         public String ExceptionMessage { get; set; }
-        public String Data { get; set; }
-        public String Columns { get; set; }
     }
 
 
-    public class PreviewDataQueryHandler : IQueryHandler<PreviewDataQuery, SqlPreviewResult>
+    public class PreviewLineQueryHandler : IQueryHandler<PreviewLineQuery, PreviewLineResult>
     {
         private readonly IDocumentSession ravenSession;
 
-        public PreviewDataQueryHandler(IDocumentSession ravenSession)
+        public PreviewLineQueryHandler(IDocumentSession ravenSession)
         {
             this.ravenSession = ravenSession;
         }
 
-        public SqlPreviewResult Handle(PreviewDataQuery query)
+        public PreviewLineResult Handle(PreviewLineQuery query)
         {
             var database = ravenSession.Load<DatabaseConnection>(query.DatabaseId);
 
-            var result = new SqlPreviewResult()
+            var result = new PreviewLineResult()
                          {
                              IsSuccess = false,
                          };
+
             try
             {
                 using (var sqlHelper = new SqlServerHelper())
                 {
                     var dataReader = sqlHelper.ExecuteQuery(query.Sql, database.ConnectionString);
                     result.IsSuccess = true;
-                    result.Data = SqlDataSerialiserHelper.GetDataJson(dataReader);
-                    result.Columns = SqlDataSerialiserHelper.GetColumnsJson(dataReader);
+                    //result.Data = SqlDataSerialiserHelper.GetDataJson(dataReader);
+                    //result.Columns = SqlDataSerialiserHelper.GetColumnsJson(dataReader);
                 }
             }
             catch (Exception exception)

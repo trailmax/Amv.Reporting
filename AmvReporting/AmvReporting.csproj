@@ -170,6 +170,7 @@
     <Compile Include="Domain\DatabaseConnections\Queries\AllDatabasesQuery.cs" />
     <Compile Include="Domain\DatabaseConnections\Queries\CheckDatabaseConnectivityQuery.cs" />
     <Compile Include="Domain\DatabaseConnections\Queries\DatabaseQuery.cs" />
+    <Compile Include="Domain\Preview\Queries\PreviewLineQuery.cs" />
     <Compile Include="Domain\Preview\ViewModels\PreviewReportModel.cs" />
     <Compile Include="Domain\Preview\ViewModels\ReportResultPreview.cs" />
     <Compile Include="Domain\Reports\Commands\CreateReportCommandHandler.cs" />
@@ -244,7 +245,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Domain\Reports\Queries\AllReportsQuery.cs" />
-    <Compile Include="Domain\Preview\Queries\PreviewDataQuery.cs" />
+    <Compile Include="Domain\Preview\Queries\PreviewTableQuery.cs" />
     <Compile Include="Domain\Reports\Queries\ReportResultQuery.cs" />
     <Compile Include="Domain\Reports\Queries\SingleReportQuery.cs" />
     <Compile Include="SharedController.generated.cs">
@@ -258,8 +259,10 @@
     <Compile Include="Domain\Reports\ViewModels\EditReportDetailsViewModel.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportDetailsViewModel.cs" />
     <None Include="Views\Database\_CommonScripts.cshtml" />
-    <Content Include="Views\Preview\Data.cshtml" />
+    <Content Include="Content\flot.css" />
+    <Content Include="Views\Preview\TableData.cshtml" />
     <Content Include="Views\Preview\Report.cshtml" />
+    <Content Include="Views\Preview\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

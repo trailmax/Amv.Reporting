@@ -89,6 +89,7 @@ namespace AmvReporting.Controllers
         {
             public readonly string sql = "sql";
             public readonly string databaseId = "databaseId";
+            public readonly string reportType = "reportType";
         }
         static readonly ActionParamsClass_Report s_params_Report = new ActionParamsClass_Report();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -121,14 +122,15 @@ namespace AmvReporting.Controllers
     {
         public T4MVC_PreviewController() : base(Dummy.Instance) { }
 
-        partial void DataOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string sql, string databaseId);
+        partial void DataOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string sql, string databaseId, AmvReporting.Domain.Reports.ReportType reportType);
 
-        public override System.Web.Mvc.ActionResult Data(string sql, string databaseId)
+        public override System.Web.Mvc.ActionResult Data(string sql, string databaseId, AmvReporting.Domain.Reports.ReportType reportType)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Data);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sql", sql);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "databaseId", databaseId);
-            DataOverride(callInfo, sql, databaseId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "reportType", reportType);
+            DataOverride(callInfo, sql, databaseId, reportType);
             return callInfo;
         }
 
