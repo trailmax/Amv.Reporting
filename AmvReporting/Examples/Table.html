@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic People</title>
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/site.css" rel="stylesheet" />
+    <link href="/Content/Datatables-1.9.4/media/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="/Content/Datatables-1.9.4/media/css/jquery.dataTables_themeroller.css" rel="stylesheet" />
+
+    <script src="/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+
+    <div class="container body-content">
+
+
+
+        <h2>Basic People</h2>
+
+        <table id="report"></table>
+
+
+
+    </div>
+
+
+    <script src="/Scripts/jquery-1.10.2.js"></script>
+
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+
+    <script src="/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var columns = [
+  {
+      "mData": "FirstName",
+      "sTitle": "FirstName"
+  },
+  {
+      "mData": "Surname",
+      "sTitle": "Surname"
+  },
+  {
+      "mData": "MaidenName",
+      "sTitle": "MaidenName"
+  },
+  {
+      "mData": "KnownAs",
+      "sTitle": "KnownAs"
+  }
+            ];
+            var data = [
+  {
+      "FirstName": "Colin",
+      "Surname": "Bowie",
+      "MaidenName": "",
+      "KnownAs": "Colin"
+  },
+  {
+      "FirstName": "Michael",
+      "Surname": "Brown",
+      "MaidenName": "",
+      "KnownAs": "Mike"
+  },
+  {
+      "FirstName": "Daniel",
+      "Surname": "Chalmers",
+      "MaidenName": "",
+      "KnownAs": "Dan"
+  },
+  {
+      "FirstName": "Stuart",
+      "Surname": "Chapman",
+      "MaidenName": "",
+      "KnownAs": ""
+  },
+  {
+      "FirstName": "Andrew",
+      "Surname": "Charles",
+      "MaidenName": "",
+      "KnownAs": "Andy"
+  },
+  {
+      "FirstName": "William",
+      "Surname": "Craig",
+      "MaidenName": "",
+      "KnownAs": "Bill"
+  },
+  {
+      "FirstName": "James",
+      "Surname": "Coutts",
+      "MaidenName": "",
+      "KnownAs": "Jim"
+  },
+  {
+      "FirstName": "Gareth",
+      "Surname": "Dalgliesh",
+      "MaidenName": "",
+      "KnownAs": "Gareth"
+  },
+  {
+      "FirstName": "Ian",
+      "Surname": "Dixon",
+      "MaidenName": "",
+      "KnownAs": "Ian"
+  },
+  {
+      "FirstName": "Alan",
+      "Surname": "Grant",
+      "MaidenName": "",
+      "KnownAs": "Alan"
+  }
+            ];
+            $('#report').dataTable({
+                aaData: data,
+                aoColumns: columns,
+            });
+        });
+    </script>
+</body>
+</html>

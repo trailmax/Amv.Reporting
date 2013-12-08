@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost Time Rate by Area</title>
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/site.css" rel="stylesheet" />
+    <script src="/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+
+    <div class="container body-content">
+        <h2>Lost Time Rate by Area</h2>
+        <div class="row">
+            <div class="col-md-8 graph-container">
+                <div id="report" style="height: 600px;"></div>
+            </div>
+            <div class="col-md-4" id="choices"></div>
+        </div>
+    </div>
+
+
+    <script src="/Scripts/jquery-1.10.2.js"></script>
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+
+    <script src="/Scripts/flot/jquery.flot.js"></script>
+    <script src="/Scripts/flot/jquery.flot.categories.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var data = [
+                {
+                    "LostTimeRate": 14,
+                    "ServiceGroup": "Rosemount"
+                },
+                {
+                    "LostTimeRate": 7.15,
+                    "ServiceGroup": "Huxterstone Drive"
+                },
+                {
+                    "LostTimeRate": 3.92,
+                    "ServiceGroup": "Granton"
+                },
+                {
+                    "LostTimeRate": 3.79,
+                    "ServiceGroup": "Star Carers"
+                },
+                {
+                    "LostTimeRate": 3.05,
+                    "ServiceGroup": "Aberdeen CS"
+                },
+                {
+                    "LostTimeRate": 1.9,
+                    "ServiceGroup": "Kincorth"
+                },
+                {
+                    "LostTimeRate": 1.76,
+                    "ServiceGroup": "Stevenson Crt 72"
+                },
+                {
+                    "LostTimeRate": 0.87,
+                    "ServiceGroup": "Bob Cooney Court"
+                },
+                {
+                    "LostTimeRate": 0.82,
+                    "ServiceGroup": "Dyce"
+                },
+                {
+                    "LostTimeRate": 0.55,
+                    "ServiceGroup": "Huxterstone Drive"
+                },
+                {
+                    "LostTimeRate": 0.4,
+                    "ServiceGroup": "Garthdee"
+                }
+            ];
+            var dataset = [];
+            data.map(function (row) {
+                dataset.push([row.ServiceGroup, row.LostTimeRate]);
+            });
+
+            $.plot("#report", [dataset], {
+                series: {
+                    bars: {
+                        show: true,
+                        barWidth: 0.6,
+                        align: "center"
+                    }
+                },
+                xaxis: {
+                    mode: "categories",
+                    tickLength: 0
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>

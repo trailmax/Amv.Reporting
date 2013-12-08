@@ -260,6 +260,9 @@
     <Compile Include="Domain\Reports\ViewModels\ReportDetailsViewModel.cs" />
     <None Include="Views\Database\_CommonScripts.cshtml" />
     <Content Include="Content\flot.css" />
+    <Content Include="Examples\BarChart.html" />
+    <Content Include="Examples\InteractiveSeries.html" />
+    <Content Include="Examples\Table.html" />
     <Content Include="Views\Preview\Data.cshtml" />
     <Content Include="Views\Preview\Report.cshtml" />
     <Content Include="Views\Preview\Test.cshtml" />
