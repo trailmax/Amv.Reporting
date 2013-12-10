@@ -156,3 +156,5 @@ $RECYCLE.BIN/
 .DS_Store
 
 */App_Data/*
+/Publishes
+*/PublishProfiles/*
