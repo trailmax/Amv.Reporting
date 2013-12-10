@@ -304,6 +304,7 @@
     </Compile>
     <Compile Include="Domain\Reports\ViewModels\EditReportDetailsViewModel.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportDetailsViewModel.cs" />
+    <Content Include="Scripts\ie8.js" />
     <Content Include="Views\Database\_CommonScripts.cshtml" />
     <Content Include="Content\flot.css" />
     <Content Include="Examples\BarChart.html" />

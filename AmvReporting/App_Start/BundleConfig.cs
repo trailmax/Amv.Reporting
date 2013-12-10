@@ -25,12 +25,14 @@ namespace AmvReporting
                 "~/Content/Datatables-1.9.4/media/css/jquery.*"));
 
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
-                "~/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.min.js"
+                "~/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.min.js",
+                "~/Scripts/ie8.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/flot").Include(
                 "~/Scripts/flot/jquery.flot.js",
-                "~/Scripts/flot/jquery.flot.categories.js"
+                "~/Scripts/flot/jquery.flot.categories.js",
+                "~/Scripts/flot/excanvas.js"
                 ));
 
 
