@@ -29,6 +29,7 @@ public static class MVC
     public static AmvReporting.Controllers.MenuController Menu = new AmvReporting.Controllers.T4MVC_MenuController();
     public static AmvReporting.Controllers.PreviewController Preview = new AmvReporting.Controllers.T4MVC_PreviewController();
     public static AmvReporting.Controllers.ReportController Report = new AmvReporting.Controllers.T4MVC_ReportController();
+    public static AmvReporting.Controllers.ReportGroupController ReportGroup = new AmvReporting.Controllers.T4MVC_ReportGroupController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 
@@ -454,6 +455,7 @@ namespace Links
             public static readonly string jquery_flot_time_min_js = Url("jquery.flot.time.min.js");
         }
     
+        public static readonly string ie8_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ie8.min.js") ? Url("ie8.min.js") : Url("ie8.js");
         public static readonly string jquery_1_10_2_intellisense_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-1.10.2.intellisense.min.js") ? Url("jquery-1.10.2.intellisense.min.js") : Url("jquery-1.10.2.intellisense.js");
         public static readonly string jquery_1_10_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-1.10.2.min.js") ? Url("jquery-1.10.2.min.js") : Url("jquery-1.10.2.js");
         public static readonly string jquery_1_10_2_min_js = Url("jquery-1.10.2.min.js");

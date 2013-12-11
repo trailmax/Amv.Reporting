@@ -6,6 +6,8 @@ namespace AmvReporting.Domain.Reports
     {
         public String Id { get; set; }
 
+        public String ReportGroupId { get; set; }
+
         public String Title { get; set; }
 
         public String LinkName { get; set; }

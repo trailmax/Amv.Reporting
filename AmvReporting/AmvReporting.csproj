@@ -209,6 +209,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ReportGroupController.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommand.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\DeleteDatabaseCommand.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\EditDatabaseDetailsCommand.cs" />
@@ -217,6 +218,12 @@
     <Compile Include="Domain\DatabaseConnections\Queries\CheckDatabaseConnectivityQuery.cs" />
     <Compile Include="Domain\DatabaseConnections\Queries\DatabaseQuery.cs" />
     <Compile Include="Domain\Preview\Queries\PreviewLineQuery.cs" />
+    <Compile Include="Domain\ReportGroups\Commands\CreateReportGroupCommand.cs" />
+    <Compile Include="Domain\ReportGroups\Commands\DeleteReportGroupCommand.cs" />
+    <Compile Include="Domain\ReportGroups\Commands\EditReportGroupCommand.cs" />
+    <Compile Include="Domain\ReportGroups\Queries\AllReportGroupsQuery.cs" />
+    <Compile Include="Domain\ReportGroups\Queries\ReportGroupQuery.cs" />
+    <Compile Include="Domain\ReportGroups\ReportGroup.cs" />
     <Compile Include="Domain\Preview\ViewModels\PreviewReportModel.cs" />
     <Compile Include="Domain\Preview\ViewModels\ReportResultPreview.cs" />
     <Compile Include="Domain\Reports\Commands\CreateReportCommandHandler.cs" />
@@ -294,6 +301,9 @@
     <Compile Include="Domain\Preview\Queries\PreviewTableQuery.cs" />
     <Compile Include="Domain\Reports\Queries\ReportResultQuery.cs" />
     <Compile Include="Domain\Reports\Queries\SingleReportQuery.cs" />
+    <Compile Include="ReportGroupController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -452,6 +462,7 @@
     <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\images\psd\file_types.psd" />
     <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\images\psd\copy document.psd" />
     <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\images\psd\collection.psd" />
+    <None Include="Properties\PublishProfiles\Package.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -534,6 +545,10 @@
     </None>
     <Content Include="Views\Database\Edit.cshtml" />
     <Content Include="Views\Database\_CreateEdit.cshtml" />
+    <Content Include="Views\ReportGroup\Index.cshtml" />
+    <Content Include="Views\ReportGroup\_ViewStart.cshtml" />
+    <Content Include="Views\ReportGroup\Create.cshtml" />
+    <Content Include="Views\ReportGroup\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

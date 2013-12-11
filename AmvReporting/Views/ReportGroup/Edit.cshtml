@@ -1,0 +1,25 @@
+﻿@model ReportGroup
+
+@{
+    ViewBag.Title = "Edit Report Group";
+}
+
+<h2>Edit Report Group</h2>
+
+@using (Html.BeginForm(MVC.ReportGroup.Edit(), FormMethod.Post, new { role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(r => r.Id)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Title, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Title)
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <input type="submit" value="Save" class="btn btn-default" />
+        @Html.ActionLink("Back To List", MVC.ReportGroup.Index(), new { @class = "btn btn-default" })
+    </div>
+}
