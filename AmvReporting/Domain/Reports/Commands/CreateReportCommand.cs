@@ -10,9 +10,6 @@ namespace AmvReporting.Domain.Reports.Commands
         public String Title { get; set; }
 
         [Required]
-        public String LinkName { get; set; }
-
-        [Required]
         public ReportType ReportType { get; set; }
 
         [DataType(DataType.MultilineText)]

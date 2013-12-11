@@ -25,7 +25,6 @@ namespace AmvReporting.Domain.Reports.Commands
             var result = new Report()
                          {
                              Title = command.Title,
-                             LinkName = command.LinkName,
                              ReportType = command.ReportType,
                              Description = command.Description,
                              Sql = command.Sql,

@@ -7,11 +7,11 @@ namespace AmvReporting.Domain.Reports.Queries
 {
     public class SingleReportQuery : IQuery<Report>
     {
-        public string LinkName { get; set; }
+        public string Id { get; set; }
 
-        public SingleReportQuery(String linkName)
+        public SingleReportQuery(String id)
         {
-            LinkName = linkName;
+            Id = id;
         }
     }
 
@@ -26,9 +26,7 @@ namespace AmvReporting.Domain.Reports.Queries
 
         public Report Handle(SingleReportQuery query)
         {
-            var report = ravenSession
-                .Query<Report>()
-                .SingleOrDefault(r => r.LinkName == query.LinkName);
+            var report = ravenSession.Load<Report>(query.Id);
 
             return report;
         }

@@ -22,11 +22,11 @@ namespace AmvReporting.Domain.Reports.Queries
 
     public class ReportResultQuery : IQuery<ReportResult>
     {
-        public String LinkName { get; set; }
+        public String Id { get; set; }
 
-        public ReportResultQuery(String linkName)
+        public ReportResultQuery(String id)
         {
-            this.LinkName = linkName;
+            this.Id = id;
         }
     }
 
@@ -41,9 +41,8 @@ namespace AmvReporting.Domain.Reports.Queries
 
         public ReportResult Handle(ReportResultQuery query)
         {
-            var report = ravenSession.Query<Report>()
-                .Customize(x => x.Include<Report>(r => r.DatabaseId)) // load Database 
-                .FirstOrDefault(r => r.LinkName == query.LinkName);
+            var report = ravenSession.Include<Report>(r => r.DatabaseId)
+                .Load<Report>(query.Id);
 
             if (report == null)
             {

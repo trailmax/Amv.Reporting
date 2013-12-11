@@ -30,7 +30,6 @@ namespace AmvReporting.Domain.Reports.Commands
         public Report UpdateReport(EditReportCommand command, Report report)
         {
             report.Title = command.Title;
-            report.LinkName = command.LinkName;
             report.ReportType = command.ReportType;
             report.Description = command.Description;
             report.Sql = command.Sql;

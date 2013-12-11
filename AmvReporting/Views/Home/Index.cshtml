@@ -12,7 +12,7 @@
         <ul>
             @foreach (var item in Model)
             {
-                <li>@Html.ActionLink(item.Title, MVC.Home.Report(item.LinkName))</li>
+                <li>@Html.ActionLink(item.Title, MVC.Home.Report(item.Id))</li>
             }
         </ul>
     </div>

@@ -39,9 +39,9 @@ namespace AmvReporting.Controllers
 
 
         [RestoreModelState]
-        public virtual ActionResult Edit(String linkName)
+        public virtual ActionResult Edit(String id)
         {
-            var query = new SingleReportQuery(linkName);
+            var query = new SingleReportQuery(id);
 
             var report = mediator.Request(query);
 
@@ -52,7 +52,7 @@ namespace AmvReporting.Controllers
         [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
         public virtual ActionResult Edit(EditReportCommand command)
         {
-            return ProcessForm(command, RedirectToAction(MVC.Report.Edit(command.LinkName)), RedirectToAction(MVC.Report.Index()));
+            return ProcessForm(command, RedirectToAction(MVC.Report.Edit(command.Id)), RedirectToAction(MVC.Report.Index()));
         }
 
 

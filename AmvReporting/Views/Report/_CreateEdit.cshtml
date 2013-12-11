@@ -20,12 +20,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(m => m.LinkName, new { @class = "control-label" })
-            @Html.TextBoxFor(m => m.LinkName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.LinkName)
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(m => m.DatabaseId, new { @class = "control-label" })
             @Html.DropDownListFor(m => m.DatabaseId, Model.PossibleDatabases, "Choose...", new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.DatabaseId)

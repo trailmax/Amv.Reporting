@@ -99,7 +99,7 @@ namespace AmvReporting.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Edit
         {
-            public readonly string linkName = "linkName";
+            public readonly string id = "id";
             public readonly string command = "command";
         }
         static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
@@ -167,13 +167,13 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string linkName);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
 
-        public override System.Web.Mvc.ActionResult Edit(string linkName)
+        public override System.Web.Mvc.ActionResult Edit(string id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "linkName", linkName);
-            EditOverride(callInfo, linkName);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            EditOverride(callInfo, id);
             return callInfo;
         }
 
