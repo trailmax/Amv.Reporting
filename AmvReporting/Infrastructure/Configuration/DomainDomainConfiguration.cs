@@ -16,5 +16,12 @@ namespace AmvReporting.Infrastructure.Configuration
             var dataPath = ConfigurationManager.AppSettings["RavenDataPath"];
             return dataPath;
         }
+
+        public bool EnableRavenStudio()
+        {
+            var result = String.Equals(ConfigurationManager.AppSettings["EnableRavenStudio"], "true", StringComparison.InvariantCultureIgnoreCase);
+
+            return result;
+        }
     }
 }

@@ -6,5 +6,6 @@ namespace AmvReporting.Infrastructure.Configuration
     {
         String GetDatabaseConnectionString();
         string GetRavenDataPath();
+        bool EnableRavenStudio();
     }
 }
