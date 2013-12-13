@@ -1,4 +1,4 @@
-﻿@model ReportGroup
+﻿@model ReportGroupViewModel
 
 @{
     ViewBag.Title = "New Report Group";
@@ -9,6 +9,12 @@
 @using (Html.BeginForm(MVC.ReportGroup.Create(), FormMethod.Post, new { role = "form" }))
 {
     @Html.AntiForgeryToken()
+    
+    <div class="form-group">
+        @Html.LabelFor(r => r.ParentReportGroupId, new { @class = "control-label" })
+        @Html.DropDownListFor(r => r.ParentReportGroupId, Model.PossibleParents, "Choose...", new { @class = "form-control" })
+        @Html.ValidationMessageFor(r => r.ParentReportGroupId)
+    </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Title, new { @class = "control-label" })
         @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })

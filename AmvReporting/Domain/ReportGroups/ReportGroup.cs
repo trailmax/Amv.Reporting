@@ -9,5 +9,7 @@ namespace AmvReporting.Domain.ReportGroups
 
         [Required]
         public String Title { get; set; }
+
+        public String ParentReportGroupId { get; set; }
     }
 }

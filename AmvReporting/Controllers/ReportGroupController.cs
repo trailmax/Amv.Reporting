@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using AmvReporting.Domain.ReportGroups.Commands;
 using AmvReporting.Domain.ReportGroups.Queries;
+using AmvReporting.Domain.ReportGroups.ViewModels;
 using AmvReporting.Infrastructure;
 using AmvReporting.Infrastructure.CQRS;
 
@@ -25,7 +26,7 @@ namespace AmvReporting.Controllers
         [RestoreModelState]
         public virtual ActionResult Create()
         {
-            return View();
+            return EnrichedView(new ReportGroupViewModel());
         }
 
         [HttpPost, ValidateAntiForgeryToken]
@@ -39,7 +40,7 @@ namespace AmvReporting.Controllers
         public virtual ActionResult Edit(String id)
         {
             var report = mediator.Request(new ReportGroupQuery(id));
-            return View(report);
+            return AutoMappedView<ReportGroupViewModel>(report);
         }
 
         [HttpPost, ValidateAntiForgeryToken]
