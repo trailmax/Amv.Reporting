@@ -9,14 +9,6 @@ namespace AmvReporting.Tests.ZeroFriction
         public void Customize(IFixture fixture)
         {
             fixture.Customize(new AutoNSubstituteCustomization());
-        }
-    }
-
-    public class AutoRavenData : ICustomization
-    {
-        public void Customize(IFixture fixture)
-        {
-            fixture.Customize(new AmvReportingCustomisation());
 
             var documentStore = new EmbeddableDocumentStore { RunInMemory = true };
             documentStore.Initialize();

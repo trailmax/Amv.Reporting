@@ -21,6 +21,11 @@ namespace AmvReporting.Domain.ReportGroups.Commands
         public void Handle(DeleteReportGroupCommand command)
         {
             var reportGroup = ravenSession.Load<ReportGroup>(command.Id);
+            if (reportGroup == null)
+            {
+                return;
+            }
+
             ravenSession.Delete(reportGroup);
             ravenSession.SaveChanges();
         }

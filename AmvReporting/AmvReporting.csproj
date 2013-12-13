@@ -211,13 +211,16 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ReportGroupController.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommand.cs" />
+    <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommandHandler.cs" />
+    <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommandValidator.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\DeleteDatabaseCommand.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\EditDatabaseDetailsCommand.cs" />
+    <Compile Include="Domain\DatabaseConnections\Commands\EditDatabaseDetailsCommandHandler.cs" />
+    <Compile Include="Domain\DatabaseConnections\Commands\EditDatabaseDetailsCommandValidator.cs" />
     <Compile Include="Domain\DatabaseConnections\DatabaseConnection.cs" />
     <Compile Include="Domain\DatabaseConnections\Queries\AllDatabasesQuery.cs" />
     <Compile Include="Domain\DatabaseConnections\Queries\CheckDatabaseConnectivityQuery.cs" />
     <Compile Include="Domain\DatabaseConnections\Queries\DatabaseQuery.cs" />
-    <Compile Include="Domain\Preview\Queries\PreviewLineQuery.cs" />
     <Compile Include="Domain\ReportGroups\Commands\CreateReportGroupCommand.cs" />
     <Compile Include="Domain\ReportGroups\Commands\DeleteReportGroupCommand.cs" />
     <Compile Include="Domain\ReportGroups\Commands\EditReportGroupCommand.cs" />
@@ -226,12 +229,12 @@
     <Compile Include="Domain\ReportGroups\ReportGroup.cs" />
     <Compile Include="Domain\Preview\ViewModels\PreviewReportModel.cs" />
     <Compile Include="Domain\Preview\ViewModels\ReportResultPreview.cs" />
+    <Compile Include="Domain\ReportGroups\ReportGroupHelpers.cs" />
     <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupViewModel.cs" />
     <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupViewModelEnricher.cs" />
     <Compile Include="Domain\Reports\Commands\CreateReportCommandHandler.cs" />
     <Compile Include="Domain\Reports\Commands\CreateReportCommandValidator.cs" />
     <Compile Include="Domain\Reports\Commands\DeleteReportCommandHandler.cs" />
-    <Compile Include="Domain\Reports\Commands\EditReportCommandValidator.cs" />
     <Compile Include="Infrastructure\Helpers\SqlDataSerialiserHelper.cs" />
     <Compile Include="Infrastructure\Helpers\SqlServerHelper.cs" />
     <Compile Include="ReportController.generated.cs">
@@ -286,8 +289,8 @@
     <Compile Include="Infrastructure\Helpers\HtmlHelpers.cs" />
     <Compile Include="Infrastructure\Helpers\RavenIdResolver.cs" />
     <Compile Include="Infrastructure\Helpers\StringExtensions.cs" />
-    <Compile Include="Infrastructure\ModelEnrichers\IModelEnricher.cs" />
-    <Compile Include="Infrastructure\ModelEnrichers\ReportDetailsViewModelEnricher.cs" />
+    <Compile Include="Infrastructure\IModelEnricher.cs" />
+    <Compile Include="Domain\Reports\ViewModels\ReportDetailsViewModelEnricher.cs" />
     <Compile Include="Infrastructure\RestoreModelStateAttribute.cs" />
     <Compile Include="MenuController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>

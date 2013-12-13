@@ -1,9 +1,9 @@
 ﻿using AmvReporting.Domain.DatabaseConnections.Queries;
-using AmvReporting.Domain.Reports.ViewModels;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Helpers;
+using AmvReporting.Infrastructure.ModelEnrichers;
 
-namespace AmvReporting.Infrastructure.ModelEnrichers
+namespace AmvReporting.Domain.Reports.ViewModels
 {
     public class ReportDetailsViewModelEnricher : IModelEnricher<ReportDetailsViewModel>, IModelEnricher<EditReportDetailsViewModel>
     {

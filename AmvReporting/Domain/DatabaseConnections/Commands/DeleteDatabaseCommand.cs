@@ -22,6 +22,10 @@ namespace AmvReporting.Domain.DatabaseConnections.Commands
         public void Handle(DeleteDatabaseCommand command)
         {
             var toBeDeleted = ravenSession.Load<DatabaseConnection>(command.Id);
+            if (toBeDeleted == null)
+            {
+                return;
+            }
 
             ravenSession.Delete(toBeDeleted);
             ravenSession.SaveChanges();

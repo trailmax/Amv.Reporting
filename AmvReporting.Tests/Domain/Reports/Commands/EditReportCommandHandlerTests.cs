@@ -7,7 +7,7 @@ namespace AmvReporting.Tests.Domain.Reports.Commands
 {
     public class EditReportCommandHandlerTests
     {
-        [Theory, AutoMoqData]
+        [Theory, AutoDomainData]
         public void UpdateReport_Always_MatchesFieldNames(EditReportCommandHandler sut, EditReportCommand command, Report report)
         {
             var result = sut.UpdateReport(command, report);
