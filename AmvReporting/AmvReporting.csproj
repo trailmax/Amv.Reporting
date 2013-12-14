@@ -230,6 +230,7 @@
     <Compile Include="Domain\Preview\ViewModels\PreviewReportModel.cs" />
     <Compile Include="Domain\Preview\ViewModels\ReportResultPreview.cs" />
     <Compile Include="Domain\ReportGroups\ReportGroupHelpers.cs" />
+    <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupIndexViewModel.cs" />
     <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupViewModel.cs" />
     <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupViewModelEnricher.cs" />
     <Compile Include="Domain\Reports\Commands\CreateReportCommandHandler.cs" />

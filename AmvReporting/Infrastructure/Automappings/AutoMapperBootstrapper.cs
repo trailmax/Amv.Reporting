@@ -12,6 +12,8 @@ namespace AmvReporting.Infrastructure.Automappings
         {
             Mapper.CreateMap<Report, EditReportDetailsViewModel>();
             Mapper.CreateMap<ReportGroup, ReportGroupViewModel>();
+            Mapper.CreateMap<ReportGroup, ReportGroupIndexViewModel>()
+                .ForMember(d => d.ParentFullName, o => o.Ignore());
 
             Mapper.AddGlobalIgnore("Possible");
         }
