@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using AmvReporting.Domain.ReportGroups;
 using AmvReporting.Domain.ReportGroups.Commands;
 using AmvReporting.Domain.ReportGroups.Queries;
 using AmvReporting.Domain.ReportGroups.ViewModels;
 using AmvReporting.Infrastructure;
 using AmvReporting.Infrastructure.CQRS;
-using AutoMapper;
 
 namespace AmvReporting.Controllers
 {
@@ -23,14 +21,8 @@ namespace AmvReporting.Controllers
 
         public virtual ActionResult Index()
         {
-            var groups = mediator.Request(new AllReportGroupsQuery());
-            var models = Mapper.Map<IEnumerable<ReportGroupIndexViewModel>>(groups);
-            foreach (var model in models)
-            {
-                model.ParentFullName = ReportGroupHelpers.GetParentPath(groups, model);
-            }
-            models = models.OrderBy(r => r.ParentFullName);
-            return View(models);
+            var groups = mediator.Request(new AllReportGroupsQuery()).ToList();
+            return AutoMappedView<IEnumerable<ReportGroupIndexViewModel>>(groups);
         }
 
         [RestoreModelState]

@@ -11,6 +11,9 @@ namespace AmvReporting.Infrastructure.Automappings
         public static void Initialize()
         {
             Mapper.CreateMap<Report, EditReportDetailsViewModel>();
+            Mapper.CreateMap<Report, ReportIndexViewModel>()
+                .ForMember(d => d.GroupFullName, o => o.Ignore());
+
             Mapper.CreateMap<ReportGroup, ReportGroupViewModel>();
             Mapper.CreateMap<ReportGroup, ReportGroupIndexViewModel>()
                 .ForMember(d => d.ParentFullName, o => o.Ignore());

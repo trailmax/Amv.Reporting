@@ -14,6 +14,12 @@
 <div class="tab-content col-md-4">
     <div class="tab-pane active" id="basic">
         <div class="form-group">
+            @Html.LabelFor(m => m.ReportGroupId, new { @class = "control-label" })
+            @Html.DropDownListFor(m => m.ReportGroupId, Model.PossibleGroups, "Choose...", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ReportGroupId)
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(m => m.Title, new { @class = "control-label" })
             @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Title)

@@ -7,5 +7,6 @@ namespace AmvReporting.Domain.Reports.ViewModels
     public class ReportDetailsViewModel : CreateReportCommand
     {
         public List<SelectListItem> PossibleDatabases { get; set; }
+        public List<SelectListItem> PossibleGroups { get; set; }
     }
 }

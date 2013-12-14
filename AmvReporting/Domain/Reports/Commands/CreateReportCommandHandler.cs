@@ -30,7 +30,8 @@ namespace AmvReporting.Domain.Reports.Commands
                              Sql = command.Sql,
                              JavaScript = command.JavaScript,
                              Css = command.Css,
-                             DatabaseId = command.DatabaseId
+                             DatabaseId = command.DatabaseId,
+                             ReportGroupId = command.ReportGroupId,
                          };
 
             return result;

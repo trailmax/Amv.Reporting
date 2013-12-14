@@ -1,5 +1,4 @@
 ﻿using System;
-using AmvReporting.Infrastructure.ModelEnrichers;
 
 namespace AmvReporting.Domain.ReportGroups.ViewModels
 {

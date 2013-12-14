@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using AmvReporting.Domain.Reports.Commands;
 using AmvReporting.Domain.Reports.Queries;
@@ -21,7 +22,7 @@ namespace AmvReporting.Controllers
         {
             var reports = mediator.Request(new AllReportsQuery());
 
-            return View(reports);
+            return AutoMappedView<IEnumerable<ReportIndexViewModel>>(reports);
         }
 
 

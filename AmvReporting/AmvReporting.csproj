@@ -231,11 +231,14 @@
     <Compile Include="Domain\Preview\ViewModels\ReportResultPreview.cs" />
     <Compile Include="Domain\ReportGroups\ReportGroupHelpers.cs" />
     <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupIndexViewModel.cs" />
+    <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupIndexViewModelEnricher.cs" />
     <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupViewModel.cs" />
     <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupViewModelEnricher.cs" />
     <Compile Include="Domain\Reports\Commands\CreateReportCommandHandler.cs" />
     <Compile Include="Domain\Reports\Commands\CreateReportCommandValidator.cs" />
     <Compile Include="Domain\Reports\Commands\DeleteReportCommandHandler.cs" />
+    <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModel.cs" />
+    <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModelEnricher.cs" />
     <Compile Include="Infrastructure\Helpers\SqlDataSerialiserHelper.cs" />
     <Compile Include="Infrastructure\Helpers\SqlServerHelper.cs" />
     <Compile Include="ReportController.generated.cs">

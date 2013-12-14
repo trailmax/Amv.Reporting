@@ -36,6 +36,7 @@ namespace AmvReporting.Domain.Reports.Commands
             report.JavaScript = command.JavaScript;
             report.Css = command.Css;
             report.DatabaseId = command.DatabaseId;
+            report.ReportGroupId = command.ReportGroupId;
 
             return report;
         }

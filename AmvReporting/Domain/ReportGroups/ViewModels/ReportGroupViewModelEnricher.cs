@@ -21,7 +21,10 @@ namespace AmvReporting.Domain.ReportGroups.ViewModels
 
             var visibleGroups = allGroups.Where(g => g.Id != model.Id).ToList();
 
-            model.PossibleParents = visibleGroups.ToSelectListItems(t => ReportGroupHelpers.GetParentPath(allGroups, t), v => v.Id).OrderBy(t => t.Text).ToList();
+            model.PossibleParents = visibleGroups
+                .ToSelectListItems(t => ReportGroupHelpers.GetParentPath(allGroups, t), v => v.Id)
+                .OrderBy(t => t.Text)
+                .ToList();
 
             return model;
         }

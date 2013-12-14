@@ -12,6 +12,8 @@ namespace AmvReporting.Domain.Reports.Commands
         [Required]
         public ReportType ReportType { get; set; }
 
+        public String ReportGroupId { get; set; }
+
         [DataType(DataType.MultilineText)]
         public String Description { get; set; }
 
