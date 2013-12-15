@@ -221,6 +221,8 @@
     <Compile Include="Domain\DatabaseConnections\Queries\AllDatabasesQuery.cs" />
     <Compile Include="Domain\DatabaseConnections\Queries\CheckDatabaseConnectivityQuery.cs" />
     <Compile Include="Domain\DatabaseConnections\Queries\DatabaseQuery.cs" />
+    <Compile Include="Domain\Menus\MenuModel.cs" />
+    <Compile Include="Domain\Menus\MenuModelQuery.cs" />
     <Compile Include="Domain\ReportGroups\Commands\CreateReportGroupCommand.cs" />
     <Compile Include="Domain\ReportGroups\Commands\DeleteReportGroupCommand.cs" />
     <Compile Include="Domain\ReportGroups\Commands\EditReportGroupCommand.cs" />
@@ -266,7 +268,7 @@
     <Compile Include="Infrastructure\Autofac\RavenDbModule.cs" />
     <Compile Include="Infrastructure\Automappings\AutoMapperBootstrapper.cs" />
     <Compile Include="Infrastructure\Configuration\ConfigurationContext.cs" />
-    <Compile Include="Infrastructure\Configuration\DomainDomainConfiguration.cs" />
+    <Compile Include="Infrastructure\Configuration\DomainConfiguration.cs" />
     <Compile Include="Infrastructure\Configuration\IDomainConfiguration.cs" />
     <Compile Include="Infrastructure\CQRS\IMediator.cs" />
     <Compile Include="Infrastructure\CQRS\IQuery.cs" />
@@ -558,6 +560,7 @@
     <Content Include="Views\ReportGroup\_ViewStart.cshtml" />
     <Content Include="Views\ReportGroup\Create.cshtml" />
     <Content Include="Views\ReportGroup\Edit.cshtml" />
+    <Content Include="Views\Menu\EditMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

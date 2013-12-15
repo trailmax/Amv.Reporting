@@ -12,7 +12,7 @@ namespace AmvReporting.Infrastructure.Configuration
             {
                 if (configuration == null)
                 {
-                    configuration = new DomainDomainConfiguration();
+                    configuration = new DomainConfiguration();
                 }
                 return configuration;
             }
@@ -28,7 +28,7 @@ namespace AmvReporting.Infrastructure.Configuration
 
         public static void ResetToDefault()
         {
-            configuration = new DomainDomainConfiguration();
+            configuration = new DomainConfiguration();
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Configuration;
 
 namespace AmvReporting.Infrastructure.Configuration
 {
-    public class DomainDomainConfiguration : IDomainConfiguration
+    public class DomainConfiguration : IDomainConfiguration
     {
         public string GetDatabaseConnectionString()
         {

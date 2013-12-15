@@ -4,7 +4,7 @@ using Raven.Client.Embedded;
 
 namespace AmvReporting.Tests.ZeroFriction
 {
-    public class AmvReportingCustomisation : ICustomization
+    public class DomainCustomisation : ICustomization
     {
         public void Customize(IFixture fixture)
         {
