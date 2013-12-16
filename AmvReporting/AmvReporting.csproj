@@ -561,6 +561,7 @@
     <Content Include="Views\ReportGroup\Create.cshtml" />
     <Content Include="Views\ReportGroup\Edit.cshtml" />
     <Content Include="Views\Menu\EditMenu.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MenuNode.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -119,11 +119,11 @@ namespace AmvReporting.Controllers
 
         partial void ReportOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string linkName);
 
-        public override System.Web.Mvc.ActionResult Report(string linkName)
+        public override System.Web.Mvc.ActionResult Report(string id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Report);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "linkName", linkName);
-            ReportOverride(callInfo, linkName);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "linkName", id);
+            ReportOverride(callInfo, id);
             return callInfo;
         }
 

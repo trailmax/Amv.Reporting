@@ -24,9 +24,9 @@ namespace AmvReporting.Controllers
         }
 
 
-        public virtual ActionResult Report(String linkName)
+        public virtual ActionResult Report(String id)
         {
-            var query = new ReportResultQuery(linkName);
+            var query = new ReportResultQuery(id);
             var result = mediator.Request(query);
 
             return View(result);
