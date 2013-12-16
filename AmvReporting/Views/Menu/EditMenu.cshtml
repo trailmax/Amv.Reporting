@@ -20,30 +20,6 @@
     }
 </table>
 
-@*@if (Model.TopLevelReports.Any())
-    {
-        <ul>
-            @foreach (var report in Model.TopLevelReports)
-            {
-                <li>@Html.ActionLink(report.Title, MVC.Home.Report(report.Id))</li>
-            }
-        </ul>
-    }
-    @{
-        var panelGroupId = Guid.NewGuid().ToString();
-    }
-
-
-    @if (Model.MenuNodes.Any())
-    {
-        <div class="panel-group" id="@panelGroupId">
-            @foreach (var menuNode in Model.MenuNodes)
-            {
-                @Html.DisplayFor(_ => menuNode, new { parentId = panelGroupId })
-            }
-        </div>
-    }*@
-
 @section scripts
 {
     <script>
