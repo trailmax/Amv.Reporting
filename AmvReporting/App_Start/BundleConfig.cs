@@ -22,7 +22,9 @@ namespace AmvReporting
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/site.css",
-                "~/Content/Datatables-1.9.4/media/css/jquery.*"));
+                "~/Content/Datatables-1.9.4/media/css/jquery.*",
+                "~/Content/jquery.treetable.css",
+                "~/Content/jquery.treetable.theme.default.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
                 "~/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.min.js",
@@ -32,7 +34,8 @@ namespace AmvReporting
             bundles.Add(new ScriptBundle("~/bundles/flot").Include(
                 "~/Scripts/flot/jquery.flot.js",
                 "~/Scripts/flot/jquery.flot.categories.js",
-                "~/Scripts/flot/excanvas.js"
+                "~/Scripts/flot/excanvas.js",
+                "~/Scripts/jquery.treetable.js"
                 ));
 
 

@@ -7,26 +7,49 @@
 
 <h2>Edit Menu</h2>
 
-@if (Model.TopLevelReports.Any())
-{
-    <ul>
-        @foreach (var report in Model.TopLevelReports)
-        {
-            <li>@Html.ActionLink(report.Title, MVC.Home.Report(report.Id))</li>
-        }
-    </ul>
-}
-@{
-    var panelGroupId = Guid.NewGuid().ToString();
-}
+<table id="treetable">
+    @foreach (var report in Model.TopLevelReports)
+    {
+        <tr data-tt-id="@report.Id">
+            <td><span class="file">@Html.ActionLink(report.Title, MVC.Home.Report(report.Id))</span></td>
+        </tr>
+    }
+    @foreach (var menuNode in Model.MenuNodes)
+    {
+        @Html.DisplayFor(_ => menuNode)
+    }
+</table>
+
+@*@if (Model.TopLevelReports.Any())
+    {
+        <ul>
+            @foreach (var report in Model.TopLevelReports)
+            {
+                <li>@Html.ActionLink(report.Title, MVC.Home.Report(report.Id))</li>
+            }
+        </ul>
+    }
+    @{
+        var panelGroupId = Guid.NewGuid().ToString();
+    }
 
 
-@if (Model.MenuNodes.Any())
+    @if (Model.MenuNodes.Any())
+    {
+        <div class="panel-group" id="@panelGroupId">
+            @foreach (var menuNode in Model.MenuNodes)
+            {
+                @Html.DisplayFor(_ => menuNode, new { parentId = panelGroupId })
+            }
+        </div>
+    }*@
+
+@section scripts
 {
-    <div class="panel-group" id="@panelGroupId">
-        @foreach (var menuNode in Model.MenuNodes)
-        {
-            @Html.DisplayFor(_ => menuNode, new { parentId = panelGroupId })
-        }
-    </div>
+    <script>
+        $('#treetable').treetable({
+            expandable: true,
+            clickableNodeNames: true
+        });
+    </script>
 }

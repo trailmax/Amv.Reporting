@@ -14,6 +14,7 @@ namespace AmvReporting.Domain.Menus
 
     public class MenuNode
     {
+        public String ReportGroupParentId { get; set; }
         public String ReportGroupId { get; set; }
         public String ReportGroupTitle { get; set; }
         public List<Report> Reports { get; set; }

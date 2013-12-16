@@ -1,0 +1,131 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Menu</title>
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/site.css" rel="stylesheet" />
+    <link href="/Content/Datatables-1.9.4/media/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="/Content/Datatables-1.9.4/media/css/jquery.dataTables_themeroller.css" rel="stylesheet" />
+    <link href="/Content/jquery.treetable.css" rel="stylesheet" />
+    <link href="/Content/jquery.treetable.theme.default.css" rel="stylesheet" />
+
+    <script src="/Scripts/modernizr-2.6.2.js"></script>
+
+
+
+
+
+</head>
+<body>
+
+
+
+    <div class="admin-container">
+
+
+        <h2>Edit Menu</h2>
+
+        <table id="treetable">
+            <tr>
+                <td><span class="file"><a href="/Home/Report?linkName=reports%2F289">Consequat Eos accusamus culpa voluptatem</a></span></td>
+            </tr>
+            <tr>
+                <td><span class="file"><a href="/Home/Report?linkName=reports%2F257">Dolor fuga Aliquam in nostrum</a></span></td>
+            </tr>
+
+            <tr data-tt-id="ReportGroups-2">
+                <td><span class='folder'>Top Level</span></td>
+            </tr>
+            <tr data-tt-parent-id="ReportGroups-2" data-tt-id="blahs">
+                <td><span class="file"><a href="/Home/Report?linkName=reports%2F33">Basic People1</a></span></td>
+            </tr>
+            <tr data-tt-parent-id="ReportGroups-2" data-tt-id="haah">
+                <td><span class="file"><a href="/Home/Report?linkName=reports%2F225">gf54</a></span></td>
+            </tr>
+            
+
+            <tr data-tt-id="ReportGroups-34" data-tt-parent-id="ReportGroups-2">
+                <td><span class='folder'>Middle Level 1</span></td>
+            </tr>
+            <tr data-tt-parent-id="ReportGroups-34" data-tt-id="adsf">
+                <td><span class="file"><a href="/Home/Report?linkName=reports%2F161">Lost Time Rate By Department1</a></span></td>
+            </tr>
+            <tr data-tt-parent-id="ReportGroups-34" data-tt-id="eeasdfa">
+                <td><span class="file"><a href="/Home/Report?linkName=reports%2F259">Eaque culpa adipisicing cupiditate eius</a></span></td>
+            </tr>
+
+
+
+            <!--<tr data-tt-id="ReportGroups-35" data-tt-parent-id="ReportGroups-2">
+                <td><span class='folder'>Middle Level 2</span></td>
+            </tr>
+            <tr data-tt-parent-id="ReportGroups-35">
+                <td><span class="file"><a href="/Home/Report?linkName=reports%2F260">Cupiditate esse est sint veniam</a></span></td>
+            </tr>
+            <tr data-tt-parent-id="ReportGroups-35">
+                <td><span class="file"><a href="/Home/Report?linkName=reports%2F129">Lost Time Rate by Area</a></span></td>
+            </tr>-->
+
+
+
+            <!--<tr data-tt-id="ReportGroups-65" data-tt-parent-id="ReportGroups-2">
+                <td><span class='folder'>Absence!</span></td>
+            </tr>
+            <tr data-tt-parent-id="ReportGroups-65">
+                <td><span class="file"><a href="/Home/Report?linkName=reports%2F193">qsdf</a></span></td>
+            </tr>
+            <tr data-tt-parent-id="ReportGroups-65">
+                <td><span class="file"><a href="/Home/Report?linkName=reports%2F261">Ullam minim et beatae qui</a></span></td>
+            </tr>-->
+
+
+
+
+
+            <!--<tr data-tt-id="ReportGroups-129">
+                <td><span class='folder'>Another Top Level</span></td>
+            </tr>
+            <tr data-tt-parent-id="ReportGroups-129">
+                <td><span class="file"><a href="/Home/Report?linkName=reports%2F290">Sequi quo aut debitis quo</a></span></td>
+            </tr>
+            <tr data-tt-parent-id="ReportGroups-129">
+                <td><span class="file"><a href="/Home/Report?linkName=reports%2F258">Neque enim consequat Et dolor</a></span></td>
+            </tr>
+            <tr data-tt-parent-id="ReportGroups-129">
+                <td><span class="file"><a href="/Home/Report?linkName=reports%2F162">Lost Time Rate By Service</a></span></td>
+            </tr>-->
+
+
+
+        </table>
+
+
+
+
+    </div>
+
+
+
+    <script src="/Scripts/jquery-1.10.2.js"></script>
+
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+
+    <script src="/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.min.js"></script>
+    <script src="/Scripts/ie8.js"></script>
+
+    <script src="/Scripts/flot/jquery.flot.js"></script>
+    <script src="/Scripts/flot/jquery.flot.categories.js"></script>
+    <script src="/Scripts/flot/excanvas.js"></script>
+    <script src="/Scripts/jquery.treetable.js"></script>
+
+
+    <script>
+        $('#treetable').treetable({ expandable: true });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿@inherits WebViewPage<MenuNode>
+
+<tr data-tt-id="@Model.ReportGroupId" data-tt-parent-id="@Model.ReportGroupParentId">
+    <td><span class='folder'>@Model.ReportGroupTitle</span></td>
+</tr>
+@foreach (var report in Model.Reports)
+{
+    <tr data-tt-parent-id="@report.ReportGroupId" data-tt-id="@report.Id">
+        <td><span class="file">@Html.ActionLink(report.Title, MVC.Home.Report(report.Id))</span></td>
+    </tr>
+}
+
+@foreach (var menuNode in Model.MenuNodes)
+{
+    @Html.DisplayFor(_ => menuNode)
+}
+
+
+@*@{
+        var parentAccordionId = ViewBag.parentId;
+
+        var hrefGuid = Guid.NewGuid().ToString();
+        var panelGroupId = Guid.NewGuid().ToString();
+    }
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#@parentAccordionId" href="#@hrefGuid">@Model.ReportGroupTitle</a>
+            </h4>
+        </div>
+        <div id="@hrefGuid" class="panel-collapse collapse">
+            <div class="panel-body">
+                @if (Model.Reports.Any())
+                {
+                    <ul>
+                        @foreach (var report in Model.Reports)
+                        {
+                            <li>@Html.ActionLink(report.Title, MVC.Home.Report(report.Id))</li>
+                        }
+                        @foreach (var menuNode in Model.MenuNodes)
+                        {
+                            <li>
+                                <div class="panel-group" id="@panelGroupId">
+                                    @Html.DisplayFor(_ => menuNode, new { parentId = panelGroupId })
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>*@

@@ -46,6 +46,7 @@ namespace AmvReporting.Domain.Menus
         {
             var menuNode = new MenuNode()
                            {
+                               ReportGroupParentId = @group.ParentReportGroupId,
                                ReportGroupId = @group.Id,
                                ReportGroupTitle = @group.Title,
                                Reports = allReports.Where(r => r.ReportGroupId == @group.Id).ToList(),
