@@ -54,7 +54,8 @@
             $.showAlert(message, 'alert-success');
         };
 
-        $('#treetable').treetable({
+        $('#treetable').persistedTreeTable({
+            persist: true,
             expandable: true,
             clickableNodeNames: true
         });

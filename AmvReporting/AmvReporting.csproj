@@ -328,7 +328,9 @@
     <Content Include="Content\jquery.treetable.css" />
     <Content Include="Content\jquery.treetable.theme.default.css" />
     <Content Include="Examples\TableTree.html" />
+    <Content Include="Scripts\amplify.store.js" />
     <Content Include="Scripts\ie8.js" />
+    <Content Include="Scripts\jquery.treetablePersist.js" />
     <Content Include="Scripts\jquery.treetable.js" />
     <Content Include="Views\Database\_CommonScripts.cshtml" />
     <Content Include="Content\flot.css" />

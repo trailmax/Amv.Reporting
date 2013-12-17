@@ -24,9 +24,6 @@ namespace AmvReporting.Controllers
             var model = mediator.Request(new MenuModelQuery());
 
             return View(model);
-            //var reports = mediator.Request(new AllReportsQuery());
-
-            //return AutoMappedView<IEnumerable<ReportIndexViewModel>>(reports);
         }
 
 

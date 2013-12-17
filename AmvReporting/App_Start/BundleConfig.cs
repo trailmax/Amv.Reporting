@@ -28,7 +28,9 @@ namespace AmvReporting
 
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
                 "~/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.min.js",
-                "~/Scripts/ie8.js"
+                "~/Scripts/ie8.js",
+                "~/Scripts/amplify.store.js",
+                "~/Scripts/jquery.treetablePersist.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/flot").Include(

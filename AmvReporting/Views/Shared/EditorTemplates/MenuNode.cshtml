@@ -5,8 +5,6 @@
     <td>
         @Html.ActionLink("Edit", MVC.ReportGroup.Edit(Model.ReportGroupId), new { @class = "btn btn-default " })
         @Url.AjaxDeleteButton(MVC.ReportGroup.Delete(), Model.ReportGroupId, "Id")
-
-        
     </td>
 </tr>
 @foreach (var report in Model.Reports)

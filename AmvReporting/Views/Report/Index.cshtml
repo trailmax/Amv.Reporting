@@ -6,8 +6,6 @@
 
 <h2>All Reports</h2>
 
-
-
 <div class="row">
     <div class="col-md-9">
         <p>
@@ -32,28 +30,3 @@
         </table>
     </div>
 </div>
-
-@*<table class="table table-bordered">
-        <thead>
-            <tr>
-                <th style="width: 150px;"></th>
-                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().GroupFullName)</th>
-                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Title)</th>
-                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Description)</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td class="col-sm-2">
-                        @Html.ActionLink("Edit", MVC.Report.Edit(item.Id))
-                        @Url.AjaxDeleteButton(MVC.Report.Delete(), item, i => i.Id)
-                    </td>
-                    <td>@Html.DisplayFor(_ => item.GroupFullName)</td>
-                    <td>@Html.DisplayFor(_ => item.Title)</td>
-                    <td>@Html.DisplayFor(_ => item.Description)</td>
-                </tr>
-            }
-        </tbody>
-    </table>*@
