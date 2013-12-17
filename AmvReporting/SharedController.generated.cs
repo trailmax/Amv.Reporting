@@ -35,15 +35,31 @@ namespace T4MVC
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string _Layout = "_Layout";
                 public readonly string _LayoutAdmin = "_LayoutAdmin";
                 public readonly string _LayoutClient = "_LayoutClient";
                 public readonly string _LayoutMinimal = "_LayoutMinimal";
                 public readonly string Error = "Error";
             }
+            public readonly string _Layout = "~/Views/Shared/_Layout.cshtml";
             public readonly string _LayoutAdmin = "~/Views/Shared/_LayoutAdmin.cshtml";
             public readonly string _LayoutClient = "~/Views/Shared/_LayoutClient.cshtml";
             public readonly string _LayoutMinimal = "~/Views/Shared/_LayoutMinimal.cshtml";
             public readonly string Error = "~/Views/Shared/Error.cshtml";
+            static readonly _DisplayTemplatesClass s_DisplayTemplates = new _DisplayTemplatesClass();
+            public _DisplayTemplatesClass DisplayTemplates { get { return s_DisplayTemplates; } }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public partial class _DisplayTemplatesClass
+            {
+                public readonly string MenuNode = "MenuNode";
+            }
+            static readonly _EditorTemplatesClass s_EditorTemplates = new _EditorTemplatesClass();
+            public _EditorTemplatesClass EditorTemplates { get { return s_EditorTemplates; } }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public partial class _EditorTemplatesClass
+            {
+                public readonly string MenuNode = "MenuNode";
+            }
         }
     }
 

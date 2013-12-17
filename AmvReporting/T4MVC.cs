@@ -473,6 +473,7 @@ namespace Links
         public static readonly string jquery_1_10_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-1.10.2.min.js") ? Url("jquery-1.10.2.min.js") : Url("jquery-1.10.2.js");
         public static readonly string jquery_1_10_2_min_js = Url("jquery-1.10.2.min.js");
         public static readonly string jquery_1_10_2_min_map = Url("jquery-1.10.2.min.map");
+        public static readonly string jquery_treetable_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.treetable.min.js") ? Url("jquery.treetable.min.js") : Url("jquery.treetable.js");
         public static readonly string modernizr_2_6_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/modernizr-2.6.2.min.js") ? Url("modernizr-2.6.2.min.js") : Url("modernizr-2.6.2.js");
         public static readonly string respond_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/respond.min.js") ? Url("respond.min.js") : Url("respond.js");
         public static readonly string respond_min_js = Url("respond.min.js");
@@ -968,6 +969,10 @@ namespace Links
         }
     
         public static readonly string flot_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/flot.min.css") ? Url("flot.min.css") : Url("flot.css");
+             
+        public static readonly string jquery_treetable_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.treetable.min.css") ? Url("jquery.treetable.min.css") : Url("jquery.treetable.css");
+             
+        public static readonly string jquery_treetable_theme_default_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.treetable.theme.default.min.css") ? Url("jquery.treetable.theme.default.min.css") : Url("jquery.treetable.theme.default.css");
              
         public static readonly string Site_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Site.min.css") ? Url("Site.min.css") : Url("Site.css");
              

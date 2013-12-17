@@ -44,7 +44,7 @@
                 $("#alert-message").fadeTo(500, 0).slideUp(500, function () {
                     $(this).remove();
                 });
-            }, 3000);
+            }, 5000);
         };
 
         jQuery.showWarning = function (message) {
@@ -53,6 +53,11 @@
         jQuery.showSuccess = function (message) {
             $.showAlert(message, 'alert-success');
         };
+
+        $('#treetable').treetable({
+            expandable: true,
+            clickableNodeNames: true
+        });
     </script>
     @RenderSection("scripts", required: false)
 

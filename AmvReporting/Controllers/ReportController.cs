@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using AmvReporting.Domain.Menus;
 using AmvReporting.Domain.Reports.Commands;
 using AmvReporting.Domain.Reports.Queries;
 using AmvReporting.Domain.Reports.ViewModels;
@@ -20,9 +21,12 @@ namespace AmvReporting.Controllers
 
         public virtual ActionResult Index()
         {
-            var reports = mediator.Request(new AllReportsQuery());
+            var model = mediator.Request(new MenuModelQuery());
 
-            return AutoMappedView<IEnumerable<ReportIndexViewModel>>(reports);
+            return View(model);
+            //var reports = mediator.Request(new AllReportsQuery());
+
+            //return AutoMappedView<IEnumerable<ReportIndexViewModel>>(reports);
         }
 
 

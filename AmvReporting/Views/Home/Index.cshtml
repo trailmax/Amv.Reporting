@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Report>
+﻿@model MenuModel
 
 @{
     ViewBag.Title = "Home Page";
@@ -6,15 +6,15 @@
 
 <h2>All Reports</h2>
 
-<div class="row">
-    <div class="col-md-9">
-
-        <ul>
-            @foreach (var item in Model)
-            {
-                <li>@Html.ActionLink(item.Title, MVC.Home.Report(item.Id))</li>
-            }
-        </ul>
-    </div>
-
-</div>
+<table id="treetable">
+    @foreach (var report in Model.TopLevelReports)
+    {
+        <tr data-tt-id="@report.Id">
+            <td><span class="file">@Html.ActionLink(report.Title, MVC.Home.Report(report.Id))</span></td>
+        </tr>
+    }
+    @foreach (var menuNode in Model.MenuNodes)
+    {
+        @Html.DisplayFor(_ => menuNode)
+    }
+</table>

@@ -14,7 +14,8 @@ namespace AmvReporting.Infrastructure.CQRS
     {
         public override string ToString()
         {
-            return this.Aggregate("", (current, next) => current + ", " + next);
+            var result = String.Join(", ", this);
+            return result;
         }
 
         public bool IsValid()

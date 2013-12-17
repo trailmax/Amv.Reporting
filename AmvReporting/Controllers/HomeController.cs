@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
-using AmvReporting.Domain.Reports;
+using AmvReporting.Domain.Menus;
 using AmvReporting.Domain.Reports.Queries;
 using AmvReporting.Infrastructure.CQRS;
 
@@ -18,9 +18,8 @@ namespace AmvReporting.Controllers
 
         public virtual ActionResult Index()
         {
-            var reports = mediator.Request(new AllReportsQuery());
-
-            return View(reports);
+            var model = mediator.Request(new MenuModelQuery());
+            return View(model);
         }
 
 

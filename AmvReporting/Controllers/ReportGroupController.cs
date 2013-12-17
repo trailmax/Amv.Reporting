@@ -19,11 +19,6 @@ namespace AmvReporting.Controllers
             this.mediator = mediator;
         }
 
-        public virtual ActionResult Index()
-        {
-            var groups = mediator.Request(new AllReportGroupsQuery()).ToList();
-            return AutoMappedView<IEnumerable<ReportGroupIndexViewModel>>(groups);
-        }
 
         [RestoreModelState]
         public virtual ActionResult Create()
@@ -35,7 +30,7 @@ namespace AmvReporting.Controllers
         public virtual ActionResult Create(CreateReportGroupCommand command)
         {
             return ProcessForm(command, RedirectToAction(MVC.ReportGroup.Create()),
-                RedirectToAction(MVC.ReportGroup.Index()));
+                RedirectToAction(MVC.Report.Index()));
         }
 
         [RestoreModelState]
@@ -49,12 +44,16 @@ namespace AmvReporting.Controllers
         public virtual ActionResult Edit(EditReportGroupCommand command)
         {
             return ProcessForm(command, RedirectToAction(MVC.ReportGroup.Edit(command.Id)), 
-                RedirectToAction(MVC.ReportGroup.Index()));
+                RedirectToAction(MVC.Report.Index()));
         }
 
         [HttpPost]
-        public virtual ActionResult Delete(DeleteReportGroupCommand command)
+        public virtual ActionResult Delete(String id)
         {
+            var command = new DeleteReportGroupCommand()
+                                               {
+                                                   Id = id,
+                                               };
             return ProcessJsonForm(command, "Group Deleted");
         }
 	}

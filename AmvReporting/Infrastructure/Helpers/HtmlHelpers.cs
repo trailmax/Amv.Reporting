@@ -8,13 +8,19 @@ namespace AmvReporting.Infrastructure.Helpers
     {
         public static MvcHtmlString AjaxDeleteButton<T>(this UrlHelper urlHelper, ActionResult actionResult, T data, Expression<Func<T, String>> selector)
         {
+            return AjaxDeleteButton(urlHelper, actionResult, ExpressionHelper.PropertyValue(data, selector),
+                ExpressionHelper.PropertyName(selector));
+        }
+
+        public static MvcHtmlString AjaxDeleteButton(this UrlHelper urlHelper, ActionResult actionResult, object data, String parameterName)
+        {
             var tagBuilder = new TagBuilder("button");
             tagBuilder.SetInnerText("Delete");
             tagBuilder.AddCssClass("btn btn-default delete-by-ajax");
             tagBuilder.MergeAttribute("title", "Delete");
 
-            tagBuilder.MergeAttribute("data-id", ExpressionHelper.PropertyValue(data, selector));
-            tagBuilder.MergeAttribute("data-parameter-name", ExpressionHelper.PropertyName(selector));
+            tagBuilder.MergeAttribute("data-id", data.ToString());
+            tagBuilder.MergeAttribute("data-parameter-name", parameterName);
 
             tagBuilder.MergeAttribute("data-url", urlHelper.Action(actionResult));
 

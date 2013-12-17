@@ -69,7 +69,6 @@ namespace AmvReporting.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string Index = "Index";
             public readonly string Create = "Create";
             public readonly string Edit = "Edit";
             public readonly string Delete = "Delete";
@@ -78,7 +77,6 @@ namespace AmvReporting.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string Index = "Index";
             public const string Create = "Create";
             public const string Edit = "Edit";
             public const string Delete = "Delete";
@@ -108,7 +106,7 @@ namespace AmvReporting.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Delete
         {
-            public readonly string command = "command";
+            public readonly string id = "id";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -123,12 +121,10 @@ namespace AmvReporting.Controllers
                 public readonly string _ViewStart = "_ViewStart";
                 public readonly string Create = "Create";
                 public readonly string Edit = "Edit";
-                public readonly string Index = "Index";
             }
             public readonly string _ViewStart = "~/Views/ReportGroup/_ViewStart.cshtml";
             public readonly string Create = "~/Views/ReportGroup/Create.cshtml";
             public readonly string Edit = "~/Views/ReportGroup/Edit.cshtml";
-            public readonly string Index = "~/Views/ReportGroup/Index.cshtml";
         }
     }
 
@@ -136,15 +132,6 @@ namespace AmvReporting.Controllers
     public partial class T4MVC_ReportGroupController : AmvReporting.Controllers.ReportGroupController
     {
         public T4MVC_ReportGroupController() : base(Dummy.Instance) { }
-
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        public override System.Web.Mvc.ActionResult Index()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-            IndexOverride(callInfo);
-            return callInfo;
-        }
 
         partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
@@ -185,13 +172,13 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
-        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.ReportGroups.Commands.DeleteReportGroupCommand command);
+        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
 
-        public override System.Web.Mvc.ActionResult Delete(AmvReporting.Domain.ReportGroups.Commands.DeleteReportGroupCommand command)
+        public override System.Web.Mvc.ActionResult Delete(string id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
-            DeleteOverride(callInfo, command);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            DeleteOverride(callInfo, id);
             return callInfo;
         }
 

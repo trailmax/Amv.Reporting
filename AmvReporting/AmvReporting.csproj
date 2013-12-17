@@ -560,12 +560,14 @@
     </None>
     <Content Include="Views\Database\Edit.cshtml" />
     <Content Include="Views\Database\_CreateEdit.cshtml" />
-    <Content Include="Views\ReportGroup\Index.cshtml" />
     <Content Include="Views\ReportGroup\_ViewStart.cshtml" />
     <Content Include="Views\ReportGroup\Create.cshtml" />
     <Content Include="Views\ReportGroup\Edit.cshtml" />
     <Content Include="Views\Menu\EditMenu.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\MenuNode.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MenuNode.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

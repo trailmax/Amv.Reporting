@@ -36,7 +36,7 @@
                                 $.showSuccess(data.SuccessMessage);
                                 self.closest('tr').delay(500).fadeOut(1000);
                             } else {
-                                $.showSuccess('Unable to delete the record: ' + data.FailureMessage);
+                                $.showWarning('Unable to delete the record: ' + data.FailureMessage);
                             }
                         }
                     });

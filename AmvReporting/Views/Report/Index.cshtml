@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ReportIndexViewModel>
+﻿@model MenuModel
 
 @{
     ViewBag.Title = "All Reports";
@@ -6,35 +6,54 @@
 
 <h2>All Reports</h2>
 
+
+
 <div class="row">
     <div class="col-md-9">
         <p>
             @Html.ActionLink("Create New Report", MVC.Report.Create(), new { @class = "btn btn-primary btn-lg" })
+            @Html.ActionLink("Create New Group", MVC.ReportGroup.Create(), new { @class = "btn btn-primary btn-lg" })
         </p>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th style="width: 150px;"></th>
-                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().GroupFullName)</th>
-                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Title)</th>
-                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Description)</th>
+        <table id="treetable">
+            @foreach (var report in Model.TopLevelReports)
+            {
+                <tr data-tt-id="@report.Id">
+                    <td class="col-md-4"><span class="file">@Html.ActionLink(report.Title, MVC.Home.Report(report.Id))</span></td>
+                    <td>
+                        @Html.ActionLink("Edit", MVC.Report.Edit(report.Id), new { @class = "btn btn-default " })
+                        @Url.AjaxDeleteButton(MVC.Report.Delete(), report, i => i.Id)
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td class="col-sm-2">
-                            @Html.ActionLink("Edit", MVC.Report.Edit(item.Id)) 
-                            @Url.AjaxDeleteButton(MVC.Report.Delete(), item, i => i.Id)
-                        </td>
-                        <td>@Html.DisplayFor(_ => item.GroupFullName)</td>
-                        <td>@Html.DisplayFor(_ => item.Title)</td>
-                        <td>@Html.DisplayFor(_ => item.Description)</td>
-                    </tr>
-                }
-            </tbody>
+            }
+            @foreach (var menuNode in Model.MenuNodes)
+            {
+                @Html.EditorFor(_ => menuNode)
+            }
         </table>
     </div>
-
 </div>
+
+@*<table class="table table-bordered">
+        <thead>
+            <tr>
+                <th style="width: 150px;"></th>
+                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().GroupFullName)</th>
+                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Title)</th>
+                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Description)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="col-sm-2">
+                        @Html.ActionLink("Edit", MVC.Report.Edit(item.Id))
+                        @Url.AjaxDeleteButton(MVC.Report.Delete(), item, i => i.Id)
+                    </td>
+                    <td>@Html.DisplayFor(_ => item.GroupFullName)</td>
+                    <td>@Html.DisplayFor(_ => item.Title)</td>
+                    <td>@Html.DisplayFor(_ => item.Description)</td>
+                </tr>
+            }
+        </tbody>
+    </table>*@
