@@ -75,19 +75,6 @@ internal partial class T4MVC_System_Web_Mvc_PartialViewResult : System.Web.Mvc.P
     public string Protocol { get; set; }
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
-[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-internal partial class T4MVC_System_Web_Mvc_ViewResult : System.Web.Mvc.ViewResult, IT4MVCActionResult
-{
-    public T4MVC_System_Web_Mvc_ViewResult(string area, string controller, string action, string protocol = null): base()
-    {
-        this.InitMVCT4Result(area, controller, action, protocol);
-    }
-    
-    public string Controller { get; set; }
-    public string Action { get; set; }
-    public string Protocol { get; set; }
-    public RouteValueDictionary RouteValueDictionary { get; set; }
-}
 
 
 
@@ -99,6 +86,7 @@ namespace Links
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
         public static readonly string _references_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/_references.min.js") ? Url("_references.min.js") : Url("_references.js");
+        public static readonly string amplify_store_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/amplify.store.min.js") ? Url("amplify.store.min.js") : Url("amplify.store.js");
         public static readonly string bootstrap_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/bootstrap.min.js") ? Url("bootstrap.min.js") : Url("bootstrap.js");
         public static readonly string bootstrap_min_js = Url("bootstrap.min.js");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -474,6 +462,7 @@ namespace Links
         public static readonly string jquery_1_10_2_min_js = Url("jquery-1.10.2.min.js");
         public static readonly string jquery_1_10_2_min_map = Url("jquery-1.10.2.min.map");
         public static readonly string jquery_treetable_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.treetable.min.js") ? Url("jquery.treetable.min.js") : Url("jquery.treetable.js");
+        public static readonly string jquery_treetablePersist_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.treetablePersist.min.js") ? Url("jquery.treetablePersist.min.js") : Url("jquery.treetablePersist.js");
         public static readonly string modernizr_2_6_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/modernizr-2.6.2.min.js") ? Url("modernizr-2.6.2.min.js") : Url("modernizr-2.6.2.js");
         public static readonly string respond_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/respond.min.js") ? Url("respond.min.js") : Url("respond.js");
         public static readonly string respond_min_js = Url("respond.min.js");

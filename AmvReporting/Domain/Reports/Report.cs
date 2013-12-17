@@ -21,5 +21,9 @@ namespace AmvReporting.Domain.Reports
         public String Css { get; set; }
 
         public String DatabaseId { get; set; }
+
+        public bool Enabled { get; set; }
+
+        public int? ListOrder { get; set; }
     }
 }

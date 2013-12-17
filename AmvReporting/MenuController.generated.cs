@@ -25,6 +25,9 @@ namespace AmvReporting.Controllers
     public partial class MenuController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public MenuController() { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected MenuController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -58,14 +61,12 @@ namespace AmvReporting.Controllers
         public class ActionNamesClass
         {
             public readonly string AdminMenu = "AdminMenu";
-            public readonly string EditMenu = "EditMenu";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string AdminMenu = "AdminMenu";
-            public const string EditMenu = "EditMenu";
         }
 
 
@@ -80,10 +81,8 @@ namespace AmvReporting.Controllers
             public class _ViewNamesClass
             {
                 public readonly string AdminMenu = "AdminMenu";
-                public readonly string EditMenu = "EditMenu";
             }
             public readonly string AdminMenu = "~/Views/Menu/AdminMenu.cshtml";
-            public readonly string EditMenu = "~/Views/Menu/EditMenu.cshtml";
         }
     }
 
@@ -98,15 +97,6 @@ namespace AmvReporting.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.AdminMenu);
             AdminMenuOverride(callInfo);
-            return callInfo;
-        }
-
-        partial void EditMenuOverride(T4MVC_System_Web_Mvc_ViewResult callInfo);
-
-        public override System.Web.Mvc.ViewResult EditMenu()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.EditMenu);
-            EditMenuOverride(callInfo);
             return callInfo;
         }
 

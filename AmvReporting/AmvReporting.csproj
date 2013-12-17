@@ -237,7 +237,6 @@
     <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupViewModel.cs" />
     <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupViewModelEnricher.cs" />
     <Compile Include="Domain\Reports\Commands\CreateReportCommandHandler.cs" />
-    <Compile Include="Domain\Reports\Commands\CreateReportCommandValidator.cs" />
     <Compile Include="Domain\Reports\Commands\DeleteReportCommandHandler.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModel.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModelEnricher.cs" />
@@ -565,7 +564,6 @@
     <Content Include="Views\ReportGroup\_ViewStart.cshtml" />
     <Content Include="Views\ReportGroup\Create.cshtml" />
     <Content Include="Views\ReportGroup\Edit.cshtml" />
-    <Content Include="Views\Menu\EditMenu.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\MenuNode.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

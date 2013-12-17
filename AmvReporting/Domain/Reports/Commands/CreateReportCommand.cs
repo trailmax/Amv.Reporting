@@ -29,5 +29,7 @@ namespace AmvReporting.Domain.Reports.Commands
 
         [Required]
         public String DatabaseId { get; set; }
+
+        public bool Enabled { get; set; }
     }
 }

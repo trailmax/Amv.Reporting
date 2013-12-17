@@ -37,6 +37,7 @@ namespace AmvReporting.Domain.Reports.Commands
             report.Css = command.Css;
             report.DatabaseId = command.DatabaseId;
             report.ReportGroupId = command.ReportGroupId;
+            report.Enabled = command.Enabled;
 
             return report;
         }

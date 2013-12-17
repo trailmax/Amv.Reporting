@@ -16,7 +16,7 @@
             @foreach (var report in Model.TopLevelReports)
             {
                 <tr data-tt-id="@report.Id">
-                    <td class="col-md-4"><span class="file">@Html.ActionLink(report.Title, MVC.Home.Report(report.Id))</span></td>
+                    <td class="col-md-4"><span class="file @(!report.Enabled ? "disabled-report" : "")">@Html.ActionLink(report.Title, MVC.Home.Report(report.Id))</span></td>
                     <td>
                         @Html.ActionLink("Edit", MVC.Report.Edit(report.Id), new { @class = "btn btn-default " })
                         @Url.AjaxDeleteButton(MVC.Report.Delete(), report, i => i.Id)

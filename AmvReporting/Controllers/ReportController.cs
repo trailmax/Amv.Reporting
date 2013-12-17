@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
 using AmvReporting.Domain.Menus;
 using AmvReporting.Domain.Reports.Commands;
@@ -30,7 +29,11 @@ namespace AmvReporting.Controllers
         [RestoreModelState]
         public virtual ActionResult Create()
         {
-            return EnrichedView(new ReportDetailsViewModel());
+            var model = new ReportDetailsViewModel()
+                        {
+                            Enabled = true,
+                        };
+            return EnrichedView(model);
         }
 
         [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
