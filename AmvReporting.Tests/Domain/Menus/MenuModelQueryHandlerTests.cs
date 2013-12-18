@@ -81,7 +81,7 @@ namespace AmvReporting.Tests.Domain.Menus
 
             var sut = fixture.Create<MenuModelQueryHandler>();
 
-            result = sut.Handle(new MenuModelQuery());
+            result = sut.Handle(new MenuModelQuery(true));
         }
 
         private void SaveDataToRaven(List<ReportGroup> topLevelGroups, List<ReportGroup> secondLevelGroups, List<Report> groupLessReports,

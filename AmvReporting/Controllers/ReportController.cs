@@ -20,7 +20,7 @@ namespace AmvReporting.Controllers
 
         public virtual ActionResult Index()
         {
-            var model = mediator.Request(new MenuModelQuery());
+            var model = mediator.Request(new MenuModelQuery(true));
 
             return View(model);
         }

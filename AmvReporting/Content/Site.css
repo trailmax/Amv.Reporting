@@ -101,5 +101,5 @@ a {
 /*For reports that are disabled, but should be visible*/ 
 .disabled-report a {
     text-decoration: line-through;
-    color: grey;
+    color: #cccccc;
 }

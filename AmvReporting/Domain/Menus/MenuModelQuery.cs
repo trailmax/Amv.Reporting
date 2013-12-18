@@ -10,6 +10,12 @@ namespace AmvReporting.Domain.Menus
 {
     public class MenuModelQuery : IQuery<MenuModel>
     {
+        public bool ShowDisabledReports { get; set; }
+
+        public MenuModelQuery(bool showDisabledReports = false)
+        {
+            ShowDisabledReports = showDisabledReports;
+        }
     }
 
     public class MenuModelQueryHandler : IQueryHandler<MenuModelQuery, MenuModel>
@@ -24,7 +30,17 @@ namespace AmvReporting.Domain.Menus
         public MenuModel Handle(MenuModelQuery query)
         {
             var allGroups = ravenSession.Query<ReportGroup>().ToList();
-            var allReports = ravenSession.Query<Report>().ToList();
+
+            List<Report> allReports;
+
+            if (query.ShowDisabledReports)
+            {
+                allReports = ravenSession.Query<Report>().ToList();
+            }
+            else
+            {
+                allReports = ravenSession.Query<Report>().Where(r => r.Enabled).ToList();
+            }
 
             var menuModel = new MenuModel
                             {
