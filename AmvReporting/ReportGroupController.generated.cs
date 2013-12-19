@@ -49,6 +49,12 @@ namespace AmvReporting.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Reorder()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Reorder);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Delete()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
@@ -71,6 +77,7 @@ namespace AmvReporting.Controllers
         {
             public readonly string Create = "Create";
             public readonly string Edit = "Edit";
+            public readonly string Reorder = "Reorder";
             public readonly string Delete = "Delete";
         }
 
@@ -79,6 +86,7 @@ namespace AmvReporting.Controllers
         {
             public const string Create = "Create";
             public const string Edit = "Edit";
+            public const string Reorder = "Reorder";
             public const string Delete = "Delete";
         }
 
@@ -99,6 +107,14 @@ namespace AmvReporting.Controllers
         {
             public readonly string id = "id";
             public readonly string command = "command";
+        }
+        static readonly ActionParamsClass_Reorder s_params_Reorder = new ActionParamsClass_Reorder();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Reorder ReorderParams { get { return s_params_Reorder; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Reorder
+        {
+            public readonly string id = "id";
         }
         static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -121,10 +137,12 @@ namespace AmvReporting.Controllers
                 public readonly string _ViewStart = "_ViewStart";
                 public readonly string Create = "Create";
                 public readonly string Edit = "Edit";
+                public readonly string Reorder = "Reorder";
             }
             public readonly string _ViewStart = "~/Views/ReportGroup/_ViewStart.cshtml";
             public readonly string Create = "~/Views/ReportGroup/Create.cshtml";
             public readonly string Edit = "~/Views/ReportGroup/Edit.cshtml";
+            public readonly string Reorder = "~/Views/ReportGroup/Reorder.cshtml";
         }
     }
 
@@ -169,6 +187,16 @@ namespace AmvReporting.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
             EditOverride(callInfo, command);
+            return callInfo;
+        }
+
+        partial void ReorderOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
+
+        public override System.Web.Mvc.ActionResult Reorder(string id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Reorder);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ReorderOverride(callInfo, id);
             return callInfo;
         }
 

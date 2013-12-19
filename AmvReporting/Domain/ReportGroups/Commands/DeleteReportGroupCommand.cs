@@ -9,6 +9,11 @@ namespace AmvReporting.Domain.ReportGroups.Commands
     public class DeleteReportGroupCommand : ICommand
     {
         public String Id { get; set; }
+
+        public DeleteReportGroupCommand(String id)
+        {
+            Id = id;
+        }
     }
 
 

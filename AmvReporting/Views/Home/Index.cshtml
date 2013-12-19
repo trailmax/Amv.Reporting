@@ -7,14 +7,14 @@
 <h2>All Reports</h2>
 
 <table id="treetable">
+    @foreach (var menuNode in Model.MenuNodes)
+    {
+        @Html.DisplayFor(_ => menuNode)
+    }
     @foreach (var report in Model.TopLevelReports)
     {
         <tr data-tt-id="@report.Id">
             <td><span class="file">@Html.ActionLink(report.Title, MVC.Home.Report(report.Id))</span></td>
         </tr>
-    }
-    @foreach (var menuNode in Model.MenuNodes)
-    {
-        @Html.DisplayFor(_ => menuNode)
     }
 </table>

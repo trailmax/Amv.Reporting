@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 using AmvReporting.Domain.ReportGroups.Commands;
 using AmvReporting.Domain.ReportGroups.Queries;
@@ -26,6 +24,7 @@ namespace AmvReporting.Controllers
             return EnrichedView(new ReportGroupViewModel());
         }
 
+
         [HttpPost, ValidateAntiForgeryToken]
         public virtual ActionResult Create(CreateReportGroupCommand command)
         {
@@ -33,27 +32,45 @@ namespace AmvReporting.Controllers
                 RedirectToAction(MVC.Report.Index()));
         }
 
+
         [RestoreModelState]
         public virtual ActionResult Edit(String id)
         {
-            var report = mediator.Request(new ReportGroupQuery(id));
-            return AutoMappedView<ReportGroupViewModel>(report);
+            var model = mediator.Request(new ReportGroupQuery(id));
+            return AutoMappedView<ReportGroupViewModel>(model);
         }
+
 
         [HttpPost, ValidateAntiForgeryToken]
         public virtual ActionResult Edit(EditReportGroupCommand command)
         {
-            return ProcessForm(command, RedirectToAction(MVC.ReportGroup.Edit(command.Id)), 
+            return ProcessForm(command, 
+                RedirectToAction(MVC.ReportGroup.Edit(command.Id)), 
                 RedirectToAction(MVC.Report.Index()));
         }
+
+        [RestoreModelState]
+        public virtual ActionResult Reorder(String id)
+        {
+            var model = mediator.Request(new GroupReorderQuery(id));
+
+            return View(model);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Reorder(ReorderGroupCommand command)
+        {
+            return ProcessForm(command, 
+                RedirectToAction(MVC.ReportGroup.Reorder(command.ParentGroupId)),
+                RedirectToAction(MVC.Report.Index()));
+        }
+
 
         [HttpPost]
         public virtual ActionResult Delete(String id)
         {
-            var command = new DeleteReportGroupCommand()
-                                               {
-                                                   Id = id,
-                                               };
+            var command = new DeleteReportGroupCommand(id);
+
             return ProcessJsonForm(command, "Group Deleted");
         }
 	}

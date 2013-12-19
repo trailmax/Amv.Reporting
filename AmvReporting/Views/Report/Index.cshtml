@@ -13,19 +13,23 @@
             @Html.ActionLink("Create New Group", MVC.ReportGroup.Create(), new { @class = "btn btn-primary btn-lg" })
         </p>
         <table id="treetable">
+            @foreach (var menuNode in Model.MenuNodes)
+            {
+                @Html.EditorFor(_ => menuNode)
+            }
             @foreach (var report in Model.TopLevelReports)
             {
                 <tr data-tt-id="@report.Id">
-                    <td class="col-md-4"><span class="file @(!report.Enabled ? "disabled-report" : "")">@Html.ActionLink(report.Title, MVC.Home.Report(report.Id))</span></td>
+                    <td class="col-md-4">
+                        <span class="file">
+                            @Html.ActionLink(report.Title, MVC.Home.Report(report.Id), new { @class = !report.Enabled ? "disabled-report" : "" })
+                        </span>
+                    </td>
                     <td>
                         @Html.ActionLink("Edit", MVC.Report.Edit(report.Id), new { @class = "btn btn-default " })
                         @Url.AjaxDeleteButton(MVC.Report.Delete(), report, i => i.Id)
                     </td>
                 </tr>
-            }
-            @foreach (var menuNode in Model.MenuNodes)
-            {
-                @Html.EditorFor(_ => menuNode)
             }
         </table>
     </div>

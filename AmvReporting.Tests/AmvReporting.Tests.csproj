@@ -101,6 +101,7 @@
     <Compile Include="Domain\ReportGroups\Commands\CreateReportGroupCommandHandlerTests.cs" />
     <Compile Include="Domain\ReportGroups\Commands\DeleteReportGroupCommandHandlerTests.cs" />
     <Compile Include="Domain\ReportGroups\Commands\EditReportGroupCommandHandlerTests.cs" />
+    <Compile Include="Domain\ReportGroups\Queries\GroupReorderQueryHandlerTests.cs" />
     <Compile Include="Domain\Reports\Commands\EditReportCommandHandlerTests.cs" />
     <Compile Include="Infrastructure\CQRS\AutofacMediatorTests.cs" />
     <Compile Include="Infrastructure\Helpers\ExpressionHelperTests.cs" />

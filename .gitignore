@@ -158,3 +158,6 @@ $RECYCLE.BIN/
 */App_Data/*
 /Publishes
 */PublishProfiles/*
+/AmvReporting/Raven/CompiledIndexCache
+/_NCrunch_AmvReporting/StoredText
+/sample.txt

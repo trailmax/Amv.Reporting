@@ -3,14 +3,13 @@
 <tr data-tt-id="@Model.ReportGroupId" data-tt-parent-id="@Model.ReportGroupParentId">
     <td><span class='folder'>@Model.ReportGroupTitle</span></td>
 </tr>
+@foreach (var menuNode in Model.MenuNodes)
+{
+    @Html.DisplayFor(_ => menuNode)
+}
 @foreach (var report in Model.Reports)
 {
     <tr data-tt-parent-id="@report.ReportGroupId" data-tt-id="@report.Id">
         <td><span class="file">@Html.ActionLink(report.Title, MVC.Home.Report(report.Id))</span></td>
     </tr>
-}
-
-@foreach (var menuNode in Model.MenuNodes)
-{
-    @Html.DisplayFor(_ => menuNode)
 }

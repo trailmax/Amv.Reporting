@@ -11,5 +11,7 @@ namespace AmvReporting.Domain.ReportGroups
         public String Title { get; set; }
 
         public String ParentReportGroupId { get; set; }
+
+        public int ListOrder { get; set; }
     }
 }

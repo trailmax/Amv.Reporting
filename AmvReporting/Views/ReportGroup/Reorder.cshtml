@@ -1,0 +1,43 @@
+﻿@model GroupReorderModel
+
+@{
+    ViewBag.Title = "Reorder Group";
+}
+
+<h2>@ViewBag.Title @Model.ParentGroupTitle</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ParentGroupId)
+    if (Model.Reports.Any())
+    {
+        <h4>Order of Reports</h4>
+        <ul class="sortable">
+            @foreach (var report in Model.Reports)
+            {
+                <li>
+                    @Html.HiddenFor(_ => report.Id, new { @id = "ReportIds", @Name = "ReportIds" })
+                    <span class="glyphicon glyphicon-move"></span> <span class="@(!report.Enabled ? "disabled-report" : "")">@report.Title</span>
+                </li>
+            }
+        </ul>
+    }
+
+    if (Model.Groups.Any())
+    {
+        <h4>Order of Sub-Groups</h4>
+        <ul class="sortable">
+            @foreach (var @group in Model.Groups)
+            {
+                <li>
+                    @Html.HiddenFor(_ => @group.Id, new { @id = "GroupIds", @Name = "GroupIds" })
+                    <span class="glyphicon glyphicon-move"></span> @group.Title
+                </li>
+            }
+        </ul>
+    }
+    
+    <input type="submit" value="Save" class="btn btn-default" />
+    @Html.ActionLink("Back To List", MVC.Report.Index(), new { @class = "btn btn-default" })
+}

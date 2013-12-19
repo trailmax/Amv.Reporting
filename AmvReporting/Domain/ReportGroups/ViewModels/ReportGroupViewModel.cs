@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using AmvReporting.Domain.Reports;
 
 namespace AmvReporting.Domain.ReportGroups.ViewModels
 {

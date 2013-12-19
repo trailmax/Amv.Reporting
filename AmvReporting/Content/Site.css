@@ -98,8 +98,21 @@ a {
 }
 
 
-/*For reports that are disabled, but should be visible*/ 
-.disabled-report a {
+/*For reports that are disabled, but should be visible*/
+.disabled-report {
     text-decoration: line-through;
     color: #cccccc;
 }
+
+
+/*Sortable UI elements for reordering groups*/
+.sortable {
+    list-style-type: none;
+    margin: 10px;
+    padding: 10px;
+    font-size: 1.1em;
+}
+
+    .sortable li {
+        margin: 5px 0;
+    }

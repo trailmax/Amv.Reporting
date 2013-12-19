@@ -25,9 +25,9 @@ namespace AmvReporting.Domain.ReportGroups.Queries
 
         public ReportGroup Handle(ReportGroupQuery query)
         {
-            var result = ravenSession.Load<ReportGroup>(query.Id);
+            var requestedGroup = ravenSession.Load<ReportGroup>(query.Id);
 
-            return result;
+            return requestedGroup;
         }
     }
 }
