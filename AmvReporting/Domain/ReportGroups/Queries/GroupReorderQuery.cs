@@ -39,11 +39,13 @@ namespace AmvReporting.Domain.ReportGroups.Queries
         {
             var childReports = ravenSession.Query<Report>()
                 .Where(r => r.ReportGroupId == query.GroupId)
+                .ToList()
                 .OrderBy(r => r.ListOrder)
                 .ToList();
 
             var childGroups = ravenSession.Query<ReportGroup>()
                 .Where(rg => rg.ParentReportGroupId == query.GroupId)
+                .ToList()
                 .OrderBy(rg => rg.ListOrder)
                 .ToList();
 

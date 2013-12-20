@@ -49,7 +49,7 @@ namespace AmvReporting.Controllers
                 RedirectToAction(MVC.Report.Index()));
         }
 
-        [RestoreModelState]
+
         public virtual ActionResult Reorder(String id)
         {
             var model = mediator.Request(new GroupReorderQuery(id));

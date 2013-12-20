@@ -44,11 +44,11 @@ namespace AmvReporting.Domain.Menus
 
             var menuModel = new MenuModel
                             {
-                                TopLevelReports = allReports.Where(r => String.IsNullOrEmpty(r.ReportGroupId)).ToList(),
+                                TopLevelReports = allReports.Where(r => String.IsNullOrEmpty(r.ReportGroupId)).OrderBy(r => r.ListOrder).ToList(),
                                 MenuNodes = new List<MenuNode>(),
                             };
 
-            foreach (var @group in allGroups.Where(g => String.IsNullOrEmpty(g.ParentReportGroupId)))
+            foreach (var @group in allGroups.Where(g => String.IsNullOrEmpty(g.ParentReportGroupId)).OrderBy(g => g.ListOrder))
             {
                 menuModel.MenuNodes.Add(BuildTree(@group, allGroups, allReports));
             }
@@ -65,10 +65,10 @@ namespace AmvReporting.Domain.Menus
                                ReportGroupParentId = @group.ParentReportGroupId,
                                ReportGroupId = @group.Id,
                                ReportGroupTitle = @group.Title,
-                               Reports = allReports.Where(r => r.ReportGroupId == @group.Id).ToList(),
+                               Reports = allReports.Where(r => r.ReportGroupId == @group.Id).OrderBy(r => r.ListOrder).ToList(),
                                MenuNodes = new List<MenuNode>(),
                            };
-            foreach (var childGroup in allGroups.Where(g => g.ParentReportGroupId == @group.Id))
+            foreach (var childGroup in allGroups.Where(g => g.ParentReportGroupId == @group.Id).OrderBy(r => r.ListOrder))
             {
                 menuNode.MenuNodes.Add(BuildTree(childGroup, allGroups, allReports));
             }
