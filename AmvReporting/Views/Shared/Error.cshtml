@@ -1,10 +1,28 @@
-﻿@model HandleErrorInfo
+﻿@using AmvReporting.Domain
+@using Microsoft.Ajax.Utilities
+@model HandleErrorInfo
 
 @{
-    ViewBag.Title = "Error";
+    ViewBag.Title = "OOPS! Error Occurred. Sorry about this.";
     Layout = "~/Views/Shared/_LayoutMinimal.cshtml";
+
+
+    var outerException = Model.Exception as DomainException;
+    var innerException = Model.Exception.IfNotNull(e => e.InnerException) as DomainException;
+
+    var domainException = outerException ?? innerException;
+    
+    var errorMessage = String.Empty;
+    if (domainException != null)
+    {
+        errorMessage = domainException.Message;
+    }
 }
 
 <h1 class="text-danger">Error.</h1>
 <h2 class="text-danger">An error occurred while processing your request.</h2>
 
+@if (!String.IsNullOrEmpty(errorMessage))
+{
+    <h3>Error Message: @errorMessage</h3>
+}
