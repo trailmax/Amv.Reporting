@@ -58,7 +58,7 @@ namespace AmvReporting.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Reorder(ReorderGroupCommand command)
+        public virtual ActionResult Reorder(ReorderGroupCommand command)
         {
             return ProcessForm(command, 
                 RedirectToAction(MVC.ReportGroup.Reorder(command.ParentGroupId)),

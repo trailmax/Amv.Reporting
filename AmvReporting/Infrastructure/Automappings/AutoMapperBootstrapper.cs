@@ -10,6 +10,8 @@ namespace AmvReporting.Infrastructure.Automappings
     {
         public static void Initialize()
         {
+            Mapper.CreateMap<Report, ReportDetailsViewModel>();
+
             Mapper.CreateMap<Report, EditReportDetailsViewModel>();
             
             Mapper.CreateMap<Report, ReportIndexViewModel>()

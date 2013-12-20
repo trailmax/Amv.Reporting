@@ -43,6 +43,16 @@ namespace AmvReporting.Controllers
         }
 
 
+        public virtual ActionResult Clone(String id)
+        {
+            var query = new SingleReportQuery(id);
+
+            var report = mediator.Request(query);
+
+            return AutoMappedView<ReportDetailsViewModel>(MVC.Report.Views.Create, report);
+        }
+
+
         [RestoreModelState]
         public virtual ActionResult Edit(String id)
         {

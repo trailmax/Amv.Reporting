@@ -59,6 +59,17 @@
             expandable: true,
             clickableNodeNames: true
         });
+
+        $('.expand-all').on('click', function() {
+            $('#treetable').treetable('expandAll');
+            return false;
+        });
+
+        $('.collapse-all').on('click', function() {
+            $('#treetable').treetable('collapseAll');
+            return false;
+        });
+
     </script>
     @RenderSection("scripts", required: false)
 

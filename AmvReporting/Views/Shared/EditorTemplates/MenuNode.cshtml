@@ -23,6 +23,7 @@
         <td>
             @Html.ActionLink("Edit", MVC.Report.Edit(report.Id), new { @class = "btn btn-default " })
             @Url.AjaxDeleteButton(MVC.Report.Delete(), report, i => i.Id)
+            @Html.ActionLink("Clone", MVC.Report.Clone(report.Id), new { @class = "btn btn-default " })
         </td>
     </tr>
 }

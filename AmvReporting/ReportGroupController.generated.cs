@@ -115,6 +115,7 @@ namespace AmvReporting.Controllers
         public class ActionParamsClass_Reorder
         {
             public readonly string id = "id";
+            public readonly string command = "command";
         }
         static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -197,6 +198,16 @@ namespace AmvReporting.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Reorder);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             ReorderOverride(callInfo, id);
+            return callInfo;
+        }
+
+        partial void ReorderOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.ReportGroups.Commands.ReorderGroupCommand command);
+
+        public override System.Web.Mvc.ActionResult Reorder(AmvReporting.Domain.ReportGroups.Commands.ReorderGroupCommand command)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Reorder);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
+            ReorderOverride(callInfo, command);
             return callInfo;
         }
 

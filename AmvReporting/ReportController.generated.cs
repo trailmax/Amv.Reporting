@@ -43,6 +43,12 @@ namespace AmvReporting.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Clone()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Clone);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Edit()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
@@ -71,6 +77,7 @@ namespace AmvReporting.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Create = "Create";
+            public readonly string Clone = "Clone";
             public readonly string Edit = "Edit";
             public readonly string Delete = "Delete";
         }
@@ -80,6 +87,7 @@ namespace AmvReporting.Controllers
         {
             public const string Index = "Index";
             public const string Create = "Create";
+            public const string Clone = "Clone";
             public const string Edit = "Edit";
             public const string Delete = "Delete";
         }
@@ -92,6 +100,14 @@ namespace AmvReporting.Controllers
         public class ActionParamsClass_Create
         {
             public readonly string command = "command";
+        }
+        static readonly ActionParamsClass_Clone s_params_Clone = new ActionParamsClass_Clone();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Clone CloneParams { get { return s_params_Clone; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Clone
+        {
+            public readonly string id = "id";
         }
         static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -164,6 +180,16 @@ namespace AmvReporting.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
             CreateOverride(callInfo, command);
+            return callInfo;
+        }
+
+        partial void CloneOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
+
+        public override System.Web.Mvc.ActionResult Clone(string id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Clone);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            CloneOverride(callInfo, id);
             return callInfo;
         }
 

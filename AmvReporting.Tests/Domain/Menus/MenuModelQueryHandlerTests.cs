@@ -126,8 +126,8 @@ namespace AmvReporting.Tests.Domain.Menus
         public void Handle_FirstLevelReports_Match()
         {
             //Arrange
-            var expectedSecondLevelReports = expected.MenuNodes.First().Reports.OrderBy(r => r.Id);
-            var resultingSecondLevelreports = result.MenuNodes.First().Reports.OrderBy(r => r.Id);
+            var expectedSecondLevelReports = expected.MenuNodes.First().Reports.OrderBy(r => r.Id).ToList();
+            var resultingSecondLevelreports = result.MenuNodes.First().Reports.OrderBy(r => r.Id).ToList();
 
             // Assert
             AssertionHelpers.ListsAreEqual(expectedSecondLevelReports, resultingSecondLevelreports);
