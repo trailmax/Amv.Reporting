@@ -4,9 +4,11 @@ using AmvReporting.Domain.DatabaseConnections.Commands;
 using AmvReporting.Domain.DatabaseConnections.Queries;
 using AmvReporting.Infrastructure;
 using AmvReporting.Infrastructure.CQRS;
+using AmvReporting.Infrastructure.Filters;
 
 namespace AmvReporting.Controllers
 {
+    [RoleAuthorizeFilter]
     public partial class DatabaseController : BaseController
     {
         private readonly IMediator mediator;

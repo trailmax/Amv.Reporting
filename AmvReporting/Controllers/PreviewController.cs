@@ -3,10 +3,12 @@ using System.Web.Mvc;
 using AmvReporting.Domain.Preview.Queries;
 using AmvReporting.Domain.Preview.ViewModels;
 using AmvReporting.Infrastructure.CQRS;
+using AmvReporting.Infrastructure.Filters;
 
 
 namespace AmvReporting.Controllers
 {
+    [RoleAuthorizeFilter]
     public partial class PreviewController : BaseController
     {
         private readonly IMediator mediator;

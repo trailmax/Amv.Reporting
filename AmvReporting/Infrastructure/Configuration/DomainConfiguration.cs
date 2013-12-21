@@ -23,5 +23,12 @@ namespace AmvReporting.Infrastructure.Configuration
 
             return result;
         }
+
+        public String AdministratorRoleNames()
+        {
+            var result = ConfigurationManager.AppSettings["AdministratorRoleNames"];
+
+            return result;
+        }
     }
 }

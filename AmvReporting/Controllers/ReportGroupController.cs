@@ -5,9 +5,11 @@ using AmvReporting.Domain.ReportGroups.Queries;
 using AmvReporting.Domain.ReportGroups.ViewModels;
 using AmvReporting.Infrastructure;
 using AmvReporting.Infrastructure.CQRS;
+using AmvReporting.Infrastructure.Filters;
 
 namespace AmvReporting.Controllers
 {
+    [RoleAuthorizeFilter]
     public partial class ReportGroupController : BaseController
     {
         private readonly IMediator mediator;

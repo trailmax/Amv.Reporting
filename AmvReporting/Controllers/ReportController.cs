@@ -6,9 +6,11 @@ using AmvReporting.Domain.Reports.Queries;
 using AmvReporting.Domain.Reports.ViewModels;
 using AmvReporting.Infrastructure;
 using AmvReporting.Infrastructure.CQRS;
+using AmvReporting.Infrastructure.Filters;
 
 namespace AmvReporting.Controllers
 {
+    [RoleAuthorizeFilter]
     public partial class ReportController : BaseController
     {
         private readonly IMediator mediator;
