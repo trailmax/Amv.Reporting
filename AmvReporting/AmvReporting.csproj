@@ -15,7 +15,7 @@
     <AssemblyName>AmvReporting</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication>disabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
@@ -65,6 +65,9 @@
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PoorMansTSqlFormatterLib35">
+      <HintPath>..\packages\PoorMansTSQLFormatter.1.4.3.1\lib\net35\PoorMansTSqlFormatterLib35.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions, Version=2.5.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -224,6 +227,8 @@
     <Compile Include="Domain\DatabaseConnections\Queries\DatabaseQuery.cs" />
     <Compile Include="Domain\Menus\MenuModel.cs" />
     <Compile Include="Domain\Menus\MenuModelQuery.cs" />
+    <Compile Include="Domain\Preview\Queries\CleanseSqlQuery.cs" />
+    <Compile Include="Domain\Preview\Queries\FormattedSqlQuery.cs" />
     <Compile Include="Domain\ReportGroups\Commands\CreateReportGroupCommand.cs" />
     <Compile Include="Domain\ReportGroups\Commands\DeleteReportGroupCommand.cs" />
     <Compile Include="Domain\ReportGroups\Commands\EditReportGroupCommand.cs" />
@@ -603,7 +608,10 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52253</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:52253/</IISUrl>
+          <IISUrl>http://reporting.dev/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>
+          </IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

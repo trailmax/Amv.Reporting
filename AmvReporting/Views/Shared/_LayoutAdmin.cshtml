@@ -29,9 +29,9 @@
     @RenderSection("scripts", required: false)
 
     <script language="javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
             // Generalised delete button for entries in the tables
-            $('.delete-by-ajax').on('click', function (event) {
+            $('.delete-by-ajax').on('click', function(event) {
                 event.stopPropagation();
                 var self = $(this);
                 var postData = {};
@@ -43,10 +43,10 @@
                         type: 'POST',
                         url: self.data('url'),
                         data: postData,
-                        error: function () {
+                        error: function() {
                             $.showWarning('Could not delete record');
                         },
-                        success: function (data) {
+                        success: function(data) {
                             if (data.Success) {
                                 $.showSuccess(data.SuccessMessage);
                                 self.closest('tr').delay(500).fadeOut(1000);
@@ -59,8 +59,15 @@
                 return false;
             });
 
+            var refreshPreview = function(data) {
+                $('#previewContainer').fadeOut(500, function () {
+                    $('#previewContainer').html(data);
+                    $('#previewContainer').fadeIn(500);
+                });
+            };
+
             // on report create/edit show the data returned by the sql server
-            $('#previewData').on('click', function () {
+            $('#previewData').on('click', function() {
                 var postData = {};
                 postData['sql'] = $('#Sql').val();
                 postData['databaseId'] = $('#DatabaseId').val();
@@ -69,17 +76,36 @@
                     type: 'POST',
                     url: '@Url.Action(MVC.Preview.Data())',
                     data: postData,
-                    error: function () {
+                    error: function() {
                         $.showWarning('Communication Error: could not connect to the server');
                     },
-                    success: function (data) {
-                        $('#previewContainer').html(data);
+                    success: refreshPreview,
+                });
+            });
+
+            // cleanse and format SQL string
+            $('#cleanseAndFormatSql').on('click', function() {
+                var postData = {};
+                postData['sql'] = $('#Sql').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action(MVC.Preview.CleanseAndFormatSql())',
+                    data: postData,
+                    error: function() {
+                        $.showWarning('Communication Error: could not connect to the server');
+                    },
+                    success: function(data) {
+                        $('#Sql').fadeOut(500, function() {
+                            $('#Sql').val(data);
+                            $('#Sql').fadeIn(500);
+                        });
                     },
                 });
             });
 
             // on report create/edit show the actual report in the same window
-            $('#previewFullReport').on('click', function () {
+            $('#previewFullReport').on('click', function() {
                 var postData = {};
                 postData['ReportType'] = $('#ReportType').val();
                 postData['DatabaseId'] = $('#DatabaseId').val();
@@ -91,12 +117,10 @@
                     type: 'POST',
                     url: '@Url.Action(MVC.Preview.Report())',
                     data: postData,
-                    error: function () {
+                    error: function() {
                         $.showWarning('Communication Error: could not connect to the server');
                     },
-                    success: function (data) {
-                        $('#previewContainer').html(data);
-                    },
+                    success: refreshPreview,
                 });
             });
 

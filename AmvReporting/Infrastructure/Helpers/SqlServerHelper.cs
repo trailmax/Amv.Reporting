@@ -26,7 +26,7 @@ namespace AmvReporting.Infrastructure.Helpers
             catch (Exception exception)
             {
                 connection.Close();
-                throw new DomainException("Unable to query database", exception.Message);
+                throw new DomainException(String.Format("Unable to query database: {0}", exception.Message));
             }
         }
 

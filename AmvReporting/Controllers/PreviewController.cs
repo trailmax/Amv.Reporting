@@ -47,5 +47,16 @@ namespace AmvReporting.Controllers
 
             return PartialView(outModel);
         }
+
+
+        [HttpPost]
+        public virtual ActionResult CleanseAndFormatSql(String sql)
+        {
+            var cleanedSql = mediator.Request(new CleanseSqlQuery(sql));
+
+            var formattedSql = mediator.Request(new FormattedSqlQuery(cleanedSql));
+
+            return Json(formattedSql);
+        }
     }
 }
