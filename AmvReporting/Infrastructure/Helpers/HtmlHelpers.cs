@@ -16,7 +16,7 @@ namespace AmvReporting.Infrastructure.Helpers
         {
             var tagBuilder = new TagBuilder("button");
             tagBuilder.SetInnerText("Delete");
-            tagBuilder.AddCssClass("btn btn-default delete-by-ajax");
+            tagBuilder.AddCssClass("btn btn-default btn-xs delete-by-ajax");
             tagBuilder.MergeAttribute("title", "Delete");
 
             tagBuilder.MergeAttribute("data-id", data.ToString());

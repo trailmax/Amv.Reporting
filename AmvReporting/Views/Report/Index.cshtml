@@ -12,9 +12,11 @@
             @Html.ActionLink("Create New Report", MVC.Report.Create(), new { @class = "btn btn-primary btn-lg" })
             @Html.ActionLink("Create New Group", MVC.ReportGroup.Create(), new { @class = "btn btn-primary btn-lg" })
         </p>
-        <a class="expand-all btn btn-default btn-xs">Expand All</a>
-        <a class="collapse-all btn btn-default btn-xs">Collapse All</a>
-        @Html.ActionLink("Reorder Top Level", MVC.ReportGroup.Reorder(), new { @class = "btn btn-default btn-xs" })
+        <p>
+            <a class="expand-all btn btn-default btn-xs">Expand All</a>
+            <a class="collapse-all btn btn-default btn-xs">Collapse All</a>
+            @Html.ActionLink("Reorder Top Level", MVC.ReportGroup.Reorder(), new { @class = "btn btn-default btn-xs" })
+        </p>
         <table id="treetable">
             @foreach (var menuNode in Model.MenuNodes)
             {
@@ -23,15 +25,15 @@
             @foreach (var report in Model.TopLevelReports)
             {
                 <tr data-tt-id="@report.Id">
-                    <td class="col-md-4">
+                    <td class="col-md-5">
                         <span class="file">
                             @Html.ActionLink(report.Title, MVC.Home.Report(report.Id), new { @class = !report.Enabled ? "disabled-report" : "" })
                         </span>
                     </td>
-                    <td>
-                        @Html.ActionLink("Edit", MVC.Report.Edit(report.Id), new { @class = "btn btn-default" })
+                    <td class="col-md-2">
+                        @Html.ActionLink("Edit", MVC.Report.Edit(report.Id), new { @class = "btn btn-default btn-xs" })
                         @Url.AjaxDeleteButton(MVC.Report.Delete(), report, i => i.Id)
-                        @Html.ActionLink("Clone", MVC.Report.Clone(report.Id), new { @class = "btn btn-default" })
+                        @Html.ActionLink("Clone", MVC.Report.Clone(report.Id), new { @class = "btn btn-default btn-xs" })
                     </td>
                 </tr>
             }

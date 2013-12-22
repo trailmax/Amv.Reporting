@@ -11,7 +11,7 @@
 </ul>
 
 <!-- Tab panes -->
-<div class="tab-content col-md-4">
+<div class="tab-content col-md-6">
     <div class="tab-pane active" id="basic">
         <div class="form-group">
             @Html.LabelFor(m => m.ReportGroupId, new { @class = "control-label" })
@@ -33,7 +33,7 @@
 
         <div class="form-group">
             @Html.LabelFor(m => m.Description, new { @class = "control-label" })
-            @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 10 })
             @Html.ValidationMessageFor(m => m.Description)
         </div>
 
@@ -72,4 +72,4 @@
     <input type="submit" value="Save" class="btn btn-default" />
     @Html.ActionLink("Back To List", MVC.Report.Index(), new { @class = "btn btn-default" })
 </div>
-<div class="col-md-5" id="previewContainer"></div>
+<div class="col-md-6" id="previewContainer"></div>
