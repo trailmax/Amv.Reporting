@@ -6,7 +6,20 @@
     @RenderSection("css", required: false)
 }
 
-<div class="admin-container">
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", MVC.Home.Index(), new { @class = "navbar-brand" })</li>
+                <li>@Html.ActionLink("Maintain Reports", MVC.Report.Index())</li>
+                <li>@Html.ActionLink("Databases", MVC.Database.Index())</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="alert-placeholder"></div>
+
+<div class="container admin-content">
     @RenderBody()
 </div>
 

@@ -35,13 +35,11 @@ namespace T4MVC
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string _Layout = "_Layout";
                 public readonly string _LayoutAdmin = "_LayoutAdmin";
                 public readonly string _LayoutClient = "_LayoutClient";
                 public readonly string _LayoutMinimal = "_LayoutMinimal";
                 public readonly string Error = "Error";
             }
-            public readonly string _Layout = "~/Views/Shared/_Layout.cshtml";
             public readonly string _LayoutAdmin = "~/Views/Shared/_LayoutAdmin.cshtml";
             public readonly string _LayoutClient = "~/Views/Shared/_LayoutClient.cshtml";
             public readonly string _LayoutMinimal = "~/Views/Shared/_LayoutMinimal.cshtml";

@@ -10,6 +10,8 @@
     </style>
 }
 
+@Html.ActionLink("Home", MVC.Home.Index(), new { @class = "btn btn-primary" })
+
 <h2>@Model.Title</h2>
 
 @if (Model.ReportType == ReportType.Table)

@@ -354,7 +354,6 @@
     <Content Include="Examples\Table.html" />
     <Content Include="Views\Preview\Data.cshtml" />
     <Content Include="Views\Preview\Report.cshtml" />
-    <Content Include="Views\Preview\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\DataTables-1.9.4\docs\media\css\doc.css" />
@@ -574,7 +573,6 @@
     <Content Include="Views\ReportGroup\Edit.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\MenuNode.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\MenuNode.cshtml" />
     <Content Include="Views\ReportGroup\Reorder.cshtml" />
   </ItemGroup>

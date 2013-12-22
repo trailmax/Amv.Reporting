@@ -47,12 +47,5 @@ namespace AmvReporting.Controllers
 
             return PartialView(outModel);
         }
-
-
-
-        public virtual ActionResult Test()
-        {
-            return View();
-        }
     }
 }
