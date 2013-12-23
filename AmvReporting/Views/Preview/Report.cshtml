@@ -15,14 +15,12 @@
 }
 @if (Model.ReportType == ReportType.LineChart)
 {
-    <div class="row">
-        <div class="col-md-8 graph-container">
-            <div id="report" style="height: 600px;"></div>
-        </div>
-        <div class="col-md-4" id="choices">
-
-        </div>
-    </div>
+    <div id="report" style="height: 600px; width: 600px;"></div>
+}
+@if (Model.ReportType == ReportType.LineChartWithSelection)
+{
+    <div id="report" style="height: 600px; width: 600px"></div>
+    <div id="choices"></div>
 }
 
 <script type="text/javascript">

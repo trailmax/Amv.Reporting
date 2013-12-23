@@ -4,5 +4,6 @@
     {
         Table,
         LineChart,
+        LineChartWithSelection,
     }
 }
