@@ -262,7 +262,6 @@
     <Compile Include="Domain\Reports\Commands\EditReportCommand.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DatabaseController.cs" />
-    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\PreviewController.cs" />
     <Compile Include="DatabaseController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -309,9 +308,6 @@
     <Compile Include="Infrastructure\IModelEnricher.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportDetailsViewModelEnricher.cs" />
     <Compile Include="Infrastructure\RestoreModelStateAttribute.cs" />
-    <Compile Include="MenuController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Domain\DomainException.cs" />
     <Compile Include="Domain\Reports\Report.cs" />
     <Compile Include="Domain\Reports\ReportType.cs" />
@@ -561,7 +557,6 @@
     <Content Include="Views\Report\Index.cshtml" />
     <Content Include="Views\Report\Edit.cshtml" />
     <Content Include="Views\Report\_CreateEdit.cshtml" />
-    <Content Include="Views\Menu\AdminMenu.cshtml" />
     <Content Include="Views\Home\Report.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutMinimal.cshtml" />

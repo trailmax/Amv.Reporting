@@ -26,7 +26,6 @@ public static class MVC
 {
     public static AmvReporting.Controllers.DatabaseController Database = new AmvReporting.Controllers.T4MVC_DatabaseController();
     public static AmvReporting.Controllers.HomeController Home = new AmvReporting.Controllers.T4MVC_HomeController();
-    public static AmvReporting.Controllers.MenuController Menu = new AmvReporting.Controllers.T4MVC_MenuController();
     public static AmvReporting.Controllers.PreviewController Preview = new AmvReporting.Controllers.T4MVC_PreviewController();
     public static AmvReporting.Controllers.ReportController Report = new AmvReporting.Controllers.T4MVC_ReportController();
     public static AmvReporting.Controllers.ReportGroupController ReportGroup = new AmvReporting.Controllers.T4MVC_ReportGroupController();
@@ -56,19 +55,6 @@ internal partial class T4MVC_System_Web_Mvc_ActionResult : System.Web.Mvc.Action
     }
      
     public override void ExecuteResult(System.Web.Mvc.ControllerContext context) { }
-    
-    public string Controller { get; set; }
-    public string Action { get; set; }
-    public string Protocol { get; set; }
-    public RouteValueDictionary RouteValueDictionary { get; set; }
-}
-[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-internal partial class T4MVC_System_Web_Mvc_PartialViewResult : System.Web.Mvc.PartialViewResult, IT4MVCActionResult
-{
-    public T4MVC_System_Web_Mvc_PartialViewResult(string area, string controller, string action, string protocol = null): base()
-    {
-        this.InitMVCT4Result(area, controller, action, protocol);
-    }
     
     public string Controller { get; set; }
     public string Action { get; set; }

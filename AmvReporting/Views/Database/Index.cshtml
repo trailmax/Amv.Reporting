@@ -24,7 +24,7 @@
                 {
                     <tr>
                         <td class="col-sm-2">
-                            @Html.ActionLink("Edit", MVC.Database.Edit(item.Id), new { dbId = item.Id, @Class = "btn btn-default" }) 
+                            @Html.ActionLink("Edit", MVC.Database.Edit(item.Id), new { dbId = item.Id, @Class = "btn btn-default btn-xs" }) 
                             @Url.AjaxDeleteButton(MVC.Database.Delete(), item, i => i.Id)
                         </td>
                         <td>@Html.DisplayFor(_ => item.Name)</td>
