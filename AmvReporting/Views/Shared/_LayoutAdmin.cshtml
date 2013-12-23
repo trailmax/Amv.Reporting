@@ -66,6 +66,39 @@
                 });
             };
 
+            var refreshSqlTextBox = function(data) {
+                $('#Sql').fadeOut(500, function() {
+                    $('#Sql').val(data);
+                    $('#Sql').fadeIn(500);
+                });
+            };
+
+            // when user is submitting row html
+            $('#parseRowHtml').on('click', function() {
+                var postData = {};
+                postData['rawData'] = $('#Sql').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action(MVC.Preview.ParseHtml())',
+                    data: postData,
+                    error: function () {
+                        $.showWarning('Communication Error: could not connect to the server');
+                    },
+                    success: function (data) {
+                        if (data.IsSuccess) {
+                            refreshSqlTextBox(data.Payload);
+                            //$('#Sql').fadeOut(500, function () {
+                            //    $('#Sql').val(data.Payload);
+                            //    $('#Sql').fadeIn(500);
+                            //});
+                        } else {
+                            $.showWarning(data.ErrorMessage);
+                        }
+                    },
+                });
+            });
+
             // on report create/edit show the data returned by the sql server
             $('#previewData').on('click', function() {
                 var postData = {};
@@ -95,12 +128,13 @@
                     error: function() {
                         $.showWarning('Communication Error: could not connect to the server');
                     },
-                    success: function(data) {
-                        $('#Sql').fadeOut(500, function() {
-                            $('#Sql').val(data);
-                            $('#Sql').fadeIn(500);
-                        });
-                    },
+                    success: refreshSqlTextBox,
+                    //success: function(data) {
+                    //    $('#Sql').fadeOut(500, function() {
+                    //        $('#Sql').val(data);
+                    //        $('#Sql').fadeIn(500);
+                    //    });
+                    //},
                 });
             });
 

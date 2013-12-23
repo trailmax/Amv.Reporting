@@ -49,7 +49,7 @@ namespace AmvReporting.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public virtual ActionResult CleanseAndFormatSql(String sql)
         {
             var cleanedSql = mediator.Request(new CleanseSqlQuery(sql));
@@ -57,6 +57,25 @@ namespace AmvReporting.Controllers
             var formattedSql = mediator.Request(new FormattedSqlQuery(cleanedSql));
 
             return Json(formattedSql);
+        }
+
+
+        [HttpPost, ValidateInput(false)]
+        public virtual ActionResult ParseHtml(String rawData)
+        {
+            var sqlParsingResult = mediator.Request(new RawHtmlInputQuery(rawData));
+
+            if (!sqlParsingResult.IsSuccess)
+            {
+                return Json(sqlParsingResult);
+            }
+            var cleanedSql = mediator.Request(new CleanseSqlQuery(sqlParsingResult.Payload));
+
+            var formattedSql = mediator.Request(new FormattedSqlQuery(cleanedSql));
+
+            sqlParsingResult.Payload = formattedSql;
+
+            return Json(sqlParsingResult);
         }
     }
 }

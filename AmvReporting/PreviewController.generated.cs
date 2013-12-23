@@ -59,6 +59,12 @@ namespace AmvReporting.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CleanseAndFormatSql);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ParseHtml()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ParseHtml);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public PreviewController Actions { get { return MVC.Preview; } }
@@ -78,6 +84,7 @@ namespace AmvReporting.Controllers
             public readonly string Data = "Data";
             public readonly string Report = "Report";
             public readonly string CleanseAndFormatSql = "CleanseAndFormatSql";
+            public readonly string ParseHtml = "ParseHtml";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -86,6 +93,7 @@ namespace AmvReporting.Controllers
             public const string Data = "Data";
             public const string Report = "Report";
             public const string CleanseAndFormatSql = "CleanseAndFormatSql";
+            public const string ParseHtml = "ParseHtml";
         }
 
 
@@ -113,6 +121,14 @@ namespace AmvReporting.Controllers
         public class ActionParamsClass_CleanseAndFormatSql
         {
             public readonly string sql = "sql";
+        }
+        static readonly ActionParamsClass_ParseHtml s_params_ParseHtml = new ActionParamsClass_ParseHtml();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ParseHtml ParseHtmlParams { get { return s_params_ParseHtml; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ParseHtml
+        {
+            public readonly string rawData = "rawData";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -165,6 +181,16 @@ namespace AmvReporting.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CleanseAndFormatSql);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sql", sql);
             CleanseAndFormatSqlOverride(callInfo, sql);
+            return callInfo;
+        }
+
+        partial void ParseHtmlOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string rawData);
+
+        public override System.Web.Mvc.ActionResult ParseHtml(string rawData)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ParseHtml);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "rawData", rawData);
+            ParseHtmlOverride(callInfo, rawData);
             return callInfo;
         }
 

@@ -229,6 +229,8 @@
     <Compile Include="Domain\Menus\MenuModelQuery.cs" />
     <Compile Include="Domain\Preview\Queries\CleanseSqlQuery.cs" />
     <Compile Include="Domain\Preview\Queries\FormattedSqlQuery.cs" />
+    <Compile Include="Domain\Preview\Queries\RawHtmlInputQuery.cs" />
+    <Compile Include="Domain\QueryResult.cs" />
     <Compile Include="Domain\ReportGroups\Commands\CreateReportGroupCommand.cs" />
     <Compile Include="Domain\ReportGroups\Commands\DeleteReportGroupCommand.cs" />
     <Compile Include="Domain\ReportGroups\Commands\EditReportGroupCommand.cs" />
@@ -249,6 +251,7 @@
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModel.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModelEnricher.cs" />
     <Compile Include="Infrastructure\Filters\RoleAuthorizeFilter.cs" />
+    <Compile Include="Infrastructure\Helpers\ObjectExtensions.cs" />
     <Compile Include="Infrastructure\Helpers\SqlDataSerialiserHelper.cs" />
     <Compile Include="Infrastructure\Helpers\SqlServerHelper.cs" />
     <Compile Include="ReportController.generated.cs">

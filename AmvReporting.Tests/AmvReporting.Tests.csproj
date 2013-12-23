@@ -102,6 +102,7 @@
     <Compile Include="Domain\DatabaseConnections\Commands\EditDatabaseDetailsCommandValidatorTests.cs" />
     <Compile Include="Domain\Menus\MenuModelQueryHandlerTests.cs" />
     <Compile Include="Domain\Preview\CleanseSqlQueryHandlerTests.cs" />
+    <Compile Include="Domain\Preview\RawHtmlInputHandlerTests.cs" />
     <Compile Include="Domain\ReportGroups\Commands\CreateReportGroupCommandHandlerTests.cs" />
     <Compile Include="Domain\ReportGroups\Commands\DeleteReportGroupCommandHandlerTests.cs" />
     <Compile Include="Domain\ReportGroups\Commands\EditReportGroupCommandHandlerTests.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Infrastructure\CQRS\AutofacMediatorTests.cs" />
     <Compile Include="Infrastructure\Helpers\ExpressionHelperTests.cs" />
     <Compile Include="Infrastructure\Automappings\AutoMapperBootstrapperTests.cs" />
+    <Compile Include="Infrastructure\Helpers\ObjectExtensionsTests.cs" />
     <Compile Include="ZeroFriction\DomainCustomisation.cs" />
     <Compile Include="ZeroFriction\AssertionHelpers.cs" />
     <Compile Include="ZeroFriction\AssertionHelpersTests.cs" />
@@ -131,7 +133,23 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Reports\eight.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\nine.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\one.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\seven.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\ten.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

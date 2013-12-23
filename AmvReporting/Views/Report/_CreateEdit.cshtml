@@ -54,6 +54,8 @@
             @Html.TextAreaFor(m => m.Sql, new { @class = "form-control", rows = 10 })
             @Html.ValidationMessageFor(m => m.Sql)
             <p>
+                <a id="parseRowHtml"><span class="glyphicon glyphicon-th"></span> Parse Html for SQL</a>
+                <br />
                 <a id="cleanseAndFormatSql"><span class="glyphicon glyphicon-check"></span> Cleanse and Format SQL</a>
                 <br />
                 <a id="previewData">Preview Data <span class="glyphicon glyphicon-forward"></span></a>
