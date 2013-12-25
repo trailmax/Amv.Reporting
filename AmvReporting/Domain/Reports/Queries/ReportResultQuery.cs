@@ -8,6 +8,7 @@ namespace AmvReporting.Domain.Reports.Queries
 {
     public class ReportResult
     {
+        public String Id { get; set; }
         public String Title { get; set; }
         public String Description { get; set; }
         public String Data { get; set; }
@@ -52,6 +53,7 @@ namespace AmvReporting.Domain.Reports.Queries
 
             var result = new ReportResult()
                          {
+                             Id = report.Id,
                              Css = report.Css,
                              Description = report.Description,
                              JavaScript = report.JavaScript,

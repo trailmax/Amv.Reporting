@@ -10,9 +10,15 @@
     </style>
 }
 
+@Html.ActionLink("Edit", MVC.Report.Edit(Model.Id), new { @class = "admin-link btn btn-default btn-xs" })
+
 @Html.ActionLink("Home", MVC.Home.Index(), new { @class = "btn btn-primary" })
 
 <h2>@Model.Title</h2>
+
+<h5>
+    @Model.Description
+</h5>
 
 @if (Model.ReportType == ReportType.Table)
 {
