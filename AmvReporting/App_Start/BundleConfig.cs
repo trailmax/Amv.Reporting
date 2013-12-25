@@ -37,6 +37,7 @@ namespace AmvReporting
             bundles.Add(new ScriptBundle("~/bundles/flot").Include(
                 "~/Scripts/flot/jquery.flot.js",
                 "~/Scripts/flot/jquery.flot.categories.js",
+                "~/Scripts/flot/jquery.flot.stack.patched.js",
                 "~/Scripts/flot/excanvas.js",
                 "~/Scripts/jquery.treetable.js"
                 ));

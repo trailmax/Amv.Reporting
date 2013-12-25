@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacking</title>
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/site.css" rel="stylesheet" />
+    <!--<link href="/Content/Datatables-1.9.4/media/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="/Content/Datatables-1.9.4/media/css/jquery.dataTables_themeroller.css" rel="stylesheet" />-->
+</head>
+<body>
+
+    <div class="container client-content">
+        <h2>Stacking</h2>
+        <div class="row">
+            <div class="col-md-8 graph-container">
+                <div id="report" style="height: 600px;"></div>
+            </div>
+            <div class="col-md-4" id="choices"></div>
+        </div>
+    </div>
+
+    <script src="/Scripts/jquery-1.10.2.js"></script>
+    <script src="/Scripts/ie8.js"></script>
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="/Scripts/flot/jquery.flot.js"></script>
+    <script src="/Scripts/flot/jquery.flot.categories.js"></script>
+    <script src="/Scripts/flot/jquery.flot.stack.js"></script>
+    <script src="/Scripts/flot/excanvas.js"></script>
+
+
+    <script>
+
+        $(function () {
+
+            //var dataset1 = {
+            //    label: 'Minor Illness',
+            //    data: [
+            //        //[1, 13],
+            //        //[2, 26],
+            //        //[3, 39],
+            //        //[4, 52],
+            //        //[5, 65],
+            //        //[6, 78]
+
+            //        ["A", 13],
+            //        ["B", 26],
+            //        ["C", 39],
+            //        ["D", 52],
+            //        ["E", 65],
+            //        ["F", 78]
+
+            //        //['Aberdeen CS', 103],
+            //        //['Granton', 57],
+            //        //['Huxterstone', 87],
+            //        //['Kincorth', 43],
+            //        //['Rosemount', 78],
+            //        //['Star Carers', 92]
+            //    ]
+            //};
+
+
+            //var dataset2 = {
+            //    label: 'Home/Familiy',
+            //    data: [
+
+            //        ["A", 50],
+            //        ["B", 57],
+            //        ["C", 87],
+            //        ["D", 43],
+            //        ["E", 78],
+            //        ["F", 92]
+
+            //        //['Aberdeen CS', 103],
+            //        //['Granton', 57],
+            //        //['Huxterstone', 87],
+            //        //['Kincorth', 43],
+            //        //['Rosemount', 78],
+            //        //['Star Carers', 92]
+            //    ]
+            //};
+
+
+            //var dataset3 = {
+            //    label: 'Back Pain',
+            //    data: [
+
+            //        ["A", 30],
+            //        ["B", 10],
+            //        ["C", 20],
+            //        ["D", 30],
+            //        ["E", 40],
+            //        ["F", 50]
+
+            //        //['Aberdeen CS', 103],
+            //        //['Granton', 57],
+            //        //['Huxterstone', 87],
+            //        //['Kincorth', 43],
+            //        //['Rosemount', 78],
+            //        //['Star Carers', 92]
+            //    ]
+            //};
+
+            var months = [["January", 10], ["February", 8], ["March", 4], ["April", 13], ["May", 17], ["June", 9]];
+            //var days = [[1, 10], [2, 8], [3, 4], [4, 13], [5, 17], [6, 9]];
+
+                $.plot('#report', [ months ], {
+                    series: {
+                        //stack: true,
+
+                        bars: {
+                            show: true,
+                            barWidth: 0.6,
+                            align: "center"
+                        },
+                        xaxis: {
+                            mode: "categories",
+                            tickLength: 0
+                        }
+                    }
+                });
+
+        });
+    </script>
+
+</body>
+</html>
