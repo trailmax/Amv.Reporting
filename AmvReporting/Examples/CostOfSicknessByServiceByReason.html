@@ -1,0 +1,1018 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cost of Sickness By Service (Latest Month)</title>
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/site.css" rel="stylesheet" />
+    <link href="/Content/Datatables-1.9.4/media/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="/Content/Datatables-1.9.4/media/css/jquery.dataTables_themeroller.css" rel="stylesheet" />
+    <script src="/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+
+    <div class="container client-content">
+        <h2>Cost of Sickness By Service (Latest Month)</h2>
+        <div class="row">
+            <div class="col-md-8 graph-container">
+                <div id="report" style="height: 600px;"></div>
+            </div>
+            <div class="col-md-4" id="choices"></div>
+        </div>
+    </div>
+
+
+    <script src="/Scripts/jquery-1.10.2.js"></script>
+    <script src="/Scripts/ie8.js"></script>
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="/Scripts/flot/jquery.flot.js"></script>
+    <script src="/Scripts/flot/jquery.flot.categories.js"></script>
+    <script src="/Scripts/flot/jquery.flot.stack.patched.js"></script>
+    <script src="/Scripts/flot/excanvas.js"></script>
+
+    <script>
+        var data = [
+            {
+                "Area": "Donndledonzk City",
+                "Service": "Donndledonzk CS",
+                "Reason": "Minor Illness",
+                "Cost": "94.1850"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Service": "Donndledonzk CS",
+                "Reason": "Home/Family",
+                "Cost": "52.3950"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Service": "Disequarz",
+                "Reason": "Back Pain",
+                "Cost": "407.0850"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Service": "Disequarz",
+                "Reason": "Pregnancy Related Illness",
+                "Cost": "208.8450"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Service": "Cooney James Douglas",
+                "Reason": "Mental Ill Health",
+                "Cost": "410.2350"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Service": "Garthdee University",
+                "Reason": "Minor Illness",
+                "Cost": "63.1050"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Service": "Natargonte",
+                "Reason": "Minor Illness",
+                "Cost": "117"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Service": "Natargonte",
+                "Reason": "Work Related Injury/Accident",
+                "Cost": "447"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Service": "Starwayz Drive",
+                "Reason": "Acute Medical Condition",
+                "Cost": "715.6800"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Service": "Starwayz Drive",
+                "Reason": "Minor Illness",
+                "Cost": "201.0750"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Service": "Kingkongz",
+                "Reason": "Pregnancy Related Illness",
+                "Cost": "597.0300"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Service": "Kingkongz",
+                "Reason": "Minor Illness",
+                "Cost": "41.7900"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Service": "Buldozemount",
+                "Reason": "Work Related Injury/Accident",
+                "Cost": "1341.9000"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Service": "Buldozemount",
+                "Reason": "Minor Illness",
+                "Cost": "266.1750"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Service": "Star Carers",
+                "Reason": "Acute Medical Condition",
+                "Cost": "417.5850"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "Hobbitshire Common Spillberz",
+                "Reason": "Other",
+                "Cost": "1744.4700"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "Hobbitshire Common Spillberz",
+                "Reason": "Stress",
+                "Cost": "1205.6100"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "Hobbitshire Common Spillberz",
+                "Reason": "Minor Illness",
+                "Cost": "261.2400"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "Anahahaz Lower",
+                "Reason": "Musculo Skeletal Injury (exclu",
+                "Cost": "372.5400"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "Anahahaz Lower",
+                "Reason": "Minor Illness",
+                "Cost": "152.3550"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "SomeFatBank",
+                "Reason": "Mental Ill Health",
+                "Cost": "849.9750"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "SomeFatBank",
+                "Reason": "Back Pain",
+                "Cost": "641.2350"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "SomeFatBank",
+                "Reason": "Pregnancy Related Illness",
+                "Cost": "167.7900"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "Cinderella",
+                "Reason": "Minor Illness",
+                "Cost": "406.2450"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "Cinderella",
+                "Reason": "Home/Family",
+                "Cost": "117.0750"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "Easter Place",
+                "Reason": "Musculo Skeletal Injury (exclu",
+                "Cost": "1279.2150"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "Easter Place",
+                "Reason": "Recurring Medical Condition",
+                "Cost": "211.2600"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "Longside",
+                "Reason": "Minor Illness",
+                "Cost": "417.3750"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "Longside",
+                "Reason": "Recurring Medical Condition",
+                "Cost": "117.0750"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "Longside",
+                "Reason": "Work Related Injury/Accident",
+                "Cost": "97.4400"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "New Reindeer",
+                "Reason": "Minor Illness",
+                "Cost": "3641.2950"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "New Reindeer",
+                "Reason": "Acute Medical Condition",
+                "Cost": "1090.3200"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "New Reindeer",
+                "Reason": "Mental Ill Health",
+                "Cost": "1046.7450"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "New Reindeer",
+                "Reason": "Musculo Skeletal Injury (exclu",
+                "Cost": "639.6600"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "Mozy Crescent",
+                "Reason": "Minor Illness",
+                "Cost": "77.8050"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "School Garden",
+                "Reason": "Minor Illness",
+                "Cost": "171.9900"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "West Garden",
+                "Reason": "Acute Medical Condition",
+                "Cost": "1565.5500"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Service": "JamesDunView",
+                "Reason": "Other",
+                "Cost": "208.8450"
+            },
+            {
+                "Area": "Llygaroenzef & Bitunum",
+                "Service": "West Notrabnudshire Jerief",
+                "Reason": "Minor Illness",
+                "Cost": "433.3350"
+            },
+            {
+                "Area": "Borders",
+                "Service": "Borders CS",
+                "Reason": "Mental Ill Health",
+                "Cost": "1628.1300"
+            },
+            {
+                "Area": "Borders",
+                "Service": "Borders CS",
+                "Reason": "Minor Illness",
+                "Cost": "33.6000"
+            },
+            {
+                "Area": "Central - Admin",
+                "Service": "East - Office",
+                "Reason": "Acute Medical Condition",
+                "Cost": "626.0100"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Service": "Business Development",
+                "Reason": "Minor Illness",
+                "Cost": "70.0350"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Service": "Employment Service",
+                "Reason": "Stress",
+                "Cost": "715.5750"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Service": "Brokership -  Brokership general team",
+                "Reason": "Minor Illness",
+                "Cost": "76.1250"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Service": "Brokership - Purchase Ledger",
+                "Reason": "Pregnancy Related Illness",
+                "Cost": "217.7700"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Service": "Brokership - Sales ledger",
+                "Reason": "Acute Medical Condition",
+                "Cost": "149.1000"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Service": "Voidloosing Admin",
+                "Reason": "Minor Illness",
+                "Cost": "76.1250"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Service": "Marketing & Enterprise",
+                "Reason": "Back Pain",
+                "Cost": "42.0000"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Service": "Volunteer mgt & admin",
+                "Reason": "Minor Illness",
+                "Cost": "76.1250"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Service": "Volunteer mgt & admin",
+                "Reason": "Other",
+                "Cost": "41.1600"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Service": "Darkmatter Court",
+                "Reason": "Other",
+                "Cost": "775.6350"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Service": "Darkmatter Court",
+                "Reason": "Recurring Medical Condition",
+                "Cost": "70.4550"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Service": "Doomsdeen City - Ops Mgt",
+                "Reason": "Back Pain",
+                "Cost": "290.7450"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Service": "Doomsdeen CS",
+                "Reason": "Minor Illness",
+                "Cost": "497.1750"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Service": "Doomsdeen Dondledoondon",
+                "Reason": "Acute Medical Condition",
+                "Cost": "1341.9000"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Service": "Doomsdeen Dondledoondon",
+                "Reason": "Minor Illness",
+                "Cost": "1036.3500"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Service": "Doomsdeen Dondledoondon",
+                "Reason": "Musculo Skeletal Injury (exclu",
+                "Cost": "972.4050"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Service": "Doomsdeen Dondledoondon",
+                "Reason": "Other",
+                "Cost": "683.5500"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Service": "Doomsdeen Flexible Support",
+                "Reason": "Acute Medical Condition",
+                "Cost": "1341.7950"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Service": "Doomsdeen Flexible Support",
+                "Reason": "Minor Illness",
+                "Cost": "117.0750"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Service": "Frailgloom Road",
+                "Reason": "Musculo Skeletal Injury (exclu",
+                "Cost": "1341.9000"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Service": "Frailgloom Road",
+                "Reason": "Minor Illness",
+                "Cost": "850.7100"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Service": "Frailgloom Road",
+                "Reason": "Back Pain",
+                "Cost": "95.6550"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Service": "Wicksocks",
+                "Reason": "Pregnancy Related Illness",
+                "Cost": "328.4400"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Service": "Janerdomz Street",
+                "Reason": "Stress",
+                "Cost": "626.2200"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Service": "Spaghettiz Codez Gardens",
+                "Reason": "Minor Illness",
+                "Cost": "244.8600"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Service": "Elizabettthha Street",
+                "Reason": "Acute Medical Condition",
+                "Cost": "1565.5500"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Service": "Elizabettthha Street",
+                "Reason": "Stress",
+                "Cost": "1513.2600"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Service": "Elizabettthha Street",
+                "Reason": "Minor Illness",
+                "Cost": "150.6750"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Service": "Elizabettthha Street",
+                "Reason": "Back Pain",
+                "Cost": "45.5700"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Service": "William TSB Square",
+                "Reason": "Other",
+                "Cost": "238.3500"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Service": "William TSB Square",
+                "Reason": "Minor Illness",
+                "Cost": "132.7200"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "Service": "Sashanada Street",
+                "Reason": "Minor Illness",
+                "Cost": "152.3550"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "Service": "SmithWessonWalk Avenue",
+                "Reason": "Recurring Medical Condition",
+                "Cost": "58.1700"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "Service": "SmithWessonWalk Avenue",
+                "Reason": "Acute Medical Condition",
+                "Cost": "44.7300"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "Service": "Oclahomazedon Court",
+                "Reason": "Other",
+                "Cost": "1162.9800"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "Service": "Oclahomazedon Court",
+                "Reason": "Mental Ill Health",
+                "Cost": "626.3250"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "Service": "Pinebroke",
+                "Reason": "Minor Illness",
+                "Cost": "117.0750"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "Service": "Glenorockeche House",
+                "Reason": "Musculo Skeletal Injury (exclu",
+                "Cost": "1341.9000"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "Service": "Merchmondezon Drive",
+                "Reason": "Minor Illness",
+                "Cost": "697.8300"
+            },
+            {
+                "Area": "East Naihtol",
+                "Service": "ELCS",
+                "Reason": "Minor Illness",
+                "Cost": "63.1050"
+            },
+            {
+                "Area": "Efellondre",
+                "Service": "Scrudge",
+                "Reason": "Minor Illness",
+                "Cost": "33.6000"
+            },
+            {
+                "Area": "Efellondre",
+                "Service": "Efellondre CS",
+                "Reason": "Other",
+                "Cost": "63.1050"
+            },
+            {
+                "Area": "Efellondre",
+                "Service": "Polimer Gardens",
+                "Reason": "Minor Illness",
+                "Cost": "435.8550"
+            },
+            {
+                "Area": "Londrez City",
+                "Service": "Dalnadormef 1",
+                "Reason": "Other",
+                "Cost": "106.4700"
+            },
+            {
+                "Area": "Londrez City",
+                "Service": "Londrez CS",
+                "Reason": "Other",
+                "Cost": "390.9150"
+            },
+            {
+                "Area": "Londrez City",
+                "Service": "Londrez CS",
+                "Reason": "Acute Medical Condition",
+                "Cost": "262.0800"
+            },
+            {
+                "Area": "Londrez City",
+                "Service": "Londrez CS",
+                "Reason": "Minor Illness",
+                "Cost": "211.2600"
+            },
+            {
+                "Area": "Londrez City",
+                "Service": "Londrez CS",
+                "Reason": "Home/Family",
+                "Cost": "33.6000"
+            },
+            {
+                "Area": "Londrez City",
+                "Service": "Erresse 1",
+                "Reason": "Acute Medical Condition",
+                "Cost": "1511.8950"
+            },
+            {
+                "Area": "Londrez City",
+                "Service": "Ramzesz Street",
+                "Reason": "Stress",
+                "Cost": "1744.4700"
+            },
+            {
+                "Area": "Ramonez",
+                "Service": "Pineblind",
+                "Reason": "Mental Ill Health",
+                "Cost": "1118.3550"
+            },
+            {
+                "Area": "Ramonez",
+                "Service": "Pineblind",
+                "Reason": "Minor Illness",
+                "Cost": "81.9000"
+            },
+            {
+                "Area": "Ramonez",
+                "Service": "KD",
+                "Reason": "Minor Illness",
+                "Cost": "194.8800"
+            },
+            {
+                "Area": "Ramonez",
+                "Service": "Ramonez CS",
+                "Reason": "Recurring Medical Condition",
+                "Cost": "506.9400"
+            },
+            {
+                "Area": "Ramonez",
+                "Service": "Ramonez CS",
+                "Reason": "Back Pain",
+                "Cost": "355.9500"
+            },
+            {
+                "Area": "Ramonez",
+                "Service": "Ramonez CS",
+                "Reason": "Home/Family",
+                "Cost": "41.7900"
+            },
+            {
+                "Area": "Ramonez",
+                "Service": "MovingHomby",
+                "Reason": "Other",
+                "Cost": "1786.2600"
+            },
+            {
+                "Area": "Ramonez",
+                "Service": "MovingHomby",
+                "Reason": "Minor Illness",
+                "Cost": "77.8050"
+            },
+            {
+                "Area": "Ramonez",
+                "Service": "MovingHomby",
+                "Reason": "Home/Family",
+                "Cost": "63.1050"
+            },
+            {
+                "Area": "Ramonez",
+                "Service": "Rosallia",
+                "Reason": "Stress",
+                "Cost": "208.8450"
+            },
+            {
+                "Area": "Ramonez",
+                "Service": "South Street",
+                "Reason": "Recurring Medical Condition",
+                "Cost": "1341.9000"
+            },
+            {
+                "Area": "Ramonez",
+                "Service": "South Street",
+                "Reason": "Minor Illness",
+                "Cost": "194.1450"
+            },
+            {
+                "Area": "Ramonez",
+                "Service": "Wardend Place",
+                "Reason": "Other",
+                "Cost": "1118.2500"
+            },
+            {
+                "Area": "Ramonez",
+                "Service": "Wardend Place",
+                "Reason": "Mental Ill Health",
+                "Cost": "117.0750"
+            },
+            {
+                "Area": "Ramonez",
+                "Service": "Wardend Place",
+                "Reason": "Minor Illness",
+                "Cost": "62.2650"
+            },
+            {
+                "Area": "North Brorrshire",
+                "Service": "Ira",
+                "Reason": "Acute Medical Condition",
+                "Cost": "1341.9000"
+            },
+            {
+                "Area": "North Brorrshire",
+                "Service": "Ira",
+                "Reason": "Stress",
+                "Cost": "1055.5650"
+            },
+            {
+                "Area": "North Brorrshire",
+                "Service": "Ira",
+                "Reason": "Minor Illness",
+                "Cost": "81.9000"
+            },
+            {
+                "Area": "North Brorrshire",
+                "Service": "NASL",
+                "Reason": "Musculo Skeletal Injury (exclu",
+                "Cost": "1934.5200"
+            },
+            {
+                "Area": "North Brorrshire",
+                "Service": "NASL",
+                "Reason": "Stress",
+                "Cost": "988.5750"
+            },
+            {
+                "Area": "North Brorrshire",
+                "Service": "NASL",
+                "Reason": "Minor Illness",
+                "Cost": "52.3950"
+            },
+            {
+                "Area": "North Kranalshire",
+                "Service": "Airdrie - Admin",
+                "Reason": "Acute Medical Condition",
+                "Cost": "1431.3600"
+            },
+            {
+                "Area": "North Kranalshire",
+                "Service": "Hellsbells",
+                "Reason": "Other",
+                "Cost": "208.7400"
+            },
+            {
+                "Area": "North Kranalshire",
+                "Service": "Hellsbells",
+                "Reason": "Minor Illness",
+                "Cost": "152.3550"
+            },
+            {
+                "Area": "North Kranalshire",
+                "Service": "Karadeila",
+                "Reason": "Musculo Skeletal Injury (exclu",
+                "Cost": "1565.4450"
+            },
+            {
+                "Area": "North Kranalshire",
+                "Service": "Karadeila",
+                "Reason": "Minor Illness",
+                "Cost": "198.9750"
+            },
+            {
+                "Area": "North Kranalshire",
+                "Service": "Mhairirz",
+                "Reason": "Mental Ill Health",
+                "Cost": "186.3750"
+            },
+            {
+                "Area": "North Kranalshire",
+                "Service": "NASL",
+                "Reason": "Stress",
+                "Cost": "1726.6200"
+            },
+            {
+                "Area": "North Kranalshire",
+                "Service": "NASL",
+                "Reason": "Minor Illness",
+                "Cost": "84.0000"
+            },
+            {
+                "Area": "North Kranalshire",
+                "Service": "North Kranalshire CS",
+                "Reason": "Acute Medical Condition",
+                "Cost": "2012.6400"
+            },
+            {
+                "Area": "North Kranalshire",
+                "Service": "North Kranalshire CS",
+                "Reason": "Minor Illness",
+                "Cost": "435.7500"
+            },
+            {
+                "Area": "North Kranalshire",
+                "Service": "North Kranalshire CS",
+                "Reason": "Other",
+                "Cost": "164.6400"
+            },
+            {
+                "Area": "North Kranalshire",
+                "Service": "Blackwod",
+                "Reason": "Minor Illness",
+                "Cost": "1235.8500"
+            },
+            {
+                "Area": "North Kranalshire",
+                "Service": "Scotstoun",
+                "Reason": "Stress",
+                "Cost": "1118.3550"
+            },
+            {
+                "Area": "North Kranalshire",
+                "Service": "Scotstoun",
+                "Reason": "Minor Illness",
+                "Cost": "225.2250"
+            },
+            {
+                "Area": "Perdiez & Keenroze",
+                "Service": "Bridgegfoot",
+                "Reason": "Mental Ill Health",
+                "Cost": "715.6800"
+            },
+            {
+                "Area": "Perdiez & Keenroze",
+                "Service": "Bridgegfoot",
+                "Reason": "Minor Illness",
+                "Cost": "81.9000"
+            },
+            {
+                "Area": "Perdiez & Keenroze",
+                "Service": "MTBR",
+                "Reason": "Pregnancy Related Illness",
+                "Cost": "117.0750"
+            },
+            {
+                "Area": "Perdiez & Keenroze",
+                "Service": "NR",
+                "Reason": "Minor Illness",
+                "Cost": "290.7450"
+            },
+            {
+                "Area": "Perdiez & Keenroze",
+                "Service": "Perdiez Community Support",
+                "Reason": "Minor Illness",
+                "Cost": "83.5800"
+            },
+            {
+                "Area": "Perdiez & Keenroze",
+                "Service": "PFT",
+                "Reason": "Minor Illness",
+                "Cost": "152.3550"
+            },
+            {
+                "Area": "South Brorrshire",
+                "Service": "Ayyeetonama Streetlay Teenz Placement",
+                "Reason": "Minor Illness",
+                "Cost": "113.4000"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "Service": "Jozephina Street",
+                "Reason": "Minor Illness",
+                "Cost": "201.4950"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "Service": "Jozephina Street",
+                "Reason": "Home/Family",
+                "Cost": "49.7700"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "Service": "Bonnyborrby Day Missings",
+                "Reason": "Back Pain",
+                "Cost": "1744.8900"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "Service": "Bonnyborrby Day Missings",
+                "Reason": "Other",
+                "Cost": "149.1000"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "Service": "Bonnyborrby Day Missings",
+                "Reason": "Minor Illness",
+                "Cost": "102.3750"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "Service": "Bonnyborrby Longpollingconnection",
+                "Reason": "Stress",
+                "Cost": "581.4900"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "Service": "Elarneg Road",
+                "Reason": "Acute Medical Condition",
+                "Cost": "1744.4700"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "Service": "Main Street",
+                "Reason": "Minor Illness",
+                "Cost": "162.1200"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "Service": "Liddler Street - 109",
+                "Reason": "Back Pain",
+                "Cost": "1189.2300"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "Service": "Liddler Street - 109",
+                "Reason": "Minor Illness",
+                "Cost": "117.0750"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "Service": "Liddler Street - 110",
+                "Reason": "Stress",
+                "Cost": "1744.4700"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "Service": "West Dun - Ops Mgt",
+                "Reason": "Mental Ill Health",
+                "Cost": "1621.5150"
+            },
+            {
+                "Area": "West Naihtol",
+                "Service": "UPDU",
+                "Reason": "Musculo Skeletal Injury (exclu",
+                "Cost": "1647.8700"
+            },
+            {
+                "Area": "West Naihtol",
+                "Service": "UPDU",
+                "Reason": "Acute Medical Condition",
+                "Cost": "258.8250"
+            },
+            {
+                "Area": "West Naihtol",
+                "Service": "UPDU",
+                "Reason": "Minor Illness",
+                "Cost": "33.6000"
+            }
+        ];
+
+
+        var areaSets = {};
+
+        data.map(function (row) {
+            if (!(row.Area in areaSets)) {
+                areaSets[row.Area] = {
+                    label: row.Area,
+                    data: [
+                    {
+                        Reason: row.Reason,
+                        Service: row.Service,
+                        Cost: row.Cost
+                    }]
+                };
+            } else {
+                areaSets[row.Area].data.push({
+                    Reason: row.Reason,
+                    Service: row.Service,
+                    Cost: row.Cost
+                });
+            }
+        });
+
+        // insert radioboxes
+        var choiceContainer = $("#choices");
+        $.each(areaSets, function (key, val) {
+            choiceContainer.append("<br/><input type='radio' name='Areas'  id='" + key + "'></input>" +
+                "<label for='" + key + "'>" + val.label + "</label>");
+        });
+
+        choiceContainer.find("input").on('click', plotAccordingToChoices);
+
+        function plotAccordingToChoices() {
+
+            var data = [];
+
+            choiceContainer.find("input:checked").each(function () {
+                var key = $(this).attr("id");
+                if (key && areaSets[key]) {
+                    var area = areaSets[key];
+                    var reasons = {};
+                    area.data.map(function(row) {
+                        if (!(row.Reason in reasons)) {
+                            reasons[row.Reason] = {
+                                label: row.Reason,
+                                data: [[row.Service, row.Cost]]
+                            };
+                        } else {
+                            reasons[row.Reason].data.push([row.Service, row.Cost]);
+                        }
+                    });
+                    $.each(reasons, function (name, value) {
+                        data.push(value);
+                    });
+                }
+            });
+
+            if (data.length > 0) {
+                $.plot("#report", data, {
+                    series: {
+                        stack: true,
+                        bars: {
+                            show: true,
+                            barWidth: 0.6,
+                            align: "center"
+                        },
+
+                    },
+                    xaxis: {
+                        mode: "categories",
+                        tickLength: 0
+                    }
+                });
+            }
+        }
+
+        // select the first checkbox
+        choiceContainer.find("input").first().attr('checked', 'checked');
+
+        // draw the graph on page load
+        plotAccordingToChoices();
+
+    </script>
+
+</body>
+</html>

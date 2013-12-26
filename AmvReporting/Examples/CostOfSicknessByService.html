@@ -1,0 +1,603 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cost of Sickness By Service (Latest Month)</title>
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/site.css" rel="stylesheet" />
+    <link href="/Content/Datatables-1.9.4/media/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="/Content/Datatables-1.9.4/media/css/jquery.dataTables_themeroller.css" rel="stylesheet" />
+    <script src="/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+
+    <div class="container client-content">
+        <h2>Cost of Sickness By Service (Latest Month)</h2>
+        <div class="row">
+            <div class="col-md-8 graph-container">
+                <div id="report" style="height: 600px;"></div>
+            </div>
+            <div class="col-md-4" id="choices"></div>
+        </div>
+    </div>
+
+
+    <script src="/Scripts/jquery-1.10.2.js"></script>
+    <script src="/Scripts/ie8.js"></script>
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="/Scripts/flot/jquery.flot.js"></script>
+    <script src="/Scripts/flot/jquery.flot.categories.js"></script>
+    <script src="/Scripts/flot/excanvas.js"></script>
+
+    <script>
+        var columns = [
+            {
+                "mData": "Area",
+                "sTitle": "Area"
+            },
+            {
+                "mData": "ServiceGroup",
+                "sTitle": "ServiceGroup"
+            },
+            {
+                "mData": "Cost",
+                "sTitle": "Cost"
+            }
+        ];
+
+        var data = [
+            {
+                "Area": "Donndledonzk City",
+                "ServiceGroup": "Buldozemount",
+                "Cost": "1606.50"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "ServiceGroup": "Starwayz Drive",
+                "Cost": "829.50"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "ServiceGroup": "Kingkongz",
+                "Cost": "640.50"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "ServiceGroup": "Disequarz",
+                "Cost": "619.50"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "ServiceGroup": "Natargonte",
+                "Cost": "567.00"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "ServiceGroup": "Star Carers",
+                "Cost": "420.00"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "ServiceGroup": "Cooney James Douglas",
+                "Cost": "409.50"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "ServiceGroup": "Donndledonzk CS",
+                "Cost": "147.00"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "ServiceGroup": "Starwayz Drive",
+                "Cost": "84.00"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "ServiceGroup": "Garthdee University",
+                "Cost": "63.00"
+            },
+            {
+                "Area": "Hobbitshire",
+                "ServiceGroup": "New Reindeer",
+                "Cost": "6415.50"
+            },
+            {
+                "Area": "Hobbitshire",
+                "ServiceGroup": "Hobbitshire Common Spillberz",
+                "Cost": "1743.00"
+            },
+            {
+                "Area": "Hobbitshire",
+                "ServiceGroup": "SomeFatBank",
+                "Cost": "1659.00"
+            },
+            {
+                "Area": "Hobbitshire",
+                "ServiceGroup": "West Garden",
+                "Cost": "1564.50"
+            },
+            {
+                "Area": "Hobbitshire",
+                "ServiceGroup": "Easter Place",
+                "Cost": "1491.00"
+            },
+            {
+                "Area": "Hobbitshire",
+                "ServiceGroup": "Hobbitshire Common Spillberz",
+                "Cost": "1470.00"
+            },
+            {
+                "Area": "Hobbitshire",
+                "ServiceGroup": "Longside",
+                "Cost": "630.00"
+            },
+            {
+                "Area": "Hobbitshire",
+                "ServiceGroup": "Anahahaz Lower",
+                "Cost": "525.00"
+            },
+            {
+                "Area": "Hobbitshire",
+                "ServiceGroup": "Cinderella",
+                "Cost": "367.50"
+            },
+            {
+                "Area": "Hobbitshire",
+                "ServiceGroup": "JamesDunView",
+                "Cost": "210.00"
+            },
+            {
+                "Area": "Hobbitshire",
+                "ServiceGroup": "School Garden",
+                "Cost": "168.00"
+            },
+            {
+                "Area": "Hobbitshire",
+                "ServiceGroup": "Cinderella",
+                "Cost": "157.50"
+            },
+            {
+                "Area": "Hobbitshire",
+                "ServiceGroup": "Mozy Crescent",
+                "Cost": "73.50"
+            },
+            {
+                "Area": "Llygaroenzef & Bitunum",
+                "ServiceGroup": "West Notrabnudshire Jerief",
+                "Cost": "430.50"
+            },
+            {
+                "Area": "Borders",
+                "ServiceGroup": "Borders CS",
+                "Cost": "1659.00"
+            },
+            {
+                "Area": "Central - Admin",
+                "ServiceGroup": "East - Office",
+                "Cost": "630.00"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "ServiceGroup": "Employment Service",
+                "Cost": "714.00"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "ServiceGroup": "Brokership - Purchase Ledger",
+                "Cost": "220.50"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "ServiceGroup": "Brokership - Sales ledger",
+                "Cost": "147.00"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "ServiceGroup": "Volunteer mgt & admin",
+                "Cost": "115.50"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "ServiceGroup": "Business Development",
+                "Cost": "73.50"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "ServiceGroup": "Brokership -  Brokership general team",
+                "Cost": "73.50"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "ServiceGroup": "Voidloosing Admin",
+                "Cost": "73.50"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "ServiceGroup": "Marketing & Enterprise",
+                "Cost": "42.00"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "ServiceGroup": "Doomsdeen Dondledoondon",
+                "Cost": "4032.00"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "ServiceGroup": "Elizabettthha Street",
+                "Cost": "3276.00"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "ServiceGroup": "Frailgloom Road",
+                "Cost": "2289.00"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "ServiceGroup": "Doomsdeen Flexible Support",
+                "Cost": "1459.50"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "ServiceGroup": "Darkmatter Court",
+                "Cost": "850.50"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "ServiceGroup": "Janerdomz Street",
+                "Cost": "630.00"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "ServiceGroup": "Doomsdeen CS",
+                "Cost": "493.50"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "ServiceGroup": "William TSB Square",
+                "Cost": "367.50"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "ServiceGroup": "Wicksocks",
+                "Cost": "325.50"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "ServiceGroup": "Doomsdeen City - Ops Mgt",
+                "Cost": "294.00"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "ServiceGroup": "Spaghettiz Codez Gardens",
+                "Cost": "241.50"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "ServiceGroup": "Oclahomazedon Court",
+                "Cost": "1785.00"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "ServiceGroup": "Glenorockeche House",
+                "Cost": "1344.00"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "ServiceGroup": "Merchmondezon Drive",
+                "Cost": "693.00"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "ServiceGroup": "Sashanada Street",
+                "Cost": "157.50"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "ServiceGroup": "Pinebroke",
+                "Cost": "115.50"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "ServiceGroup": "SmithWessonWalk Avenue",
+                "Cost": "105.00"
+            },
+            {
+                "Area": "East Naihtol",
+                "ServiceGroup": "ELCS",
+                "Cost": "63.00"
+            },
+            {
+                "Area": "Efellondre",
+                "ServiceGroup": "Polimer Gardens",
+                "Cost": "441.00"
+            },
+            {
+                "Area": "Efellondre",
+                "ServiceGroup": "Efellondre CS",
+                "Cost": "63.00"
+            },
+            {
+                "Area": "Efellondre",
+                "ServiceGroup": "Scrudge",
+                "Cost": "31.50"
+            },
+            {
+                "Area": "Londrez City",
+                "ServiceGroup": "Ramzesz Street",
+                "Cost": "1743.00"
+            },
+            {
+                "Area": "Londrez City",
+                "ServiceGroup": "Erresse 1",
+                "Cost": "1512.00"
+            },
+            {
+                "Area": "Londrez City",
+                "ServiceGroup": "Londrez CS",
+                "Cost": "903.00"
+            },
+            {
+                "Area": "Londrez City",
+                "ServiceGroup": "Dalnadormef 1",
+                "Cost": "105.00"
+            },
+            {
+                "Area": "Ramonez",
+                "ServiceGroup": "MovingHomby",
+                "Cost": "1932.00"
+            },
+            {
+                "Area": "Ramonez",
+                "ServiceGroup": "South Street",
+                "Cost": "1533.00"
+            },
+            {
+                "Area": "Ramonez",
+                "ServiceGroup": "Wardend Place",
+                "Cost": "1302.00"
+            },
+            {
+                "Area": "Ramonez",
+                "ServiceGroup": "Pineblind",
+                "Cost": "1197.00"
+            },
+            {
+                "Area": "Ramonez",
+                "ServiceGroup": "Ramonez CS",
+                "Cost": "903.00"
+            },
+            {
+                "Area": "Ramonez",
+                "ServiceGroup": "Rosallia",
+                "Cost": "210.00"
+            },
+            {
+                "Area": "Ramonez",
+                "ServiceGroup": "KD",
+                "Cost": "199.50"
+            },
+            {
+                "Area": "North Brorrshire",
+                "ServiceGroup": "NASL",
+                "Cost": "1932.00"
+            },
+            {
+                "Area": "North Brorrshire",
+                "ServiceGroup": "Ira",
+                "Cost": "1344.00"
+            },
+            {
+                "Area": "North Brorrshire",
+                "ServiceGroup": "NASL",
+                "Cost": "987.00"
+            },
+            {
+                "Area": "North Brorrshire",
+                "ServiceGroup": "Ira",
+                "Cost": "535.50"
+            },
+            {
+                "Area": "North Brorrshire",
+                "ServiceGroup": "Ira",
+                "Cost": "514.50"
+            },
+            {
+                "Area": "North Brorrshire",
+                "ServiceGroup": "Ira",
+                "Cost": "84.00"
+            },
+            {
+                "Area": "North Brorrshire",
+                "ServiceGroup": "NASL",
+                "Cost": "52.50"
+            },
+            {
+                "Area": "North Kranalshire",
+                "ServiceGroup": "NASL",
+                "Cost": "1806.00"
+            },
+            {
+                "Area": "North Kranalshire",
+                "ServiceGroup": "Karadeila",
+                "Cost": "1764.00"
+            },
+            {
+                "Area": "North Kranalshire",
+                "ServiceGroup": "Airdrie - Admin",
+                "Cost": "1428.00"
+            },
+            {
+                "Area": "North Kranalshire",
+                "ServiceGroup": "Cumbernauld",
+                "Cost": "1344.00"
+            },
+            {
+                "Area": "North Kranalshire",
+                "ServiceGroup": "North Kranalshire CS",
+                "Cost": "1344.00"
+            },
+            {
+                "Area": "North Kranalshire",
+                "ServiceGroup": "Scotstoun",
+                "Cost": "1344.00"
+            },
+            {
+                "Area": "North Kranalshire",
+                "ServiceGroup": "North Kranalshire CS",
+                "Cost": "1270.50"
+            },
+            {
+                "Area": "North Kranalshire",
+                "ServiceGroup": "Blackwod",
+                "Cost": "1239.00"
+            },
+            {
+                "Area": "North Kranalshire",
+                "ServiceGroup": "Hellsbells",
+                "Cost": "357.00"
+            },
+            {
+                "Area": "North Kranalshire",
+                "ServiceGroup": "Mhairirz",
+                "Cost": "189.00"
+            },
+            {
+                "Area": "Perdiez & Keenroze",
+                "ServiceGroup": "Bridgegfoot",
+                "Cost": "798.00"
+            },
+            {
+                "Area": "Perdiez & Keenroze",
+                "ServiceGroup": "NR",
+                "Cost": "294.00"
+            },
+            {
+                "Area": "Perdiez & Keenroze",
+                "ServiceGroup": "PFT",
+                "Cost": "157.50"
+            },
+            {
+                "Area": "Perdiez & Keenroze",
+                "ServiceGroup": "MTBR",
+                "Cost": "115.50"
+            },
+            {
+                "Area": "Perdiez & Keenroze",
+                "ServiceGroup": "Perdiez Community Support",
+                "Cost": "84.00"
+            },
+            {
+                "Area": "South Brorrshire",
+                "ServiceGroup": "Ayyeetonama Streetlay Teenz Placement",
+                "Cost": "115.50"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "ServiceGroup": "Bonnyborrby Day Missings",
+                "Cost": "1995.00"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "ServiceGroup": "Elarneg Road",
+                "Cost": "1743.00"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "ServiceGroup": "Liddler Street - 110",
+                "Cost": "1743.00"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "ServiceGroup": "West Dun - Ops Mgt",
+                "Cost": "1617.00"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "ServiceGroup": "Liddler Street - 109",
+                "Cost": "1302.00"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "ServiceGroup": "Bonnyborrby Longpollingconnection",
+                "Cost": "577.50"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "ServiceGroup": "Jozephina Street",
+                "Cost": "252.00"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "ServiceGroup": "Main Street",
+                "Cost": "157.50"
+            },
+            {
+                "Area": "West Naihtol",
+                "ServiceGroup": "UPDU",
+                "Cost": "1942.50"
+            }
+        ];
+
+
+        var datasets = {};
+        data.map(function (row) {
+            if (!(row.Area in datasets)) {
+                datasets[row.Area] = {
+                    label: row.Area,
+                    data: [[row.ServiceGroup, row.Cost]],
+                };
+            } else {
+                datasets[row.Area].data.push([row.ServiceGroup, row.Cost]);
+            }
+        });
+
+        // insert radioboxes
+        var choiceContainer = $("#choices");
+        $.each(datasets, function (key, val) {
+            choiceContainer.append("<br/><input type='radio' name='Areas'  id='" + key + "'></input>" +
+                "<label for='" + key + "'>" + val.label + "</label>");
+        });
+
+        choiceContainer.find("input").on('click', plotAccordingToChoices);
+
+        function plotAccordingToChoices() {
+
+            var data = [];
+
+            choiceContainer.find("input:checked").each(function () {
+                var key = $(this).attr("id");
+                if (key && datasets[key]) {
+                    data.push(datasets[key]);
+                }
+            });
+
+            if (data.length > 0) {
+                $.plot("#report", data, {
+                    series: {
+                        bars: {
+                            show: true,
+                            barWidth: 0.6,
+                            align: "center"
+                        },
+                        
+                    },
+                    xaxis: {
+                        mode: "categories",
+                        tickLength: 0
+                    }
+                });
+            }
+        }
+
+        // select the first checkbox
+        choiceContainer.find("input").first().attr('checked', 'checked');
+
+        // draw the graph on page load
+        plotAccordingToChoices();
+
+    </script>
+
+</body>
+</html>

@@ -33,96 +33,740 @@
 
     <script>
 
-        $(function () {
+        var data = [
+            {
+                "Area": "Donndledonzk City",
+                "Reason": "Acute Medical Condition",
+                "Cost": "5776.88986968994"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Reason": "Back Pain",
+                "Cost": "3085.00510406494"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Reason": "Home/Family",
+                "Cost": "372.540008544922"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Reason": "Mental Ill Health",
+                "Cost": "1122.23997497559"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Reason": "Minor Illness",
+                "Cost": "10723.9649734497"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Reason": "Musculo Skeletal Injury (exclu",
+                "Cost": "2404.60503005981"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Reason": "Other",
+                "Cost": "2289.94500732422"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Reason": "Pregnancy Related Illness",
+                "Cost": "1763.36999511719"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Reason": "Recurring Medical Condition",
+                "Cost": "995.924987792969"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Reason": "Stress",
+                "Cost": "1130.53497314453"
+            },
+            {
+                "Area": "Donndledonzk City",
+                "Reason": "Work Related Injury/Accident",
+                "Cost": "5247.90014648438"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Reason": "Acute Medical Condition",
+                "Cost": "29466.46484375"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Reason": "Back Pain",
+                "Cost": "7754.14499664307"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Reason": "Home/Family",
+                "Cost": "562.065002441406"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Reason": "Mental Ill Health",
+                "Cost": "8002.78495788574"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Reason": "Minor Illness",
+                "Cost": "22743.6303224564"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Reason": "Musculo Skeletal Injury (exclu",
+                "Cost": "4109.27993011475"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Reason": "Other",
+                "Cost": "13233.9896736145"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Reason": "Pregnancy Related Illness",
+                "Cost": "1718.95500946045"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Reason": "Recurring Medical Condition",
+                "Cost": "947.309997558594"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Reason": "Stress",
+                "Cost": "7915.52997970581"
+            },
+            {
+                "Area": "Hobbitshire",
+                "Reason": "Work Related Injury/Accident",
+                "Cost": "504.524993896484"
+            },
+            {
+                "Area": "Llygaroenzef & Bitunum",
+                "Reason": "Minor Illness",
+                "Cost": "580.755004882813"
+            },
+            {
+                "Area": "Borders",
+                "Reason": "Mental Ill Health",
+                "Cost": "4884.4951171875"
+            },
+            {
+                "Area": "Borders",
+                "Reason": "Minor Illness",
+                "Cost": "1273.54504394531"
+            },
+            {
+                "Area": "Central - Admin",
+                "Reason": "Acute Medical Condition",
+                "Cost": "792.960021972656"
+            },
+            {
+                "Area": "Central - Admin",
+                "Reason": "Minor Illness",
+                "Cost": "105.629999160767"
+            },
+            {
+                "Area": "Central - Admin",
+                "Reason": "Other",
+                "Cost": "33.4949989318848"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Reason": "Acute Medical Condition",
+                "Cost": "685.859985351563"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Reason": "Acute Medical Condition",
+                "Cost": "3459.1201171875"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Reason": "Acute Medical Condition",
+                "Cost": "3220.97998046875"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Reason": "Back Pain",
+                "Cost": "76.125"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Reason": "Back Pain",
+                "Cost": "42"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Reason": "Minor Illness",
+                "Cost": "370.019989013672"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Reason": "Minor Illness",
+                "Cost": "1690.81497192383"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Reason": "Minor Illness",
+                "Cost": "530.565002441406"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Reason": "Minor Illness",
+                "Cost": "1493.72998809814"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Reason": "Minor Illness",
+                "Cost": "966.419982910156"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Reason": "Minor Illness",
+                "Cost": "293.895004272461"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Reason": "Other",
+                "Cost": "41.1599998474121"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Reason": "Other",
+                "Cost": "76.125"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Reason": "Pregnancy Related Illness",
+                "Cost": "359.415008544922"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Reason": "Recurring Medical Condition",
+                "Cost": "1547.69995117188"
+            },
+            {
+                "Area": "Carnivores Non-Regional Staff",
+                "Reason": "Stress",
+                "Cost": "2416.7848815918"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Reason": "Acute Medical Condition",
+                "Cost": "27452.9850463867"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Reason": "Back Pain",
+                "Cost": "6929.15991210938"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Reason": "Home/Family",
+                "Cost": "73.7099990844727"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Reason": "Mental Ill Health",
+                "Cost": "3806.77490234375"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Reason": "Minor Illness",
+                "Cost": "26296.8302383423"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Reason": "Musculo Skeletal Injury (exclu",
+                "Cost": "8913.45001983643"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Reason": "Other",
+                "Cost": "6033.30001831055"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Reason": "Pregnancy Related Illness",
+                "Cost": "2369.53502655029"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Reason": "Recurring Medical Condition",
+                "Cost": "361.40998840332"
+            },
+            {
+                "Area": "Doomsdeen City Operations",
+                "Reason": "Stress",
+                "Cost": "7779.86986160278"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "Reason": "Acute Medical Condition",
+                "Cost": "8677.51495361328"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "Reason": "Back Pain",
+                "Cost": "29.7150001525879"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "Reason": "Home/Family",
+                "Cost": "2267.78997802734"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "Reason": "Mental Ill Health",
+                "Cost": "626.325012207031"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "Reason": "Minor Illness",
+                "Cost": "5395.6350479126"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "Reason": "Musculo Skeletal Injury (exclu",
+                "Cost": "11532.9898071289"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "Reason": "Other",
+                "Cost": "8225.2802734375"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "Reason": "Recurring Medical Condition",
+                "Cost": "9963.24012756348"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "Reason": "Stress",
+                "Cost": "4942.6650390625"
+            },
+            {
+                "Area": "East Notrabnudshire",
+                "Reason": "Work Related Injury/Accident",
+                "Cost": "1918.875"
+            },
+            {
+                "Area": "East Naihtol",
+                "Reason": "Minor Illness",
+                "Cost": "1191.75"
+            },
+            {
+                "Area": "East Naihtol",
+                "Reason": "Stress",
+                "Cost": "2079.419921875"
+            },
+            {
+                "Area": "Efellondre",
+                "Reason": "Acute Medical Condition",
+                "Cost": "10601.2198791504"
+            },
+            {
+                "Area": "Efellondre",
+                "Reason": "Back Pain",
+                "Cost": "969.675018310547"
+            },
+            {
+                "Area": "Efellondre",
+                "Reason": "Home/Family",
+                "Cost": "152.354995727539"
+            },
+            {
+                "Area": "Efellondre",
+                "Reason": "Mental Ill Health",
+                "Cost": "714.524993896484"
+            },
+            {
+                "Area": "Efellondre",
+                "Reason": "Minor Illness",
+                "Cost": "3619.87494659424"
+            },
+            {
+                "Area": "Efellondre",
+                "Reason": "Other",
+                "Cost": "898.485004425049"
+            },
+            {
+                "Area": "Efellondre",
+                "Reason": "Stress",
+                "Cost": "402.989990234375"
+            },
+            {
+                "Area": "Londrez City",
+                "Reason": "Acute Medical Condition",
+                "Cost": "5357.93997192383"
+            },
+            {
+                "Area": "Londrez City",
+                "Reason": "Back Pain",
+                "Cost": "2017.99494934082"
+            },
+            {
+                "Area": "Londrez City",
+                "Reason": "Home/Family",
+                "Cost": "67.1999969482422"
+            },
+            {
+                "Area": "Londrez City",
+                "Reason": "Mental Ill Health",
+                "Cost": "1204.97998046875"
+            },
+            {
+                "Area": "Londrez City",
+                "Reason": "Minor Illness",
+                "Cost": "3662.50500488281"
+            },
+            {
+                "Area": "Londrez City",
+                "Reason": "Musculo Skeletal Injury (exclu",
+                "Cost": "1279.31994628906"
+            },
+            {
+                "Area": "Londrez City",
+                "Reason": "Other",
+                "Cost": "497.385009765625"
+            },
+            {
+                "Area": "Londrez City",
+                "Reason": "Pregnancy Related Illness",
+                "Cost": "668.534973144531"
+            },
+            {
+                "Area": "Londrez City",
+                "Reason": "Recurring Medical Condition",
+                "Cost": "33.5999984741211"
+            },
+            {
+                "Area": "Londrez City",
+                "Reason": "Stress",
+                "Cost": "3663.45007324219"
+            },
+            {
+                "Area": "Ramonez",
+                "Reason": "Acute Medical Condition",
+                "Cost": "13201.8600196838"
+            },
+            {
+                "Area": "Ramonez",
+                "Reason": "Back Pain",
+                "Cost": "2168.9849319458"
+            },
+            {
+                "Area": "Ramonez",
+                "Reason": "Home/Family",
+                "Cost": "935.129993438721"
+            },
+            {
+                "Area": "Ramonez",
+                "Reason": "Mental Ill Health",
+                "Cost": "1818.17997741699"
+            },
+            {
+                "Area": "Ramonez",
+                "Reason": "Minor Illness",
+                "Cost": "10858.5748882294"
+            },
+            {
+                "Area": "Ramonez",
+                "Reason": "Musculo Skeletal Injury (exclu",
+                "Cost": "2296.45501708984"
+            },
+            {
+                "Area": "Ramonez",
+                "Reason": "Other",
+                "Cost": "10391.9549484253"
+            },
+            {
+                "Area": "Ramonez",
+                "Reason": "Pregnancy Related Illness",
+                "Cost": "1347.2550239563"
+            },
+            {
+                "Area": "Ramonez",
+                "Reason": "Recurring Medical Condition",
+                "Cost": "7186.40997314453"
+            },
+            {
+                "Area": "Ramonez",
+                "Reason": "Stress",
+                "Cost": "6744.78012084961"
+            },
+            {
+                "Area": "Ramonez",
+                "Reason": "Work Related Injury/Accident",
+                "Cost": "523.320007324219"
+            },
+            {
+                "Area": "North - Admin",
+                "Reason": "Minor Illness",
+                "Cost": "141.645004272461"
+            },
+            {
+                "Area": "North Ayyeetonamashire",
+                "Reason": "Acute Medical Condition",
+                "Cost": "14937.1947250366"
+            },
+            {
+                "Area": "North Ayyeetonamashire",
+                "Reason": "Home/Family",
+                "Cost": "234.149993896484"
+            },
+            {
+                "Area": "North Ayyeetonamashire",
+                "Reason": "Mental Ill Health",
+                "Cost": "4522.45495605469"
+            },
+            {
+                "Area": "North Ayyeetonamashire",
+                "Reason": "Minor Illness",
+                "Cost": "1462.6499710083"
+            },
+            {
+                "Area": "North Ayyeetonamashire",
+                "Reason": "Musculo Skeletal Injury (exclu",
+                "Cost": "3572.09994125366"
+            },
+            {
+                "Area": "North Ayyeetonamashire",
+                "Reason": "Other",
+                "Cost": "1007.47498321533"
+            },
+            {
+                "Area": "North Ayyeetonamashire",
+                "Reason": "Pregnancy Related Illness",
+                "Cost": "1055.77502441406"
+            },
+            {
+                "Area": "North Ayyeetonamashire",
+                "Reason": "Recurring Medical Condition",
+                "Cost": "58.1699981689453"
+            },
+            {
+                "Area": "North Ayyeetonamashire",
+                "Reason": "Stress",
+                "Cost": "2759.92500305176"
+            },
+            {
+                "Area": "North Kranalshire",
+                "Reason": "Acute Medical Condition",
+                "Cost": "28761.4954223633"
+            },
+            {
+                "Area": "North Kranalshire",
+                "Reason": "Home/Family",
+                "Cost": "33.5999984741211"
+            },
+            {
+                "Area": "North Kranalshire",
+                "Reason": "Mental Ill Health",
+                "Cost": "9311.29504394531"
+            },
+            {
+                "Area": "North Kranalshire",
+                "Reason": "Minor Illness",
+                "Cost": "14243.670211792"
+            },
+            {
+                "Area": "North Kranalshire",
+                "Reason": "Musculo Skeletal Injury (exclu",
+                "Cost": "4565.40008544922"
+            },
+            {
+                "Area": "North Kranalshire",
+                "Reason": "Other",
+                "Cost": "20150.7605476379"
+            },
+            {
+                "Area": "North Kranalshire",
+                "Reason": "Pregnancy Related Illness",
+                "Cost": "286.649993896484"
+            },
+            {
+                "Area": "North Kranalshire",
+                "Reason": "Stress",
+                "Cost": "27684.510559082"
+            },
+            {
+                "Area": "Perdiez & Keenroze",
+                "Reason": "Acute Medical Condition",
+                "Cost": "369.390014648438"
+            },
+            {
+                "Area": "Perdiez & Keenroze",
+                "Reason": "Back Pain",
+                "Cost": "73.7099990844727"
+            },
+            {
+                "Area": "Perdiez & Keenroze",
+                "Reason": "Home/Family",
+                "Cost": "223.544998168945"
+            },
+            {
+                "Area": "Perdiez & Keenroze",
+                "Reason": "Mental Ill Health",
+                "Cost": "5488.34986877441"
+            },
+            {
+                "Area": "Perdiez & Keenroze",
+                "Reason": "Minor Illness",
+                "Cost": "3432.76498031616"
+            },
+            {
+                "Area": "Perdiez & Keenroze",
+                "Reason": "Other",
+                "Cost": "41.7900009155273"
+            },
+            {
+                "Area": "Perdiez & Keenroze",
+                "Reason": "Pregnancy Related Illness",
+                "Cost": "1013.88000488281"
+            },
+            {
+                "Area": "Perdiez & Keenroze",
+                "Reason": "Stress",
+                "Cost": "6318.69006347656"
+            },
+            {
+                "Area": "South Ayyeetonamashire",
+                "Reason": "Acute Medical Condition",
+                "Cost": "281.399993896484"
+            },
+            {
+                "Area": "South Ayyeetonamashire",
+                "Reason": "Minor Illness",
+                "Cost": "157.604995727539"
+            },
+            {
+                "Area": "West - Admin",
+                "Reason": "Minor Illness",
+                "Cost": "76.125"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "Reason": "Acute Medical Condition",
+                "Cost": "10135.9645996094"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "Reason": "Back Pain",
+                "Cost": "17884.8605957031"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "Reason": "Home/Family",
+                "Cost": "1862.38497924805"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "Reason": "Mental Ill Health",
+                "Cost": "7837.09521484375"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "Reason": "Minor Illness",
+                "Cost": "9403.27505874634"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "Reason": "Other",
+                "Cost": "1682.4150390625"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "Reason": "Pregnancy Related Illness",
+                "Cost": "52.3950004577637"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "Reason": "Recurring Medical Condition",
+                "Cost": "968.834991455078"
+            },
+            {
+                "Area": "West Notrabnudshire",
+                "Reason": "Stress",
+                "Cost": "4070.42993164063"
+            },
+            {
+                "Area": "West Naihtol",
+                "Reason": "Acute Medical Condition",
+                "Cost": "258.825012207031"
+            },
+            {
+                "Area": "West Naihtol",
+                "Reason": "Minor Illness",
+                "Cost": "761.775024414063"
+            },
+            {
+                "Area": "West Naihtol",
+                "Reason": "Musculo Skeletal Injury (exclu",
+                "Cost": "3624.9150390625"
+            },
+            {
+                "Area": "West Naihtol",
+                "Reason": "Stress",
+                "Cost": "2500.36499023438"
+            }
+        ];
 
-            //var dataset1 = {
-            //    label: 'Minor Illness',
-            //    data: [
-            //        //[1, 13],
-            //        //[2, 26],
-            //        //[3, 39],
-            //        //[4, 52],
-            //        //[5, 65],
-            //        //[6, 78]
+        var datas = [];
 
-            //        ["A", 13],
-            //        ["B", 26],
-            //        ["C", 39],
-            //        ["D", 52],
-            //        ["E", 65],
-            //        ["F", 78]
-
-            //        //['Aberdeen CS', 103],
-            //        //['Granton', 57],
-            //        //['Huxterstone', 87],
-            //        //['Kincorth', 43],
-            //        //['Rosemount', 78],
-            //        //['Star Carers', 92]
-            //    ]
-            //};
-
-
-            //var dataset2 = {
-            //    label: 'Home/Familiy',
-            //    data: [
-
-            //        ["A", 50],
-            //        ["B", 57],
-            //        ["C", 87],
-            //        ["D", 43],
-            //        ["E", 78],
-            //        ["F", 92]
-
-            //        //['Aberdeen CS', 103],
-            //        //['Granton', 57],
-            //        //['Huxterstone', 87],
-            //        //['Kincorth', 43],
-            //        //['Rosemount', 78],
-            //        //['Star Carers', 92]
-            //    ]
-            //};
-
-
-            //var dataset3 = {
-            //    label: 'Back Pain',
-            //    data: [
-
-            //        ["A", 30],
-            //        ["B", 10],
-            //        ["C", 20],
-            //        ["D", 30],
-            //        ["E", 40],
-            //        ["F", 50]
-
-            //        //['Aberdeen CS', 103],
-            //        //['Granton', 57],
-            //        //['Huxterstone', 87],
-            //        //['Kincorth', 43],
-            //        //['Rosemount', 78],
-            //        //['Star Carers', 92]
-            //    ]
-            //};
-
-            var months = [["January", 10], ["February", 8], ["March", 4], ["April", 13], ["May", 17], ["June", 9]];
-            //var days = [[1, 10], [2, 8], [3, 4], [4, 13], [5, 17], [6, 9]];
-
-                $.plot('#report', [ months ], {
-                    series: {
-                        //stack: true,
-
-                        bars: {
-                            show: true,
-                            barWidth: 0.6,
-                            align: "center"
-                        },
-                        xaxis: {
-                            mode: "categories",
-                            tickLength: 0
-                        }
-                    }
-                });
-
+        var reasons = {};
+        data.map(function (row) {
+            if (!(row.Reason in reasons)) {
+                reasons[row.Reason] = {
+                    label: row.Reason,
+                    data: [[row.Area, row.Cost]]
+                };
+            } else {
+                reasons[row.Reason].data.push([row.Area, row.Cost]);
+            }
         });
+        $.each(reasons, function (name, value) {
+            datas.push(value);
+        });
+
+        $.plot("#report", datas, {
+            series: {
+                stack: true,
+                bars: {
+                    show: true,
+                    barWidth: 0.6,
+                    align: "center"
+                },
+
+            },
+            xaxis: {
+                mode: "categories",
+                tickLength: 0
+            }
+        });
+
+
+
+        //$.plot('#report', [months], {
+        //    series: {
+        //        //stack: true,
+
+        //        bars: {
+        //            show: true,
+        //            barWidth: 0.6,
+        //            align: "center"
+        //        },
+        //        xaxis: {
+        //            mode: "categories",
+        //            tickLength: 0
+        //        }
+        //    }
+        //});
+
     </script>
 
 </body>

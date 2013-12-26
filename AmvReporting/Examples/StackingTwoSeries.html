@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost Time Rate by Area</title>
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/site.css" rel="stylesheet" />
+    <script src="/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+
+    <div class="container client-content">
+        <h2>Lost Time Rate by Area</h2>
+        <div class="row">
+            <div class="col-md-8 graph-container">
+                <div id="report" style="height: 600px;"></div>
+            </div>
+            <div class="col-md-4" id="choices"></div>
+        </div>
+    </div>
+
+
+    <script src="/Scripts/jquery-1.10.2.js"></script>
+    <script src="/Scripts/ie8.js"></script>
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+
+    <script src="/Scripts/flot/jquery.flot.js"></script>
+    <script src="/Scripts/flot/jquery.flot.categories.js"></script>
+    <script src="/Scripts/flot/jquery.flot.stack.patched.js"></script>
+    <script src="/Scripts/flot/excanvas.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var data = [
+                {
+                    "InjuriousAccident": "116",
+                    "NONInjuriousIncident": "455",
+                    "Area": "Ramonez"
+                },
+                {
+                    "InjuriousAccident": "95",
+                    "NONInjuriousIncident": "248",
+                    "Area": "Donndledonzk City"
+                },
+                {
+                    "InjuriousAccident": "72",
+                    "NONInjuriousIncident": "600",
+                    "Area": "Hobbitshire"
+                },
+                {
+                    "InjuriousAccident": "53",
+                    "NONInjuriousIncident": "165",
+                    "Area": "Doomsdeen City Operations"
+                },
+                {
+                    "InjuriousAccident": "42",
+                    "NONInjuriousIncident": "137",
+                    "Area": "Londrez City"
+                },
+                {
+                    "InjuriousAccident": "33",
+                    "NONInjuriousIncident": "89",
+                    "Area": "West Notrabnudshire"
+                },
+                {
+                    "InjuriousAccident": "32",
+                    "NONInjuriousIncident": "23",
+                    "Area": "Efellondre"
+                },
+                {
+                    "InjuriousAccident": "27",
+                    "NONInjuriousIncident": "48",
+                    "Area": "North Kranalshire"
+                },
+                {
+                    "InjuriousAccident": "20",
+                    "NONInjuriousIncident": "54",
+                    "Area": "East Notrabnudshire"
+                },
+                {
+                    "InjuriousAccident": "8",
+                    "NONInjuriousIncident": "38",
+                    "Area": "West Naihtol"
+                },
+                {
+                    "InjuriousAccident": "6",
+                    "NONInjuriousIncident": "21",
+                    "Area": "Perdiez & Keenroze"
+                },
+                {
+                    "InjuriousAccident": "5",
+                    "NONInjuriousIncident": "6",
+                    "Area": "East Naihtol"
+                },
+                {
+                    "InjuriousAccident": "5",
+                    "NONInjuriousIncident": "37",
+                    "Area": "Llygaroenzef & Bitunum"
+                },
+                {
+                    "InjuriousAccident": "4",
+                    "NONInjuriousIncident": "34",
+                    "Area": "North Brorrshire"
+                },
+                {
+                    "InjuriousAccident": "2",
+                    "NONInjuriousIncident": "0",
+                    "Area": "North - Admin"
+                },
+                {
+                    "InjuriousAccident": "2",
+                    "NONInjuriousIncident": "0",
+                    "Area": "Central - Admin"
+                },
+                {
+                    "InjuriousAccident": "1",
+                    "NONInjuriousIncident": "2",
+                    "Area": "Borders"
+                },
+                {
+                    "InjuriousAccident": "0",
+                    "NONInjuriousIncident": "1",
+                    "Area": "Carnivores Non-Regional Staff"
+                }
+            ];
+
+            var nonInjurious = {
+                label: 'NON-Injurious Incident',
+                data: []
+            };
+
+            data.map(function (row) {
+                nonInjurious.data.push([row.Area, row.NONInjuriousIncident]);
+            });
+
+            var injuriousAccidents = {
+                label: 'InjuriousAccident',
+                data: []
+            };
+            data.map(function (row) {
+                injuriousAccidents.data.push([row.Area, row.InjuriousAccident]);
+            });
+
+
+            $.plot("#report", [nonInjurious, injuriousAccidents], {
+                series: {
+                    stack: true,
+                    bars: {
+                        show: true,
+                        barWidth: 0.6,
+                        align: "center"
+                    }
+                },
+                xaxis: {
+                    mode: "categories",
+                    tickLength: 0,
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
