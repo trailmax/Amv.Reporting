@@ -3,6 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @if (Request.UserAgent != null && (Request.UserAgent.Contains("MSIE 8") || Request.UserAgent.Contains("MSIE 7")))
+    {
+        <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    }
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -40,12 +44,12 @@
             clickableNodeNames: true
         });
 
-        $('.expand-all').on('click', function() {
+        $('.expand-all').on('click', function () {
             $('#treetable').treetable('expandAll');
             return false;
         });
 
-        $('.collapse-all').on('click', function() {
+        $('.collapse-all').on('click', function () {
             $('#treetable').treetable('collapseAll');
             return false;
         });
