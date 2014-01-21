@@ -21,7 +21,11 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/js")
     @Scripts.Render("~/bundles/flot")
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript" language="javascript">
+        // load google chart api
+        google.load('visualization', '1.0', { 'packages': ['corechart'] });
+
         jQuery.showAlert = function (message, alertLevel) {
             $('#alert-placeholder').html('<div class="in alert ' + alertLevel + '" id="alert-message"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>');
             window.setTimeout(function () {

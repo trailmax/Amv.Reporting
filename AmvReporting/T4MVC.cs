@@ -434,6 +434,7 @@ namespace Links
             public static readonly string jquery_flot_selection_min_js = Url("jquery.flot.selection.min.js");
             public static readonly string jquery_flot_stack_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.flot.stack.min.js") ? Url("jquery.flot.stack.min.js") : Url("jquery.flot.stack.js");
             public static readonly string jquery_flot_stack_min_js = Url("jquery.flot.stack.min.js");
+            public static readonly string jquery_flot_stack_patched_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.flot.stack.patched.min.js") ? Url("jquery.flot.stack.patched.min.js") : Url("jquery.flot.stack.patched.js");
             public static readonly string jquery_flot_symbol_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.flot.symbol.min.js") ? Url("jquery.flot.symbol.min.js") : Url("jquery.flot.symbol.js");
             public static readonly string jquery_flot_symbol_min_js = Url("jquery.flot.symbol.min.js");
             public static readonly string jquery_flot_threshold_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.flot.threshold.min.js") ? Url("jquery.flot.threshold.min.js") : Url("jquery.flot.threshold.js");

@@ -1,4 +1,4 @@
-﻿@model PreviewTableResult
+﻿@model PreviewDataResult
 
 @{
     Layout = null;
@@ -7,10 +7,6 @@
 @if (Model.IsSuccess)
 {
     <div>
-        <h3>Columns</h3>
-        <pre>@Model.Columns</pre>
-
-        <h3>Data</h3>
         <pre>@Model.Data;</pre>
     </div>
 }

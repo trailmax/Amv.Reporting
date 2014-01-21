@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using AmvReporting.Domain.Preview.Queries;
 using AmvReporting.Domain.Preview.ViewModels;
+using AmvReporting.Domain.Reports;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Filters;
 
@@ -21,9 +22,9 @@ namespace AmvReporting.Controllers
 
 
         [HttpPost]
-        public virtual ActionResult Data(String sql, String databaseId)
+        public virtual ActionResult Data(String sql, String databaseId, ReportType reportType)
         {
-            var query = new PreviewTableQuery(sql, databaseId);
+            var query = new PreviewDataQuery(sql, databaseId, reportType);
             var result = mediator.Request(query);
 
             return PartialView(result);
@@ -33,13 +34,12 @@ namespace AmvReporting.Controllers
         [HttpPost, ValidateInput(false)]
         public virtual ActionResult Report(PreviewReportModel model)
         {
-            var query = new PreviewTableQuery(model.Sql, model.DatabaseId);
+            var query = new PreviewDataQuery(model.Sql, model.DatabaseId, model.ReportType);
             var queryResult = mediator.Request(query);
 
             var outModel = new ReportResultPreview()
                            {
                                Data = queryResult.Data,
-                               Columns = queryResult.Columns,
                                JavaScript = model.JavaScript,
                                Css = model.Css,
                                ReportType = model.ReportType,

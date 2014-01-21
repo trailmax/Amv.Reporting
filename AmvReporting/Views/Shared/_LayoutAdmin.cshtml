@@ -88,10 +88,6 @@
                     success: function (data) {
                         if (data.IsSuccess) {
                             refreshSqlTextBox(data.Payload);
-                            //$('#Sql').fadeOut(500, function () {
-                            //    $('#Sql').val(data.Payload);
-                            //    $('#Sql').fadeIn(500);
-                            //});
                         } else {
                             $.showWarning(data.ErrorMessage);
                         }
@@ -104,6 +100,7 @@
                 var postData = {};
                 postData['sql'] = $('#Sql').val();
                 postData['databaseId'] = $('#DatabaseId').val();
+                postData['reportType'] = $('#ReportType').val();
 
                 $.ajax({
                     type: 'POST',
@@ -129,12 +126,6 @@
                         $.showWarning('Communication Error: could not connect to the server');
                     },
                     success: refreshSqlTextBox,
-                    //success: function(data) {
-                    //    $('#Sql').fadeOut(500, function() {
-                    //        $('#Sql').val(data);
-                    //        $('#Sql').fadeIn(500);
-                    //    });
-                    //},
                 });
             });
 
