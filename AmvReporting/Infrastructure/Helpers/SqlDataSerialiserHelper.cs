@@ -1,13 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Text;
 using Newtonsoft.Json;
 
 namespace AmvReporting.Infrastructure.Helpers
 {
     public static class SqlDataSerialiserHelper
     {
-        public static String GetColumnsJson(SqlDataReader dataReader)
+        public static String GetDataWithColumnsJson(SqlDataReader dataReader)
+        {
+            var dataBuilder = new StringBuilder();
+            dataBuilder.AppendFormat("var columns = {0};", GetColumnsJson(dataReader));
+            dataBuilder.AppendLine();
+            dataBuilder.AppendLine();
+            dataBuilder.AppendFormat("var data = {0};", GetDataJson(dataReader));
+            var result = dataBuilder.ToString();
+
+            return result;
+        }
+
+        private static String GetColumnsJson(SqlDataReader dataReader)
         {
             var cols = new List<ColumnsDefinition>();
             for (var i = 0; i < dataReader.FieldCount; i++)
@@ -34,7 +47,7 @@ namespace AmvReporting.Infrastructure.Helpers
         }
 
 
-        public static String GetDataJson(SqlDataReader reader)
+        private static String GetDataJson(SqlDataReader reader)
         {
             var results = new List<Dictionary<String, String>>();
             var cols = new List<string>();

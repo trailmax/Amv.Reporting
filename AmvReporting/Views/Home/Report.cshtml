@@ -39,14 +39,25 @@
         <div class="col-md-4" id="choices"></div>
     </div>
 }
+@if (Model.ReportType == ReportType.GoogleGraphs)
+{
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script>
+        // load google chart api
+        google.load('visualization', '1.0', { 'packages': ['corechart'] });
+    </script>
+    <div id="report" style="height: 600px; width: 100%;"></div>
+}
+
+
 
 
 @section scripts
 {
     <script type="text/javascript">
         $(document).ready(function() {
-            var columns = @Html.Raw(Model.Columns);
-            var data = @Html.Raw(Model.Data);
+            @Html.Raw(Model.Data)
+
             @Html.Raw(Model.JavaScript)
         });
     </script>

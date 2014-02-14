@@ -39,27 +39,20 @@ namespace AmvReporting.Domain.Preview.Queries
             this.ravenSession = ravenSession;
         }
 
+
         public PreviewDataResult Handle(PreviewDataQuery query)
         {
             var database = ravenSession.Load<DatabaseConnection>(query.DatabaseId);
 
-            var result = new PreviewDataResult()
-                         {
-                             IsSuccess = false,
-                         };
+            var result = new PreviewDataResult();
+
             try
             {
                 using (var sqlHelper = new SqlServerHelper())
                 {
                     var dataReader = sqlHelper.ExecuteQuery(query.Sql, database.ConnectionString);
                     result.IsSuccess = true;
-
-                    var dataBuilder = new StringBuilder();
-                    dataBuilder.AppendFormat("var columns = {0};", SqlDataSerialiserHelper.GetColumnsJson(dataReader));
-                    dataBuilder.AppendLine();
-                    dataBuilder.AppendLine();
-                    dataBuilder.AppendFormat("var data = {0};",SqlDataSerialiserHelper.GetDataJson(dataReader));
-                    result.Data = dataBuilder.ToString();
+                    result.Data = SqlDataSerialiserHelper.GetDataWithColumnsJson(dataReader);
                 }
             }
             catch (Exception exception)
