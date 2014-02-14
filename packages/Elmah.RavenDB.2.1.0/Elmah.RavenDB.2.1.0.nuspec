@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Elmah.RavenDB</id>
+    <version>2.1.0</version>
+    <title>ELMAH on RavenDB</title>
+    <authors>Christoph Keller,  Greg Brant</authors>
+    <owners>Christoph Keller,  Greg Brant</owners>
+    <licenseUrl>https://github.com/GregBrant/Elmah.RavenDB/blob/master/license.txt</licenseUrl>
+    <projectUrl>https://github.com/GregBrant/Elmah.RavenDB</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ELMAH with configuration for getting started quickly on a RavenDB database as the error log.</description>
+    <summary>ELMAH with configuration for getting started quickly on a RavenDB database as the error log.</summary>
+    <releaseNotes>Added possibility to pass an external RavenDB store.</releaseNotes>
+    <copyright>Copyright 2011-2013</copyright>
+    <tags>Elmah RavenDB</tags>
+    <dependencies>
+      <dependency id="elmah.corelibrary" version="1.2.2" />
+      <dependency id="RavenDB.Client" version="[2.0, 3.0)" />
+    </dependencies>
+  </metadata>
+</package>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>PoorMansTSQLFormatter</id>
+    <version>1.4.3.1</version>
+    <title>Poor Man's T-SQL Formatter</title>
+    <authors>Taok</authors>
+    <owners>Taok</owners>
+    <licenseUrl>http://www.gnu.org/licenses/agpl-3.0.txt</licenseUrl>
+    <projectUrl>http://www.architectshack.com/PoorMansTSqlFormatter.ashx</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A small free .Net 2.0 library (with demo UI, command-line bulk formatter, SSMS/Visual Studio add-in, notepad++ plugin, winmerge plugin, and web service) for reformatting and coloring T-SQL code to the user's preferences
+
+Packaged on behalf of TaoK</description>
+    <summary>A small free .Net 2.0 library (with demo UI, command-line bulk formatter, SSMS/Visual Studio add-in, notepad++ plugin, winmerge plugin, and web service) for reformatting and coloring T-SQL code to the</summary>
+    <releaseNotes />
+    <copyright>© 2007-2013 Tao Klerks</copyright>
+    <language />
+    <tags>SQL SQLFORMATTING</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework2.0">
+        <dependency id="LinqBridge" version="1.3.0" />
+      </group>
+      <group targetFramework=".NETFramework3.5" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" targetFramework="" />
+      <frameworkAssembly assemblyName="System.Xml" targetFramework="" />
+    </frameworkAssemblies>
+  </metadata>
+</package>
