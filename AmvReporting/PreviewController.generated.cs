@@ -154,8 +154,10 @@ namespace AmvReporting.Controllers
     {
         public T4MVC_PreviewController() : base(Dummy.Instance) { }
 
+        [NonAction]
         partial void DataOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string sql, string databaseId, AmvReporting.Domain.Reports.ReportType reportType);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Data(string sql, string databaseId, AmvReporting.Domain.Reports.ReportType reportType)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Data);
@@ -166,8 +168,10 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ReportOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.Preview.ViewModels.PreviewReportModel model);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Report(AmvReporting.Domain.Preview.ViewModels.PreviewReportModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Report);
@@ -176,8 +180,10 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void CleanseAndFormatSqlOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string sql);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult CleanseAndFormatSql(string sql)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CleanseAndFormatSql);
@@ -186,8 +192,10 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ParseHtmlOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string rawData);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult ParseHtml(string rawData)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ParseHtml);

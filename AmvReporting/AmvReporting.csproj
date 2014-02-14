@@ -186,8 +186,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="T4MVCExtensions">
-      <HintPath>..\packages\T4MVCExtensions.3.7.4\lib\net40\T4MVCExtensions.dll</HintPath>
+    <Reference Include="T4MVCExtensions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\T4MVCExtensions.3.7.5\lib\net40\T4MVCExtensions.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -214,6 +215,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ReportGroupController.cs" />
+    <Compile Include="DatabaseController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommand.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommandHandler.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommandValidator.cs" />
@@ -250,25 +254,19 @@
     <Compile Include="Domain\Reports\Commands\DeleteReportCommandHandler.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModel.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModelEnricher.cs" />
+    <Compile Include="HomeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\Filters\RoleAuthorizeFilter.cs" />
     <Compile Include="Infrastructure\Helpers\ObjectExtensions.cs" />
     <Compile Include="Infrastructure\Helpers\SqlDataSerialiserHelper.cs" />
     <Compile Include="Infrastructure\Helpers\SqlServerHelper.cs" />
-    <Compile Include="ReportController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Domain\Reports\Commands\CreateReportCommand.cs" />
     <Compile Include="Domain\Reports\Commands\DeleteReportCommand.cs" />
     <Compile Include="Domain\Reports\Commands\EditReportCommand.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DatabaseController.cs" />
     <Compile Include="Controllers\PreviewController.cs" />
-    <Compile Include="DatabaseController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="HomeController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Infrastructure\ActionResults\AutoMapViewResult.cs" />
     <Compile Include="Infrastructure\ActionResults\EnrichViewResult.cs" />
     <Compile Include="Infrastructure\ActionResults\FormActionResult.cs" />
@@ -319,6 +317,11 @@
     <Compile Include="Domain\Preview\Queries\PreviewDataQuery.cs" />
     <Compile Include="Domain\Reports\Queries\ReportResultQuery.cs" />
     <Compile Include="Domain\Reports\Queries\SingleReportQuery.cs" />
+    <Compile Include="Domain\Reports\ViewModels\EditReportDetailsViewModel.cs" />
+    <Compile Include="Domain\Reports\ViewModels\ReportDetailsViewModel.cs" />
+    <Compile Include="ReportController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="ReportGroupController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -330,8 +333,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Domain\Reports\ViewModels\EditReportDetailsViewModel.cs" />
-    <Compile Include="Domain\Reports\ViewModels\ReportDetailsViewModel.cs" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -543,6 +544,11 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <None Include="T4MVC.tt.hooks.t4" />
+    <None Include="T4MVC.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>T4MVC.cs</LastGenOutput>
+    </None>
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -570,11 +576,6 @@
     <Content Include="Views\Database\Index.cshtml" />
     <Content Include="Views\Database\_ViewStart.cshtml" />
     <Content Include="Views\Database\Create.cshtml" />
-    <None Include="T4MVC.tt.hooks.t4" />
-    <None Include="T4MVC.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>T4MVC.cs</LastGenOutput>
-    </None>
     <Content Include="Views\Database\Edit.cshtml" />
     <Content Include="Views\Database\_CreateEdit.cshtml" />
     <Content Include="Views\ReportGroup\_ViewStart.cshtml" />
