@@ -207,10 +207,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AppConfigController.cs" />
     <Compile Include="Controllers\ReportGroupController.cs" />
     <Compile Include="DatabaseController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Domain\AppConfigs\AppConfig.cs" />
+    <Compile Include="Domain\AppConfigs\Queries\AppConfigQuery.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommand.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommandHandler.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommandValidator.cs" />
@@ -583,6 +586,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AppConfig\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
