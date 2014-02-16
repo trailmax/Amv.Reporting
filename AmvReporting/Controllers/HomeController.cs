@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using AmvReporting.Domain.Menus;
+using AmvReporting.Domain.ReportingConfigs.Queries;
 using AmvReporting.Domain.Reports.Queries;
 using AmvReporting.Infrastructure.CQRS;
 
@@ -26,6 +27,10 @@ namespace AmvReporting.Controllers
         {
             var query = new ReportResultQuery(id);
             var result = mediator.Request(query);
+
+            var config = mediator.Request(new ReportingConfigQuery());
+            result.GlobalCss = config.GlobalCss;
+            result.GlobalJs = config.GlobalJavascript;
 
             return View(result);
         }

@@ -13,7 +13,9 @@ namespace AmvReporting.Domain.Reports.Queries
         public String Description { get; set; }
         public String Data { get; set; }
         public String JavaScript { get; set; }
+        public String GlobalJs { get; set; }
         public String Css { get; set; }
+        public String GlobalCss { get; set; }
         public ReportType ReportType { get; set; }
     }
 

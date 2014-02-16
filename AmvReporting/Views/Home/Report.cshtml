@@ -6,6 +6,7 @@
 @section css
 {
     <style>
+        @Model.GlobalCss
         @Model.Css
     </style>
 }
@@ -57,6 +58,8 @@
 @section scripts
 {
     <script type="text/javascript">
+        @Html.Raw(Model.GlobalJs)
+
         $(document).ready(function() {
             @Html.Raw(Model.Data)
 

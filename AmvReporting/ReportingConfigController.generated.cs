@@ -58,12 +58,14 @@ namespace AmvReporting.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string Get = "Get";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string Get = "Get";
         }
 
 
@@ -86,9 +88,11 @@ namespace AmvReporting.Controllers
             public class _ViewNamesClass
             {
                 public readonly string _ViewStart = "_ViewStart";
+                public readonly string Get = "Get";
                 public readonly string Index = "Index";
             }
             public readonly string _ViewStart = "~/Views/ReportingConfig/_ViewStart.cshtml";
+            public readonly string Get = "~/Views/ReportingConfig/Get.cshtml";
             public readonly string Index = "~/Views/ReportingConfig/Index.cshtml";
         }
     }
@@ -118,6 +122,17 @@ namespace AmvReporting.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
             IndexOverride(callInfo, command);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Get()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Get);
+            GetOverride(callInfo);
             return callInfo;
         }
 
