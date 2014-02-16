@@ -207,13 +207,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AppConfigController.cs" />
+    <Compile Include="Controllers\ReportingConfigController.cs" />
     <Compile Include="Controllers\ReportGroupController.cs" />
     <Compile Include="DatabaseController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Domain\AppConfigs\AppConfig.cs" />
-    <Compile Include="Domain\AppConfigs\Queries\AppConfigQuery.cs" />
+    <Compile Include="Domain\ReportingConfigs\ReportingConfig.cs" />
+    <Compile Include="Domain\ReportingConfigs\Queries\ReportingConfigQuery.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommand.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommandHandler.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommandValidator.cs" />
@@ -246,6 +246,7 @@
     <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupIndexViewModelEnricher.cs" />
     <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupViewModel.cs" />
     <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupViewModelEnricher.cs" />
+    <Compile Include="Domain\ReportingConfigs\Commands\UpdateConfigurationCommand.cs" />
     <Compile Include="Domain\Reports\Commands\CreateReportCommandHandler.cs" />
     <Compile Include="Domain\Reports\Commands\DeleteReportCommandHandler.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModel.cs" />
@@ -319,6 +320,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="ReportGroupController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportingConfigController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="SharedController.generated.cs">
@@ -583,10 +587,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\MenuNode.cshtml" />
     <Content Include="Views\ReportGroup\Reorder.cshtml" />
+    <Content Include="Views\ReportingConfig\Index.cshtml" />
+    <Content Include="Views\ReportingConfig\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\AppConfig\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

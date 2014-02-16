@@ -29,6 +29,7 @@ public static partial class MVC
     public static AmvReporting.Controllers.PreviewController Preview = new AmvReporting.Controllers.T4MVC_PreviewController();
     public static AmvReporting.Controllers.ReportController Report = new AmvReporting.Controllers.T4MVC_ReportController();
     public static AmvReporting.Controllers.ReportGroupController ReportGroup = new AmvReporting.Controllers.T4MVC_ReportGroupController();
+    public static AmvReporting.Controllers.ReportingConfigController ReportingConfig = new AmvReporting.Controllers.T4MVC_ReportingConfigController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 
@@ -464,9 +465,11 @@ namespace Links
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
         public static readonly string bootstrap_theme_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/bootstrap-theme.min.css") ? Url("bootstrap-theme.min.css") : Url("bootstrap-theme.css");
              
+        public static readonly string bootstrap_theme_css_map = Url("bootstrap-theme.css.map");
         public static readonly string bootstrap_theme_min_css = Url("bootstrap-theme.min.css");
         public static readonly string bootstrap_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/bootstrap.min.css") ? Url("bootstrap.min.css") : Url("bootstrap.css");
              
+        public static readonly string bootstrap_css_map = Url("bootstrap.css.map");
         public static readonly string bootstrap_min_css = Url("bootstrap.min.css");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class DataTables_1_9_4 {

@@ -97,6 +97,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\ReportingConfigs\Commands\UpdateConfigurationCommandHandlerTests.cs" />
+    <Compile Include="Domain\ReportingConfigs\Queries\ReportingConfigQueryHandlerTests.cs" />
+    <Compile Include="Domain\ReportingConfigs\ReportingConfigTests.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommandHandlerTests.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommandValidatorTests.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\DeleteDatabaseCommandHandlerTests.cs" />
