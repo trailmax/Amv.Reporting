@@ -21,7 +21,6 @@ namespace AmvReporting.Domain.Reports.Commands
         [Required, DataType(DataType.MultilineText)]
         public String Sql { get; set; }
 
-        [Required]
         [DataType(DataType.MultilineText)]
         public String JavaScript { get; set; }
 

@@ -40,13 +40,15 @@
 }
 
 <script type="text/javascript">
-    try {
-        @Html.Raw(Model.GlobalJs)
+    $(document).ready(function () {
+        try {
+            @Html.Raw(Model.Data)
 
-        @Html.Raw(Model.Data)
+            @Html.Raw(Model.GlobalJs)
 
-        @Html.Raw(Model.JavaScript)
-    } catch (e) {
-        $('#javascriptError').html('<span class="glyphicon glyphicon-remove-circle"></span> JavaScript Error: ' + e.message).addClass('alert-danger javascriptError');
-    }
+            @Html.Raw(Model.JavaScript)
+        } catch (e) {
+            $('#javascriptError').html('<span class="glyphicon glyphicon-remove-circle"></span> JavaScript Error: ' + e.message).addClass('alert-danger javascriptError');
+        }
+    });
 </script>

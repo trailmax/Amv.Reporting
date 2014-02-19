@@ -57,7 +57,6 @@
  - Fixed missing semicolons in the core library.
    (reported by Michal Zglinski) +Fix</releaseNotes>
     <copyright>Copyright 2013</copyright>
-    <language />
     <tags>chart graph javascript jquery</tags>
     <dependencies>
       <dependency id="jQuery" />

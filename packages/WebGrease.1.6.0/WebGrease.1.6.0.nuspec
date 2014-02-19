@@ -5,7 +5,7 @@
     <version>1.6.0</version>
     <authors>webgrease@microsoft.com</authors>
     <owners>webgrease@microsoft.com</owners>
-    <licenseUrl>http://www.microsoft.com/web/webpi/eula/msn_webgrease_eula.htm</licenseUrl>
+    <licenseUrl>http://www.microsoft.com/web/webpi/eula/aspnetcomponent_rtw_ENU.htm</licenseUrl>
     <projectUrl>http://webgrease.codeplex.com/</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Web Grease is a suite of tools for optimizing javascript, css files and images.</description>
