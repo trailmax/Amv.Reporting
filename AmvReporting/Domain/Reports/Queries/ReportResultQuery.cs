@@ -13,6 +13,7 @@ namespace AmvReporting.Domain.Reports.Queries
         public String Description { get; set; }
         public String Data { get; set; }
         public String JavaScript { get; set; }
+        public String HtmlOverride { get; set; }
         public String GlobalJs { get; set; }
         public String Css { get; set; }
         public String GlobalCss { get; set; }
@@ -58,6 +59,7 @@ namespace AmvReporting.Domain.Reports.Queries
                              Description = report.Description,
                              Css = report.Css,
                              JavaScript = report.JavaScript,
+                             HtmlOverride = report.HtmlOverride,
                              ReportType = report.ReportType,
                          };
 

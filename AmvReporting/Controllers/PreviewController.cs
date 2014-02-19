@@ -32,7 +32,7 @@ namespace AmvReporting.Controllers
         }
 
 
-        [HttpPost, ValidateInput(false)]
+        [HttpPost]
         public virtual ActionResult Report(PreviewReportModel model)
         {
             var query = new PreviewDataQuery(model.Sql, model.DatabaseId, model.ReportType);
@@ -47,6 +47,7 @@ namespace AmvReporting.Controllers
                                Css = model.Css,
                                GlobalCss = config.GlobalCss,
                                ReportType = model.ReportType,
+                               HtmlOverride = model.HtmlOverride,
                            };
 
             return PartialView(outModel);

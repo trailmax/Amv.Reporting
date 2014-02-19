@@ -21,37 +21,42 @@
     @Model.Description
 </h5>
 
-@if (Model.ReportType == ReportType.Table)
-{
-    <table id="report"></table>
-}
-@if (Model.ReportType == ReportType.LineChart)
-{
-    <div class="graph-container">
-        <div id="report" style="height: 600px;"></div>
-    </div>
-}
-@if (Model.ReportType == ReportType.LineChartWithSelection)
-{
-    <div class="row">
-        <div class="col-md-8 graph-container">
+@{
+    if (!String.IsNullOrEmpty(Model.HtmlOverride))
+    {
+        @Html.Raw(Model.HtmlOverride);
+    }
+    else if (Model.ReportType == ReportType.Table)
+    {
+        <table id="report"></table>
+    }
+    else if (Model.ReportType == ReportType.LineChart)
+    {
+        <div class="graph-container">
             <div id="report" style="height: 600px;"></div>
         </div>
-        <div class="col-md-4" id="choices"></div>
-    </div>
+    }
+    else if (Model.ReportType == ReportType.LineChartWithSelection)
+    {
+        <div class="row">
+            <div class="col-md-8 graph-container">
+                <div id="report" style="height: 600px;"></div>
+            </div>
+            <div class="col-md-4" id="choices"></div>
+        </div>
+    }
+    else if (Model.ReportType == ReportType.GoogleGraphs)
+    {
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script>
+            // load google chart api
+            google.load('visualization', '1.0', { 'packages': ['corechart'] });
+        </script>
+        <div class="graph-container">
+            <div id="report" style="height: 600px;"></div>
+        </div>
+    }
 }
-@if (Model.ReportType == ReportType.GoogleGraphs)
-{
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script>
-        // load google chart api
-        google.load('visualization', '1.0', { 'packages': ['corechart'] });
-    </script>
-    <div class="graph-container">
-        <div id="report" style="height: 600px;"></div>
-    </div>
-}
-
 
 
 
@@ -60,7 +65,7 @@
     <script type="text/javascript">
         @Html.Raw(Model.GlobalJs)
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             @Html.Raw(Model.Data)
 
             @Html.Raw(Model.JavaScript)

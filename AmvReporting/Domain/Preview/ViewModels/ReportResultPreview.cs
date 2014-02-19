@@ -10,6 +10,7 @@ namespace AmvReporting.Domain.Preview.ViewModels
         public String GlobalJs { get; set; }
         public String Css { get; set; }
         public String GlobalCss { get; set; }
+        public String HtmlOverride { get; set; }
         public ReportType ReportType { get; set; }
     }
 }

@@ -62,6 +62,12 @@
             </p>
         </div>
         <div class="form-group">
+            @Html.LabelFor(m => m.HtmlOverride, new { @class="control-label" })
+            <div>If this is populated, this overrides any pre-populated HTML</div>
+            @Html.TextAreaFor(m => m.HtmlOverride, new { @class = "form-control", rows = 5})
+            @Html.ValidationMessageFor(m => m.HtmlOverride)
+        </div>
+        <div class="form-group">
             @Html.LabelFor(m => m.JavaScript, new { @class = "control-label" })
             <div>Report element is #report. So you'll need JS to point to this element</div>
             @Html.TextAreaFor(m => m.JavaScript, new { @class = "form-control", rows = 10 })
