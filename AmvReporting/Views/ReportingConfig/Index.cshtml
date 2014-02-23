@@ -6,7 +6,7 @@
 
 <h2>Application Configuration</h2>
 
-@using (Html.BeginForm(MVC.ReportingConfig.Index(), FormMethod.Post, new {role = "form"}))
+@using (Html.BeginForm(MVC.ReportingConfig.Index(), FormMethod.Post, new { role = "form", @class = "submit-by-ajax" }))
 {
     @Html.AntiForgeryToken()
     

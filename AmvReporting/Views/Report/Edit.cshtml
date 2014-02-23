@@ -5,7 +5,7 @@
 }
 
 <h2>Edit Report</h2>
-@using (Html.BeginForm(MVC.Report.Edit(), FormMethod.Post, new { role = "form" }))
+@using (Html.BeginForm(MVC.Report.Edit(), FormMethod.Post, new { role = "form", @class = "submit-by-ajax" }))
 {
     <div class="row">
         @Html.HiddenFor(m => m.Id)

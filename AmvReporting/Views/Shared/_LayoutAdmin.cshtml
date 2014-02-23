@@ -153,6 +153,28 @@
 
             // sortable list for reordering of groups
             $('.sortable').sortable();
+
+            $('.submit-by-ajax').on('submit', function (ev) {
+                ev.preventDefault();
+
+                var $form = $(this);
+
+                $.ajax({
+                    type: $form.attr('method'),
+                    url: $form.attr('action'),
+                    data: $form.serialize(),
+                    error: function () {
+                        $.showWarning('Could not submit form');
+                    },
+                    success: function (data) {
+                        if (data.Success) {
+                            $.showSuccess(data.SuccessMessage);
+                        } else {
+                            $.showWarning('Unable to submit form: ' + data.FailureMessage);
+                        }
+                    }
+                });
+            });
         });
     </script>
 }

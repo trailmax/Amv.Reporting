@@ -340,6 +340,7 @@
     <Content Include="Examples\Stacking.html" />
     <Content Include="Examples\CostOfSicknessByServiceByReason.html" />
     <Content Include="Examples\CostOfSicknessByService.html" />
+    <Content Include="Examples\PivotTable.html" />
     <Content Include="Examples\TableTree.html" />
     <Content Include="Examples\Timesheet.htm" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

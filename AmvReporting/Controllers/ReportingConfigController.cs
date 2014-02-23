@@ -29,9 +29,12 @@ namespace AmvReporting.Controllers
         [HttpPost]
         public virtual ActionResult Index(UpdateConfigurationCommand command)
         {
-            return ProcessForm(command, 
-                RedirectToAction(MVC.ReportingConfig.Index()),
-                RedirectToAction(MVC.Report.Index()));
+            if (HttpContext.Request.IsAjaxRequest())
+            {
+                return ProcessJsonForm(command, "Configuration Updated");
+            }
+
+            return ProcessForm(command, RedirectToAction(MVC.ReportingConfig.Index()));
         }
 	}
 }
