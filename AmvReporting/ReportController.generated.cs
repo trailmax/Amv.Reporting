@@ -155,8 +155,10 @@ namespace AmvReporting.Controllers
     {
         public T4MVC_ReportController() : base(Dummy.Instance) { }
 
+        [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Index()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
@@ -164,8 +166,10 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Create()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
@@ -173,8 +177,10 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.Reports.Commands.CreateReportCommand command);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Create(AmvReporting.Domain.Reports.Commands.CreateReportCommand command)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
@@ -183,8 +189,10 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void CloneOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Clone(string id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Clone);
@@ -193,8 +201,10 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Edit(string id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
@@ -203,8 +213,10 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.Reports.Commands.EditReportCommand command);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Edit(AmvReporting.Domain.Reports.Commands.EditReportCommand command)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
@@ -213,8 +225,10 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.Reports.Commands.DeleteReportCommand command);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Delete(AmvReporting.Domain.Reports.Commands.DeleteReportCommand command)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);

@@ -4,31 +4,51 @@
 }
 
 <style>
+    @Model.GlobalCss
     @Model.Css
 </style>
 
 <div id="javascriptError"></div>
 
-@if (Model.ReportType == ReportType.Table)
-{
-    <table id="report"></table>
-}
-@if (Model.ReportType == ReportType.LineChart)
-{
-    <div id="report" style="height: 600px; width: 600px;"></div>
-}
-@if (Model.ReportType == ReportType.LineChartWithSelection)
-{
-    <div id="report" style="height: 600px; width: 600px"></div>
-    <div id="choices"></div>
+@{
+    if (!String.IsNullOrEmpty(Model.HtmlOverride))
+    {
+        @Html.Raw(Model.HtmlOverride)
+    }
+    else if (Model.ReportType == ReportType.Table)
+    {
+        <table id="report"></table>
+    }
+    else if (Model.ReportType == ReportType.LineChart)
+    {
+        <div id="report" style="height: 600px; width: 600px;"></div>
+    }
+    else if (Model.ReportType == ReportType.LineChartWithSelection)
+    {
+        <div id="report" style="height: 600px; width: 600px"></div>
+        <div id="choices"></div>
+    }
+    else if (Model.ReportType == ReportType.GoogleGraphs)
+    {
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script>
+            // load google chart api
+            google.load('visualization', '1.0', { 'packages': ['corechart'] });
+        </script>
+        <div id="report" style="height: 600px; width: 600px"></div>
+    }
 }
 
 <script type="text/javascript">
-    try {
-        var columns = @(String.IsNullOrEmpty(Model.Columns) ?  Html.Raw("null") : Html.Raw(Model.Columns));
-        var data = @(String.IsNullOrEmpty(Model.Columns) ?  Html.Raw("null") : Html.Raw(Model.Data));
-        @Html.Raw(Model.JavaScript)
-    } catch (e) {
-        $('#javascriptError').html('<span class="glyphicon glyphicon-remove-circle"></span> JavaScript Error: ' + e.message).addClass('alert-danger javascriptError');
-    }
+    $(document).ready(function () {
+        try {
+            @Html.Raw(Model.Data)
+
+            @Html.Raw(Model.GlobalJs)
+
+            @Html.Raw(Model.JavaScript)
+        } catch (e) {
+            $('#javascriptError').html('<span class="glyphicon glyphicon-remove-circle"></span> JavaScript Error: ' + e.message).addClass('alert-danger javascriptError');
+        }
+    });
 </script>

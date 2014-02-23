@@ -5,5 +5,6 @@
         Table,
         LineChart,
         LineChartWithSelection,
+        GoogleGraphs,
     }
 }

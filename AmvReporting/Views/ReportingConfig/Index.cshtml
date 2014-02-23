@@ -1,0 +1,26 @@
+﻿@model ReportingConfig
+           
+@{
+    ViewBag.Title = "Application Configuration";
+}
+
+<h2>Application Configuration</h2>
+
+@using (Html.BeginForm(MVC.ReportingConfig.Index(), FormMethod.Post, new { role = "form", @class = "submit-by-ajax" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.GlobalCss, new { @class = "control-label" })
+        @Html.TextAreaFor(m => m.GlobalCss, new { @class = "form-control", rows = 10 })
+        @Html.ValidationMessageFor(m => m.GlobalCss)
+    </div>
+    <div class="form-group">
+        <div>This JS will be placeed within Document ready and after variables with data.</div>
+        @Html.LabelFor(m => m.GlobalJavascript, new { @class = "control-label" })
+        @Html.TextAreaFor(m => m.GlobalJavascript, new { @class = "form-control", rows = 10 })
+        @Html.ValidationMessageFor(m => m.GlobalJavascript)
+    </div>    
+    
+    <input type="submit" value="Save" class="btn btn-default" />
+}

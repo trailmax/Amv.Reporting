@@ -152,8 +152,10 @@ namespace AmvReporting.Controllers
     {
         public T4MVC_ReportGroupController() : base(Dummy.Instance) { }
 
+        [NonAction]
         partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Create()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
@@ -161,8 +163,10 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.ReportGroups.Commands.CreateReportGroupCommand command);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Create(AmvReporting.Domain.ReportGroups.Commands.CreateReportGroupCommand command)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
@@ -171,8 +175,10 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Edit(string id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
@@ -181,8 +187,10 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.ReportGroups.Commands.EditReportGroupCommand command);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Edit(AmvReporting.Domain.ReportGroups.Commands.EditReportGroupCommand command)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
@@ -191,8 +199,10 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ReorderOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Reorder(string id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Reorder);
@@ -201,8 +211,10 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void ReorderOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.ReportGroups.Commands.ReorderGroupCommand command);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Reorder(AmvReporting.Domain.ReportGroups.Commands.ReorderGroupCommand command)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Reorder);
@@ -211,8 +223,10 @@ namespace AmvReporting.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
 
+        [NonAction]
         public override System.Web.Mvc.ActionResult Delete(string id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);

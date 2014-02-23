@@ -1,0 +1,679 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost Time Rate High Level Current Year</title>
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/site.css" rel="stylesheet" />
+    <link href="/Content/Datatables-1.9.4/media/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="/Content/Datatables-1.9.4/media/css/jquery.dataTables_themeroller.css" rel="stylesheet" />
+
+    <script src="/Scripts/jquery-1.10.2.js"></script>
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+    <div class="container client-content">
+        <table id="report"></table>
+    </div>
+
+    <script type="text/javascript" language="javascript">
+
+        jQuery.showAlert = function (message, alertLevel) {
+            $('#alert-placeholder').html('<div class="in alert ' + alertLevel + '" id="alert-message"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>');
+            window.setTimeout(function () {
+                $("#alert-message").fadeTo(500, 0).slideUp(500, function () {
+                    $(this).remove();
+                });
+            }, 5000);
+        };
+
+        jQuery.showWarning = function (message) {
+            $.showAlert(message, 'alert-danger');
+        };
+        jQuery.showSuccess = function (message) {
+            $.showAlert(message, 'alert-success');
+        };
+
+
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var data = [
+                {
+                    "NumYearMonth": "201302",
+                    "Locality": "Cornerstone Non-Regional Staff",
+                    "LostTimeRate": "30.46"
+                },
+                {
+                    "NumYearMonth": "201302",
+                    "Locality": "Corporate Services",
+                    "LostTimeRate": "1.87"
+                },
+                {
+                    "NumYearMonth": "201302",
+                    "Locality": "East of Scotland",
+                    "LostTimeRate": "5.07"
+                },
+                {
+                    "NumYearMonth": "201302",
+                    "Locality": "Finance & Corporate Services",
+                    "LostTimeRate": "3.61"
+                },
+                {
+                    "NumYearMonth": "201302",
+                    "Locality": "Human Resources and L & D",
+                    "LostTimeRate": "18.69"
+                },
+                {
+                    "NumYearMonth": "201302",
+                    "Locality": "Marketing & Enterprise",
+                    "LostTimeRate": "2.14"
+                },
+                {
+                    "NumYearMonth": "201302",
+                    "Locality": "North of Scotland",
+                    "LostTimeRate": "4.62"
+                },
+                {
+                    "NumYearMonth": "201302",
+                    "Locality": "Senior Management Team",
+                    "LostTimeRate": "3.17"
+                },
+                {
+                    "NumYearMonth": "201302",
+                    "Locality": "West of Scotland",
+                    "LostTimeRate": "4.43"
+                },
+                {
+                    "NumYearMonth": "201303",
+                    "Locality": "Cornerstone Non-Regional Staff",
+                    "LostTimeRate": "4.29"
+                },
+                {
+                    "NumYearMonth": "201303",
+                    "Locality": "Corporate Services",
+                    "LostTimeRate": "0.54"
+                },
+                {
+                    "NumYearMonth": "201303",
+                    "Locality": "East of Scotland",
+                    "LostTimeRate": "5.07"
+                },
+                {
+                    "NumYearMonth": "201303",
+                    "Locality": "Finance & Corporate Services",
+                    "LostTimeRate": "1.34"
+                },
+                {
+                    "NumYearMonth": "201303",
+                    "Locality": "Human Resources and L & D",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201303",
+                    "Locality": "Marketing & Enterprise",
+                    "LostTimeRate": "4.66"
+                },
+                {
+                    "NumYearMonth": "201303",
+                    "Locality": "North of Scotland",
+                    "LostTimeRate": "4.97"
+                },
+                {
+                    "NumYearMonth": "201303",
+                    "Locality": "Senior Management Team",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201303",
+                    "Locality": "West of Scotland",
+                    "LostTimeRate": "4.27"
+                },
+                {
+                    "NumYearMonth": "201304",
+                    "Locality": "Cornerstone Non-Regional Staff",
+                    "LostTimeRate": "6.27"
+                },
+                {
+                    "NumYearMonth": "201304",
+                    "Locality": "Corporate Services",
+                    "LostTimeRate": "0.19"
+                },
+                {
+                    "NumYearMonth": "201304",
+                    "Locality": "East of Scotland",
+                    "LostTimeRate": "3.80"
+                },
+                {
+                    "NumYearMonth": "201304",
+                    "Locality": "Finance & Corporate Services",
+                    "LostTimeRate": "2.32"
+                },
+                {
+                    "NumYearMonth": "201304",
+                    "Locality": "Human Resources and L & D",
+                    "LostTimeRate": "2.31"
+                },
+                {
+                    "NumYearMonth": "201304",
+                    "Locality": "Marketing & Enterprise",
+                    "LostTimeRate": "2.20"
+                },
+                {
+                    "NumYearMonth": "201304",
+                    "Locality": "North of Scotland",
+                    "LostTimeRate": "5.93"
+                },
+                {
+                    "NumYearMonth": "201304",
+                    "Locality": "Senior Management Team",
+                    "LostTimeRate": "0.94"
+                },
+                {
+                    "NumYearMonth": "201304",
+                    "Locality": "West of Scotland",
+                    "LostTimeRate": "3.85"
+                },
+                {
+                    "NumYearMonth": "201305",
+                    "Locality": "Cornerstone Non-Regional Staff",
+                    "LostTimeRate": "4.94"
+                },
+                {
+                    "NumYearMonth": "201305",
+                    "Locality": "Corporate Services",
+                    "LostTimeRate": "2.17"
+                },
+                {
+                    "NumYearMonth": "201305",
+                    "Locality": "East of Scotland",
+                    "LostTimeRate": "2.81"
+                },
+                {
+                    "NumYearMonth": "201305",
+                    "Locality": "Finance & Corporate Services",
+                    "LostTimeRate": "0.75"
+                },
+                {
+                    "NumYearMonth": "201305",
+                    "Locality": "Human Resources and L & D",
+                    "LostTimeRate": "25.62"
+                },
+                {
+                    "NumYearMonth": "201305",
+                    "Locality": "Marketing & Enterprise",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201305",
+                    "Locality": "North of Scotland",
+                    "LostTimeRate": "4.04"
+                },
+                {
+                    "NumYearMonth": "201305",
+                    "Locality": "Senior Management Team",
+                    "LostTimeRate": "0.51"
+                },
+                {
+                    "NumYearMonth": "201305",
+                    "Locality": "West of Scotland",
+                    "LostTimeRate": "4.62"
+                },
+                {
+                    "NumYearMonth": "201306",
+                    "Locality": "Cornerstone Non-Regional Staff",
+                    "LostTimeRate": "15.67"
+                },
+                {
+                    "NumYearMonth": "201306",
+                    "Locality": "Corporate Services",
+                    "LostTimeRate": "0.99"
+                },
+                {
+                    "NumYearMonth": "201306",
+                    "Locality": "East of Scotland",
+                    "LostTimeRate": "3.57"
+                },
+                {
+                    "NumYearMonth": "201306",
+                    "Locality": "Finance & Corporate Services",
+                    "LostTimeRate": "1.77"
+                },
+                {
+                    "NumYearMonth": "201306",
+                    "Locality": "Human Resources and L & D",
+                    "LostTimeRate": "11.47"
+                },
+                {
+                    "NumYearMonth": "201306",
+                    "Locality": "Marketing & Enterprise",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201306",
+                    "Locality": "North of Scotland",
+                    "LostTimeRate": "3.69"
+                },
+                {
+                    "NumYearMonth": "201306",
+                    "Locality": "Senior Management Team",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201306",
+                    "Locality": "West of Scotland",
+                    "LostTimeRate": "4.25"
+                },
+                {
+                    "NumYearMonth": "201307",
+                    "Locality": "Cornerstone Non-Regional Staff",
+                    "LostTimeRate": "6.27"
+                },
+                {
+                    "NumYearMonth": "201307",
+                    "Locality": "Corporate Services",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201307",
+                    "Locality": "East of Scotland",
+                    "LostTimeRate": "4.82"
+                },
+                {
+                    "NumYearMonth": "201307",
+                    "Locality": "Finance & Corporate Services",
+                    "LostTimeRate": "1.90"
+                },
+                {
+                    "NumYearMonth": "201307",
+                    "Locality": "Human Resources and L & D",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201307",
+                    "Locality": "Marketing & Enterprise",
+                    "LostTimeRate": "3.91"
+                },
+                {
+                    "NumYearMonth": "201307",
+                    "Locality": "North of Scotland",
+                    "LostTimeRate": "4.17"
+                },
+                {
+                    "NumYearMonth": "201307",
+                    "Locality": "Senior Management Team",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201307",
+                    "Locality": "West of Scotland",
+                    "LostTimeRate": "5.04"
+                },
+                {
+                    "NumYearMonth": "201308",
+                    "Locality": "Cornerstone Non-Regional Staff",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201308",
+                    "Locality": "Corporate Services",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201308",
+                    "Locality": "East of Scotland",
+                    "LostTimeRate": "6.71"
+                },
+                {
+                    "NumYearMonth": "201308",
+                    "Locality": "Finance & Corporate Services",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201308",
+                    "Locality": "Human Resources and L & D",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201308",
+                    "Locality": "Marketing & Enterprise",
+                    "LostTimeRate": "6.99"
+                },
+                {
+                    "NumYearMonth": "201308",
+                    "Locality": "North of Scotland",
+                    "LostTimeRate": "3.20"
+                },
+                {
+                    "NumYearMonth": "201308",
+                    "Locality": "Senior Management Team",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201308",
+                    "Locality": "West of Scotland",
+                    "LostTimeRate": "5.36"
+                },
+                {
+                    "NumYearMonth": "201309",
+                    "Locality": "Cornerstone Non-Regional Staff",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201309",
+                    "Locality": "Corporate Relations & Fundraising",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201309",
+                    "Locality": "Corporate Services",
+                    "LostTimeRate": "1.00"
+                },
+                {
+                    "NumYearMonth": "201309",
+                    "Locality": "East of Scotland",
+                    "LostTimeRate": "7.98"
+                },
+                {
+                    "NumYearMonth": "201309",
+                    "Locality": "Finance & Corporate Services",
+                    "LostTimeRate": "0.33"
+                },
+                {
+                    "NumYearMonth": "201309",
+                    "Locality": "Human Resources and L & D",
+                    "LostTimeRate": "6.55"
+                },
+                {
+                    "NumYearMonth": "201309",
+                    "Locality": "Marketing & Enterprise",
+                    "LostTimeRate": "5.58"
+                },
+                {
+                    "NumYearMonth": "201309",
+                    "Locality": "North of Scotland",
+                    "LostTimeRate": "3.46"
+                },
+                {
+                    "NumYearMonth": "201309",
+                    "Locality": "Senior Management Team",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201309",
+                    "Locality": "West of Scotland",
+                    "LostTimeRate": "3.63"
+                },
+                {
+                    "NumYearMonth": "201310",
+                    "Locality": "Cornerstone Non-Regional Staff",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201310",
+                    "Locality": "Corporate Relations & Fundraising",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201310",
+                    "Locality": "East of Scotland",
+                    "LostTimeRate": "6.93"
+                },
+                {
+                    "NumYearMonth": "201310",
+                    "Locality": "Finance & Corporate Services",
+                    "LostTimeRate": "3.02"
+                },
+                {
+                    "NumYearMonth": "201310",
+                    "Locality": "Human Resources and L & D",
+                    "LostTimeRate": "1.82"
+                },
+                {
+                    "NumYearMonth": "201310",
+                    "Locality": "Marketing & Enterprise",
+                    "LostTimeRate": "0.55"
+                },
+                {
+                    "NumYearMonth": "201310",
+                    "Locality": "North of Scotland",
+                    "LostTimeRate": "4.60"
+                },
+                {
+                    "NumYearMonth": "201310",
+                    "Locality": "Senior Management Team",
+                    "LostTimeRate": "0.46"
+                },
+                {
+                    "NumYearMonth": "201310",
+                    "Locality": "West of Scotland",
+                    "LostTimeRate": "4.51"
+                },
+                {
+                    "NumYearMonth": "201311",
+                    "Locality": "Cornerstone Non-Regional Staff",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201311",
+                    "Locality": "Corporate Relations & Fundraising",
+                    "LostTimeRate": "1.81"
+                },
+                {
+                    "NumYearMonth": "201311",
+                    "Locality": "East of Scotland",
+                    "LostTimeRate": "5.60"
+                },
+                {
+                    "NumYearMonth": "201311",
+                    "Locality": "Finance & Corporate Services",
+                    "LostTimeRate": "1.85"
+                },
+                {
+                    "NumYearMonth": "201311",
+                    "Locality": "Human Resources and L & D",
+                    "LostTimeRate": "0.37"
+                },
+                {
+                    "NumYearMonth": "201311",
+                    "Locality": "Marketing & Enterprise",
+                    "LostTimeRate": "0.37"
+                },
+                {
+                    "NumYearMonth": "201311",
+                    "Locality": "North of Scotland",
+                    "LostTimeRate": "5.04"
+                },
+                {
+                    "NumYearMonth": "201311",
+                    "Locality": "Senior Management Team",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201311",
+                    "Locality": "West of Scotland",
+                    "LostTimeRate": "4.72"
+                },
+                {
+                    "NumYearMonth": "201312",
+                    "Locality": "Cornerstone Non-Regional Staff",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201312",
+                    "Locality": "Corporate Relations & Fundraising",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201312",
+                    "Locality": "East of Scotland",
+                    "LostTimeRate": "4.57"
+                },
+                {
+                    "NumYearMonth": "201312",
+                    "Locality": "Finance & Corporate Services",
+                    "LostTimeRate": "0.55"
+                },
+                {
+                    "NumYearMonth": "201312",
+                    "Locality": "Human Resources and L & D",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201312",
+                    "Locality": "Marketing & Enterprise",
+                    "LostTimeRate": "3.87"
+                },
+                {
+                    "NumYearMonth": "201312",
+                    "Locality": "North of Scotland",
+                    "LostTimeRate": "4.64"
+                },
+                {
+                    "NumYearMonth": "201312",
+                    "Locality": "Senior Management Team",
+                    "LostTimeRate": "0.86"
+                },
+                {
+                    "NumYearMonth": "201312",
+                    "Locality": "West of Scotland",
+                    "LostTimeRate": "4.79"
+                },
+                {
+                    "NumYearMonth": "201401",
+                    "Locality": "Cornerstone Non-Regional Staff",
+                    "LostTimeRate": "2.42"
+                },
+                {
+                    "NumYearMonth": "201401",
+                    "Locality": "Corporate Relations & Fundraising",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201401",
+                    "Locality": "East of Scotland",
+                    "LostTimeRate": "4.82"
+                },
+                {
+                    "NumYearMonth": "201401",
+                    "Locality": "Finance & Corporate Services",
+                    "LostTimeRate": "1.39"
+                },
+                {
+                    "NumYearMonth": "201401",
+                    "Locality": "Human Resources and L & D",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201401",
+                    "Locality": "Marketing & Enterprise",
+                    "LostTimeRate": "5.74"
+                },
+                {
+                    "NumYearMonth": "201401",
+                    "Locality": "North of Scotland",
+                    "LostTimeRate": "4.47"
+                },
+                {
+                    "NumYearMonth": "201401",
+                    "Locality": "Senior Management Team",
+                    "LostTimeRate": "0.00"
+                },
+                {
+                    "NumYearMonth": "201401",
+                    "Locality": "West of Scotland",
+                    "LostTimeRate": "3.57"
+                }
+            ];
+
+
+            $.fn.PivotedTable  = function(oOptions) {
+                var pivotedData = {};
+                var columnsDefinition = {};
+
+                oOptions.data.map(function (row) {
+                    var colTitle = row[oOptions.colTitleColumnName];
+                    var rowTitle = row[oOptions.rowTitleColumnName];
+                    var cellValue = row[oOptions.valueColumnName];
+
+                    columnsDefinition[colTitle] = { 'mData': colTitle, 'sTitle': colTitle };
+
+                    if (!pivotedData[rowTitle]) {
+                        pivotedData[rowTitle] = {};
+                    }
+
+                    pivotedData[rowTitle][oOptions.rowTitleColumnName] = rowTitle;
+                    pivotedData[rowTitle][colTitle] = cellValue;
+                });
+
+
+                // transorm object of objects into array of objects
+                var dataset = [];
+                $.each(pivotedData, function (key, values) {
+                    dataset.push(values);
+                });
+
+
+                // fill in the blanks
+                for (var row in dataset) {
+                    for (var column in columnsDefinition) {
+                        if (!dataset[row][column]) {
+                            dataset[row][column] = [];
+                        }
+                    }
+                }
+
+
+                // transform columns definition into array of objects
+                var columns = [];
+                columns.push({ 'mData': oOptions.rowTitleColumnName, 'sTitle': oOptions.rowTitleColumnName });
+
+                $.each(columnsDefinition, function (key, values) {
+                    columns.push(values);
+                });
+
+
+                this.dataTable({
+                    aaData: dataset,
+                    aoColumns: columns,
+                });
+
+            };
+
+
+
+
+            $.fn.HighlightValuesOver = function (targetValue) {
+                $(this).each(function() {
+                    var $this = $(this);
+                    var value = $this.html();
+                    if (value > targetValue) {
+                        $this.css("background-color", "#F2C2C2");
+                    }
+                });
+            };
+
+
+
+            var options = {
+                data: data,
+                colTitleColumnName: 'NumYearMonth',
+                rowTitleColumnName: 'Locality',
+                valueColumnName: 'LostTimeRate',
+            };
+
+            $('#report').PivotedTable(options);
+
+            $('#report td').HighlightValuesOver(20);
+        });
+    </script>
+
+
+
+</body>
+</html>

@@ -33,6 +33,7 @@ namespace AmvReporting.Domain.Reports.Commands
                              DatabaseId = command.DatabaseId,
                              ReportGroupId = command.ReportGroupId,
                              Enabled = command.Enabled,
+                             HtmlOverride = command.HtmlOverride,
                          };
 
             return result;

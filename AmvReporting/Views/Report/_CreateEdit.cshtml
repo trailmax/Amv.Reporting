@@ -42,20 +42,19 @@
             @Html.CheckBoxFor(m => m.Enabled)
             @Html.ValidationMessageFor(m => m.Enabled)
         </div>
-    </div>
-    <div class="tab-pane" id="code">
         <div class="form-group">
             @Html.LabelFor(m => m.ReportType, new { @class = "control-label" })
             @Html.DropDownListFor(m => m.ReportType, new ReportType().ToSelectListItems(), "Choose...", new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.ReportType)
         </div>
+    </div>
+    <div class="tab-pane" id="code">
         <div class="form-group">
             @Html.LabelFor(m => m.Sql, new { @class = "control-label" })
             @Html.TextAreaFor(m => m.Sql, new { @class = "form-control", rows = 10 })
             @Html.ValidationMessageFor(m => m.Sql)
             <p>
-                <a id="parseRowHtml"><span class="glyphicon glyphicon-th"></span> Parse Html for SQL</a>
-                <br />
+                <a id="parseRowHtml"><span class="glyphicon glyphicon-th"></span> Parse Html for SQL</a>&nbsp;&nbsp;&nbsp;
                 <a id="cleanseAndFormatSql"><span class="glyphicon glyphicon-check"></span> Cleanse and Format SQL</a>
                 <br />
                 <a id="previewData">Preview Data <span class="glyphicon glyphicon-forward"></span></a>
@@ -68,12 +67,41 @@
             @Html.ValidationMessageFor(m => m.JavaScript)
             <a id="previewFullReport">Preview Report <span class="glyphicon glyphicon-forward"></span></a>
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Css, new { @class = "control-label" })
-            @Html.TextAreaFor(m => m.Css, new { @class = "form-control", rows = 7 })
-            @Html.ValidationMessageFor(m => m.Css)
-        </div>
 
+        <div class="panel-group" id="misc-accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="misc-accordion" href="#collapseHtml">
+                            Html Override
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseHtml" class="panel-collapse collapse">
+                    <div class="form-group panel-body">
+                        <div>If this is populated, this overrides any pre-populated HTML</div>
+                        @Html.TextAreaFor(m => m.HtmlOverride, new { @class = "form-control", rows = 5 })
+                        @Html.ValidationMessageFor(m => m.HtmlOverride)
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="misc-accordion" href="#collapseCss">
+                            Css
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseCss" class="panel-collapse collapse">
+                    <div class="form-group panel-body">
+                        @Html.TextAreaFor(m => m.Css, new { @class = "form-control", rows = 7 })
+                        @Html.ValidationMessageFor(m => m.Css)
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <input type="submit" value="Save" class="btn btn-default" />
     @Html.ActionLink("Back To List", MVC.Report.Index(), new { @class = "btn btn-default" })

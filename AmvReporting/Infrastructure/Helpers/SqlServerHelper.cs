@@ -21,7 +21,6 @@ namespace AmvReporting.Infrastructure.Helpers
                 var reader = command.ExecuteReader();
 
                 return reader;
-
             }
             catch (Exception exception)
             {

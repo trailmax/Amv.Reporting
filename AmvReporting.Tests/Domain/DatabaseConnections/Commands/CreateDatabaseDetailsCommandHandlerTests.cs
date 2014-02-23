@@ -3,6 +3,7 @@ using AmvReporting.Domain.DatabaseConnections;
 using AmvReporting.Domain.DatabaseConnections.Commands;
 using AmvReporting.Tests.ZeroFriction;
 using Raven.Client;
+using Xunit;
 using Xunit.Extensions;
 
 namespace AmvReporting.Tests.Domain.DatabaseConnections.Commands

@@ -1,0 +1,2775 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timesheet</title>
+    <link href="/Content/bootstrap.css" rel="stylesheet">
+    <link href="/Content/site.css" rel="stylesheet">
+    <script src="/Scripts/modernizr-2.7.1.js"></script>
+</head>
+<body style="">
+
+    <div class="container client-content">
+        <a class="btn btn-primary" href="/">Home</a>
+        <h2>Timesheet</h2>
+        <h5></h5>
+        <table id="report"></table>
+    </div>
+
+    <script src="/Scripts/jquery-1.10.2.js"></script>
+    <script src="/Scripts/jquery-ui-1.10.3.custom.js"></script>
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" language="javascript">
+        // load google chart api
+        google.load('visualization', '1.0', { 'packages': ['corechart'] });
+
+        jQuery.showAlert = function (message, alertLevel) {
+            $('#alert-placeholder').html('<div class="in alert ' + alertLevel + '" id="alert-message"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>');
+            window.setTimeout(function () {
+                $("#alert-message").fadeTo(500, 0).slideUp(500, function () {
+                    $(this).remove();
+                });
+            }, 5000);
+        };
+
+        jQuery.showWarning = function (message) {
+            $.showAlert(message, 'alert-danger');
+        };
+        jQuery.showSuccess = function (message) {
+            $.showAlert(message, 'alert-success');
+        };
+
+        $('#treetable').persistedTreeTable({
+            persist: true,
+            expandable: true,
+            clickableNodeNames: true
+        });
+
+        $('.expand-all').on('click', function () {
+            $('#treetable').treetable('expandAll');
+            return false;
+        });
+
+        $('.collapse-all').on('click', function () {
+            $('#treetable').treetable('collapseAll');
+            return false;
+        });
+
+    </script>
+    <script src="/Scripts/saved_resource" type="text/javascript"></script><link href="/Scripts/ui+en_GB.css" type="text/css" rel="stylesheet">
+    <script src="/Scripts/format+en_GB,default+en_GB,ui+en_GB,corechart+en_GB.I.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var columns = [
+  {
+      "mData": "Username",
+      "sTitle": "Username"
+  },
+  {
+      "mData": "Date",
+      "sTitle": "Date"
+  },
+  {
+      "mData": "Hours",
+      "sTitle": "Hours"
+  }
+            ];
+            var data = [
+                {
+                    "Username": "Barry",
+                    "Date": "23 Aug",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "26 Aug",
+                    "Hours": "6.75"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "27 Aug",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "28 Aug",
+                    "Hours": "5.25"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "29 Aug",
+                    "Hours": "9"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "30 Aug",
+                    "Hours": "5.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "02 Sep",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "03 Sep",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "04 Sep",
+                    "Hours": "5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "05 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "06 Sep",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "09 Sep",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "10 Sep",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "11 Sep",
+                    "Hours": "6"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "12 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "16 Sep",
+                    "Hours": "6.55000001192093"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "17 Sep",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "18 Sep",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "19 Sep",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "20 Sep",
+                    "Hours": "6"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "24 Sep",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "25 Sep",
+                    "Hours": "6.75"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "26 Sep",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "27 Sep",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "30 Sep",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "01 Oct",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "02 Oct",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "03 Oct",
+                    "Hours": "6"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "04 Oct",
+                    "Hours": "6.75"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "07 Oct",
+                    "Hours": "6"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "08 Oct",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "09 Oct",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "10 Oct",
+                    "Hours": "6.25"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "11 Oct",
+                    "Hours": "6"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "14 Oct",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "15 Oct",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "16 Oct",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "17 Oct",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "18 Oct",
+                    "Hours": "6.75"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "21 Oct",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "22 Oct",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "23 Oct",
+                    "Hours": "5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "24 Oct",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "25 Oct",
+                    "Hours": "3"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "28 Oct",
+                    "Hours": "2"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "29 Oct",
+                    "Hours": "5.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "30 Oct",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "31 Oct",
+                    "Hours": "4.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "01 Nov",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "04 Nov",
+                    "Hours": "4.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "05 Nov",
+                    "Hours": "5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "06 Nov",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "07 Nov",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "08 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "11 Nov",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "12 Nov",
+                    "Hours": "8.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "13 Nov",
+                    "Hours": "6"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "14 Nov",
+                    "Hours": "6"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "25 Nov",
+                    "Hours": "6.20000004768372"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "26 Nov",
+                    "Hours": "5.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "27 Nov",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "02 Dec",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "03 Dec",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "04 Dec",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "05 Dec",
+                    "Hours": "10"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "06 Dec",
+                    "Hours": "6"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "09 Dec",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "10 Dec",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "11 Dec",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "12 Dec",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "13 Dec",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "16 Dec",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "17 Dec",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "18 Dec",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "19 Dec",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "23 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "24 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "25 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "26 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "27 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "28 Dec",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "29 Dec",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "30 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "31 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "01 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "02 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "03 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "06 Jan",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Barry",
+                    "Date": "07 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "22 Aug",
+                    "Hours": "8.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "23 Aug",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "26 Aug",
+                    "Hours": "8.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "27 Aug",
+                    "Hours": "8.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "28 Aug",
+                    "Hours": "8.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "29 Aug",
+                    "Hours": "9.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "30 Aug",
+                    "Hours": "9.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "31 Aug",
+                    "Hours": "0.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "02 Sep",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "03 Sep",
+                    "Hours": "14.4500000178814"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "04 Sep",
+                    "Hours": "13"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "05 Sep",
+                    "Hours": "13.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "06 Sep",
+                    "Hours": "8.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "07 Sep",
+                    "Hours": "3.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "09 Sep",
+                    "Hours": "12.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "10 Sep",
+                    "Hours": "10.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "11 Sep",
+                    "Hours": "11.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "12 Sep",
+                    "Hours": "12.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "13 Sep",
+                    "Hours": "12.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "14 Sep",
+                    "Hours": "3"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "15 Sep",
+                    "Hours": "1.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "16 Sep",
+                    "Hours": "8.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "17 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "18 Sep",
+                    "Hours": "10.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "19 Sep",
+                    "Hours": "12"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "20 Sep",
+                    "Hours": "13.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "21 Sep",
+                    "Hours": "4"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "24 Sep",
+                    "Hours": "7.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "25 Sep",
+                    "Hours": "14.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "26 Sep",
+                    "Hours": "12.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "27 Sep",
+                    "Hours": "11.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "29 Sep",
+                    "Hours": "12.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "30 Sep",
+                    "Hours": "14.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "01 Oct",
+                    "Hours": "11"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "02 Oct",
+                    "Hours": "11.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "03 Oct",
+                    "Hours": "11.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "04 Oct",
+                    "Hours": "18.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "05 Oct",
+                    "Hours": "1.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "06 Oct",
+                    "Hours": "0.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "07 Oct",
+                    "Hours": "12.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "08 Oct",
+                    "Hours": "11.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "09 Oct",
+                    "Hours": "11.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "10 Oct",
+                    "Hours": "11.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "11 Oct",
+                    "Hours": "11"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "14 Oct",
+                    "Hours": "13.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "15 Oct",
+                    "Hours": "9.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "16 Oct",
+                    "Hours": "11"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "28 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "29 Oct",
+                    "Hours": "9.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "30 Oct",
+                    "Hours": "9.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "31 Oct",
+                    "Hours": "6.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "01 Nov",
+                    "Hours": "8.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "03 Nov",
+                    "Hours": "2.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "04 Nov",
+                    "Hours": "8.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "05 Nov",
+                    "Hours": "12"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "06 Nov",
+                    "Hours": "13"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "07 Nov",
+                    "Hours": "12.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "08 Nov",
+                    "Hours": "4"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "09 Nov",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "10 Nov",
+                    "Hours": "1.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "11 Nov",
+                    "Hours": "12.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "12 Nov",
+                    "Hours": "10.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "13 Nov",
+                    "Hours": "9"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "14 Nov",
+                    "Hours": "8.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "15 Nov",
+                    "Hours": "7.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "17 Nov",
+                    "Hours": "0.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "18 Nov",
+                    "Hours": "6.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "19 Nov",
+                    "Hours": "10"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "20 Nov",
+                    "Hours": "11.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "21 Nov",
+                    "Hours": "13.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "22 Nov",
+                    "Hours": "9.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "25 Nov",
+                    "Hours": "7.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "26 Nov",
+                    "Hours": "9.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "27 Nov",
+                    "Hours": "10.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "28 Nov",
+                    "Hours": "9.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "29 Nov",
+                    "Hours": "12.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "30 Nov",
+                    "Hours": "3"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "02 Dec",
+                    "Hours": "12.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "03 Dec",
+                    "Hours": "11.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "04 Dec",
+                    "Hours": "10.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "05 Dec",
+                    "Hours": "12.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "06 Dec",
+                    "Hours": "10.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "08 Dec",
+                    "Hours": "4"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "09 Dec",
+                    "Hours": "9.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "10 Dec",
+                    "Hours": "10.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "11 Dec",
+                    "Hours": "9.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "12 Dec",
+                    "Hours": "9.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "13 Dec",
+                    "Hours": "9.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "16 Dec",
+                    "Hours": "13.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "17 Dec",
+                    "Hours": "14"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "18 Dec",
+                    "Hours": "9.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "19 Dec",
+                    "Hours": "10.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "20 Dec",
+                    "Hours": "8.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "23 Dec",
+                    "Hours": "2"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "24 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "25 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "26 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "27 Dec",
+                    "Hours": "7.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "30 Dec",
+                    "Hours": "8.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "31 Dec",
+                    "Hours": "7.83000001311302"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "01 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "02 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "03 Jan",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "06 Jan",
+                    "Hours": "8.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "07 Jan",
+                    "Hours": "8.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "08 Jan",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "09 Jan",
+                    "Hours": "11"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "10 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "12 Jan",
+                    "Hours": "3.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "13 Jan",
+                    "Hours": "11.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "14 Jan",
+                    "Hours": "10.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "15 Jan",
+                    "Hours": "11.75"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "16 Jan",
+                    "Hours": "10.5"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "17 Jan",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "20 Jan",
+                    "Hours": "15.25"
+                },
+                {
+                    "Username": "Graeme",
+                    "Date": "21 Jan",
+                    "Hours": "5.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "22 Aug",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "26 Aug",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "27 Aug",
+                    "Hours": "8.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "28 Aug",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "29 Aug",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "30 Aug",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "02 Sep",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "03 Sep",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "04 Sep",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "05 Sep",
+                    "Hours": "10"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "06 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "09 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "10 Sep",
+                    "Hours": "10"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "11 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "12 Sep",
+                    "Hours": "12"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "13 Sep",
+                    "Hours": "7.25"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "16 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "17 Sep",
+                    "Hours": "4"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "18 Sep",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "19 Sep",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "20 Sep",
+                    "Hours": "10"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "21 Sep",
+                    "Hours": "5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "24 Sep",
+                    "Hours": "10"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "25 Sep",
+                    "Hours": "9"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "26 Sep",
+                    "Hours": "10.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "27 Sep",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "29 Sep",
+                    "Hours": "7.70000000298023"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "30 Sep",
+                    "Hours": "7.25"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "01 Oct",
+                    "Hours": "10"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "02 Oct",
+                    "Hours": "9"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "03 Oct",
+                    "Hours": "8.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "04 Oct",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "07 Oct",
+                    "Hours": "7.00000000745058"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "08 Oct",
+                    "Hours": "6.70000000298023"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "09 Oct",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "10 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "14 Oct",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "15 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "16 Oct",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "17 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "18 Oct",
+                    "Hours": "11"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "21 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "22 Oct",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "23 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "24 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "25 Oct",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "28 Oct",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "29 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "30 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "31 Oct",
+                    "Hours": "8.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "01 Nov",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "04 Nov",
+                    "Hours": "8.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "05 Nov",
+                    "Hours": "13.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "06 Nov",
+                    "Hours": "10"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "07 Nov",
+                    "Hours": "11"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "08 Nov",
+                    "Hours": "11"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "11 Nov",
+                    "Hours": "9"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "12 Nov",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "13 Nov",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "14 Nov",
+                    "Hours": "8.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "15 Nov",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "18 Nov",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "19 Nov",
+                    "Hours": "12"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "20 Nov",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "21 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "22 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "25 Nov",
+                    "Hours": "12"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "26 Nov",
+                    "Hours": "12"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "27 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "28 Nov",
+                    "Hours": "15.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "29 Nov",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "02 Dec",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "03 Dec",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "04 Dec",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "05 Dec",
+                    "Hours": "10"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "06 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "09 Dec",
+                    "Hours": "11.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "10 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "11 Dec",
+                    "Hours": "10"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "12 Dec",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "13 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "16 Dec",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "17 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "18 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "19 Dec",
+                    "Hours": "1"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "20 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "23 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "24 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "25 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "26 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "27 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "30 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "31 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "01 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "02 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "03 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "06 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "07 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "08 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "09 Jan",
+                    "Hours": "10"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "10 Jan",
+                    "Hours": "11"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "13 Jan",
+                    "Hours": "10"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "14 Jan",
+                    "Hours": "8.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "15 Jan",
+                    "Hours": "9"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "16 Jan",
+                    "Hours": "9.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "17 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Max",
+                    "Date": "20 Jan",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "22 Aug",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "23 Aug",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "26 Aug",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "27 Aug",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "28 Aug",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "29 Aug",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "30 Aug",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "02 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "03 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "04 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "05 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "06 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "09 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "10 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "11 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "12 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "13 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "16 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "17 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "18 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "19 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "20 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "23 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "24 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "25 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "26 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "27 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "30 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "01 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "02 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "03 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "04 Oct",
+                    "Hours": "8.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "07 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "08 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "09 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "10 Oct",
+                    "Hours": "7.49999979138374"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "11 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "14 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "15 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "16 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "17 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "18 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "21 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "22 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "23 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "24 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "25 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "28 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "29 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "30 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "31 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "01 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "04 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "05 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "06 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "07 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "08 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "11 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "12 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "13 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "14 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "15 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "18 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "19 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "20 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "21 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "22 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "25 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "26 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "27 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "28 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "29 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "02 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "03 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "04 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "05 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "06 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "09 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "10 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "11 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "12 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "13 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "16 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "17 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "18 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "19 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "20 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "23 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "24 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "25 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "26 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "27 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "30 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "31 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "01 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "02 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "03 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "06 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "07 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "08 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "09 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "10 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "13 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "14 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "15 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "16 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "17 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "20 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Paul",
+                    "Date": "21 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "22 Aug",
+                    "Hours": "6"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "23 Aug",
+                    "Hours": "8.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "25 Aug",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "26 Aug",
+                    "Hours": "1"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "27 Aug",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "28 Aug",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "29 Aug",
+                    "Hours": "9.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "30 Aug",
+                    "Hours": "5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "31 Aug",
+                    "Hours": "4.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "02 Sep",
+                    "Hours": "7.25"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "03 Sep",
+                    "Hours": "9"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "04 Sep",
+                    "Hours": "11.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "05 Sep",
+                    "Hours": "5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "06 Sep",
+                    "Hours": "5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "09 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "10 Sep",
+                    "Hours": "6"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "11 Sep",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "12 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "13 Sep",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "16 Sep",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "17 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "18 Sep",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "24 Sep",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "25 Sep",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "26 Sep",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "27 Sep",
+                    "Hours": "12"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "30 Sep",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "01 Oct",
+                    "Hours": "9"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "02 Oct",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "03 Oct",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "04 Oct",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "06 Oct",
+                    "Hours": "2"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "07 Oct",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "08 Oct",
+                    "Hours": "6"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "09 Oct",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "10 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "11 Oct",
+                    "Hours": "6.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "14 Oct",
+                    "Hours": "6"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "15 Oct",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "16 Oct",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "17 Oct",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "18 Oct",
+                    "Hours": "6"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "21 Oct",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "22 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "23 Oct",
+                    "Hours": "5.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "24 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "25 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "28 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "29 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "30 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "31 Oct",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "01 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "04 Nov",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "05 Nov",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "06 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "07 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "08 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "11 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "12 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "13 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "14 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "15 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "18 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "19 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "20 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "23 Nov",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "24 Nov",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "25 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "26 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "27 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "28 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "29 Nov",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "02 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "03 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "04 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "05 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "06 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "09 Dec",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "10 Dec",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "11 Dec",
+                    "Hours": "9"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "12 Dec",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "13 Dec",
+                    "Hours": "8.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "15 Dec",
+                    "Hours": "2"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "16 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "17 Dec",
+                    "Hours": "11"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "18 Dec",
+                    "Hours": "9"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "19 Dec",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "20 Dec",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "22 Dec",
+                    "Hours": "9"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "23 Dec",
+                    "Hours": "9"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "24 Dec",
+                    "Hours": "10"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "25 Dec",
+                    "Hours": "6"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "26 Dec",
+                    "Hours": "9"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "27 Dec",
+                    "Hours": "9"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "28 Dec",
+                    "Hours": "11"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "29 Dec",
+                    "Hours": "10"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "30 Dec",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "31 Dec",
+                    "Hours": "6"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "01 Jan",
+                    "Hours": "7.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "02 Jan",
+                    "Hours": "10"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "03 Jan",
+                    "Hours": "10"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "04 Jan",
+                    "Hours": "9"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "05 Jan",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "06 Jan",
+                    "Hours": "9"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "07 Jan",
+                    "Hours": "9"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "08 Jan",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "09 Jan",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "10 Jan",
+                    "Hours": "7"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "13 Jan",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "14 Jan",
+                    "Hours": "8"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "15 Jan",
+                    "Hours": "5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "16 Jan",
+                    "Hours": "12.5"
+                },
+                {
+                    "Username": "Pratik",
+                    "Date": "17 Jan",
+                    "Hours": "6.5"
+                }
+            ];
+            google.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                  ['Year', 'Sales', 'Expenses'],
+                  ['2004', 1000, 400],
+                  ['2005', 1170, 460],
+                  ['2006', 660, 1120],
+                  ['2007', 1030, 540]
+                ]);
+
+                var options = {
+                    title: 'Company Performance'
+                };
+
+                var chart = new google.visualization.LineChart(document.getElementById('report'));
+                chart.draw(data, options);
+            }
+        });
+    </script>
+</body>
+</html>

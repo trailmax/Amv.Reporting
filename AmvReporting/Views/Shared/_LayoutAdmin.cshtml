@@ -13,6 +13,7 @@
                 <li>@Html.ActionLink("Home", MVC.Home.Index(), new { @class = "navbar-brand" })</li>
                 <li>@Html.ActionLink("Maintain Reports", MVC.Report.Index())</li>
                 <li>@Html.ActionLink("Databases", MVC.Database.Index())</li>
+                <li>@Html.ActionLink("Configuration", MVC.ReportingConfig.Index())</li>
             </ul>
         </div>
     </div>
@@ -88,10 +89,6 @@
                     success: function (data) {
                         if (data.IsSuccess) {
                             refreshSqlTextBox(data.Payload);
-                            //$('#Sql').fadeOut(500, function () {
-                            //    $('#Sql').val(data.Payload);
-                            //    $('#Sql').fadeIn(500);
-                            //});
                         } else {
                             $.showWarning(data.ErrorMessage);
                         }
@@ -104,6 +101,7 @@
                 var postData = {};
                 postData['sql'] = $('#Sql').val();
                 postData['databaseId'] = $('#DatabaseId').val();
+                postData['reportType'] = $('#ReportType').val();
 
                 $.ajax({
                     type: 'POST',
@@ -129,12 +127,6 @@
                         $.showWarning('Communication Error: could not connect to the server');
                     },
                     success: refreshSqlTextBox,
-                    //success: function(data) {
-                    //    $('#Sql').fadeOut(500, function() {
-                    //        $('#Sql').val(data);
-                    //        $('#Sql').fadeIn(500);
-                    //    });
-                    //},
                 });
             });
 
@@ -146,6 +138,7 @@
                 postData['Sql'] = $('#Sql').val();
                 postData['JavaScript'] = $('#JavaScript').val();
                 postData['Css'] = $('#Css').val();
+                postData['HtmlOverride'] = $('#HtmlOverride').val();
 
                 $.ajax({
                     type: 'POST',
@@ -160,6 +153,28 @@
 
             // sortable list for reordering of groups
             $('.sortable').sortable();
+
+            $('.submit-by-ajax').on('submit', function (ev) {
+                ev.preventDefault();
+
+                var $form = $(this);
+
+                $.ajax({
+                    type: $form.attr('method'),
+                    url: $form.attr('action'),
+                    data: $form.serialize(),
+                    error: function () {
+                        $.showWarning('Could not submit form');
+                    },
+                    success: function (data) {
+                        if (data.Success) {
+                            $.showSuccess(data.SuccessMessage);
+                        } else {
+                            $.showWarning('Unable to submit form: ' + data.FailureMessage);
+                        }
+                    }
+                });
+            });
         });
     </script>
 }

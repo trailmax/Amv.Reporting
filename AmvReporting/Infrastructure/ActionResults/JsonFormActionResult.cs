@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using AmvReporting.Domain;
 using AmvReporting.Infrastructure.CQRS;
@@ -28,7 +30,24 @@ namespace AmvReporting.Infrastructure.ActionResults
             var returnModel = new JsonReturnModel();
             var jsonResult = new JsonResult();
 
-            if (validator.IsValid(command))
+            if (!context.Controller.ViewData.ModelState.IsValid)
+            {
+                var errors = new List<String>();
+                foreach (var modelState in context.Controller.ViewData.ModelState.Values)
+                {
+                    var fieldErrors = modelState
+                        .Errors
+                        .Where(error => !String.IsNullOrEmpty(error.ErrorMessage))
+                        .Select(e => e.ErrorMessage)
+                        .ToList();
+
+                    errors.AddRange(fieldErrors);
+
+                }
+                returnModel.FailureMessage += String.Join("; ", errors);
+                returnModel.Success = false;
+            } 
+            else if (validator.IsValid(command))
             {
                 try
                 {

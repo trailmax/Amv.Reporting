@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Mvc;
 using AmvReporting.Domain.Reports;
 
 namespace AmvReporting.Domain.Preview.ViewModels
@@ -11,8 +12,12 @@ namespace AmvReporting.Domain.Preview.ViewModels
 
         public String Sql { get; set; }
 
+        [AllowHtml]
         public String JavaScript { get; set; }
 
         public String Css { get; set; }
+
+        [AllowHtml]
+        public String HtmlOverride { get; set; }
     }
 }

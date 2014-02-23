@@ -9,6 +9,7 @@ namespace AmvReporting.Domain.Reports.Commands
         public String Id { get; set; }
     }
 
+
     public class EditReportCommandHandler : ICommandHandler<EditReportCommand>
     {
         private readonly IDocumentSession ravenSession;
@@ -27,6 +28,7 @@ namespace AmvReporting.Domain.Reports.Commands
             ravenSession.SaveChanges();
         }
 
+
         public Report UpdateReport(EditReportCommand command, Report report)
         {
             report.Title = command.Title;
@@ -38,6 +40,7 @@ namespace AmvReporting.Domain.Reports.Commands
             report.DatabaseId = command.DatabaseId;
             report.ReportGroupId = command.ReportGroupId;
             report.Enabled = command.Enabled;
+            report.HtmlOverride = command.HtmlOverride;
 
             return report;
         }

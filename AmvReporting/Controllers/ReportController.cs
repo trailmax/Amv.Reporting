@@ -8,6 +8,7 @@ using AmvReporting.Infrastructure;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Filters;
 
+
 namespace AmvReporting.Controllers
 {
     [RoleAuthorizeFilter]
@@ -28,6 +29,7 @@ namespace AmvReporting.Controllers
         }
 
 
+
         [RestoreModelState]
         public virtual ActionResult Create()
         {
@@ -41,6 +43,10 @@ namespace AmvReporting.Controllers
         [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
         public virtual ActionResult Create(CreateReportCommand command)
         {
+            if (HttpContext.Request.IsAjaxRequest())
+            {
+                return ProcessJsonForm(command, "Report created");
+            }
             return ProcessForm(command, RedirectToAction(MVC.Report.Create()), RedirectToAction(MVC.Report.Index()));
         }
 
@@ -66,9 +72,13 @@ namespace AmvReporting.Controllers
         }
 
 
-        [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
+        [HttpPost, ValidateAntiForgeryToken]
         public virtual ActionResult Edit(EditReportCommand command)
         {
+            if (HttpContext.Request.IsAjaxRequest())
+            {
+                return ProcessJsonForm(command, "Changes are saved");
+            }
             return ProcessForm(command, RedirectToAction(MVC.Report.Edit(command.Id)), RedirectToAction(MVC.Report.Index()));
         }
 

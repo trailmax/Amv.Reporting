@@ -12,10 +12,11 @@ namespace AmvReporting.Domain.Reports.Queries
         public String Title { get; set; }
         public String Description { get; set; }
         public String Data { get; set; }
-        public String Columns { get; set; }
-
         public String JavaScript { get; set; }
+        public String HtmlOverride { get; set; }
+        public String GlobalJs { get; set; }
         public String Css { get; set; }
+        public String GlobalCss { get; set; }
         public ReportType ReportType { get; set; }
     }
 
@@ -54,10 +55,11 @@ namespace AmvReporting.Domain.Reports.Queries
             var result = new ReportResult()
                          {
                              Id = report.Id,
-                             Css = report.Css,
-                             Description = report.Description,
-                             JavaScript = report.JavaScript,
                              Title = report.Title,
+                             Description = report.Description,
+                             Css = report.Css,
+                             JavaScript = report.JavaScript,
+                             HtmlOverride = report.HtmlOverride,
                              ReportType = report.ReportType,
                          };
 
@@ -65,8 +67,7 @@ namespace AmvReporting.Domain.Reports.Queries
             using (var sqlServerHelper = new SqlServerHelper())
             {
                 var dataReader = sqlServerHelper.ExecuteQuery(report.Sql, dbConnection.ConnectionString);
-                result.Data = SqlDataSerialiserHelper.GetDataJson(dataReader);
-                result.Columns = SqlDataSerialiserHelper.GetColumnsJson(dataReader);
+                result.Data = SqlDataSerialiserHelper.GetDataWithColumnsJson(dataReader);
             }
 
             return result;
