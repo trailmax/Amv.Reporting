@@ -43,11 +43,7 @@ namespace AmvReporting.Controllers
         [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
         public virtual ActionResult Create(CreateReportCommand command)
         {
-            if (HttpContext.Request.IsAjaxRequest())
-            {
-                return ProcessJsonForm(command, "Report created");
-            }
-            return ProcessForm(command, RedirectToAction(MVC.Report.Create()), RedirectToAction(MVC.Report.Index()));
+            return ProcessForm(command, RedirectToAction(MVC.Report.Create()), id => RedirectToAction(MVC.Report.Edit(command.RedirectingId)));
         }
 
 

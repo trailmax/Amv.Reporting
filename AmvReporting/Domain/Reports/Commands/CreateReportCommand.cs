@@ -5,7 +5,7 @@ using AmvReporting.Infrastructure.CQRS;
 
 namespace AmvReporting.Domain.Reports.Commands
 {
-    public class CreateReportCommand : ICommand
+    public class CreateReportCommand : IRedirectingCommand
     {
         [Required]
         public String Title { get; set; }
@@ -37,5 +37,7 @@ namespace AmvReporting.Domain.Reports.Commands
         public String DatabaseId { get; set; }
 
         public bool Enabled { get; set; }
+
+        public string RedirectingId { get; set; }
     }
 }

@@ -5,7 +5,7 @@
 }
 
 <h2>Create New Graph</h2>
-@using (Html.BeginForm(MVC.Report.Create(), FormMethod.Post, new { role = "form", @class = "submit-by-ajax"}))
+@using (Html.BeginForm(MVC.Report.Create(), FormMethod.Post, new { role = "form"}))
 {
     <div class="row">
     @Html.Partial(MVC.Report.Views._CreateEdit, Model)

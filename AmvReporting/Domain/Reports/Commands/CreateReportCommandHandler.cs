@@ -18,6 +18,8 @@ namespace AmvReporting.Domain.Reports.Commands
 
             ravenSession.Store(report);
             ravenSession.SaveChanges();
+
+            command.RedirectingId = report.Id;
         }
 
         public Report CreateReportDetails(CreateReportCommand command)

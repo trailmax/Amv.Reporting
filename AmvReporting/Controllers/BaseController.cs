@@ -15,7 +15,7 @@ namespace AmvReporting.Controllers
         {
             return new FormActionResult<TForm>(form, failure, success);
         }
-        protected FormActionResult<TForm> ProcessForm<TForm>(TForm form, ActionResult both, Func<int, ActionResult> redirector) where TForm : ICommand
+        protected FormActionResult<TForm> ProcessForm<TForm>(TForm form, ActionResult both, Func<string, ActionResult> redirector) where TForm : ICommand
         {
             return new FormActionResult<TForm>(form, both, redirector);
         }

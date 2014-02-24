@@ -2,6 +2,6 @@
 {
     public interface IRedirectingCommand : ICommand
     {
-        int RedirectingId { get; set; }
+        string RedirectingId { get; set; }
     }
 }
