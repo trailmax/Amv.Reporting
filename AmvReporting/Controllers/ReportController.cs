@@ -43,7 +43,7 @@ namespace AmvReporting.Controllers
         [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
         public virtual ActionResult Create(CreateReportCommand command)
         {
-            return ProcessForm(command, RedirectToAction(MVC.Report.Create()), id => RedirectToAction(MVC.Report.Edit(command.RedirectingId)));
+            return ProcessForm(command, RedirectToAction(MVC.Report.Create()), id => RedirectToAction(MVC.Report.Edit(id)));
         }
 
 
