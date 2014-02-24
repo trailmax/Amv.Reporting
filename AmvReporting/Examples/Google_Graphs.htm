@@ -1,0 +1,344 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/site.css" rel="stylesheet" />
+    <link href="/Content/Datatables-1.9.4/media/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="/Content/Datatables-1.9.4/media/css/jquery.dataTables_themeroller.css" rel="stylesheet" />
+
+    <script src="/Scripts/jquery-1.10.2.js"></script>
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.min.js"></script>
+</head>
+
+<body style="">
+
+    <div class="container client-content">
+
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+        <script>
+            // load google chart api
+            google.load('visualization', '1.0', { 'packages': ['corechart'] });
+        </script>
+
+        <div class="graph-container">
+            <div id="report" style="height: 600px;"></div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" language="javascript">
+        jQuery.showAlert = function (message, alertLevel) {
+            $('#alert-placeholder').html('<div class="in alert ' + alertLevel + '" id="alert-message"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>');
+            window.setTimeout(function () {
+                $("#alert-message").fadeTo(500, 0).slideUp(500, function () {
+                    $(this).remove();
+                });
+            }, 5000);
+        };
+
+        jQuery.showWarning = function (message) {
+            $.showAlert(message, 'alert-danger');
+        };
+        jQuery.showSuccess = function (message) {
+            $.showAlert(message, 'alert-success');
+        };
+
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var data = [
+  {
+      "Dates": "2014-02-24 00:00:00",
+      "Max": "",
+      "Paul": "",
+      "Barry": "0.91",
+      "Pratik": "",
+      "Graeme": "3"
+  },
+  {
+      "Dates": "2014-02-23 00:00:00",
+      "Max": "",
+      "Paul": "",
+      "Barry": "",
+      "Pratik": "",
+      "Graeme": "6.75"
+  },
+  {
+      "Dates": "2014-02-22 00:00:00",
+      "Max": "",
+      "Paul": "",
+      "Barry": "",
+      "Pratik": "",
+      "Graeme": "3"
+  },
+  {
+      "Dates": "2014-02-21 00:00:00",
+      "Max": "6.5",
+      "Paul": "7.5",
+      "Barry": "7.5",
+      "Pratik": "7.5",
+      "Graeme": "8.75"
+  },
+  {
+      "Dates": "2014-02-20 00:00:00",
+      "Max": "7.5",
+      "Paul": "7.5",
+      "Barry": "7.5",
+      "Pratik": "7",
+      "Graeme": "12"
+  },
+  {
+      "Dates": "2014-02-19 00:00:00",
+      "Max": "7.75",
+      "Paul": "7.5",
+      "Barry": "6.5",
+      "Pratik": "8",
+      "Graeme": "8.08"
+  },
+  {
+      "Dates": "2014-02-18 00:00:00",
+      "Max": "8",
+      "Paul": "7.5",
+      "Barry": "6.5",
+      "Pratik": "7.5",
+      "Graeme": "8.25"
+  },
+  {
+      "Dates": "2014-02-17 00:00:00",
+      "Max": "6.5",
+      "Paul": "7.5",
+      "Barry": "6.5",
+      "Pratik": "7",
+      "Graeme": "9"
+  },
+  {
+      "Dates": "2014-02-14 00:00:00",
+      "Max": "10",
+      "Paul": "7.5",
+      "Barry": "6.5",
+      "Pratik": "6.5",
+      "Graeme": "7.5"
+  },
+  {
+      "Dates": "2014-02-13 00:00:00",
+      "Max": "8",
+      "Paul": "7.5",
+      "Barry": "6",
+      "Pratik": "5",
+      "Graeme": "7.5"
+  },
+  {
+      "Dates": "2014-02-12 00:00:00",
+      "Max": "7.5",
+      "Paul": "7.5",
+      "Barry": "6.5",
+      "Pratik": "8",
+      "Graeme": "7.5"
+  },
+  {
+      "Dates": "2014-02-11 00:00:00",
+      "Max": "8",
+      "Paul": "7.5",
+      "Barry": "6",
+      "Pratik": "8",
+      "Graeme": "10"
+  },
+  {
+      "Dates": "2014-02-10 00:00:00",
+      "Max": "6",
+      "Paul": "7.5",
+      "Barry": "5.75",
+      "Pratik": "8",
+      "Graeme": "9"
+  },
+  {
+      "Dates": "2014-02-09 00:00:00",
+      "Max": "",
+      "Paul": "",
+      "Barry": "",
+      "Pratik": "",
+      "Graeme": "2"
+  },
+  {
+      "Dates": "2014-02-07 00:00:00",
+      "Max": "10",
+      "Paul": "7.5",
+      "Barry": "7.5",
+      "Pratik": "8",
+      "Graeme": "14.75"
+  },
+  {
+      "Dates": "2014-02-06 00:00:00",
+      "Max": "10",
+      "Paul": "7.5",
+      "Barry": "6.75",
+      "Pratik": "7",
+      "Graeme": "10"
+  },
+  {
+      "Dates": "2014-02-05 00:00:00",
+      "Max": "7.5",
+      "Paul": "7.5",
+      "Barry": "5.41",
+      "Pratik": "9",
+      "Graeme": "8.25"
+  },
+  {
+      "Dates": "2014-02-04 00:00:00",
+      "Max": "9",
+      "Paul": "7.5",
+      "Barry": "6.5",
+      "Pratik": "7",
+      "Graeme": "12.5"
+  },
+  {
+      "Dates": "2014-02-03 00:00:00",
+      "Max": "7",
+      "Paul": "7.5",
+      "Barry": "7.5",
+      "Pratik": "8",
+      "Graeme": "6"
+  },
+  {
+      "Dates": "2014-02-02 00:00:00",
+      "Max": "",
+      "Paul": "",
+      "Barry": "",
+      "Pratik": "",
+      "Graeme": "4"
+  },
+  {
+      "Dates": "2014-02-01 00:00:00",
+      "Max": "3",
+      "Paul": "",
+      "Barry": "",
+      "Pratik": "",
+      "Graeme": "4.5"
+  },
+  {
+      "Dates": "2014-01-31 00:00:00",
+      "Max": "8",
+      "Paul": "7.5",
+      "Barry": "7",
+      "Pratik": "7",
+      "Graeme": "10.75"
+  },
+  {
+      "Dates": "2014-01-30 00:00:00",
+      "Max": "10.5",
+      "Paul": "7.5",
+      "Barry": "7.25",
+      "Pratik": "9",
+      "Graeme": "15.5"
+  },
+  {
+      "Dates": "2014-01-29 00:00:00",
+      "Max": "8",
+      "Paul": "7.5",
+      "Barry": "6.5",
+      "Pratik": "7.5",
+      "Graeme": "18"
+  },
+  {
+      "Dates": "2014-01-28 00:00:00",
+      "Max": "9",
+      "Paul": "7.5",
+      "Barry": "7",
+      "Pratik": "8",
+      "Graeme": "14"
+  },
+  {
+      "Dates": "2014-01-27 00:00:00",
+      "Max": "7.5",
+      "Paul": "7.5",
+      "Barry": "6.5",
+      "Pratik": "7",
+      "Graeme": "12.75"
+  },
+  {
+      "Dates": "2014-01-26 00:00:00",
+      "Max": "",
+      "Paul": "",
+      "Barry": "",
+      "Pratik": "",
+      "Graeme": "1"
+  }
+            ];;
+
+
+            var columns = [
+                  {
+                      "mData": "Dates",
+                      "sTitle": "Dates"
+                  },
+                  {
+                      "mData": "Max",
+                      "sTitle": "Max"
+                  },
+                  {
+                      "mData": "Paul",
+                      "sTitle": "Paul"
+                  },
+                  {
+                      "mData": "Barry",
+                      "sTitle": "Barry"
+                  },
+                  {
+                      "mData": "Pratik",
+                      "sTitle": "Pratik"
+                  },
+                  {
+                      "mData": "Graeme",
+                      "sTitle": "Graeme"
+                  }
+            ];
+
+
+
+            google.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var dataGrid = [];
+                var topRow = [];
+                for (var i = 0; i < columns.length; i++) {
+                    topRow.push(columns[i].sTitle);
+                }
+
+                dataGrid.push(topRow);
+
+
+                for (var i = 0; i < data.length; i++) {
+                    var dataRow = data[i];
+                    var newRow = [];
+                    for (var element in dataRow) {
+                        if (element === "Dates") {
+                            var date = Date.parse(dataRow[element]);
+                            newRow.push(date);
+                        }else {
+                            newRow.push(dataRow[element]);
+                        }
+                    }
+                    dataGrid.push(newRow);
+                }
+
+                var dataTable = google.visualization.arrayToDataTable(dataGrid);
+
+                var options = {
+                    title: 'Timesheets per user'
+                };
+
+                var chart = new google.visualization.LineChart(document.getElementById('report'));
+                chart.draw(dataTable, options);
+            }
+        });
+    </script>
+
+
+</body>
+</html>

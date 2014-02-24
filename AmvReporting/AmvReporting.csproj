@@ -309,6 +309,7 @@
     <Content Include="Content\Errors\page500.aspx" />
     <Content Include="Content\jquery.treetable.css" />
     <Content Include="Content\jquery.treetable.theme.default.css" />
+    <Content Include="Examples\Google_Graphs.htm" />
     <Content Include="Examples\StackingTwoSeries.html" />
     <Content Include="Examples\Stacking.html" />
     <Content Include="Examples\CostOfSicknessByServiceByReason.html" />
