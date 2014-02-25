@@ -453,7 +453,9 @@
             ];
 
 
-
+            function isNumber(n) {
+                return !isNaN(parseFloat(n)) && isFinite(n);
+            }
 
             $.fn.PivotedTable = function (oOptions) {
                 var pivotedData = {};
@@ -516,26 +518,37 @@
                 });
 
 
-                this.dataTable({
+                var dataTableOptions = {
                     aaData: dataset,
                     aoColumns: columns,
-                    iDisplayLength: 25
-                });
+                    iDisplayLength: 25,
+                };
+
+                if (oOptions.hasOwnProperty('redLimit')) {
+                    var limit = oOptions.redLimit;
+
+                    var highlightFunction = function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                        $(nRow).children().each(function (index, td) {
+                            var value = $(td).html();
+
+                            if (isNumber(value) && parseFloat(value) > limit) {
+                                $(td).css("background-color", "#FF033E");
+                            }
+                            else if (isNumber(value)) {
+                                $(td).css("background-color", "#A4C639");
+                            }
+                        })
+                    };
+
+
+                    dataTableOptions.fnRowCallback = highlightFunction;
+                }
+
+
+                this.dataTable(dataTableOptions);
 
             };
 
-
-
-
-            $.fn.HighlightValuesOver = function (targetValue) {
-                $(this).each(function () {
-                    var $this = $(this);
-                    var value = $this.html();
-                    if (value > targetValue) {
-                        $this.css("background-color", "#F2C2C2");
-                    }
-                });
-            };
 
 
             var options = {
@@ -544,11 +557,10 @@
                 rowTitleColumnName: 'Service',
                 extraRowData: ['Area', 'Region'],
                 valueColumnName: 'LostTimeRate',
+                redLimit: 5
             };
 
             $('#report').PivotedTable(options);
-
-            $('#report td').HighlightValuesOver(20);
         });
     </script>
 
