@@ -522,6 +522,10 @@
                     aaData: dataset,
                     aoColumns: columns,
                     iDisplayLength: 25,
+                    sDom: 'T<"clear">lfrtip',
+                    oTableTools: {
+                        sSwfPath: '~/Content/DataTables-1.9.4/extras/TableTools/media/swf/copy_csv_xls_pdf.swf',
+                    }
                 };
 
                 if (oOptions.hasOwnProperty('redLimit')) {
