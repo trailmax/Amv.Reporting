@@ -24,13 +24,21 @@ namespace AmvReporting
             var styleBundle = new BetterStyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/site.css",
-                "~/Content/Datatables-1.9.4/media/css/jquery.*",
+                "~/Scripts/Datatables/css/jquery.dataTables.css",
+                "~/Scripts/Datatables/css/jquery.dataTables_themeroller.css",
+                "~/Scripts/Datatables/extras/Scroller/css/dataTables.scroller.css",
+                "~/Scripts/Datatables/extras/TableTools/css/TableTools.css",
+                "~/Scripts/Datatables/extras/TableTools/css/TableTools_JUI.css",
                 "~/Content/jquery.treetable.css");
             styleBundle.Include("~/Content/jquery.treetable.theme.default.css");
             bundles.Add(styleBundle);
 
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
-                "~/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.min.js",
+                "~/Scripts/DataTables/js/jquery.dataTables.js",
+                "~/Scripts/DataTables/extras/FixedHeader/FixedHeader.js",
+                "~/Scripts/DataTables/extras/Scroller/js/dataTables.scroller.js",
+                "~/Scripts/DataTables/extras/TableTools/js/TableTools.js",
+                "~/Scripts/DataTables/extras/TableTools/js/ZeroClipboard.js",
                 "~/Scripts/ie8.js",
                 "~/Scripts/amplify.store.js",
                 "~/Scripts/jquery.treetablePersist.js"));
