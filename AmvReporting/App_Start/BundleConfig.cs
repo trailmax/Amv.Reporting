@@ -10,6 +10,8 @@ namespace AmvReporting
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                 "~/Scripts/jquery-{version}.js",
+                "~/Scripts/jquery-migrate-1.2.1.min.js",
+                
                 "~/Scripts/jquery-ui-1.10.3.custom.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
@@ -26,6 +28,7 @@ namespace AmvReporting
                 "~/Content/site.css",
                 "~/Scripts/Datatables/css/jquery.dataTables.css",
                 "~/Scripts/Datatables/css/jquery.dataTables_themeroller.css",
+                "~/Scripts/Datatables/extras/FixedHeader/FixedHeader.js",
                 "~/Scripts/Datatables/extras/Scroller/css/dataTables.scroller.css",
                 "~/Scripts/Datatables/extras/TableTools/css/TableTools.css",
                 "~/Scripts/Datatables/extras/TableTools/css/TableTools_JUI.css",

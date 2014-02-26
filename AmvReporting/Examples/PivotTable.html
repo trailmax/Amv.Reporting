@@ -3,15 +3,30 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/Content/bootstrap.css" rel="stylesheet" />
-    <link href="/Content/site.css" rel="stylesheet" />
-    <link href="/Content/Datatables-1.9.4/media/css/jquery.dataTables.css" rel="stylesheet" />
-    <link href="/Content/Datatables-1.9.4/media/css/jquery.dataTables_themeroller.css" rel="stylesheet" />
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <link href="../Content/site.css" rel="stylesheet" />
+    <link href="../Scripts/Datatables/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="../Scripts/Datatables/css/jquery.dataTables_themeroller.css" rel="stylesheet" />
+    <link href="../Scripts/Datatables/extras/FixedHeader/FixedHeader.js" rel="stylesheet" />
+    <link href="../Scripts/Datatables/extras/Scroller/css/dataTables.scroller.css" rel="stylesheet" />
+    <link href="../Scripts/Datatables/extras/TableTools/css/TableTools.css" rel="stylesheet" />
+    <link href="../Scripts/Datatables/extras/TableTools/css/TableTools_JUI.css" rel="stylesheet" />
+    <link href="../Content/jquery.treetable.css" rel="stylesheet" />
+    <link href="../Content/jquery.treetable.theme.default.css" rel="stylesheet" />
 
-    <script src="/Scripts/jquery-1.10.2.js"></script>
-    <script src="/Scripts/bootstrap.js"></script>
-    <script src="/Scripts/respond.js"></script>
-    <script src="/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.min.js"></script>
+
+    <script src="../Scripts/modernizr-2.7.1.js"></script>
+    <script src="../Scripts/jquery-1.10.2.js"></script>
+    <script src="../Scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script src="../Scripts/jquery-ui-1.10.3.custom.js"></script>
+    <script src="../Scripts/bootstrap.js"></script>
+    <script src="../Scripts/respond.js"></script>
+    <script src="../Scripts/DataTables/js/jquery.dataTables.js"></script>
+    <script src="../Scripts/DataTables/extras/FixedHeader/FixedHeader.js"></script>
+    <script src="../Scripts/DataTables/extras/Scroller/js/dataTables.scroller.js"></script>
+    <script src="../Scripts/DataTables/extras/TableTools/js/TableTools.js"></script>
+    <script src="../Scripts/DataTables/extras/TableTools/js/ZeroClipboard.js"></script>
+    <script src="../Scripts/ie8.js"></script>
 </head>
 <body>
     <div class="container client-content">
@@ -518,14 +533,34 @@
                 });
 
 
+/*
+                var oTable = $('#report').dataTable({
+
+                    oTableTools: {
+                        sSwfPath: '/Scripts/DataTables/extras/TableTools/swf/copy_csv_xls_pdf.swf',
+                        aButtons: ["copy", 'pdf', 'xls']
+                    },
+                    aLengthMenu: [
+                            [10, 25, 50, 100, -1],
+                            [10, 25, 50, 100, "All"]
+                    ],
+                });
+
+                new FixedHeader(oTable);
+
+*/
                 var dataTableOptions = {
                     aaData: dataset,
                     aoColumns: columns,
-                    iDisplayLength: 25,
-                    sDom: 'T<"clear">lfrtip',
+                    iDisplayLength: 20,
+                    sDom: 'Tlfrtip',
                     oTableTools: {
-                        sSwfPath: '~/Content/DataTables-1.9.4/extras/TableTools/media/swf/copy_csv_xls_pdf.swf',
-                    }
+                        sSwfPath: '../Scripts/DataTables/extras/TableTools/swf/copy_csv_xls_pdf.swf',
+                        aButtons: ["copy", 'pdf', 'xls']
+                    },
+                    aLengthMenu: [[20, 50, 100, -1],
+                                  [20, 50, 100, "All"]],
+
                 };
 
                 if (oOptions.hasOwnProperty('redLimit')) {
@@ -549,8 +584,9 @@
                 }
 
 
-                this.dataTable(dataTableOptions);
+                var oTable = this.dataTable(dataTableOptions);
 
+                new FixedHeader(oTable);
             };
 
 

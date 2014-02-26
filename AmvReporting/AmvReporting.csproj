@@ -450,6 +450,9 @@
     <Content Include="Scripts\DataTables\version.txt" />
     <Content Include="Scripts\flot\jquery.flot.stack.patched.js" />
     <Content Include="Scripts\ie8.js" />
+    <Content Include="Scripts\jquery-migrate-1.2.1.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\jquery-ui-1.10.3.custom.js" />
     <Content Include="Scripts\jquery-ui-1.10.3.custom.min.js" />
     <Content Include="Scripts\jquery.treetablePersist.js" />
