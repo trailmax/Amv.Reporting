@@ -29,17 +29,19 @@ namespace AmvReporting.Domain.Menus
 
         public MenuModel Handle(MenuModelQuery query)
         {
-            var allGroups = ravenSession.Query<ReportGroup>().ToList();
+            List<ReportGroup> allGroups;
 
             List<Report> allReports;
 
             if (query.ShowDisabledReports)
             {
                 allReports = ravenSession.Query<Report>().ToList();
+                allGroups = ravenSession.Query<ReportGroup>().ToList();
             }
             else
             {
                 allReports = ravenSession.Query<Report>().Where(r => r.Enabled).ToList();
+                allGroups = ravenSession.Query<ReportGroup>().Where(g => g.Enabled).ToList();
             }
 
             var menuModel = new MenuModel
@@ -65,6 +67,7 @@ namespace AmvReporting.Domain.Menus
                                ReportGroupParentId = @group.ParentReportGroupId,
                                ReportGroupId = @group.Id,
                                ReportGroupTitle = @group.Title,
+                               Enabled = @group.Enabled,
                                Reports = allReports.Where(r => r.ReportGroupId == @group.Id).OrderBy(r => r.ListOrder).ToList(),
                                MenuNodes = new List<MenuNode>(),
                            };

@@ -9,6 +9,7 @@ namespace AmvReporting.Domain.ReportGroups.Commands
         public String Id { get; set; }
         public String Title { get; set; }
         public String ParentReportGroupId { get; set; }
+        public bool Enabled { get; set; }
     }
 
 
@@ -25,6 +26,7 @@ namespace AmvReporting.Domain.ReportGroups.Commands
         {
             var reportGroup = ravenSession.Load<ReportGroup>(command.Id);
             reportGroup.Title = command.Title;
+            reportGroup.Enabled = command.Enabled;
             reportGroup.ParentReportGroupId = command.ParentReportGroupId;
             ravenSession.SaveChanges();
         }

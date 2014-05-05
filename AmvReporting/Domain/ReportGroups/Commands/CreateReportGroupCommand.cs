@@ -8,6 +8,7 @@ namespace AmvReporting.Domain.ReportGroups.Commands
     {
         public String Title { get; set; }
         public String ParentReportGroupId { get; set; }
+        public bool Enabled { get; set; }
     }
 
     public class CreateReportGroupCommandHandler : ICommandHandler<CreateReportGroupCommand>
@@ -25,6 +26,7 @@ namespace AmvReporting.Domain.ReportGroups.Commands
                               {
                                   Title = command.Title,
                                   ParentReportGroupId = command.ParentReportGroupId,
+                                  Enabled = command.Enabled,
                               };
 
             ravenSession.Store(reportGroup);

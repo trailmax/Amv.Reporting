@@ -20,6 +20,11 @@
         @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Title)
     </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Enabled, new { @class = "control-label" })
+        @Html.CheckBoxFor(m => m.Enabled)
+        @Html.ValidationMessageFor(m => m.Enabled)
+    </div>
 
     <input type="submit" value="Save" class="btn btn-default" />
     @Html.ActionLink("Back To List", MVC.Report.Index(), new { @class = "btn btn-default" })

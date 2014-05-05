@@ -1,7 +1,7 @@
 ﻿@inherits WebViewPage<MenuNode>
 
 <tr data-tt-id="@Model.ReportGroupId" data-tt-parent-id="@Model.ReportGroupParentId">
-    <td><span class='folder'>@Model.ReportGroupTitle</span></td>
+    <td><span class='folder @(Model.Enabled ? "" : "disabled-report")'>@Model.ReportGroupTitle</span></td>
     <td>
         @Html.ActionLink("Edit", MVC.ReportGroup.Edit(Model.ReportGroupId), new { @class = "btn btn-default btn-xs" })
         @Url.AjaxDeleteButton(MVC.ReportGroup.Delete(), Model.ReportGroupId, "Id")
