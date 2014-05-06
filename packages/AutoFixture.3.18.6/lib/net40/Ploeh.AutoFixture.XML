@@ -268,6 +268,103 @@
             </para>
             </remarks>
         </member>
+        <member name="T:Ploeh.AutoFixture.Kernel.OmitArrayParameterRequestRelay">
+            <summary>
+            Relays requests for array parameters, and returns an empty array if the
+            object returned from the context is an <see cref="T:Ploeh.AutoFixture.Kernel.OmitSpecimen"/>
+            instance.
+            </summary>
+            <remarks>
+            <para>
+            The <strong>OmitArrayParameterRequestRelay</strong> class works like
+            <see cref="T:Ploeh.AutoFixture.Kernel.ParameterRequestRelay"/>, except that it only handles
+            <see cref="T:System.Reflection.ParameterInfo"/> instances where
+            <see cref="P:System.Reflection.ParameterInfo.ParameterType"/> is and array. If the value
+            returned from the context is an <see cref="T:Ploeh.AutoFixture.Kernel.OmitSpecimen"/> instance,
+            it returns an empty array.
+            </para>
+            </remarks>
+            <seealso cref="M:Ploeh.AutoFixture.Kernel.OmitArrayParameterRequestRelay.Create(System.Object,Ploeh.AutoFixture.Kernel.ISpecimenContext)"/>
+            <seealso cref="T:Ploeh.AutoFixture.Kernel.ParameterRequestRelay"/>
+            <seealso cref="T:Ploeh.AutoFixture.Kernel.OmitEnumerableParameterRequestRelay"/>
+            <seealso cref="T:Ploeh.AutoFixture.Kernel.OmitSpecimen"/>
+        </member>
+        <member name="M:Ploeh.AutoFixture.Kernel.OmitArrayParameterRequestRelay.Create(System.Object,Ploeh.AutoFixture.Kernel.ISpecimenContext)">
+            <summary>
+            Creates a specimen based on a requested array parameter.
+            </summary>
+            <param name="request">
+            The request that describes what to create.
+            </param>
+            <param name="context">
+            A context that can be used to create other specimens.
+            </param>
+            <returns>
+            A specimen created from a <see cref="T:Ploeh.AutoFixture.Kernel.SeededRequest"/> encapsulating
+            the parameter type and name of the requested parameter, if
+            possible; otherwise, a <see cref="T:Ploeh.AutoFixture.Kernel.NoSpecimen"/>.
+            </returns>
+            <remarks>
+            <para>
+            This method only handles <see cref="T:System.Reflection.ParameterInfo"/> instances
+            where <see cref="P:System.Reflection.ParameterInfo.ParameterType"/> is an array.  If
+            <paramref name="context"/> returns an <see cref="T:Ploeh.AutoFixture.Kernel.OmitSpecimen"/>
+            instance, an empty array of the correct type is returned instead.
+            </para>
+            </remarks>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="context"/> is <see langword="null"/>
+            </exception>
+        </member>
+        <member name="T:Ploeh.AutoFixture.Kernel.OmitEnumerableParameterRequestRelay">
+            <summary>
+            Relays requests for enumerable parameters, and returns an empty array
+            if the object returned from the context is an
+            <see cref="T:Ploeh.AutoFixture.Kernel.OmitSpecimen"/> instance.
+            </summary>
+            <remarks>
+            <para>
+            The <strong>OmitEnumerableParameterRequestRelay</strong> class works
+            like <see cref="T:Ploeh.AutoFixture.Kernel.ParameterRequestRelay"/>, except that it only handles
+            <see cref="T:System.Reflection.ParameterInfo"/> instances where
+            <see cref="P:System.Reflection.ParameterInfo.ParameterType"/> is
+            <see cref="T:System.Collections.Generic.IEnumerable`1"/>. If the value returned from the context
+            is an <see cref="T:Ploeh.AutoFixture.Kernel.OmitSpecimen"/> instance, it returns an empty array.
+            </para>
+            </remarks>
+            <seealso cref="M:Ploeh.AutoFixture.Kernel.OmitEnumerableParameterRequestRelay.Create(System.Object,Ploeh.AutoFixture.Kernel.ISpecimenContext)"/>
+            <seealso cref="T:Ploeh.AutoFixture.Kernel.ParameterRequestRelay"/>
+            <seealso cref="T:Ploeh.AutoFixture.Kernel.OmitArrayParameterRequestRelay"/>
+            <seealso cref="T:Ploeh.AutoFixture.Kernel.OmitSpecimen"/>
+        </member>
+        <member name="M:Ploeh.AutoFixture.Kernel.OmitEnumerableParameterRequestRelay.Create(System.Object,Ploeh.AutoFixture.Kernel.ISpecimenContext)">
+            <summary>
+            Creates a specimen based on a requested enumerable parameter.
+            </summary>
+            <param name="request">
+            The request that describes what to create.
+            </param>
+            <param name="context">
+            A context that can be used to create other specimens.
+            </param>
+            <returns>
+            A specimen created from a <see cref="T:Ploeh.AutoFixture.Kernel.SeededRequest"/> encapsulating
+            the parameter type and name of the requested parameter, if
+            possible; otherwise, a <see cref="T:Ploeh.AutoFixture.Kernel.NoSpecimen"/>.
+            </returns>
+            <remarks>
+            <para>
+            This method only handles <see cref="T:System.Reflection.ParameterInfo"/> instances
+            where <see cref="P:System.Reflection.ParameterInfo.ParameterType"/> is
+            <see cref="T:System.Collections.Generic.IEnumerable`1"/>.  If <paramref name="context"/>
+            returns an <see cref="T:Ploeh.AutoFixture.Kernel.OmitSpecimen"/> instance, an empty array of
+            the correct type is returned instead.
+            </para>
+            </remarks>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="context"/> is <see langword="null"/>
+            </exception>
+        </member>
         <member name="T:Ploeh.AutoFixture.Kernel.TerminatingWithPathSpecimenBuilder">
             <summary>
             Decorates an <see cref="T:Ploeh.AutoFixture.Kernel.ISpecimenBuilder"/> with a node which tracks specimen requests, and
@@ -2741,10 +2838,15 @@
         </member>
         <member name="M:Ploeh.AutoFixture.Dsl.NodeComposer`1.Without``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
             <summary>
-            Withouts the specified property picker.
+            Registers that a writable property should not be assigned an
+            automatic value as part of specimen post-processing.
             </summary>
-            <typeparam name="TProperty">The type of the property.</typeparam>
-            <param name="propertyPicker">The property picker.</param>
+            <typeparam name="TProperty">
+            The type of the property or field to ignore.
+            </typeparam>
+            <param name="propertyPicker">
+            An expression that identifies the property or field to be ignored.
+            </param>
             <returns>
             An <see cref="T:Ploeh.AutoFixture.Dsl.IPostprocessComposer`1"/> which can be used to
             further customize the post-processing of created specimens.
