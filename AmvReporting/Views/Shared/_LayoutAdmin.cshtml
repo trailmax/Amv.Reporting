@@ -131,24 +131,19 @@
             });
 
             // on report create/edit show the actual report in the same window
-            $('#previewFullReport').on('click', function() {
-                var postData = {};
-                postData['ReportType'] = $('#ReportType').val();
-                postData['DatabaseId'] = $('#DatabaseId').val();
-                postData['Sql'] = $('#Sql').val();
-                postData['JavaScript'] = $('#JavaScript').val();
-                postData['Css'] = $('#Css').val();
-                postData['HtmlOverride'] = $('#HtmlOverride').val();
-
-                $.ajax({
-                    type: 'POST',
-                    url: '@Url.Action(MVC.Preview.Report())',
-                    data: postData,
-                    error: function() {
-                        $.showWarning('Communication Error: could not connect to the server');
-                    },
-                    success: refreshPreview,
-                });
+            $('#previewFullReport').on('click', function () {
+                var valid = $('form').valid();
+                if (valid) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action(MVC.Preview.Report())',
+                        data: $('form').serialize(),
+                        error: function() {
+                            $.showWarning('Communication Error: could not connect to the server');
+                        },
+                        success: refreshPreview,
+                    });
+                }
             });
 
             // sortable list for reordering of groups

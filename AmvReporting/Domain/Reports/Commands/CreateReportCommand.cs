@@ -18,6 +18,7 @@ namespace AmvReporting.Domain.Reports.Commands
         [DataType(DataType.MultilineText)]
         public String Description { get; set; }
 
+        [AllowHtml]
         [Required, DataType(DataType.MultilineText)]
         public String Sql { get; set; }
 

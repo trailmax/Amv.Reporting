@@ -40,7 +40,7 @@ namespace AmvReporting.Controllers
             return EnrichedView(model);
         }
 
-        [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
+        [HttpPost, ValidateAntiForgeryToken]
         public virtual ActionResult Create(CreateReportCommand command)
         {
             return ProcessForm(command, RedirectToAction(MVC.Report.Create()), id => RedirectToAction(MVC.Report.Edit(id)));
