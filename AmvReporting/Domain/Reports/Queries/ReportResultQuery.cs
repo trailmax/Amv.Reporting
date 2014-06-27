@@ -21,13 +21,24 @@ namespace AmvReporting.Domain.Reports.Queries
     }
 
 
-    public class ReportResultQuery : IQuery<ReportResult>
+    public class ReportResultQuery : IQuery<ReportResult>, ICachedQuery
     {
         public String Id { get; set; }
 
         public ReportResultQuery(String id)
         {
             this.Id = id;
+        }
+
+
+        public string CacheKey
+        {
+            get { return "ReportsResultQuery_" + Id; } 
+        }
+
+        public int CacheDurationMinutes
+        {
+            get { return 60; }
         }
     }
 

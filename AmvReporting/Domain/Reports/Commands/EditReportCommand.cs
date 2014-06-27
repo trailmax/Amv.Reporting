@@ -1,5 +1,7 @@
 ﻿using System;
+using AmvReporting.Domain.Reports.Events;
 using AmvReporting.Infrastructure.CQRS;
+using AmvReporting.Infrastructure.Events;
 using Raven.Client;
 
 namespace AmvReporting.Domain.Reports.Commands
@@ -31,6 +33,8 @@ namespace AmvReporting.Domain.Reports.Commands
 
         public Report UpdateReport(EditReportCommand command, Report report)
         {
+            DomainEvents.Raise(new ReportUpdatedEvent(command.Id));
+
             report.Title = command.Title;
             report.ReportType = command.ReportType;
             report.Description = command.Description;

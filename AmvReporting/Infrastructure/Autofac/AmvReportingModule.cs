@@ -1,4 +1,5 @@
 ﻿using AmvReporting.Infrastructure.CQRS;
+using AmvReporting.Infrastructure.Events;
 using AmvReporting.Infrastructure.ModelEnrichers;
 using Autofac;
 
@@ -38,8 +39,20 @@ namespace AmvReporting.Infrastructure.Autofac
                 .AsClosedTypesOf(typeof(IQueryHandler<,>))
                 .InstancePerLifetimeScope();
 
+            builder.RegisterType<AutofacMediator>()
+                .Named<IMediator>("mediator");
 
-            builder.RegisterType<AutofacMediator>().As<IMediator>();
+            builder.RegisterDecorator<IMediator>((c, inner) => 
+                new CachedDecoratorMediator(inner), fromKey: "mediator");
+
+
+            builder.RegisterType<EventDispatcher>()
+                .As<IDomainEventDispatcher>();
+
+            builder.RegisterTypes(types)
+                .AsClosedTypesOf(typeof(IDomainEventHandler<>))
+                .InstancePerLifetimeScope();
+
 
 
             builder.RegisterTypes(types)

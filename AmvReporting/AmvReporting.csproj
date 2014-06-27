@@ -217,11 +217,18 @@
     <Compile Include="Domain\ReportingConfigs\Commands\UpdateConfigurationCommand.cs" />
     <Compile Include="Domain\Reports\Commands\CreateReportCommandHandler.cs" />
     <Compile Include="Domain\Reports\Commands\DeleteReportCommandHandler.cs" />
+    <Compile Include="Domain\Reports\Events\ReportUpdatedEvent.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModel.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModelEnricher.cs" />
     <Compile Include="HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\CQRS\CachedDecoratorMediator.cs" />
+    <Compile Include="Infrastructure\Events\DomainEvents.cs" />
+    <Compile Include="Infrastructure\Events\EventDispatcher.cs" />
+    <Compile Include="Infrastructure\Events\IDomainEvent.cs" />
+    <Compile Include="Infrastructure\Events\IDomainEventDispatcher.cs" />
+    <Compile Include="Infrastructure\Events\IDomainEventHandler.cs" />
     <Compile Include="Infrastructure\Filters\RoleAuthorizeFilter.cs" />
     <Compile Include="Infrastructure\Helpers\ObjectExtensions.cs" />
     <Compile Include="Infrastructure\Helpers\SqlDataSerialiserHelper.cs" />
