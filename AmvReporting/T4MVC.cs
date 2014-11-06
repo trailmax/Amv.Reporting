@@ -3,8 +3,8 @@
 // Don't change it directly as your change would get overwritten.  Instead, make changes
 // to the .tt file (i.e. the T4 template) and save it to regenerate this file.
 
-// Make sure the compiler doesn't complain about missing Xml comments
-#pragma warning disable 1591
+// Make sure the compiler doesn't complain about missing Xml comments and CLS compliance
+#pragma warning disable 1591, 3008, 3009
 #region T4MVC
 
 using System;
@@ -13,6 +13,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
@@ -77,306 +78,138 @@ namespace Links
         public static readonly string bootstrap_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/bootstrap.min.js") ? Url("bootstrap.min.js") : Url("bootstrap.js");
         public static readonly string bootstrap_min_js = Url("bootstrap.min.js");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public static class DataTables_1_9_4 {
-            private const string URLPATH = "~/Scripts/DataTables-1.9.4";
+        public static class DataTables {
+            private const string URLPATH = "~/Scripts/DataTables";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-            public static class docs {
-                private const string URLPATH = "~/Scripts/DataTables-1.9.4/docs";
+            public static class css {
+                private const string URLPATH = "~/Scripts/DataTables/css";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                public static class media {
-                    private const string URLPATH = "~/Scripts/DataTables-1.9.4/docs/media";
-                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                    public static class js {
-                        private const string URLPATH = "~/Scripts/DataTables-1.9.4/docs/media/js";
-                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                        public static readonly string doc_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/doc.min.js") ? Url("doc.min.js") : Url("doc.js");
-                        public static readonly string jquery_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.min.js") ? Url("jquery.min.js") : Url("jquery.js");
-                        public static readonly string shBrushJScript_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shBrushJScript.min.js") ? Url("shBrushJScript.min.js") : Url("shBrushJScript.js");
-                        public static readonly string shCore_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shCore.min.js") ? Url("shCore.min.js") : Url("shCore.js");
-                    }
-                
-                }
-            
+                public static readonly string jquery_dataTables_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.dataTables.min.css") ? Url("jquery.dataTables.min.css") : Url("jquery.dataTables.css");
+                     
+                public static readonly string jquery_dataTables_themeroller_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.dataTables_themeroller.min.css") ? Url("jquery.dataTables_themeroller.min.css") : Url("jquery.dataTables_themeroller.css");
+                     
             }
         
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public static class extras {
-                private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras";
+                private const string URLPATH = "~/Scripts/DataTables/extras";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                public static class AutoFill {
-                    private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/AutoFill";
+                public static class FixedHeader {
+                    private const string URLPATH = "~/Scripts/DataTables/extras/FixedHeader";
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                    public static class media {
-                        private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/AutoFill/media";
-                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class docs {
-                            private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/AutoFill/media/docs";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                            public static class media {
-                                private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/AutoFill/media/docs/media";
-                                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                                public static class js {
-                                    private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/AutoFill/media/docs/media/js";
-                                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                    public static readonly string doc_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/doc.min.js") ? Url("doc.min.js") : Url("doc.js");
-                                    public static readonly string jquery_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.min.js") ? Url("jquery.min.js") : Url("jquery.js");
-                                    public static readonly string shBrushJScript_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shBrushJScript.min.js") ? Url("shBrushJScript.min.js") : Url("shBrushJScript.js");
-                                    public static readonly string shCore_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shCore.min.js") ? Url("shCore.min.js") : Url("shCore.js");
-                                }
-                            
-                            }
-                        
-                        }
-                    
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class js {
-                            private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/AutoFill/media/js";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            public static readonly string AutoFill_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/AutoFill.min.js") ? Url("AutoFill.min.js") : Url("AutoFill.js");
-                            public static readonly string AutoFill_min_js = Url("AutoFill.min.js");
-                            public static readonly string AutoFill_min_js_gz = Url("AutoFill.min.js.gz");
-                        }
-                    
-                    }
-                
-                }
-            
-                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                public static class ColReorder {
-                    private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/ColReorder";
-                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                    public static class media {
-                        private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/ColReorder/media";
-                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class docs {
-                            private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/ColReorder/media/docs";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                            public static class media {
-                                private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/ColReorder/media/docs/media";
-                                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                                public static class js {
-                                    private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/ColReorder/media/docs/media/js";
-                                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                    public static readonly string doc_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/doc.min.js") ? Url("doc.min.js") : Url("doc.js");
-                                    public static readonly string jquery_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.min.js") ? Url("jquery.min.js") : Url("jquery.js");
-                                    public static readonly string shBrushJScript_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shBrushJScript.min.js") ? Url("shBrushJScript.min.js") : Url("shBrushJScript.js");
-                                    public static readonly string shCore_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shCore.min.js") ? Url("shCore.min.js") : Url("shCore.js");
-                                }
-                            
-                            }
-                        
-                        }
-                    
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class js {
-                            private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/ColReorder/media/js";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            public static readonly string ColReorder_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ColReorder.min.js") ? Url("ColReorder.min.js") : Url("ColReorder.js");
-                            public static readonly string ColReorder_min_js = Url("ColReorder.min.js");
-                            public static readonly string ColReorder_min_js_gz = Url("ColReorder.min.js.gz");
-                        }
-                    
-                    }
-                
-                }
-            
-                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                public static class ColVis {
-                    private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/ColVis";
-                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                    public static class media {
-                        private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/ColVis/media";
-                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class docs {
-                            private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/ColVis/media/docs";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                            public static class media {
-                                private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/ColVis/media/docs/media";
-                                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                                public static class js {
-                                    private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/ColVis/media/docs/media/js";
-                                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                    public static readonly string doc_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/doc.min.js") ? Url("doc.min.js") : Url("doc.js");
-                                    public static readonly string jquery_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.min.js") ? Url("jquery.min.js") : Url("jquery.js");
-                                    public static readonly string shBrushJScript_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shBrushJScript.min.js") ? Url("shBrushJScript.min.js") : Url("shBrushJScript.js");
-                                    public static readonly string shCore_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shCore.min.js") ? Url("shCore.min.js") : Url("shCore.js");
-                                }
-                            
-                            }
-                        
-                        }
-                    
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class js {
-                            private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/ColVis/media/js";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            public static readonly string ColVis_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ColVis.min.js") ? Url("ColVis.min.js") : Url("ColVis.js");
-                            public static readonly string ColVis_min_js = Url("ColVis.min.js");
-                            public static readonly string ColVis_min_js_gz = Url("ColVis.min.js.gz");
-                        }
-                    
-                    }
-                
-                }
-            
-                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                public static class FixedColumns {
-                    private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/FixedColumns";
-                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                    public static class docs {
-                        private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/FixedColumns/docs";
-                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class media {
-                            private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/FixedColumns/docs/media";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                            public static class js {
-                                private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/FixedColumns/docs/media/js";
-                                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                public static readonly string doc_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/doc.min.js") ? Url("doc.min.js") : Url("doc.js");
-                                public static readonly string jquery_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.min.js") ? Url("jquery.min.js") : Url("jquery.js");
-                                public static readonly string shBrushJScript_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shBrushJScript.min.js") ? Url("shBrushJScript.min.js") : Url("shBrushJScript.js");
-                                public static readonly string shCore_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shCore.min.js") ? Url("shCore.min.js") : Url("shCore.js");
-                            }
-                        
-                        }
-                    
-                    }
-                
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                    public static class media {
-                        private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/FixedColumns/media";
-                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class js {
-                            private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/FixedColumns/media/js";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            public static readonly string FixedColumns_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/FixedColumns.min.js") ? Url("FixedColumns.min.js") : Url("FixedColumns.js");
-                            public static readonly string FixedColumns_min_js = Url("FixedColumns.min.js");
-                            public static readonly string FixedColumns_min_js_gz = Url("FixedColumns.min.js.gz");
-                        }
-                    
-                    }
-                
+                    public static readonly string FixedHeader_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/FixedHeader.min.js") ? Url("FixedHeader.min.js") : Url("FixedHeader.js");
+                    public static readonly string FixedHeader_min_js = Url("FixedHeader.min.js");
                 }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class Scroller {
-                    private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/Scroller";
+                    private const string URLPATH = "~/Scripts/DataTables/extras/Scroller";
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                    public static class media {
-                        private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/Scroller/media";
+                    public static class css {
+                        private const string URLPATH = "~/Scripts/DataTables/extras/Scroller/css";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class docs {
-                            private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/Scroller/media/docs";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                            public static class media {
-                                private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/Scroller/media/docs/media";
-                                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                                public static class js {
-                                    private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/Scroller/media/docs/media/js";
-                                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                    public static readonly string doc_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/doc.min.js") ? Url("doc.min.js") : Url("doc.js");
-                                    public static readonly string jquery_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.min.js") ? Url("jquery.min.js") : Url("jquery.js");
-                                    public static readonly string shBrushJScript_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shBrushJScript.min.js") ? Url("shBrushJScript.min.js") : Url("shBrushJScript.js");
-                                    public static readonly string shCore_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shCore.min.js") ? Url("shCore.min.js") : Url("shCore.js");
-                                }
-                            
-                            }
-                        
-                        }
-                    
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class js {
-                            private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/Scroller/media/js";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            public static readonly string dataTables_scroller_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/dataTables.scroller.min.js") ? Url("dataTables.scroller.min.js") : Url("dataTables.scroller.js");
-                            public static readonly string dataTables_scroller_min_js = Url("dataTables.scroller.min.js");
-                            public static readonly string dataTables_scroller_min_js_gz = Url("dataTables.scroller.min.js.gz");
-                        }
-                    
+                        public static readonly string dataTables_scroller_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/dataTables.scroller.min.css") ? Url("dataTables.scroller.min.css") : Url("dataTables.scroller.css");
+                             
+                    }
+                
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class images {
+                        private const string URLPATH = "~/Scripts/DataTables/extras/Scroller/images";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                        public static readonly string loading_background_png = Url("loading-background.png");
+                    }
+                
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class js {
+                        private const string URLPATH = "~/Scripts/DataTables/extras/Scroller/js";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                        public static readonly string dataTables_scroller_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/dataTables.scroller.min.js") ? Url("dataTables.scroller.min.js") : Url("dataTables.scroller.js");
+                        public static readonly string dataTables_scroller_min_js = Url("dataTables.scroller.min.js");
                     }
                 
                 }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class TableTools {
-                    private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/TableTools";
+                    private const string URLPATH = "~/Scripts/DataTables/extras/TableTools";
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                    public static class media {
-                        private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/TableTools/media";
+                    public static class as3 {
+                        private const string URLPATH = "~/Scripts/DataTables/extras/TableTools/as3";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class js {
-                            private const string URLPATH = "~/Scripts/DataTables-1.9.4/extras/TableTools/media/js";
+                        public static class lib {
+                            private const string URLPATH = "~/Scripts/DataTables/extras/TableTools/as3/lib";
                             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            public static readonly string TableTools_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/TableTools.min.js") ? Url("TableTools.min.js") : Url("TableTools.js");
-                            public static readonly string TableTools_min_js = Url("TableTools.min.js");
-                            public static readonly string TableTools_min_js_gz = Url("TableTools.min.js.gz");
-                            public static readonly string ZeroClipboard_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ZeroClipboard.min.js") ? Url("ZeroClipboard.min.js") : Url("ZeroClipboard.js");
+                            public static readonly string AlivePDF_swc = Url("AlivePDF.swc");
                         }
                     
+                        public static readonly string ZeroClipboard_as = Url("ZeroClipboard.as");
+                        public static readonly string ZeroClipboardPdf_as = Url("ZeroClipboardPdf.as");
+                    }
+                
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class css {
+                        private const string URLPATH = "~/Scripts/DataTables/extras/TableTools/css";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                        public static readonly string TableTools_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/TableTools.min.css") ? Url("TableTools.min.css") : Url("TableTools.css");
+                             
+                        public static readonly string TableTools_JUI_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/TableTools_JUI.min.css") ? Url("TableTools_JUI.min.css") : Url("TableTools_JUI.css");
+                             
+                    }
+                
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class images {
+                        private const string URLPATH = "~/Scripts/DataTables/extras/TableTools/images";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                        public static readonly string background_png = Url("background.png");
+                        public static readonly string collection_png = Url("collection.png");
+                        public static readonly string collection_hover_png = Url("collection_hover.png");
+                        public static readonly string copy_png = Url("copy.png");
+                        public static readonly string copy_hover_png = Url("copy_hover.png");
+                        public static readonly string csv_png = Url("csv.png");
+                        public static readonly string csv_hover_png = Url("csv_hover.png");
+                        public static readonly string pdf_png = Url("pdf.png");
+                        public static readonly string pdf_hover_png = Url("pdf_hover.png");
+                        public static readonly string print_png = Url("print.png");
+                        public static readonly string print_hover_png = Url("print_hover.png");
+                        public static readonly string xls_png = Url("xls.png");
+                        public static readonly string xls_hover_png = Url("xls_hover.png");
+                    }
+                
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class js {
+                        private const string URLPATH = "~/Scripts/DataTables/extras/TableTools/js";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                        public static readonly string TableTools_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/TableTools.min.js") ? Url("TableTools.min.js") : Url("TableTools.js");
+                        public static readonly string TableTools_min_js = Url("TableTools.min.js");
+                        public static readonly string ZeroClipboard_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ZeroClipboard.min.js") ? Url("ZeroClipboard.min.js") : Url("ZeroClipboard.js");
+                    }
+                
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class swf {
+                        private const string URLPATH = "~/Scripts/DataTables/extras/TableTools/swf";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                        public static readonly string copy_csv_xls_swf = Url("copy_csv_xls.swf");
+                        public static readonly string copy_csv_xls_pdf_swf = Url("copy_csv_xls_pdf.swf");
                     }
                 
                 }
@@ -384,22 +217,35 @@ namespace Links
             }
         
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-            public static class media {
-                private const string URLPATH = "~/Scripts/DataTables-1.9.4/media";
+            public static class images {
+                private const string URLPATH = "~/Scripts/DataTables/images";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                public static class js {
-                    private const string URLPATH = "~/Scripts/DataTables-1.9.4/media/js";
-                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                    public static readonly string jquery_dataTables_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.dataTables.min.js") ? Url("jquery.dataTables.min.js") : Url("jquery.dataTables.js");
-                    public static readonly string jquery_dataTables_min_js = Url("jquery.dataTables.min.js");
-                    public static readonly string jquery_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.min.js") ? Url("jquery.min.js") : Url("jquery.js");
-                }
-            
+                public static readonly string back_disabled_png = Url("back_disabled.png");
+                public static readonly string back_enabled_png = Url("back_enabled.png");
+                public static readonly string back_enabled_hover_png = Url("back_enabled_hover.png");
+                public static readonly string favicon_ico = Url("favicon.ico");
+                public static readonly string forward_disabled_png = Url("forward_disabled.png");
+                public static readonly string forward_enabled_png = Url("forward_enabled.png");
+                public static readonly string forward_enabled_hover_png = Url("forward_enabled_hover.png");
+                public static readonly string sort_asc_png = Url("sort_asc.png");
+                public static readonly string sort_asc_disabled_png = Url("sort_asc_disabled.png");
+                public static readonly string sort_both_png = Url("sort_both.png");
+                public static readonly string sort_desc_png = Url("sort_desc.png");
+                public static readonly string sort_desc_disabled_png = Url("sort_desc_disabled.png");
+                public static readonly string Sorting_icons_psd = Url("Sorting icons.psd");
             }
         
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class js {
+                private const string URLPATH = "~/Scripts/DataTables/js";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string jquery_dataTables_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.dataTables.min.js") ? Url("jquery.dataTables.min.js") : Url("jquery.dataTables.js");
+                public static readonly string jquery_dataTables_min_js = Url("jquery.dataTables.min.js");
+            }
+        
+            public static readonly string version_txt = Url("version.txt");
         }
     
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -449,11 +295,17 @@ namespace Links
         public static readonly string jquery_1_10_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-1.10.2.min.js") ? Url("jquery-1.10.2.min.js") : Url("jquery-1.10.2.js");
         public static readonly string jquery_1_10_2_min_js = Url("jquery-1.10.2.min.js");
         public static readonly string jquery_1_10_2_min_map = Url("jquery-1.10.2.min.map");
+        public static readonly string jquery_migrate_1_2_1_min_js = Url("jquery-migrate-1.2.1.min.js");
         public static readonly string jquery_ui_1_10_3_custom_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-ui-1.10.3.custom.min.js") ? Url("jquery-ui-1.10.3.custom.min.js") : Url("jquery-ui-1.10.3.custom.js");
         public static readonly string jquery_ui_1_10_3_custom_min_js = Url("jquery-ui-1.10.3.custom.min.js");
         public static readonly string jquery_treetable_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.treetable.min.js") ? Url("jquery.treetable.min.js") : Url("jquery.treetable.js");
         public static readonly string jquery_treetablePersist_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.treetablePersist.min.js") ? Url("jquery.treetablePersist.min.js") : Url("jquery.treetablePersist.js");
-        public static readonly string modernizr_2_7_1_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/modernizr-2.7.1.min.js") ? Url("modernizr-2.7.1.min.js") : Url("modernizr-2.7.1.js");
+        public static readonly string jquery_validate_vsdoc_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate-vsdoc.min.js") ? Url("jquery.validate-vsdoc.min.js") : Url("jquery.validate-vsdoc.js");
+        public static readonly string jquery_validate_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate.min.js") ? Url("jquery.validate.min.js") : Url("jquery.validate.js");
+        public static readonly string jquery_validate_min_js = Url("jquery.validate.min.js");
+        public static readonly string jquery_validate_unobtrusive_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate.unobtrusive.min.js") ? Url("jquery.validate.unobtrusive.min.js") : Url("jquery.validate.unobtrusive.js");
+        public static readonly string jquery_validate_unobtrusive_min_js = Url("jquery.validate.unobtrusive.min.js");
+        public static readonly string modernizr_2_8_3_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/modernizr-2.8.3.min.js") ? Url("modernizr-2.8.3.min.js") : Url("modernizr-2.8.3.js");
         public static readonly string respond_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/respond.min.js") ? Url("respond.min.js") : Url("respond.js");
         public static readonly string respond_min_js = Url("respond.min.js");
     }
@@ -471,484 +323,6 @@ namespace Links
              
         public static readonly string bootstrap_css_map = Url("bootstrap.css.map");
         public static readonly string bootstrap_min_css = Url("bootstrap.min.css");
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public static class DataTables_1_9_4 {
-            private const string URLPATH = "~/Content/DataTables-1.9.4";
-            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-            public static class docs {
-                private const string URLPATH = "~/Content/DataTables-1.9.4/docs";
-                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                public static class media {
-                    private const string URLPATH = "~/Content/DataTables-1.9.4/docs/media";
-                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                    public static class css {
-                        private const string URLPATH = "~/Content/DataTables-1.9.4/docs/media/css";
-                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                        public static readonly string doc_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/doc.min.css") ? Url("doc.min.css") : Url("doc.css");
-                             
-                        public static readonly string shCore_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shCore.min.css") ? Url("shCore.min.css") : Url("shCore.css");
-                             
-                        public static readonly string shThemeDataTables_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shThemeDataTables.min.css") ? Url("shThemeDataTables.min.css") : Url("shThemeDataTables.css");
-                             
-                    }
-                
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                    public static class images {
-                        private const string URLPATH = "~/Content/DataTables-1.9.4/docs/media/images";
-                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                        public static readonly string arrow_jpg = Url("arrow.jpg");
-                        public static readonly string arrow_png = Url("arrow.png");
-                        public static readonly string extended_png = Url("extended.png");
-                    }
-                
-                }
-            
-            }
-        
-            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-            public static class extras {
-                private const string URLPATH = "~/Content/DataTables-1.9.4/extras";
-                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                public static class AutoFill {
-                    private const string URLPATH = "~/Content/DataTables-1.9.4/extras/AutoFill";
-                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                    public static class media {
-                        private const string URLPATH = "~/Content/DataTables-1.9.4/extras/AutoFill/media";
-                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class css {
-                            private const string URLPATH = "~/Content/DataTables-1.9.4/extras/AutoFill/media/css";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            public static readonly string AutoFill_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/AutoFill.min.css") ? Url("AutoFill.min.css") : Url("AutoFill.css");
-                                 
-                        }
-                    
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class docs {
-                            private const string URLPATH = "~/Content/DataTables-1.9.4/extras/AutoFill/media/docs";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                            public static class media {
-                                private const string URLPATH = "~/Content/DataTables-1.9.4/extras/AutoFill/media/docs/media";
-                                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                                public static class css {
-                                    private const string URLPATH = "~/Content/DataTables-1.9.4/extras/AutoFill/media/docs/media/css";
-                                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                    public static readonly string doc_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/doc.min.css") ? Url("doc.min.css") : Url("doc.css");
-                                         
-                                    public static readonly string shCore_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shCore.min.css") ? Url("shCore.min.css") : Url("shCore.css");
-                                         
-                                    public static readonly string shThemeDataTables_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shThemeDataTables.min.css") ? Url("shThemeDataTables.min.css") : Url("shThemeDataTables.css");
-                                         
-                                }
-                            
-                                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                                public static class images {
-                                    private const string URLPATH = "~/Content/DataTables-1.9.4/extras/AutoFill/media/docs/media/images";
-                                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                    public static readonly string arrow_jpg = Url("arrow.jpg");
-                                    public static readonly string arrow_png = Url("arrow.png");
-                                    public static readonly string extended_png = Url("extended.png");
-                                }
-                            
-                            }
-                        
-                        }
-                    
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class images {
-                            private const string URLPATH = "~/Content/DataTables-1.9.4/extras/AutoFill/media/images";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            public static readonly string filler_png = Url("filler.png");
-                        }
-                    
-                    }
-                
-                }
-            
-                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                public static class ColReorder {
-                    private const string URLPATH = "~/Content/DataTables-1.9.4/extras/ColReorder";
-                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                    public static class media {
-                        private const string URLPATH = "~/Content/DataTables-1.9.4/extras/ColReorder/media";
-                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class css {
-                            private const string URLPATH = "~/Content/DataTables-1.9.4/extras/ColReorder/media/css";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            public static readonly string ColReorder_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ColReorder.min.css") ? Url("ColReorder.min.css") : Url("ColReorder.css");
-                                 
-                        }
-                    
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class docs {
-                            private const string URLPATH = "~/Content/DataTables-1.9.4/extras/ColReorder/media/docs";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                            public static class media {
-                                private const string URLPATH = "~/Content/DataTables-1.9.4/extras/ColReorder/media/docs/media";
-                                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                                public static class css {
-                                    private const string URLPATH = "~/Content/DataTables-1.9.4/extras/ColReorder/media/docs/media/css";
-                                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                    public static readonly string doc_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/doc.min.css") ? Url("doc.min.css") : Url("doc.css");
-                                         
-                                    public static readonly string shCore_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shCore.min.css") ? Url("shCore.min.css") : Url("shCore.css");
-                                         
-                                    public static readonly string shThemeDataTables_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shThemeDataTables.min.css") ? Url("shThemeDataTables.min.css") : Url("shThemeDataTables.css");
-                                         
-                                }
-                            
-                                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                                public static class images {
-                                    private const string URLPATH = "~/Content/DataTables-1.9.4/extras/ColReorder/media/docs/media/images";
-                                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                    public static readonly string arrow_jpg = Url("arrow.jpg");
-                                    public static readonly string arrow_png = Url("arrow.png");
-                                    public static readonly string extended_png = Url("extended.png");
-                                }
-                            
-                            }
-                        
-                        }
-                    
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class images {
-                            private const string URLPATH = "~/Content/DataTables-1.9.4/extras/ColReorder/media/images";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            public static readonly string insert_png = Url("insert.png");
-                        }
-                    
-                    }
-                
-                }
-            
-                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                public static class ColVis {
-                    private const string URLPATH = "~/Content/DataTables-1.9.4/extras/ColVis";
-                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                    public static class media {
-                        private const string URLPATH = "~/Content/DataTables-1.9.4/extras/ColVis/media";
-                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class css {
-                            private const string URLPATH = "~/Content/DataTables-1.9.4/extras/ColVis/media/css";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            public static readonly string ColVis_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ColVis.min.css") ? Url("ColVis.min.css") : Url("ColVis.css");
-                                 
-                            public static readonly string ColVisAlt_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ColVisAlt.min.css") ? Url("ColVisAlt.min.css") : Url("ColVisAlt.css");
-                                 
-                        }
-                    
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class docs {
-                            private const string URLPATH = "~/Content/DataTables-1.9.4/extras/ColVis/media/docs";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                            public static class media {
-                                private const string URLPATH = "~/Content/DataTables-1.9.4/extras/ColVis/media/docs/media";
-                                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                                public static class css {
-                                    private const string URLPATH = "~/Content/DataTables-1.9.4/extras/ColVis/media/docs/media/css";
-                                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                    public static readonly string doc_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/doc.min.css") ? Url("doc.min.css") : Url("doc.css");
-                                         
-                                    public static readonly string shCore_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shCore.min.css") ? Url("shCore.min.css") : Url("shCore.css");
-                                         
-                                    public static readonly string shThemeDataTables_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shThemeDataTables.min.css") ? Url("shThemeDataTables.min.css") : Url("shThemeDataTables.css");
-                                         
-                                }
-                            
-                                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                                public static class images {
-                                    private const string URLPATH = "~/Content/DataTables-1.9.4/extras/ColVis/media/docs/media/images";
-                                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                    public static readonly string arrow_jpg = Url("arrow.jpg");
-                                    public static readonly string arrow_png = Url("arrow.png");
-                                    public static readonly string extended_png = Url("extended.png");
-                                }
-                            
-                            }
-                        
-                        }
-                    
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class images {
-                            private const string URLPATH = "~/Content/DataTables-1.9.4/extras/ColVis/media/images";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            public static readonly string button_png = Url("button.png");
-                        }
-                    
-                    }
-                
-                }
-            
-                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                public static class FixedColumns {
-                    private const string URLPATH = "~/Content/DataTables-1.9.4/extras/FixedColumns";
-                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                    public static class docs {
-                        private const string URLPATH = "~/Content/DataTables-1.9.4/extras/FixedColumns/docs";
-                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class media {
-                            private const string URLPATH = "~/Content/DataTables-1.9.4/extras/FixedColumns/docs/media";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                            public static class css {
-                                private const string URLPATH = "~/Content/DataTables-1.9.4/extras/FixedColumns/docs/media/css";
-                                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                public static readonly string doc_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/doc.min.css") ? Url("doc.min.css") : Url("doc.css");
-                                     
-                                public static readonly string shCore_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shCore.min.css") ? Url("shCore.min.css") : Url("shCore.css");
-                                     
-                                public static readonly string shThemeDataTables_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shThemeDataTables.min.css") ? Url("shThemeDataTables.min.css") : Url("shThemeDataTables.css");
-                                     
-                            }
-                        
-                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                            public static class images {
-                                private const string URLPATH = "~/Content/DataTables-1.9.4/extras/FixedColumns/docs/media/images";
-                                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                public static readonly string arrow_jpg = Url("arrow.jpg");
-                                public static readonly string arrow_png = Url("arrow.png");
-                                public static readonly string extended_png = Url("extended.png");
-                            }
-                        
-                        }
-                    
-                    }
-                
-                }
-            
-                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                public static class Scroller {
-                    private const string URLPATH = "~/Content/DataTables-1.9.4/extras/Scroller";
-                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                    public static class media {
-                        private const string URLPATH = "~/Content/DataTables-1.9.4/extras/Scroller/media";
-                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class css {
-                            private const string URLPATH = "~/Content/DataTables-1.9.4/extras/Scroller/media/css";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            public static readonly string dataTables_scroller_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/dataTables.scroller.min.css") ? Url("dataTables.scroller.min.css") : Url("dataTables.scroller.css");
-                                 
-                        }
-                    
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class docs {
-                            private const string URLPATH = "~/Content/DataTables-1.9.4/extras/Scroller/media/docs";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                            public static class media {
-                                private const string URLPATH = "~/Content/DataTables-1.9.4/extras/Scroller/media/docs/media";
-                                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                                public static class css {
-                                    private const string URLPATH = "~/Content/DataTables-1.9.4/extras/Scroller/media/docs/media/css";
-                                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                    public static readonly string doc_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/doc.min.css") ? Url("doc.min.css") : Url("doc.css");
-                                         
-                                    public static readonly string shCore_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shCore.min.css") ? Url("shCore.min.css") : Url("shCore.css");
-                                         
-                                    public static readonly string shThemeDataTables_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shThemeDataTables.min.css") ? Url("shThemeDataTables.min.css") : Url("shThemeDataTables.css");
-                                         
-                                }
-                            
-                                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                                public static class images {
-                                    private const string URLPATH = "~/Content/DataTables-1.9.4/extras/Scroller/media/docs/media/images";
-                                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                    public static readonly string arrow_jpg = Url("arrow.jpg");
-                                    public static readonly string arrow_png = Url("arrow.png");
-                                    public static readonly string extended_png = Url("extended.png");
-                                }
-                            
-                            }
-                        
-                        }
-                    
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class images {
-                            private const string URLPATH = "~/Content/DataTables-1.9.4/extras/Scroller/media/images";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            public static readonly string loading_background_png = Url("loading-background.png");
-                        }
-                    
-                    }
-                
-                }
-            
-                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                public static class TableTools {
-                    private const string URLPATH = "~/Content/DataTables-1.9.4/extras/TableTools";
-                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                    public static class media {
-                        private const string URLPATH = "~/Content/DataTables-1.9.4/extras/TableTools/media";
-                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class css {
-                            private const string URLPATH = "~/Content/DataTables-1.9.4/extras/TableTools/media/css";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            public static readonly string TableTools_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/TableTools.min.css") ? Url("TableTools.min.css") : Url("TableTools.css");
-                                 
-                            public static readonly string TableTools_JUI_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/TableTools_JUI.min.css") ? Url("TableTools_JUI.min.css") : Url("TableTools_JUI.css");
-                                 
-                        }
-                    
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class images {
-                            private const string URLPATH = "~/Content/DataTables-1.9.4/extras/TableTools/media/images";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            public static readonly string background_png = Url("background.png");
-                            public static readonly string collection_png = Url("collection.png");
-                            public static readonly string collection_hover_png = Url("collection_hover.png");
-                            public static readonly string copy_png = Url("copy.png");
-                            public static readonly string copy_hover_png = Url("copy_hover.png");
-                            public static readonly string csv_png = Url("csv.png");
-                            public static readonly string csv_hover_png = Url("csv_hover.png");
-                            public static readonly string pdf_png = Url("pdf.png");
-                            public static readonly string pdf_hover_png = Url("pdf_hover.png");
-                            public static readonly string print_png = Url("print.png");
-                            public static readonly string print_hover_png = Url("print_hover.png");
-                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                            public static class psd {
-                                private const string URLPATH = "~/Content/DataTables-1.9.4/extras/TableTools/media/images/psd";
-                                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                                public static readonly string collection_psd = Url("collection.psd");
-                                public static readonly string copy_document_psd = Url("copy document.psd");
-                                public static readonly string file_types_psd = Url("file_types.psd");
-                                public static readonly string printer_psd = Url("printer.psd");
-                            }
-                        
-                            public static readonly string xls_png = Url("xls.png");
-                            public static readonly string xls_hover_png = Url("xls_hover.png");
-                        }
-                    
-                        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                        public static class swf {
-                            private const string URLPATH = "~/Content/DataTables-1.9.4/extras/TableTools/media/swf";
-                            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                            public static readonly string copy_csv_xls_swf = Url("copy_csv_xls.swf");
-                            public static readonly string copy_csv_xls_pdf_swf = Url("copy_csv_xls_pdf.swf");
-                        }
-                    
-                    }
-                
-                }
-            
-            }
-        
-            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-            public static class media {
-                private const string URLPATH = "~/Content/DataTables-1.9.4/media";
-                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                public static class css {
-                    private const string URLPATH = "~/Content/DataTables-1.9.4/media/css";
-                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                    public static readonly string demo_page_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/demo_page.min.css") ? Url("demo_page.min.css") : Url("demo_page.css");
-                         
-                    public static readonly string demo_table_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/demo_table.min.css") ? Url("demo_table.min.css") : Url("demo_table.css");
-                         
-                    public static readonly string demo_table_jui_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/demo_table_jui.min.css") ? Url("demo_table_jui.min.css") : Url("demo_table_jui.css");
-                         
-                    public static readonly string jquery_dataTables_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.dataTables.min.css") ? Url("jquery.dataTables.min.css") : Url("jquery.dataTables.css");
-                         
-                    public static readonly string jquery_dataTables_themeroller_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.dataTables_themeroller.min.css") ? Url("jquery.dataTables_themeroller.min.css") : Url("jquery.dataTables_themeroller.css");
-                         
-                }
-            
-                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                public static class images {
-                    private const string URLPATH = "~/Content/DataTables-1.9.4/media/images";
-                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                    public static readonly string back_disabled_png = Url("back_disabled.png");
-                    public static readonly string back_enabled_png = Url("back_enabled.png");
-                    public static readonly string back_enabled_hover_png = Url("back_enabled_hover.png");
-                    public static readonly string favicon_ico = Url("favicon.ico");
-                    public static readonly string forward_disabled_png = Url("forward_disabled.png");
-                    public static readonly string forward_enabled_png = Url("forward_enabled.png");
-                    public static readonly string forward_enabled_hover_png = Url("forward_enabled_hover.png");
-                    public static readonly string sort_asc_png = Url("sort_asc.png");
-                    public static readonly string sort_asc_disabled_png = Url("sort_asc_disabled.png");
-                    public static readonly string sort_both_png = Url("sort_both.png");
-                    public static readonly string sort_desc_png = Url("sort_desc.png");
-                    public static readonly string sort_desc_disabled_png = Url("sort_desc_disabled.png");
-                    public static readonly string Sorting_icons_psd = Url("Sorting icons.psd");
-                }
-            
-            }
-        
-        }
-    
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class Errors {
             private const string URLPATH = "~/Content/Errors";
@@ -1006,6 +380,6 @@ internal static class T4MVCHelpers {
 
 
 #endregion T4MVC
-#pragma warning restore 1591
+#pragma warning restore 1591, 3008, 3009
 
 
