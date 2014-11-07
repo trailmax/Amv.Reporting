@@ -65,6 +65,12 @@
     <Reference Include="Microsoft.CSharp">
       <Private>True</Private>
     </Reference>
+    <Reference Include="NEventStore">
+      <HintPath>..\packages\NEventStore.5.1.0\lib\net40\NEventStore.dll</HintPath>
+    </Reference>
+    <Reference Include="NEventStore.Persistence.RavenPersistence">
+      <HintPath>..\packages\NEventStore.Persistence.RavenPersistence.4.1.0.10\lib\net40\NEventStore.Persistence.RavenPersistence.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -222,6 +228,11 @@
     <Compile Include="Domain\ReportingConfigs\Commands\UpdateConfigurationCommand.cs" />
     <Compile Include="Domain\Reports\Commands\CreateReportCommandHandler.cs" />
     <Compile Include="Domain\Reports\Commands\DeleteReportCommandHandler.cs" />
+    <Compile Include="Domain\Reports\Events\ChangeReportListOrderEvent.cs" />
+    <Compile Include="Domain\Reports\Events\DisableReportEvent.cs" />
+    <Compile Include="Domain\Reports\Events\EnableReportEvent.cs" />
+    <Compile Include="Domain\Reports\Events\ReportCodeUpdatedEvent.cs" />
+    <Compile Include="Domain\Reports\Events\ReportCreatedEvent.cs" />
     <Compile Include="Domain\Reports\Events\ReportUpdatedEvent.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModel.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModelEnricher.cs" />

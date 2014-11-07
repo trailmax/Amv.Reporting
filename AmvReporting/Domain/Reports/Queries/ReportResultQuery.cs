@@ -65,7 +65,7 @@ namespace AmvReporting.Domain.Reports.Queries
 
             var result = new ReportResult()
                          {
-                             Id = report.Id,
+                             Id = report.Id.ToString(),
                              Title = report.Title,
                              Description = report.Description,
                              Css = report.Css,
