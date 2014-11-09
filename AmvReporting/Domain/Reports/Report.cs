@@ -23,6 +23,29 @@ namespace AmvReporting.Domain.Reports
         }
 
 
+        public Report(Guid id, Report migratedReport)
+        {
+            RaiseEvent(new MigrationEvent(migratedReport));
+        }
+
+
+        private void Apply(MigrationEvent @event)
+        {
+            ReportGroupId = @event.MigratedReport.ReportGroupId;
+            Title = @event.MigratedReport.Title;
+            ReportType = @event.MigratedReport.ReportType;
+            Description = @event.MigratedReport.Description;
+            DatabaseId = @event.MigratedReport.DatabaseId;
+            Sql = @event.MigratedReport.Sql;
+            JavaScript = @event.MigratedReport.JavaScript;
+            Css = @event.MigratedReport.Css;
+            HtmlOverride = @event.MigratedReport.HtmlOverride;
+            Enabled = @event.MigratedReport.Enabled;
+            ListOrder = @event.MigratedReport.ListOrder;
+        }
+
+
+
         private Report(Guid id)
         {
             Id = id;

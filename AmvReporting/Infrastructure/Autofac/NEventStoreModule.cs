@@ -12,7 +12,7 @@ namespace AmvReporting.Infrastructure.Autofac
         protected override void Load(ContainerBuilder builder)
         {
             builder.Register(x => WireupEventStore()).As<IStoreEvents>()
-                .InstancePerLifetimeScope();
+                .SingleInstance();
 
             builder.RegisterType<EventStoreRepository>().As<IRepository>()
                 .InstancePerLifetimeScope();

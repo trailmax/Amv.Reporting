@@ -108,6 +108,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\System.Spatial.5.6.3\lib\net40\System.Spatial.dll</HintPath>
     </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData">
       <Private>True</Private>
     </Reference>
@@ -189,6 +190,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\MigrationController.cs" />
     <Compile Include="Controllers\ReportingConfigController.cs" />
     <Compile Include="Controllers\ReportGroupController.cs" />
     <Compile Include="DatabaseController.generated.cs">
@@ -234,6 +236,7 @@
     <Compile Include="Domain\Reports\Events\ChangeReportListOrderEvent.cs" />
     <Compile Include="Domain\Reports\Events\DisableReportEvent.cs" />
     <Compile Include="Domain\Reports\Events\EnableReportEvent.cs" />
+    <Compile Include="Domain\Reports\Events\MigrationEvent.cs" />
     <Compile Include="Domain\Reports\Events\ReportCodeUpdatedEvent.cs" />
     <Compile Include="Domain\Reports\Events\ReportCreatedEvent.cs" />
     <Compile Include="Domain\Reports\Events\ReportUpdatedEvent.cs" />
@@ -612,6 +615,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Migration\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

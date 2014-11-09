@@ -9,6 +9,8 @@ namespace AmvReporting
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //routes.IgnoreRoute("raven_database");
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}",

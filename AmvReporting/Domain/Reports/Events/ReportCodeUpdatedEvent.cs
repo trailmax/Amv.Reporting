@@ -30,12 +30,13 @@ namespace AmvReporting.Domain.Reports.Events
     }
 
 
-    public class ReportCodeUpdatedEventHandler : IDomainEventHandler<ReportCodeUpdatedEvent>
-    {
-        public void Handle(ReportCodeUpdatedEvent raisedEvent)
-        {
-            var query = new ReportResultQuery(raisedEvent.Id);
-            HttpContext.Current.Cache.Remove(query.CacheKey);
-        }
-    }
+    //TODO this is broken
+    //public class ReportCodeUpdatedEventHandler : IDomainEventHandler<ReportCodeUpdatedEvent>
+    //{
+    //    public void Handle(ReportCodeUpdatedEvent raisedEvent)
+    //    {
+    //        var query = new ReportResultQuery(raisedEvent.Id);
+    //        HttpContext.Current.Cache.Remove(query.CacheKey);
+    //    }
+    //}
 }

@@ -1,5 +1,4 @@
 using System;
-using System.Text;
 using AmvReporting.Domain.DatabaseConnections;
 using AmvReporting.Domain.Reports;
 using AmvReporting.Infrastructure.CQRS;

@@ -19,7 +19,5 @@ namespace AmvReporting.Infrastructure.NEventStore
         {
             Container.Register(c => new EmbeddedRavenStorageFractory(documentStore, new DocumentObjectSerializer(), persistenceOptions).Build());
         }
-
-
     }
 }

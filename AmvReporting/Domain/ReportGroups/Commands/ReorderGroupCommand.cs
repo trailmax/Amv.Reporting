@@ -3,6 +3,7 @@ using System.Linq;
 using AmvReporting.Domain.Reports;
 using AmvReporting.Domain.Reports.Events;
 using AmvReporting.Infrastructure.CQRS;
+using CommonDomain.Persistence;
 using Raven.Client;
 
 namespace AmvReporting.Domain.ReportGroups.Commands
@@ -20,11 +21,14 @@ namespace AmvReporting.Domain.ReportGroups.Commands
     public class ReorderGroupCommandHandler : ICommandHandler<ReorderGroupCommand>
     {
         private readonly IDocumentSession ravenSession;
+        private readonly IRepository repository;
 
-        public ReorderGroupCommandHandler(IDocumentSession ravenSession)
+        public ReorderGroupCommandHandler(IDocumentSession ravenSession, IRepository repository)
         {
             this.ravenSession = ravenSession;
+            this.repository = repository;
         }
+
 
         public void Handle(ReorderGroupCommand command)
         {
@@ -34,11 +38,12 @@ namespace AmvReporting.Domain.ReportGroups.Commands
             }
             for (var i = 0; i < command.ReportIds.Count(); i++)
             {
-                var report = ravenSession.Load<Report>(command.ReportIds[i]);
+                //TODO this is broken
+                var report = repository.GetById<Report>(new Guid(command.ReportIds[i]));
                 if (report != null)
                 {
-                    var @event = new ChangeReportListOrderEvent(i);
-                    report.ListOrder = i;
+                    report.SetListOrder(i);
+                    repository.Save(report, Guid.NewGuid());
                 }
             }
 

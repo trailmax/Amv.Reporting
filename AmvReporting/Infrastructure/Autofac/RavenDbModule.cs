@@ -3,6 +3,7 @@ using Autofac;
 using Raven.Client;
 using Raven.Client.Document;
 using Raven.Client.Embedded;
+using Raven.Database.Server;
 
 
 namespace AmvReporting.Infrastructure.Autofac
@@ -36,7 +37,8 @@ namespace AmvReporting.Infrastructure.Autofac
             if (ConfigurationContext.Current.EnableRavenStudio())
             {
                 store.UseEmbeddedHttpServer = true;
-                store.Configuration.VirtualDirectory = "db";
+                store.Configuration.VirtualDirectory = "raven_database";
+                NonAdminHttp.EnsureCanListenToWhenInNonAdminContext(80);
             }
 
             // on queries get all the written results.
