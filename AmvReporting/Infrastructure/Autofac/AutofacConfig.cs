@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 
+
 namespace AmvReporting.Infrastructure.Autofac
 {
     public class AutofacConfig
@@ -19,6 +20,7 @@ namespace AmvReporting.Infrastructure.Autofac
 
             builder.RegisterModule(new AmvReportingModule());
             builder.RegisterModule(new RavenDbModule());
+            builder.RegisterModule(new NEventStoreModule());
 
             var container = builder.Build();
 

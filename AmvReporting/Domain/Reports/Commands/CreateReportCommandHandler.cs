@@ -1,44 +1,38 @@
+using System;
 using AmvReporting.Infrastructure.CQRS;
-using Raven.Client;
+using CommonDomain.Persistence;
+
 
 namespace AmvReporting.Domain.Reports.Commands
 {
     public class CreateReportCommandHandler : ICommandHandler<CreateReportCommand>
     {
-        private readonly IDocumentSession ravenSession;
+        private readonly IRepository repository;
 
-        public CreateReportCommandHandler(IDocumentSession ravenSession)
+        public CreateReportCommandHandler(IRepository repository)
         {
-            this.ravenSession = ravenSession;
+            this.repository = repository;
         }
+
 
         public void Handle(CreateReportCommand command)
         {
-            var report = CreateReportDetails(command);
+            var newId = Guid.NewGuid();
+            command.RedirectingId = newId.ToString();
+            
+            var report = new Report(newId,
+                                    command.ReportGroupId,
+                                    command.Title,
+                                    command.ReportType,
+                                    command.Description,
+                                    command.DatabaseId);
 
-            ravenSession.Store(report);
-            ravenSession.SaveChanges();
+            report.UpdateCode(command.Sql, command.JavaScript, command.Css, command.HtmlOverride);
+            report.EnableReport();
+            report.SetListOrder(0);
 
-            command.RedirectingId = report.Id;
-        }
-
-        public Report CreateReportDetails(CreateReportCommand command)
-        {
-            var result = new Report()
-                         {
-                             Title = command.Title,
-                             ReportType = command.ReportType,
-                             Description = command.Description,
-                             Sql = command.Sql,
-                             JavaScript = command.JavaScript,
-                             Css = command.Css,
-                             DatabaseId = command.DatabaseId,
-                             ReportGroupId = command.ReportGroupId,
-                             Enabled = command.Enabled,
-                             HtmlOverride = command.HtmlOverride,
-                         };
-
-            return result;
+            var commitId = Guid.NewGuid();
+            repository.Save(report, commitId);
         }
     }
 }

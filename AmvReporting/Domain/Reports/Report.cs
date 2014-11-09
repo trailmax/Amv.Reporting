@@ -12,6 +12,15 @@ namespace AmvReporting.Domain.Reports
         {
             RaiseEvent(new ReportCreatedEvent(Id, reportGroupId, title, reportType, description, databaseId));
         }
+        private void Apply(ReportCreatedEvent @event)
+        {
+            Id = @event.Id;
+            ReportGroupId = @event.ReportGroupId;
+            Title = @event.Title;
+            ReportType = @event.ReportType;
+            Description = @event.Description;
+            DatabaseId = @event.DatabaseId;
+        }
 
 
         private Report(Guid id)
@@ -43,9 +52,12 @@ namespace AmvReporting.Domain.Reports
         public int? ListOrder { get; private set; }
 
 
-        private void Apply(ReportCreatedEvent @event)
+        public void UpdateMetadata(String reportGroupId, String title, ReportType reportType, String description, String databaseId)
         {
-            Id = @event.Id;
+            RaiseEvent(new UpdateReportMetadaEvent(reportGroupId, title, reportType, description, databaseId));
+        }
+        private void Apply(UpdateReportMetadaEvent @event)
+        {
             ReportGroupId = @event.ReportGroupId;
             Title = @event.Title;
             ReportType = @event.ReportType;
@@ -54,6 +66,11 @@ namespace AmvReporting.Domain.Reports
         }
 
 
+        public void UpdateCode(string sql, string javaScript, string css, string htmlOverride)
+        {
+            var @event = new ReportCodeUpdatedEvent(sql, javaScript, css, htmlOverride);
+            RaiseEvent(@event);
+        }
         private void Apply(ReportCodeUpdatedEvent @event)
         {
             Sql = @event.Sql;
@@ -63,18 +80,30 @@ namespace AmvReporting.Domain.Reports
         }
 
 
+        public void EnableReport()
+        {
+            RaiseEvent(new EnableReportEvent());
+        }
         private void Apply(EnableReportEvent @event)
         {
             Enabled = true;
         }
 
 
+        public void DisableReport()
+        {
+            RaiseEvent(new DisableReportEvent());
+        }
         private void Apply(DisableReportEvent @event)
         {
             Enabled = false;
         }
 
 
+        public void SetListOrder(int listOrder)
+        {
+            RaiseEvent(new ChangeReportListOrderEvent(listOrder));
+        }
         private void Apply(ChangeReportListOrderEvent @event)
         {
             ListOrder = @event.ListOrder;

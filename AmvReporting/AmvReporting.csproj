@@ -68,6 +68,9 @@
     <Reference Include="NEventStore">
       <HintPath>..\packages\NEventStore.5.1.0\lib\net40\NEventStore.dll</HintPath>
     </Reference>
+    <Reference Include="NEventStore.Persistence.RavenDB">
+      <HintPath>..\packages\NEventStore.Persistence.RavenDB.5.0.0.86\lib\net40\NEventStore.Persistence.RavenDB.dll</HintPath>
+    </Reference>
     <Reference Include="NEventStore.Persistence.RavenPersistence">
       <HintPath>..\packages\NEventStore.Persistence.RavenPersistence.4.1.0.10\lib\net40\NEventStore.Persistence.RavenPersistence.dll</HintPath>
     </Reference>
@@ -234,11 +237,13 @@
     <Compile Include="Domain\Reports\Events\ReportCodeUpdatedEvent.cs" />
     <Compile Include="Domain\Reports\Events\ReportCreatedEvent.cs" />
     <Compile Include="Domain\Reports\Events\ReportUpdatedEvent.cs" />
+    <Compile Include="Domain\Reports\Events\UpdateReportMetadaEvent.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModel.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModelEnricher.cs" />
     <Compile Include="HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Autofac\NEventStoreModule.cs" />
     <Compile Include="Infrastructure\CQRS\CachedDecoratorMediator.cs" />
     <Compile Include="Infrastructure\Events\DomainEvents.cs" />
     <Compile Include="Infrastructure\Events\EventDispatcher.cs" />
@@ -293,6 +298,9 @@
     <Compile Include="Infrastructure\Helpers\StringExtensions.cs" />
     <Compile Include="Infrastructure\IModelEnricher.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportDetailsViewModelEnricher.cs" />
+    <Compile Include="Infrastructure\NEventStore\EmbeddedRavenStorageFractory.cs" />
+    <Compile Include="Infrastructure\NEventStore\RavenEmbeddedPersistenceWireup.cs" />
+    <Compile Include="Infrastructure\NEventStore\RavenPersistenceWireupExtensions.cs" />
     <Compile Include="Infrastructure\RestoreModelStateAttribute.cs" />
     <Compile Include="Domain\DomainException.cs" />
     <Compile Include="Domain\Reports\Report.cs" />

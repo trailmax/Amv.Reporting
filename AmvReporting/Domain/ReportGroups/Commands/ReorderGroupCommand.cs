@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using AmvReporting.Domain.Reports;
+using AmvReporting.Domain.Reports.Events;
 using AmvReporting.Infrastructure.CQRS;
 using Raven.Client;
 
@@ -27,11 +28,16 @@ namespace AmvReporting.Domain.ReportGroups.Commands
 
         public void Handle(ReorderGroupCommand command)
         {
-            for (var i = 0; i < (command.ReportIds ?? new string[0]).Count(); i++)
+            if (command.ReportIds == null)
+            {
+                command.ReportIds = new string[0];
+            }
+            for (var i = 0; i < command.ReportIds.Count(); i++)
             {
                 var report = ravenSession.Load<Report>(command.ReportIds[i]);
                 if (report != null)
                 {
+                    var @event = new ChangeReportListOrderEvent(i);
                     report.ListOrder = i;
                 }
             }
