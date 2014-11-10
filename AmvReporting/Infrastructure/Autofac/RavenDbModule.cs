@@ -27,7 +27,7 @@ namespace AmvReporting.Infrastructure.Autofac
         }
 
 
-        public static EmbeddableDocumentStore CreateDocumentStore()
+        private EmbeddableDocumentStore CreateDocumentStore()
         {
             var store = new EmbeddableDocumentStore
                         {

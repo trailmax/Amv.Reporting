@@ -4,10 +4,16 @@
     var reports = (List<ReportViewModel>)ViewBag.AllReports;
 }
 
-
-<ul>
-    @foreach (var report in reports)
-    {
-        <li>@report.Id - @report.Title</li>
-    }
-</ul>
+@if (reports.Any())
+{
+    <ul>
+        @foreach (var report in reports)
+        {
+            <li>@report.Id - @report.Title</li>
+        }
+    </ul>
+}
+else
+{
+  <p>There are no documents available</p>
+}

@@ -4,6 +4,7 @@ using CommonDomain.Core;
 using CommonDomain.Persistence;
 using CommonDomain.Persistence.EventStore;
 using NEventStore;
+using Raven.Client;
 using Module = Autofac.Module;
 
 
@@ -13,7 +14,7 @@ namespace AmvReporting.Infrastructure.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(x => WireupEventStore()).As<IStoreEvents>()
+            builder.Register(c => WireupEventStore(c)).As<IStoreEvents>()
                 .SingleInstance();
 
             builder.RegisterType<EventStoreRepository>().As<IRepository>()
@@ -26,10 +27,10 @@ namespace AmvReporting.Infrastructure.Autofac
             base.Load(builder);
         }
 
-        private static IStoreEvents WireupEventStore()
+        private static IStoreEvents WireupEventStore(IComponentContext componentContext)
         {
             return Wireup.Init()
-                         .UsingRavenPersistence(RavenDbModule.CreateDocumentStore)
+                         .UsingRavenPersistence(componentContext.Resolve<IDocumentStore>())
                          .UsingJsonSerialization()
                          .Build();
 
