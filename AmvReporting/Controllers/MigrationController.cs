@@ -7,6 +7,7 @@ using AmvReporting.Domain.Reports;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Filters;
 using CommonDomain.Persistence;
+using Raven.Abstractions.Data;
 using Raven.Client;
 
 
@@ -16,24 +17,29 @@ namespace AmvReporting.Controllers
     public class MigrationController : BaseController
     {
         private readonly IDocumentSession ravenSession;
+        //private readonly IDocumentStore documentStore;
         private readonly IRepository repository;
         private readonly IMediator mediator;
 
 
+        //public MigrationController(IDocumentSession ravenSession, IRepository repository, IMediator mediator, IDocumentStore documentStore)
         public MigrationController(IDocumentSession ravenSession, IRepository repository, IMediator mediator)
         {
             this.ravenSession = ravenSession;
             this.repository = repository;
             this.mediator = mediator;
+            //this.documentStore = documentStore;
         }
 
 
         public ActionResult Index()
         {
-            //var migrationDictionary = new MigrationDictonary();
+            var migrationDictionary = new MigrationDictonary();
 
-            //var allReports = ravenSession.Query<Report>()
-            //    .ToList();
+            var allReports = ravenSession.Query<ReportViewModel>()
+                .ToList();
+
+            ViewBag.AllReports = allReports;
 
             //foreach (var oldReport in allReports)
             //{
@@ -48,6 +54,25 @@ namespace AmvReporting.Controllers
             //}
 
             return View();
+        }
+
+
+        public static void RenameCollection(IDocumentStore documentStore)
+        {
+            documentStore.DatabaseCommands.UpdateByIndex(
+                "Raven/DocumentsByEntityName",
+                new IndexQuery
+                {
+                    Query = "Tag:Reports"
+                },
+                new ScriptedPatchRequest()
+                {
+                    Script = @"
+                                this['@metadata']['Raven-Entity-Name'] = 'ReportViewModels';
+                                this['@metadata']['Raven-Clr-Type'] = 'AmvReporting.Domain.Reports.ReportViewModel, AmvReporting';
+                                ",
+                },
+                allowStale: false);
         }
     }
 

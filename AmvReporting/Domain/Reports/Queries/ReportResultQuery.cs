@@ -53,8 +53,8 @@ namespace AmvReporting.Domain.Reports.Queries
 
         public ReportResult Handle(ReportResultQuery query)
         {
-            var report = ravenSession.Include<Report>(r => r.DatabaseId)
-                .Load<Report>(query.Id);
+            var report = ravenSession.Include<ReportViewModel>(r => r.DatabaseId)
+                .Load<ReportViewModel>(query.Id);
 
             if (report == null)
             {

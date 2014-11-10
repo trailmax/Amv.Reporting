@@ -39,7 +39,7 @@ namespace AmvReporting.Domain.ReportGroups.Commands
             for (var i = 0; i < command.ReportIds.Count(); i++)
             {
                 //TODO this is broken
-                var report = repository.GetById<Report>(new Guid(command.ReportIds[i]));
+                var report = repository.GetById<ReportAggregate>(new Guid(command.ReportIds[i]));
                 if (report != null)
                 {
                     report.SetListOrder(i);

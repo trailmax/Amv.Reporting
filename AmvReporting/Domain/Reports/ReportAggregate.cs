@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Web.Mvc;
 using AmvReporting.Domain.Reports.Events;
 using CommonDomain.Core;
@@ -6,9 +6,10 @@ using CommonDomain.Core;
 
 namespace AmvReporting.Domain.Reports
 {
-    public class Report : AggregateBase
+    public class ReportAggregate : AggregateBase
     {
-        public Report(Guid id, String reportGroupId, String title, ReportType reportType, String description, String databaseId) : this(id)
+        public ReportAggregate(Guid id, String reportGroupId, String title, ReportType reportType, String description, String databaseId)
+            : this(id)
         {
             RaiseEvent(new ReportCreatedEvent(Id, reportGroupId, title, reportType, description, databaseId));
         }
@@ -23,7 +24,7 @@ namespace AmvReporting.Domain.Reports
         }
 
 
-        public Report(Guid id, Report migratedReport)
+        public ReportAggregate(Guid id, ReportViewModel migratedReport)
         {
             RaiseEvent(new MigrationEvent(migratedReport));
         }
@@ -46,7 +47,7 @@ namespace AmvReporting.Domain.Reports
 
 
 
-        private Report(Guid id)
+        private ReportAggregate(Guid id)
         {
             Id = id;
         }

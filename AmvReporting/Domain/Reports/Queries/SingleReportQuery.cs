@@ -5,7 +5,7 @@ using Raven.Client;
 
 namespace AmvReporting.Domain.Reports.Queries
 {
-    public class SingleReportQuery : IQuery<Report>
+    public class SingleReportQuery : IQuery<ReportViewModel>
     {
         public string Id { get; set; }
 
@@ -15,7 +15,7 @@ namespace AmvReporting.Domain.Reports.Queries
         }
     }
 
-    public class SingleReportQueryHandler : IQueryHandler<SingleReportQuery, Report>
+    public class SingleReportQueryHandler : IQueryHandler<SingleReportQuery, ReportViewModel>
     {
         private readonly IDocumentSession ravenSession;
 
@@ -24,9 +24,9 @@ namespace AmvReporting.Domain.Reports.Queries
             this.ravenSession = ravenSession;
         }
 
-        public Report Handle(SingleReportQuery query)
+        public ReportViewModel Handle(SingleReportQuery query)
         {
-            var report = ravenSession.Load<Report>(query.Id);
+            var report = ravenSession.Load<ReportViewModel>(query.Id);
 
             return report;
         }

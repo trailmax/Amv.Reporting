@@ -7,12 +7,12 @@ namespace AmvReporting.Domain.Reports.Events
     [Serializable]
     public class MigrationEvent : IDomainEvent
     {
-        public MigrationEvent(Report migratedReport)
+        public MigrationEvent(ReportViewModel migratedReport)
         {
             MigratedReport = migratedReport;
         }
 
 
-        public Report MigratedReport { get; set; }
+        public ReportViewModel MigratedReport { get; set; }
     }
 }

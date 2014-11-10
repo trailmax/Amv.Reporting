@@ -1,8 +1,10 @@
 ﻿using AmvReporting.Infrastructure.NEventStore;
 using Autofac;
+using CommonDomain.Core;
 using CommonDomain.Persistence;
 using CommonDomain.Persistence.EventStore;
 using NEventStore;
+using Module = Autofac.Module;
 
 
 namespace AmvReporting.Infrastructure.Autofac
@@ -16,6 +18,10 @@ namespace AmvReporting.Infrastructure.Autofac
 
             builder.RegisterType<EventStoreRepository>().As<IRepository>()
                 .InstancePerLifetimeScope();
+
+            builder.RegisterType<AggregateFactory>().AsImplementedInterfaces();
+
+            builder.RegisterType<ConflictDetector>().AsImplementedInterfaces();
 
             base.Load(builder);
         }

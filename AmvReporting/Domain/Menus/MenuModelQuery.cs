@@ -31,16 +31,16 @@ namespace AmvReporting.Domain.Menus
         {
             List<ReportGroup> allGroups;
 
-            List<Report> allReports;
+            List<ReportViewModel> allReports;
 
             if (query.ShowDisabledReports)
             {
-                allReports = ravenSession.Query<Report>().ToList();
+                allReports = ravenSession.Query<ReportViewModel>().ToList();
                 allGroups = ravenSession.Query<ReportGroup>().ToList();
             }
             else
             {
-                allReports = ravenSession.Query<Report>().Where(r => r.Enabled).ToList();
+                allReports = ravenSession.Query<ReportViewModel>().Where(r => r.Enabled).ToList();
                 allGroups = ravenSession.Query<ReportGroup>().Where(g => g.Enabled).ToList();
             }
 
@@ -60,7 +60,7 @@ namespace AmvReporting.Domain.Menus
         }
 
 
-        private MenuNode BuildTree(ReportGroup @group, List<ReportGroup> allGroups, List<Report> allReports)
+        private MenuNode BuildTree(ReportGroup @group, List<ReportGroup> allGroups, List<ReportViewModel> allReports)
         {
             var menuNode = new MenuNode()
                            {

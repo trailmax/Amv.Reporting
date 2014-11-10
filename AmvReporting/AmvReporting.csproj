@@ -241,6 +241,7 @@
     <Compile Include="Domain\Reports\Events\ReportCreatedEvent.cs" />
     <Compile Include="Domain\Reports\Events\ReportUpdatedEvent.cs" />
     <Compile Include="Domain\Reports\Events\UpdateReportMetadaEvent.cs" />
+    <Compile Include="Domain\Reports\ReportAggregate.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModel.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModelEnricher.cs" />
     <Compile Include="HomeController.generated.cs">
@@ -301,12 +302,13 @@
     <Compile Include="Infrastructure\Helpers\StringExtensions.cs" />
     <Compile Include="Infrastructure\IModelEnricher.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportDetailsViewModelEnricher.cs" />
+    <Compile Include="Infrastructure\NEventStore\AggregateFactory.cs" />
     <Compile Include="Infrastructure\NEventStore\EmbeddedRavenStorageFractory.cs" />
     <Compile Include="Infrastructure\NEventStore\RavenEmbeddedPersistenceWireup.cs" />
     <Compile Include="Infrastructure\NEventStore\RavenPersistenceWireupExtensions.cs" />
     <Compile Include="Infrastructure\RestoreModelStateAttribute.cs" />
     <Compile Include="Domain\DomainException.cs" />
-    <Compile Include="Domain\Reports\Report.cs" />
+    <Compile Include="Domain\Reports\ReportViewModel.cs" />
     <Compile Include="Domain\Reports\ReportType.cs" />
     <Compile Include="PreviewController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -513,6 +515,7 @@
     <Content Include="Examples\Table.html" />
     <Content Include="Views\Preview\Data.cshtml" />
     <Content Include="Views\Preview\Report.cshtml" />
+    <Content Include="Views\Migration\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -615,7 +618,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Migration\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

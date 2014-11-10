@@ -10,13 +10,13 @@ namespace AmvReporting.Infrastructure.Automappings
     {
         public static void Initialize()
         {
-            Mapper.CreateMap<Report, ReportDetailsViewModel>()
+            Mapper.CreateMap<ReportViewModel, ReportDetailsViewModel>()
                 .ForMember(d => d.RedirectingId, o => o.Ignore());
 
-            Mapper.CreateMap<Report, EditReportDetailsViewModel>()
+            Mapper.CreateMap<ReportViewModel, EditReportDetailsViewModel>()
                 .ForMember(d => d.RedirectingId, o => o.Ignore());
 
-            Mapper.CreateMap<Report, ReportIndexViewModel>()
+            Mapper.CreateMap<ReportViewModel, ReportIndexViewModel>()
                 .ForMember(d => d.GroupFullName, o => o.Ignore());
 
             Mapper.CreateMap<ReportGroup, ReportGroupViewModel>();

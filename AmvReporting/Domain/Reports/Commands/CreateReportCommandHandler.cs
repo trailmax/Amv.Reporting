@@ -20,7 +20,7 @@ namespace AmvReporting.Domain.Reports.Commands
             var newId = Guid.NewGuid();
             command.RedirectingId = newId.ToString();
             
-            var report = new Report(newId,
+            var report = new ReportAggregate(newId,
                                     command.ReportGroupId,
                                     command.Title,
                                     command.ReportType,
