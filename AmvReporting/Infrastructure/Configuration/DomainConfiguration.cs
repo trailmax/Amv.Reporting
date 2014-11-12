@@ -11,6 +11,14 @@ namespace AmvReporting.Infrastructure.Configuration
             return dataPath;
         }
 
+
+        public string GetBackupPath()
+        {
+            var backupPath = ConfigurationManager.AppSettings["BackupPath"];
+            return backupPath;
+        }
+
+
         public bool EnableRavenStudio()
         {
             var result = String.Equals(ConfigurationManager.AppSettings["EnableRavenStudio"], "true", StringComparison.InvariantCultureIgnoreCase);

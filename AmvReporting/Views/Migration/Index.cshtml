@@ -1,13 +1,11 @@
-﻿@model dynamic
+﻿@model AmvReporting.Controllers.IndexViewModel
 
-@{
-    var reports = (List<ReportViewModel>)ViewBag.AllReports;
-}
 
-@if (reports.Any())
+<h3>Current migrated reports</h3>
+@if (Model.ReportViewModels.Any())
 {
     <ul>
-        @foreach (var report in reports)
+        @foreach (var report in Model.ReportViewModels)
         {
             <li>@report.Id - @report.Title</li>
         }
@@ -15,5 +13,14 @@
 }
 else
 {
-  <p>There are no documents available</p>
+  <p>There are no Event-Store style documents available</p>
+}
+
+<hr/>
+Number of old-style documents: @Model.OldReportsCount
+
+@if (Model.OldReportsCount > 0)
+{
+    <h3>You need to run a migration</h3>
+    
 }

@@ -25,8 +25,10 @@ using T4MVC;
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 public static partial class MVC
 {
+    public static AmvReporting.Controllers.BackupsController Backups = new AmvReporting.Controllers.T4MVC_BackupsController();
     public static AmvReporting.Controllers.DatabaseController Database = new AmvReporting.Controllers.T4MVC_DatabaseController();
     public static AmvReporting.Controllers.HomeController Home = new AmvReporting.Controllers.T4MVC_HomeController();
+    public static AmvReporting.Controllers.MigrationController Migration = new AmvReporting.Controllers.T4MVC_MigrationController();
     public static AmvReporting.Controllers.PreviewController Preview = new AmvReporting.Controllers.T4MVC_PreviewController();
     public static AmvReporting.Controllers.ReportController Report = new AmvReporting.Controllers.T4MVC_ReportController();
     public static AmvReporting.Controllers.ReportGroupController ReportGroup = new AmvReporting.Controllers.T4MVC_ReportGroupController();
@@ -307,6 +309,8 @@ namespace Links
         public static readonly string jquery_validate_unobtrusive_min_js = Url("jquery.validate.unobtrusive.min.js");
         public static readonly string modernizr_2_8_3_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/modernizr-2.8.3.min.js") ? Url("modernizr-2.8.3.min.js") : Url("modernizr-2.8.3.js");
         public static readonly string respond_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/respond.min.js") ? Url("respond.min.js") : Url("respond.js");
+        public static readonly string respond_matchmedia_addListener_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/respond.matchmedia.addListener.min.js") ? Url("respond.matchmedia.addListener.min.js") : Url("respond.matchmedia.addListener.js");
+        public static readonly string respond_matchmedia_addListener_min_js = Url("respond.matchmedia.addListener.min.js");
         public static readonly string respond_min_js = Url("respond.min.js");
     }
 

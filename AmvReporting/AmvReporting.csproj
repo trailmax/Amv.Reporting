@@ -190,6 +190,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BackupsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\BackupsController.cs" />
     <Compile Include="Controllers\MigrationController.cs" />
     <Compile Include="Controllers\ReportingConfigController.cs" />
     <Compile Include="Controllers\ReportGroupController.cs" />
@@ -310,6 +314,9 @@
     <Compile Include="Domain\DomainException.cs" />
     <Compile Include="Domain\Reports\ReportViewModel.cs" />
     <Compile Include="Domain\Reports\ReportType.cs" />
+    <Compile Include="MigrationController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="PreviewController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -516,6 +523,10 @@
     <Content Include="Views\Preview\Data.cshtml" />
     <Content Include="Views\Preview\Report.cshtml" />
     <Content Include="Views\Migration\Index.cshtml" />
+    <Content Include="Views\Migration\_ViewStart.cshtml" />
+    <Content Include="Views\Backups\Index.cshtml" />
+    <Content Include="Views\Backups\_ViewStart.cshtml" />
+    <Content Include="Views\Backups\RestoreBackup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

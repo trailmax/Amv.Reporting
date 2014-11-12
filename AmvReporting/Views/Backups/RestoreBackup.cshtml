@@ -1,0 +1,18 @@
+﻿@model AmvReporting.Controllers.RestoreBackupViewModel
+
+<h1>Backup Restore</h1>
+
+<p class="bg-warning">Restoring backups id deadly. It will overwrite all existing data</p>
+
+@using (Html.BeginForm(MVC.Backups.ConfirmRestoreBackup(), FormMethod.Post, new { role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Name)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Confirmation, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.Confirmation, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Confirmation)
+    </div>
+    
+    <input type="submit" value="Restore @Model.Name" class="btn btn-lg btn-danger" />
+}
