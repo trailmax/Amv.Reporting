@@ -10,7 +10,7 @@
     @Html.HiddenFor(m => m.Name)
     <div class="form-group">
         @Html.LabelFor(m => m.Confirmation, new { @class = "control-label" })
-        @Html.TextBoxFor(m => m.Confirmation, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Confirmation, new { @class = "form-control", autocomplete = "off" })
         @Html.ValidationMessageFor(m => m.Confirmation)
     </div>
     

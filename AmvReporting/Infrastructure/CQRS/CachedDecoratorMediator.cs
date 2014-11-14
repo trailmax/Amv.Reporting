@@ -37,5 +37,11 @@ namespace AmvReporting.Infrastructure.CQRS
 
             return cachedEntity;
         }
+
+
+        public ErrorList ProcessCommand<TCommand>(TCommand command) where TCommand : ICommand
+        {
+            return decorated.ProcessCommand(command);
+        }
     }
 }

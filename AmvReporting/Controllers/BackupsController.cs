@@ -1,43 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Web.Mvc;
-using AmvReporting.Infrastructure.Configuration;
-using Raven.Abstractions.Data;
-using Raven.Client;
-using Raven.Client.Embedded;
+using AmvReporting.Domain.Backup;
+using AmvReporting.Domain.Backup.Commands;
+using AmvReporting.Infrastructure.CQRS;
 
 
 namespace AmvReporting.Controllers
 {
     public partial class BackupsController : Controller
     {
-        private readonly IDocumentStore documentStore;
+        private readonly IMediator mediator;
 
-
-        public BackupsController(IDocumentStore documentStore)
+        public BackupsController(IMediator mediator)
         {
-            this.documentStore = documentStore;
+            this.mediator = mediator;
         }
 
 
         public virtual ActionResult Index()
         {
-            var backupPath = ConfigurationContext.Current.GetBackupPath();
-            var folders = Directory.GetDirectories(backupPath);
-
-            var model = new List<BackupViewModel>();
-            foreach (var folder in folders)
-            {
-                model.Add(new BackupViewModel()
-                {
-                    FullPath = folder,
-                    Name = new DirectoryInfo(folder).Name,
-                });
-            }
-
-
+            var model = mediator.Request(new AllBackupsQuery());
+            
             return View(model);
         }
 
@@ -45,17 +29,7 @@ namespace AmvReporting.Controllers
         [HttpPost]
         public virtual ActionResult CreateBackup()
         {
-            var embeddedStore = documentStore as EmbeddableDocumentStore;
-
-            if (embeddedStore == null)
-            {
-                throw new NotSupportedException("Document Storage is not embedded storage");
-            }
-            
-            var path = Path.Combine(ConfigurationContext.Current.GetBackupPath(), String.Format("{0:yyyy-MM-dd-HHmm}", DateTime.Now));
-            Directory.CreateDirectory(path);
-
-            embeddedStore.DocumentDatabase.StartBackup(path, false, new DatabaseDocument());
+            mediator.ProcessCommand(new CreateBackupCommand());
 
             return RedirectToAction(MVC.Backups.Index());
         }
@@ -85,17 +59,16 @@ namespace AmvReporting.Controllers
                 return View("RestoreBackup", model);
             }
 
-            // do actual restore
+            mediator.ProcessCommand(new RestoreBackupCommand(model.Name));
+
             return RedirectToAction(MVC.Backups.Index());
         }
     }
 
 
-    public class BackupViewModel
-    {
-        public String Name { get; set; }
-        public String FullPath { get; set; }
-    }
+
+
+
 
 
     public class RestoreBackupViewModel
