@@ -1,10 +1,23 @@
-﻿using AmvReporting.Infrastructure.CQRS;
+﻿using System;
+using System.Linq;
+using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Events;
 using AmvReporting.Infrastructure.ModelEnrichers;
 using Autofac;
+using Autofac.Core;
+
 
 namespace AmvReporting.Infrastructure.Autofac
 {
+    public static class AutofacKeys
+    {
+        public const String CommandHandler = "commandHandler";
+        public const String AggregateCommandHandler = "AggregateCommandHandler";
+        public const String TransactedCommandHandler = "TransactedCommandHandler";
+        public const String QueryHandler = "queryHandler";
+    }
+
+
     public class AmvReportingModule : Module
     {
         protected override void Load(ContainerBuilder builder)
@@ -39,11 +52,21 @@ namespace AmvReporting.Infrastructure.Autofac
                 .AsClosedTypesOf(typeof(IQueryHandler<,>))
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<AutofacMediator>()
-                .Named<IMediator>("mediator");
+            builder.RegisterTypes(types)
+                .As(t => t.GetInterfaces()
+                    .Where(a => a.IsClosedTypeOf(typeof(IQueryHandler<,>)))
+                    .Select(a => new KeyedService(AutofacKeys.QueryHandler, a)))
+                .InstancePerLifetimeScope();
 
-            builder.RegisterDecorator<IMediator>((c, inner) => 
-                new CachedDecoratorMediator(inner), fromKey: "mediator");
+
+            builder.RegisterGenericDecorator(
+                typeof(CachedQueryHandlerDecorator<,>),
+                typeof(IQueryHandler<,>),
+                fromKey: AutofacKeys.QueryHandler).InstancePerLifetimeScope();
+
+            builder.RegisterType<AutofacMediator>().As<IMediator>()
+                .InstancePerLifetimeScope();
+
 
 
             builder.RegisterType<EventDispatcher>()

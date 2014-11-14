@@ -104,6 +104,7 @@
     <Reference Include="System.Data">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Spatial, Version=5.6.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\System.Spatial.5.6.3\lib\net40\System.Spatial.dll</HintPath>
@@ -255,7 +256,10 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Autofac\NEventStoreModule.cs" />
-    <Compile Include="Infrastructure\CQRS\CachedDecoratorMediator.cs" />
+    <Compile Include="Infrastructure\Caching\ICacheProvider.cs" />
+    <Compile Include="Infrastructure\Caching\MemoryCacheProvider.cs" />
+    <Compile Include="Infrastructure\CQRS\CachedQueryHandlerDecorator.cs" />
+    <Compile Include="Infrastructure\CQRS\ICachedQuery.cs" />
     <Compile Include="Infrastructure\Events\DomainEvents.cs" />
     <Compile Include="Infrastructure\Events\EventDispatcher.cs" />
     <Compile Include="Infrastructure\Events\IDomainEvent.cs" />
