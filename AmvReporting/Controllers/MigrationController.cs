@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using System.Web;
 using System.Web.Mvc;
+using AmvReporting.Domain;
 using AmvReporting.Domain.Reports;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Filters;
 using CommonDomain.Persistence;
 using Raven.Abstractions.Data;
-using Raven.Abstractions.Indexing;
 using Raven.Client;
-using Raven.Client.Embedded;
 using Raven.Client.Indexes;
-using Raven.Database;
 
 
 namespace AmvReporting.Controllers
@@ -38,7 +34,7 @@ namespace AmvReporting.Controllers
 
         public virtual ActionResult Index()
         {
-            var allViewModels = ravenSession.Query<ReportViewModel>().ToList();
+            var allViewModelsCount = ravenSession.Query<ReportViewModel>().Count();
             new RavenDocumentsByEntityName().Execute(documentStore);
 
             var oldReports = documentStore.DatabaseCommands.Query(
@@ -50,7 +46,7 @@ namespace AmvReporting.Controllers
 
             var model = new IndexViewModel()
             {
-                ReportViewModels = allViewModels,
+                ReportViewModelsCount = allViewModelsCount,
                 OldReportsCount = oldReports.TotalResults,
             };
 
@@ -59,16 +55,14 @@ namespace AmvReporting.Controllers
 
 
 
-
-
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public virtual ActionResult RunMigration()
         {
-            throw new NotImplementedException();
             RenameCollection();
 
             var allViewModels = ravenSession.Query<ReportViewModel>().ToList();
-            var migrationDictionary = new MigrationDictonary();
+            var migrationDictionary = ravenSession.Load<MigrationDictonary>(MigrationDictonary.DefaultId) ?? new MigrationDictonary();
 
             foreach (var oldReport in allViewModels)
             {
@@ -82,6 +76,10 @@ namespace AmvReporting.Controllers
 
                 migrationDictionary.Add(oldId, newId);
             }
+            ravenSession.Store(migrationDictionary);
+            ravenSession.SaveChanges();
+
+            return RedirectToAction(MVC.Home.Index());
         }
 
 
@@ -107,19 +105,15 @@ namespace AmvReporting.Controllers
 
     public class IndexViewModel
     {
-        public List<ReportViewModel> ReportViewModels { get; set; }
+        public int ReportViewModelsCount { get; set; }
         public int OldReportsCount { get; set; }
     }
 
 
-    public class MigrationDictonary : Dictionary<String, Guid>
-    {
-        public String Id 
-        {
-            get
-            {
-                return "migration/dictionary";
-            } 
-        }
-    }
+    //public class MigrationIndexViewModelQuery
+    //{
+    //    public int ReportViewModelsCount { get; set; }
+    //    prop
+    //}
+
 }

@@ -204,6 +204,7 @@
     <Compile Include="Domain\Backup\AllBackupsQuery.cs" />
     <Compile Include="Domain\Backup\Commands\CreateBackupCommand.cs" />
     <Compile Include="Domain\Backup\Commands\RestoreBackupCommand.cs" />
+    <Compile Include="Domain\MigrationDictonary.cs" />
     <Compile Include="Domain\ReportingConfigs\ReportingConfig.cs" />
     <Compile Include="Domain\ReportingConfigs\Queries\ReportingConfigQuery.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommand.cs" />

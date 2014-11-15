@@ -22,5 +22,9 @@ Number of old-style documents: @Model.OldReportsCount
 @if (Model.OldReportsCount > 0)
 {
     <h3>You need to run a migration</h3>
-    
+    using (Html.BeginForm(MVC.Migration.RunMigration()))
+    {
+        @Html.AntiForgeryToken()
+        <input type="submit" value="Run Migration" class="btn btn-lg btn-danger"/>
+    }
 }
