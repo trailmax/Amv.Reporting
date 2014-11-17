@@ -5,7 +5,7 @@ using AmvReporting.Infrastructure.Events;
 namespace AmvReporting.Domain.Reports.Events
 {
     [Serializable]
-    public class UpdateReportMetadaEvent : IDomainEvent
+    public class UpdateReportMetadaEvent : IEvent
     {
         public String ReportGroupId { get; set; }
 
@@ -18,13 +18,17 @@ namespace AmvReporting.Domain.Reports.Events
         public String DatabaseId { get; private set; }
 
 
-        public UpdateReportMetadaEvent(String reportGroupId, String title, ReportType reportType, String description, String databaseId)
+        public UpdateReportMetadaEvent(Guid aggregateId, String reportGroupId, String title, ReportType reportType, String description, String databaseId)
         {
+            AggregateId = aggregateId;
             ReportGroupId = reportGroupId;
             Title = title;
             ReportType = reportType;
             Description = description;
             DatabaseId = databaseId;
         }
+
+
+        public Guid AggregateId { get; private set; }
     }
 }

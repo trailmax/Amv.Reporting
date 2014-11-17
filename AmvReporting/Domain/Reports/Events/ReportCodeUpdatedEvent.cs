@@ -8,10 +8,11 @@ using AmvReporting.Infrastructure.Events;
 namespace AmvReporting.Domain.Reports.Events
 {
     [Serializable]
-    public class ReportCodeUpdatedEvent : IDomainEvent
+    public class ReportCodeUpdatedEvent : IEvent
     {
-        public ReportCodeUpdatedEvent(string sql, string javaScript, string css, string htmlOverride)
+        public ReportCodeUpdatedEvent(Guid aggregateId, string sql, string javaScript, string css, string htmlOverride)
         {
+            AggregateId = aggregateId;
             Sql = sql;
             JavaScript = javaScript;
             Css = css;
@@ -27,11 +28,13 @@ namespace AmvReporting.Domain.Reports.Events
 
         [AllowHtml]
         public String HtmlOverride { get; private set; }
+
+        public Guid AggregateId { get; private set; }
     }
 
 
     //TODO this is broken
-    //public class ReportCodeUpdatedEventHandler : IDomainEventHandler<ReportCodeUpdatedEvent>
+    //public class ReportCodeUpdatedEventHandler : IEventHandler<ReportCodeUpdatedEvent>
     //{
     //    public void Handle(ReportCodeUpdatedEvent raisedEvent)
     //    {

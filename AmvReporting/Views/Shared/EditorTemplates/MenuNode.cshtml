@@ -17,13 +17,14 @@
     <tr data-tt-parent-id="@report.ReportGroupId" data-tt-id="@report.Id">
         <td>
             <span class="file">
-                @Html.ActionLink(report.Title, MVC.Report.Edit(report.Id.ToString()), new { @class = !report.Enabled ? "disabled-report" : "" })
+                @Html.ActionLink(report.Title, MVC.Report.Edit(report.Id), new { @class = !report.Enabled ? "disabled-report" : "" })
             </span>
         </td>
         <td>
-            @Html.ActionLink("View", MVC.Home.Report(report.Id.ToString()), new { @class = "btn btn-default btn-xs" })
-            @Url.AjaxDeleteButton(MVC.Report.Delete(), report, i => i.Id.ToString())
-            @Html.ActionLink("Clone", MVC.Report.Clone(report.Id.ToString()), new { @class = "btn btn-default btn-xs" })
+            @Html.ActionLink("View", MVC.Home.Report(report.Id), new { @class = "btn btn-default btn-xs" })
+            @*TODO make this work: @Url.AjaxDeleteButton(MVC.Report.Delete(), report, i => i.Id.ToString())*@
+            @Url.AjaxDeleteButton(MVC.Report.Delete(), report, "Id")
+            @Html.ActionLink("Clone", MVC.Report.Clone(report.Id), new { @class = "btn btn-default btn-xs" })
         </td>
     </tr>
 }

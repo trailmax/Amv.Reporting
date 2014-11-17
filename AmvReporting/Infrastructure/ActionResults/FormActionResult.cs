@@ -11,7 +11,7 @@ namespace AmvReporting.Infrastructure.ActionResults
         private readonly ActionResult failure;
         private readonly ICommandHandler<T> handler;
         private readonly ICommandValidator<T> validator;
-        private readonly Func<String, ActionResult> redirector;
+        private readonly Func<Guid, ActionResult> redirector;
         private ActionResult success;
 
 
@@ -38,7 +38,7 @@ namespace AmvReporting.Infrastructure.ActionResults
         }
 
 
-        public FormActionResult(T form, ActionResult failure, Func<string, ActionResult> redirector)
+        public FormActionResult(T form, ActionResult failure, Func<Guid, ActionResult> redirector)
         {
             this.form = form;
             this.failure = failure;

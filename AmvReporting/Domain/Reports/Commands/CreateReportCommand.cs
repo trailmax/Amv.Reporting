@@ -2,6 +2,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using AmvReporting.Infrastructure.CQRS;
+using CommonDomain.Persistence;
+
 
 namespace AmvReporting.Domain.Reports.Commands
 {
@@ -39,6 +41,38 @@ namespace AmvReporting.Domain.Reports.Commands
 
         public bool Enabled { get; set; }
 
-        public string RedirectingId { get; set; }
+        public Guid RedirectingId { get; set; }
+    }
+
+
+    public class CreateReportCommandHandler : ICommandHandler<CreateReportCommand>
+    {
+        private readonly IRepository repository;
+
+        public CreateReportCommandHandler(IRepository repository)
+        {
+            this.repository = repository;
+        }
+
+
+        public void Handle(CreateReportCommand command)
+        {
+            var newId = Guid.NewGuid();
+            command.RedirectingId = newId;
+
+            var report = new ReportAggregate(newId,
+                                    command.ReportGroupId,
+                                    command.Title,
+                                    command.ReportType,
+                                    command.Description,
+                                    command.DatabaseId);
+
+            report.UpdateCode(command.Sql, command.JavaScript, command.Css, command.HtmlOverride);
+            report.EnableReport();
+            report.SetListOrder(0);
+
+            var commitId = Guid.NewGuid();
+            repository.Save(report, commitId);
+        }
     }
 }

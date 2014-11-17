@@ -15,7 +15,7 @@ namespace AmvReporting.Domain.Reports
         }
         private void Apply(ReportCreatedEvent @event)
         {
-            Id = @event.Id;
+            Id = @event.AggregateId;
             ReportGroupId = @event.ReportGroupId;
             Title = @event.Title;
             ReportType = @event.ReportType;
@@ -26,7 +26,7 @@ namespace AmvReporting.Domain.Reports
 
         public ReportAggregate(Guid id, ReportViewModel migratedReport)
         {
-            RaiseEvent(new MigrationEvent(migratedReport));
+            RaiseEvent(new MigrationEvent(id, migratedReport));
         }
 
 
@@ -78,7 +78,7 @@ namespace AmvReporting.Domain.Reports
 
         public void UpdateMetadata(String reportGroupId, String title, ReportType reportType, String description, String databaseId)
         {
-            RaiseEvent(new UpdateReportMetadaEvent(reportGroupId, title, reportType, description, databaseId));
+            RaiseEvent(new UpdateReportMetadaEvent(this.Id, reportGroupId, title, reportType, description, databaseId));
         }
         private void Apply(UpdateReportMetadaEvent @event)
         {
@@ -92,7 +92,7 @@ namespace AmvReporting.Domain.Reports
 
         public void UpdateCode(string sql, string javaScript, string css, string htmlOverride)
         {
-            var @event = new ReportCodeUpdatedEvent(sql, javaScript, css, htmlOverride);
+            var @event = new ReportCodeUpdatedEvent(this.Id, sql, javaScript, css, htmlOverride);
             RaiseEvent(@event);
         }
         private void Apply(ReportCodeUpdatedEvent @event)
@@ -106,7 +106,7 @@ namespace AmvReporting.Domain.Reports
 
         public void EnableReport()
         {
-            RaiseEvent(new EnableReportEvent());
+            RaiseEvent(new EnableReportEvent(this.Id));
         }
         private void Apply(EnableReportEvent @event)
         {
@@ -116,7 +116,7 @@ namespace AmvReporting.Domain.Reports
 
         public void DisableReport()
         {
-            RaiseEvent(new DisableReportEvent());
+            RaiseEvent(new DisableReportEvent(this.Id));
         }
         private void Apply(DisableReportEvent @event)
         {
@@ -126,7 +126,7 @@ namespace AmvReporting.Domain.Reports
 
         public void SetListOrder(int listOrder)
         {
-            RaiseEvent(new ChangeReportListOrderEvent(listOrder));
+            RaiseEvent(new ChangeReportListOrderEvent(this.Id, listOrder));
         }
         private void Apply(ChangeReportListOrderEvent @event)
         {

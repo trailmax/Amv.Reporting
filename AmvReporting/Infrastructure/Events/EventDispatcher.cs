@@ -15,9 +15,9 @@ namespace AmvReporting.Infrastructure.Events
         }
 
 
-        public void Dispatch<TEvent>(TEvent eventToDispatch) where TEvent : IDomainEvent
+        public void Dispatch<TEvent>(TEvent eventToDispatch) where TEvent : IEvent
         {
-            var domainEventHandlers = container.Resolve<IEnumerable<IDomainEventHandler<TEvent>>>();
+            var domainEventHandlers = container.Resolve<IEnumerable<IEventHandler<TEvent>>>();
             foreach (var handler in domainEventHandlers)
             {
                 handler.Handle(eventToDispatch);

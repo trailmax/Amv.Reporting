@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Web;
 using System.Web.Mvc;
 using AmvReporting.Domain.Menus;
 using AmvReporting.Domain.Reports.Commands;
@@ -22,13 +21,13 @@ namespace AmvReporting.Controllers
             this.mediator = mediator;
         }
 
+
         public virtual ActionResult Index()
         {
             var model = mediator.Request(new MenuModelQuery(true));
 
             return View(model);
         }
-
 
 
         [RestoreModelState]
@@ -40,6 +39,7 @@ namespace AmvReporting.Controllers
                         };
             return EnrichedView(model);
         }
+
 
         [HttpPost, ValidateAntiForgeryToken]
         public virtual ActionResult Create(CreateReportCommand command)
@@ -59,13 +59,14 @@ namespace AmvReporting.Controllers
 
 
         [RestoreModelState]
-        public virtual ActionResult Edit(String id)
+        public virtual ActionResult Edit(Guid id)
         {
-            var query = new SingleReportQuery(id);
+            throw new NotImplementedException();
+            //var query = new SingleReportQuery(id);
 
-            var report = mediator.Request(query);
+            //var report = mediator.Request(query);
 
-            return AutoMappedView<EditReportDetailsViewModel>(report);
+            //return AutoMappedView<EditReportDetailsViewModel>(report);
         }
 
 
@@ -76,7 +77,7 @@ namespace AmvReporting.Controllers
             {
                 return ProcessJsonForm(command, "Changes are saved");
             }
-            return ProcessForm(command, RedirectToAction(MVC.Report.Edit(command.Id.ToString())), RedirectToAction(MVC.Report.Index()));
+            return ProcessForm(command, RedirectToAction(MVC.Report.Edit(command.Id)), RedirectToAction(MVC.Report.Index()));
         }
 
 

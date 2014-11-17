@@ -73,7 +73,7 @@ namespace AmvReporting.Infrastructure.Autofac
                 .As<IDomainEventDispatcher>();
 
             builder.RegisterTypes(types)
-                .AsClosedTypesOf(typeof(IDomainEventHandler<>))
+                .AsClosedTypesOf(typeof(IEventHandler<>))
                 .InstancePerLifetimeScope();
 
 

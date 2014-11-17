@@ -1,7 +1,10 @@
-﻿namespace AmvReporting.Infrastructure.CQRS
+﻿using System;
+
+
+namespace AmvReporting.Infrastructure.CQRS
 {
     public interface IRedirectingCommand : ICommand
     {
-        string RedirectingId { get; set; }
+        Guid RedirectingId { get; set; }
     }
 }

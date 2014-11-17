@@ -1,6 +1,6 @@
 ﻿namespace AmvReporting.Infrastructure.Events
 {
-    public interface IDomainEventHandler<in TEvent>
+    public interface IEventHandler<in TEvent>
     {
         void Handle(TEvent raisedEvent);
     }

@@ -6,7 +6,7 @@
 
 //namespace AmvReporting.Domain.Reports.Events
 //{
-//    public class ReportUpdatedEvent : IDomainEvent
+//    public class ReportUpdatedEvent : IEvent
 //    {
 //        public string Id { get; private set; }
 
@@ -17,7 +17,7 @@
 //        }
 //    }
 
-//    public class InvalidateCacheReportUpdatedEventHandler : IDomainEventHandler<ReportUpdatedEvent>
+//    public class InvalidateCacheReportUpdatedEventHandler : IEventHandler<ReportUpdatedEvent>
 //    {
 //        public void Handle(ReportUpdatedEvent raisedEvent)
 //        {

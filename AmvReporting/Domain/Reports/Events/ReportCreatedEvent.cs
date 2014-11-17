@@ -5,18 +5,17 @@ using AmvReporting.Infrastructure.Events;
 namespace AmvReporting.Domain.Reports.Events
 {
     [Serializable]
-    public class ReportCreatedEvent : IDomainEvent
+    public class ReportCreatedEvent : IEvent
     {
-        public ReportCreatedEvent(Guid id, String reportGroupId, String title, ReportType reportType, String description, String databaseId)
+        public ReportCreatedEvent(Guid aggregateId, String reportGroupId, String title, ReportType reportType, String description, String databaseId)
         {
-            Id = id;
+            AggregateId = aggregateId;
             ReportGroupId = reportGroupId;
             Title = title;
             ReportType = reportType;
             Description = description;
             DatabaseId = databaseId;
         }
-        public Guid Id { get; set; }
 
         public String ReportGroupId { get; set; }
 
@@ -27,5 +26,7 @@ namespace AmvReporting.Domain.Reports.Events
         public String Description { get; set; }
 
         public String DatabaseId { get; private set; }
+
+        public Guid AggregateId { get; private set; }
     }
 }
