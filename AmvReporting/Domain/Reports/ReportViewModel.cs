@@ -31,6 +31,6 @@ namespace AmvReporting.Domain.Reports
 
         public int? ListOrder { get; set; }
 
-        public Guid? AggregateId { get; set; }
+        public Guid AggregateId { get; set; }
     }
 }

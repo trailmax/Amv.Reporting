@@ -1,65 +1,77 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using AmvReporting.Infrastructure.Events;
+using AutoMapper;
+using CommonDomain.Persistence;
 using Raven.Client;
 
 
 namespace AmvReporting.Domain.Reports.Events
 {
-    public class ReportDenormaliser : IEventHandler<ChangeReportListOrderEvent>,
-                                      IEventHandler<DisableReportEvent>,
-                                      IEventHandler<EnableReportEvent>,
-                                      IEventHandler<ReportCodeUpdatedEvent>
+    public class ReportDenormaliser : 
+                                    IEventHandler<ChangeReportListOrderEvent>,
+                                    IEventHandler<DisableReportEvent>,
+                                    IEventHandler<EnableReportEvent>,
+                                    IEventHandler<ReportCodeUpdatedEvent>,
+                                    IEventHandler<ReportCreatedEvent>,
+                                    IEventHandler<UpdateReportMetadaEvent>
     {
         private readonly IDocumentSession documentSession;
+        private readonly IRepository reposity;
 
-
-        public ReportDenormaliser(IDocumentSession documentSession)
+        public ReportDenormaliser(IDocumentSession documentSession, IRepository reposity)
         {
             this.documentSession = documentSession;
+            this.reposity = reposity;
         }
 
 
-        private ReportViewModel GetViewModel(IEvent raisedEvent)
+        private void Denormalise(IEvent raisedEvent)
         {
+            var report = reposity.GetById<ReportAggregate>(raisedEvent.AggregateId);
+
             var viewModel = documentSession.Query<ReportViewModel>().FirstOrDefault(r => r.AggregateId == raisedEvent.AggregateId);
-            if (viewModel == null)
-            {
-                // todo create new view model
-            }
-            return viewModel;
+
+            viewModel = viewModel ?? new ReportViewModel() { AggregateId = raisedEvent.AggregateId };
+
+            Mapper.Map(report, viewModel);
+
+            documentSession.SaveChanges();
         }
 
 
         public void Handle(ChangeReportListOrderEvent raisedEvent)
         {
-            var viewModel = GetViewModel(raisedEvent);
-            viewModel.ListOrder = raisedEvent.ListOrder;
-            documentSession.SaveChanges();
+            Denormalise(raisedEvent);
         }
 
 
         public void Handle(DisableReportEvent raisedEvent)
         {
-            var viewModel = GetViewModel(raisedEvent);
-            viewModel.Enabled = false;
-            documentSession.SaveChanges();
+            Denormalise(raisedEvent);
         }
 
 
         public void Handle(EnableReportEvent raisedEvent)
         {
-            var viewModel = GetViewModel(raisedEvent);
-            viewModel.Enabled = true;
-            documentSession.SaveChanges();
+            Denormalise(raisedEvent);
         }
 
 
         public void Handle(ReportCodeUpdatedEvent raisedEvent)
         {
-            throw new NotImplementedException();
+            Denormalise(raisedEvent);
+        }
+
+
+        public void Handle(ReportCreatedEvent raisedEvent)
+        {
+            Denormalise(raisedEvent);
+        }
+
+
+        public void Handle(UpdateReportMetadaEvent raisedEvent)
+        {
+            Denormalise(raisedEvent);
         }
     }
 }

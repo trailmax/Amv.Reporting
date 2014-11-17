@@ -1,4 +1,6 @@
-﻿using AmvReporting.Infrastructure.NEventStore;
+﻿using System.Collections.Generic;
+using System.Reflection;
+using AmvReporting.Infrastructure.NEventStore;
 using Autofac;
 using CommonDomain.Core;
 using CommonDomain.Persistence;
@@ -14,15 +16,26 @@ namespace AmvReporting.Infrastructure.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c => WireupEventStore(c)).As<IStoreEvents>()
+            builder.Register(WireupEventStore).As<IStoreEvents>()
                 .SingleInstance();
 
-            builder.RegisterType<EventStoreRepository>().As<IRepository>()
+            builder.RegisterType<EventStoreRepository>()
+                .As<IRepository>()
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<AggregateFactory>().AsImplementedInterfaces();
+            builder.RegisterType<AggregateFactory>()
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
 
-            builder.RegisterType<ConflictDetector>().AsImplementedInterfaces();
+            builder.RegisterType<ConflictDetector>()
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterAssemblyTypes(Assembly.GetAssembly(typeof(NEventStoreModule)))
+                .Where(t => typeof(IPipelineHook).IsAssignableFrom(t))
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
+
 
             base.Load(builder);
         }
@@ -32,19 +45,8 @@ namespace AmvReporting.Infrastructure.Autofac
             return Wireup.Init()
                          .UsingRavenPersistence(componentContext.Resolve<IDocumentStore>())
                          .UsingJsonSerialization()
+                         .HookIntoPipelineUsing(componentContext.Resolve<IEnumerable<IPipelineHook>>())
                          .Build();
-
-
-            //.UsingRavenPersistence()
-            //    .UsingRavenPersistence()
-
-            //.UsingSqlPersistence("EventStore") // Connection string is in app.config
-            //.WithDialect(new MsSqlDialect())
-            //.UsingJsonSerialization()
-
-            //.UsingSynchronousDispatchScheduler()
-            //.DispatchTo(new DelegateMessageDispatcher(c => DelegateDispatcher.DispatchCommit(bus, c)))
-            //.Build();
         }
     }
 }

@@ -33,13 +33,12 @@ namespace AmvReporting.Domain.Reports.Events
     }
 
 
-    //TODO this is broken
-    //public class ReportCodeUpdatedEventHandler : IEventHandler<ReportCodeUpdatedEvent>
-    //{
-    //    public void Handle(ReportCodeUpdatedEvent raisedEvent)
-    //    {
-    //        var query = new ReportResultQuery(raisedEvent.Id);
-    //        HttpContext.Current.Cache.Remove(query.CacheKey);
-    //    }
-    //}
+    public class ReportCodeUpdatedEventHandler : IEventHandler<ReportCodeUpdatedEvent>
+    {
+        public void Handle(ReportCodeUpdatedEvent raisedEvent)
+        {
+            var query = new ReportResultQuery(raisedEvent.AggregateId);
+            HttpContext.Current.Cache.Remove(query.CacheKey);
+        }
+    }
 }

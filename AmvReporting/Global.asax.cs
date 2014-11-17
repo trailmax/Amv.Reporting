@@ -5,9 +5,8 @@ using System.Web.Routing;
 using AmvReporting.Infrastructure;
 using AmvReporting.Infrastructure.Autofac;
 using AmvReporting.Infrastructure.Automappings;
-using AmvReporting.Infrastructure.Events;
-using Autofac;
 using Autofac.Integration.Mvc;
+
 
 namespace AmvReporting
 {
@@ -27,7 +26,6 @@ namespace AmvReporting
 
             var container = AutofacConfig.Configure();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
-            DomainEvents.Dispatcher = container.Resolve<IDomainEventDispatcher>();
         }
     }
 }

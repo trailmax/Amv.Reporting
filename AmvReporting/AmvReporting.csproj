@@ -264,6 +264,7 @@
     <Compile Include="Infrastructure\CQRS\ICachedQuery.cs" />
     <Compile Include="Infrastructure\Events\DomainEvents.cs" />
     <Compile Include="Infrastructure\Events\EventDispatcher.cs" />
+    <Compile Include="Infrastructure\Events\EventHandlingPipelineHook.cs" />
     <Compile Include="Infrastructure\Events\IEvent.cs" />
     <Compile Include="Infrastructure\Events\IDomainEventDispatcher.cs" />
     <Compile Include="Infrastructure\Events\IEventHandler.cs" />

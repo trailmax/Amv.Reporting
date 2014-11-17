@@ -133,10 +133,10 @@ namespace AmvReporting.Controllers
         }
 
         [NonAction]
-        partial void ReportOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
+        partial void ReportOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Report(string id)
+        public override System.Web.Mvc.ActionResult Report(System.Guid id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Report);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);

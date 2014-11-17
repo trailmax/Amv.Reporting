@@ -48,13 +48,15 @@ namespace AmvReporting.Controllers
         }
 
 
-        public virtual ActionResult Clone(String id)
+        public virtual ActionResult Clone(Guid id)
         {
-            var query = new SingleReportQuery(id);
+            throw new NotImplementedException();
 
-            var report = mediator.Request(query);
+            //var query = new SingleReportQuery(id);
 
-            return AutoMappedView<ReportDetailsViewModel>(MVC.Report.Views.Create, report);
+            //var report = mediator.Request(query);
+
+            //return AutoMappedView<ReportDetailsViewModel>(MVC.Report.Views.Create, report);
         }
 
 

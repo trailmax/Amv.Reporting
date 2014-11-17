@@ -203,10 +203,10 @@ namespace AmvReporting.Controllers
         }
 
         [NonAction]
-        partial void CloneOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
+        partial void CloneOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Clone(string id)
+        public override System.Web.Mvc.ActionResult Clone(System.Guid id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Clone);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);

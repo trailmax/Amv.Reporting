@@ -2,13 +2,14 @@
 using AmvReporting.Domain.DatabaseConnections;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Helpers;
+using CommonDomain.Persistence;
 using Raven.Client;
 
 namespace AmvReporting.Domain.Reports.Queries
 {
     public class ReportResult
     {
-        public String Id { get; set; }
+        public Guid Id { get; set; }
         public String Title { get; set; }
         public String Description { get; set; }
         public String Data { get; set; }
@@ -23,9 +24,9 @@ namespace AmvReporting.Domain.Reports.Queries
 
     public class ReportResultQuery : IQuery<ReportResult>, ICachedQuery
     {
-        public String Id { get; set; }
+        public Guid Id { get; set; }
 
-        public ReportResultQuery(String id)
+        public ReportResultQuery(Guid id)
         {
             this.Id = id;
         }
@@ -33,7 +34,7 @@ namespace AmvReporting.Domain.Reports.Queries
 
         public string CacheKey
         {
-            get { return "ReportsResultQuery_" + Id; } 
+            get { return "ReportsResultQuery_" + Id.ToString(); } 
         }
 
         public int CacheDurationMinutes
@@ -45,16 +46,18 @@ namespace AmvReporting.Domain.Reports.Queries
     public class ReportResultQueryHandler : IQueryHandler<ReportResultQuery, ReportResult>
     {
         private readonly IDocumentSession ravenSession;
+        private readonly IRepository repository;
 
-        public ReportResultQueryHandler(IDocumentSession ravenSession)
+        public ReportResultQueryHandler(IDocumentSession ravenSession, IRepository repository)
         {
             this.ravenSession = ravenSession;
+            this.repository = repository;
         }
+
 
         public ReportResult Handle(ReportResultQuery query)
         {
-            var report = ravenSession.Include<ReportViewModel>(r => r.DatabaseId)
-                .Load<ReportViewModel>(query.Id);
+            var report = repository.GetById<ReportAggregate>(query.Id);
 
             if (report == null)
             {
@@ -65,7 +68,7 @@ namespace AmvReporting.Domain.Reports.Queries
 
             var result = new ReportResult()
                          {
-                             Id = report.Id.ToString(),
+                             Id = report.Id,
                              Title = report.Title,
                              Description = report.Description,
                              Css = report.Css,
