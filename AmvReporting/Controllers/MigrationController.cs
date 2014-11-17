@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using AmvReporting.Domain;
+using AmvReporting.Domain.Migrations;
 using AmvReporting.Domain.Reports;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Filters;
@@ -22,20 +21,20 @@ namespace AmvReporting.Controllers
         private readonly IRepository repository;
         private readonly IMediator mediator;
 
-
-        public MigrationController(IDocumentSession ravenSession, IRepository repository, IMediator mediator, IDocumentStore documentStore)
+        public MigrationController(IDocumentSession ravenSession, IRepository repository, IDocumentStore documentStore, IMediator mediator)
         {
             this.ravenSession = ravenSession;
             this.repository = repository;
-            this.mediator = mediator;
             this.documentStore = documentStore;
+            this.mediator = mediator;
         }
 
 
         public virtual ActionResult Index()
         {
-            var allViewModelsCount = ravenSession.Query<ReportViewModel>().Count();
             new RavenDocumentsByEntityName().Execute(documentStore);
+
+            var allViewModelsCount = ravenSession.Query<ReportViewModel>().Count();
 
             var oldReports = documentStore.DatabaseCommands.Query(
                 "Raven/DocumentsByEntityName",
@@ -44,10 +43,13 @@ namespace AmvReporting.Controllers
                     Query = "Tag:[[Reports]]",
                 }, null);
 
+            var migrationDictionary = mediator.Request(new EventStoreMigrationDictionaryQuery());
+
             var model = new IndexViewModel()
             {
                 ReportViewModelsCount = allViewModelsCount,
                 OldReportsCount = oldReports.TotalResults,
+                MigrationRecordsCount = migrationDictionary.Count(),
             };
 
             return View(model);
@@ -62,7 +64,7 @@ namespace AmvReporting.Controllers
             RenameCollection();
 
             var allViewModels = ravenSession.Query<ReportViewModel>().ToList();
-            var migrationDictionary = ravenSession.Load<MigrationDictonary>(MigrationDictonary.DefaultId) ?? new MigrationDictonary();
+            var migrationDictionary = mediator.Request(new EventStoreMigrationDictionaryQuery());
 
             foreach (var oldReport in allViewModels)
             {
@@ -107,13 +109,6 @@ namespace AmvReporting.Controllers
     {
         public int ReportViewModelsCount { get; set; }
         public int OldReportsCount { get; set; }
+        public int MigrationRecordsCount { get; set; }
     }
-
-
-    //public class MigrationIndexViewModelQuery
-    //{
-    //    public int ReportViewModelsCount { get; set; }
-    //    prop
-    //}
-
 }

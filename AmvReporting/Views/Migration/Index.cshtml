@@ -1,23 +1,14 @@
 ﻿@model AmvReporting.Controllers.IndexViewModel
 
 
-<h3>Current migrated reports</h3>
-@if (Model.ReportViewModels.Any())
-{
-    <ul>
-        @foreach (var report in Model.ReportViewModels)
-        {
-            <li>@report.Id - @report.Title</li>
-        }
-    </ul>
-}
-else
-{
-  <p>There are no Event-Store style documents available</p>
-}
+<h3>Migration to Event Store</h3>
 
-<hr/>
-Number of old-style documents: @Model.OldReportsCount
+<p>Number of new-style documents: @Model.ReportViewModelsCount</p>
+
+<p>Number of old-style documents: @Model.OldReportsCount</p>
+
+<p>Number of records in Migration dictionary: @Model.MigrationRecordsCount</p>
+
 
 @if (Model.OldReportsCount > 0)
 {
