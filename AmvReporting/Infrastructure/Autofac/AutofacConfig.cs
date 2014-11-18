@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using AmvReporting.Infrastructure.NEventStore;
+using Autofac;
 using Autofac.Integration.Mvc;
 
 

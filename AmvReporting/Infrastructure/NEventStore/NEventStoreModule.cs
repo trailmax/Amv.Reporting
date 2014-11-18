@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
-using AmvReporting.Infrastructure.NEventStore;
 using Autofac;
 using CommonDomain.Core;
 using CommonDomain.Persistence;
@@ -10,7 +9,7 @@ using Raven.Client;
 using Module = Autofac.Module;
 
 
-namespace AmvReporting.Infrastructure.Autofac
+namespace AmvReporting.Infrastructure.NEventStore
 {
     public class NEventStoreModule : Module
     {

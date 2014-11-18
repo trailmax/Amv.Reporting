@@ -49,6 +49,14 @@
     <Reference Include="FluentAssertions.Core">
       <HintPath>..\packages\FluentAssertions.3.2.1\lib\net45\FluentAssertions.Core.dll</HintPath>
     </Reference>
+    <Reference Include="NEventStore, Version=5.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NEventStore.5.1.0\lib\net40\NEventStore.dll</HintPath>
+    </Reference>
+    <Reference Include="NEventStore.Persistence.RavenDB, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NEventStore.Persistence.RavenDB.5.0.0.86\lib\net40\NEventStore.Persistence.RavenDB.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -121,6 +129,7 @@
     <Compile Include="Infrastructure\Helpers\ExpressionHelperTests.cs" />
     <Compile Include="Infrastructure\Automappings\AutoMapperBootstrapperTests.cs" />
     <Compile Include="Infrastructure\Helpers\ObjectExtensionsTests.cs" />
+    <Compile Include="Infrastructure\NEventStore\RepositoryTests.cs" />
     <Compile Include="ZeroFriction\DomainCustomisation.cs" />
     <Compile Include="ZeroFriction\AssertionHelpers.cs" />
     <Compile Include="ZeroFriction\AssertionHelpersTests.cs" />

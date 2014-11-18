@@ -12,7 +12,7 @@ namespace AmvReporting.Tests.ZeroFriction
     {
         public string GetRavenDataPath()
         {
-            throw new NotSupportedException();
+            return @"d:\Raven\test\";
         }
 
 
@@ -24,7 +24,7 @@ namespace AmvReporting.Tests.ZeroFriction
 
         public bool EnableRavenStudio()
         {
-            throw new NotSupportedException();
+            return false;
         }
 
 

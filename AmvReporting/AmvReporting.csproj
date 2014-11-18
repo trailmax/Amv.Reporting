@@ -71,9 +71,6 @@
     <Reference Include="NEventStore.Persistence.RavenDB">
       <HintPath>..\packages\NEventStore.Persistence.RavenDB.5.0.0.86\lib\net40\NEventStore.Persistence.RavenDB.dll</HintPath>
     </Reference>
-    <Reference Include="NEventStore.Persistence.RavenPersistence">
-      <HintPath>..\packages\NEventStore.Persistence.RavenPersistence.4.1.0.10\lib\net40\NEventStore.Persistence.RavenPersistence.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -257,7 +254,7 @@
     <Compile Include="HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Autofac\NEventStoreModule.cs" />
+    <Compile Include="Infrastructure\NEventStore\NEventStoreModule.cs" />
     <Compile Include="Infrastructure\Caching\ICacheProvider.cs" />
     <Compile Include="Infrastructure\Caching\MemoryCacheProvider.cs" />
     <Compile Include="Infrastructure\CQRS\CachedQueryHandlerDecorator.cs" />
