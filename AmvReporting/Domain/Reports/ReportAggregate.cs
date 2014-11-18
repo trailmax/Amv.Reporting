@@ -8,13 +8,17 @@ namespace AmvReporting.Domain.Reports
 {
     public class ReportAggregate : AggregateBase
     {
+        private ReportAggregate(Guid id)
+        {
+            Id = id;
+        }
+
+
         public ReportAggregate(Guid id, String reportGroupId, String title, ReportType reportType, String description, String databaseId)
             : this(id)
         {
             RaiseEvent(new ReportCreatedEvent(Id, reportGroupId, title, reportType, description, databaseId));
         }
-
-
         private void Apply(ReportCreatedEvent @event)
         {
             Id = @event.AggregateId;
@@ -25,34 +29,6 @@ namespace AmvReporting.Domain.Reports
             DatabaseId = @event.DatabaseId;
         }
 
-
-        public ReportAggregate(Guid id, ReportViewModel migratedReport)
-        {
-            RaiseEvent(new MigrationEvent(id, migratedReport));
-        }
-
-
-        private void Apply(MigrationEvent @event)
-        {
-            ReportGroupId = @event.MigratedReport.ReportGroupId;
-            Title = @event.MigratedReport.Title;
-            ReportType = @event.MigratedReport.ReportType;
-            Description = @event.MigratedReport.Description;
-            DatabaseId = @event.MigratedReport.DatabaseId;
-            Sql = @event.MigratedReport.Sql;
-            JavaScript = @event.MigratedReport.JavaScript;
-            Css = @event.MigratedReport.Css;
-            HtmlOverride = @event.MigratedReport.HtmlOverride;
-            Enabled = @event.MigratedReport.Enabled;
-            ListOrder = @event.MigratedReport.ListOrder;
-        }
-
-
-
-        private ReportAggregate(Guid id)
-        {
-            Id = id;
-        }
 
         public String ReportGroupId { get; private set; }
 
@@ -76,6 +52,26 @@ namespace AmvReporting.Domain.Reports
         public bool Enabled { get; private set; }
 
         public int? ListOrder { get; private set; }
+
+
+        public ReportAggregate(Guid id, ReportViewModel migratedReport)
+        {
+            RaiseEvent(new MigrationEvent(id, migratedReport));
+        }
+        private void Apply(MigrationEvent @event)
+        {
+            ReportGroupId = @event.MigratedReport.ReportGroupId;
+            Title = @event.MigratedReport.Title;
+            ReportType = @event.MigratedReport.ReportType;
+            Description = @event.MigratedReport.Description;
+            DatabaseId = @event.MigratedReport.DatabaseId;
+            Sql = @event.MigratedReport.Sql;
+            JavaScript = @event.MigratedReport.JavaScript;
+            Css = @event.MigratedReport.Css;
+            HtmlOverride = @event.MigratedReport.HtmlOverride;
+            Enabled = @event.MigratedReport.Enabled;
+            ListOrder = @event.MigratedReport.ListOrder;
+        }
 
 
         public void UpdateMetadata(String reportGroupId, String title, ReportType reportType, String description, String databaseId)
