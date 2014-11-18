@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using AmvReporting.Infrastructure.Events;
-using AutoMapper;
-using CommonDomain.Persistence;
+using Omu.ValueInjecter;
 using Raven.Client;
 
 
@@ -16,75 +15,69 @@ namespace AmvReporting.Domain.Reports.Events
                                     IEventHandler<UpdateReportMetadaEvent>
     {
         private readonly IDocumentSession documentSession;
-        private readonly IRepository reposity;
 
-        public ReportDenormaliser(IDocumentSession documentSession, IRepository reposity)
+        public ReportDenormaliser(IDocumentSession documentSession)
         {
             this.documentSession = documentSession;
-            this.reposity = reposity;
         }
 
 
-        private void Denormalise(IEvent raisedEvent)
+        private ReportViewModel GetViewModel(IEvent raisedEvent)
         {
-            var report = reposity.GetById<ReportAggregate>(raisedEvent.AggregateId);
-
             var viewModel = documentSession.Query<ReportViewModel>().FirstOrDefault(r => r.AggregateId == raisedEvent.AggregateId);
 
             viewModel = viewModel ?? new ReportViewModel() { AggregateId = raisedEvent.AggregateId };
-
-            Mapper.Map(report, viewModel);
-            //viewModel.ReportGroupId = report.ReportGroupId;
-            //viewModel.Title = report.Title;
-            //viewModel.ReportType = report.ReportType;
-            //viewModel.Description = report.Description;
-            //viewModel.Sql = report.Sql;
-            //viewModel.JavaScript = report.JavaScript;
-            //viewModel.Css = report.Css;
-            //viewModel.HtmlOverride = report.HtmlOverride;
-            //viewModel.DatabaseId = report.DatabaseId;
-            //viewModel.Enabled = report.Enabled;
-            //viewModel.ListOrder = report.ListOrder;
-            //viewModel.AggregateId = report.Id;
-
-            documentSession.Store(viewModel);
-            documentSession.SaveChanges();
+            return viewModel;
         }
 
 
         public void Handle(ChangeReportListOrderEvent raisedEvent)
         {
-            Denormalise(raisedEvent);
+            var viewmodel = GetViewModel(raisedEvent);
+            viewmodel.ListOrder = raisedEvent.ListOrder;
+            documentSession.SaveChanges();
         }
 
 
         public void Handle(DisableReportEvent raisedEvent)
         {
-            Denormalise(raisedEvent);
+            var viewmodel = GetViewModel(raisedEvent);
+            viewmodel.Enabled = false;
+            documentSession.SaveChanges();
         }
 
 
         public void Handle(EnableReportEvent raisedEvent)
         {
-            Denormalise(raisedEvent);
+            var viewmodel = GetViewModel(raisedEvent);
+            viewmodel.Enabled = true;
+            documentSession.SaveChanges();
+
         }
 
 
         public void Handle(ReportCodeUpdatedEvent raisedEvent)
         {
-            Denormalise(raisedEvent);
+            var viewmodel = GetViewModel(raisedEvent);
+            viewmodel.InjectFrom(raisedEvent);
+            documentSession.SaveChanges();
         }
 
 
         public void Handle(ReportCreatedEvent raisedEvent)
         {
-            Denormalise(raisedEvent);
+            var viewmodel = GetViewModel(raisedEvent);
+            viewmodel.InjectFrom(raisedEvent);
+            documentSession.Store(viewmodel);
+            documentSession.SaveChanges();
         }
 
 
         public void Handle(UpdateReportMetadaEvent raisedEvent)
         {
-            Denormalise(raisedEvent);
+            var viewmodel = GetViewModel(raisedEvent);
+            viewmodel.InjectFrom(raisedEvent);
+            documentSession.SaveChanges();
         }
     }
 }

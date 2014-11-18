@@ -18,5 +18,13 @@ namespace AmvReporting.Infrastructure.Helpers
             }
             return null;
         }
+
+
+        public static Guid ToGuid(this string value)
+        {
+            var guid = Guid.Empty;
+            Guid.TryParse(value, out guid);
+            return guid;
+        }
     }
 }

@@ -65,6 +65,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NSubstitute.1.7.2.0\lib\NET45\NSubstitute.dll</HintPath>
     </Reference>
+    <Reference Include="Omu.ValueInjecter">
+      <HintPath>..\packages\valueinjecter.2.3.3\lib\net35\Omu.ValueInjecter.dll</HintPath>
+    </Reference>
     <Reference Include="Ploeh.AutoFixture">
       <HintPath>..\packages\AutoFixture.3.21.0\lib\net40\Ploeh.AutoFixture.dll</HintPath>
     </Reference>
@@ -124,12 +127,13 @@
     <Compile Include="Domain\ReportGroups\Queries\GroupReorderQueryHandlerTests.cs" />
     <Compile Include="Domain\Reports\Commands\EditReportCommandHandlerTests.cs" />
     <Compile Include="Explorage\SqlFormatter.cs" />
+    <Compile Include="Explorage\ValueInjectorTests.cs" />
     <Compile Include="Infrastructure\CQRS\AutofacDecoratorsTests.cs" />
     <Compile Include="Infrastructure\CQRS\AutofacMediatorTests.cs" />
     <Compile Include="Infrastructure\Helpers\ExpressionHelperTests.cs" />
     <Compile Include="Infrastructure\Automappings\AutoMapperBootstrapperTests.cs" />
     <Compile Include="Infrastructure\Helpers\ObjectExtensionsTests.cs" />
-    <Compile Include="Infrastructure\NEventStore\RepositoryTests.cs" />
+    <Compile Include="Infrastructure\NEventStore\DenormalisationTests.cs" />
     <Compile Include="ZeroFriction\DomainCustomisation.cs" />
     <Compile Include="ZeroFriction\AssertionHelpers.cs" />
     <Compile Include="ZeroFriction\AssertionHelpersTests.cs" />

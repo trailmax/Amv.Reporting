@@ -22,6 +22,10 @@ namespace AmvReporting.Infrastructure.NEventStore
                 .As<IRepository>()
                 .InstancePerLifetimeScope();
 
+            //builder.RegisterType<MyEventStoreRepository>()
+            //    .As<IRepository>()
+            //    .InstancePerLifetimeScope();
+
             builder.RegisterType<AggregateFactory>()
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();

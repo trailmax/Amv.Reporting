@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Web;
 using System.Web.Mvc;
 using AmvReporting.Domain.Reports.Queries;
+using AmvReporting.Infrastructure.Caching;
 using AmvReporting.Infrastructure.Events;
 
 
@@ -35,10 +35,19 @@ namespace AmvReporting.Domain.Reports.Events
 
     public class ReportCodeUpdatedEventHandler : IEventHandler<ReportCodeUpdatedEvent>
     {
+        private readonly ICacheProvider cacheProvider;
+
+
+        public ReportCodeUpdatedEventHandler(ICacheProvider cacheProvider)
+        {
+            this.cacheProvider = cacheProvider;
+        }
+
+
         public void Handle(ReportCodeUpdatedEvent raisedEvent)
         {
             var query = new ReportResultQuery(raisedEvent.AggregateId);
-            HttpContext.Current.Cache.Remove(query.CacheKey);
+            cacheProvider.Invalidate(query.CacheKey);
         }
     }
 }
