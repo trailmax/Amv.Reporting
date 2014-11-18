@@ -56,6 +56,12 @@ namespace AmvReporting.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ShowAggregate()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ShowAggregate);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Clone()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Clone);
@@ -90,6 +96,7 @@ namespace AmvReporting.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Create = "Create";
+            public readonly string ShowAggregate = "ShowAggregate";
             public readonly string Clone = "Clone";
             public readonly string Edit = "Edit";
             public readonly string Delete = "Delete";
@@ -100,6 +107,7 @@ namespace AmvReporting.Controllers
         {
             public const string Index = "Index";
             public const string Create = "Create";
+            public const string ShowAggregate = "ShowAggregate";
             public const string Clone = "Clone";
             public const string Edit = "Edit";
             public const string Delete = "Delete";
@@ -113,6 +121,14 @@ namespace AmvReporting.Controllers
         public class ActionParamsClass_Create
         {
             public readonly string command = "command";
+        }
+        static readonly ActionParamsClass_ShowAggregate s_params_ShowAggregate = new ActionParamsClass_ShowAggregate();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ShowAggregate ShowAggregateParams { get { return s_params_ShowAggregate; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ShowAggregate
+        {
+            public readonly string id = "id";
         }
         static readonly ActionParamsClass_Clone s_params_Clone = new ActionParamsClass_Clone();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -154,12 +170,14 @@ namespace AmvReporting.Controllers
                 public readonly string Create = "Create";
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
+                public readonly string ShowAggregate = "ShowAggregate";
             }
             public readonly string _CreateEdit = "~/Views/Report/_CreateEdit.cshtml";
             public readonly string _ViewStart = "~/Views/Report/_ViewStart.cshtml";
             public readonly string Create = "~/Views/Report/Create.cshtml";
             public readonly string Edit = "~/Views/Report/Edit.cshtml";
             public readonly string Index = "~/Views/Report/Index.cshtml";
+            public readonly string ShowAggregate = "~/Views/Report/ShowAggregate.cshtml";
         }
     }
 
@@ -199,6 +217,18 @@ namespace AmvReporting.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
             CreateOverride(callInfo, command);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ShowAggregateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ShowAggregate(System.Guid id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ShowAggregate);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ShowAggregateOverride(callInfo, id);
             return callInfo;
         }
 

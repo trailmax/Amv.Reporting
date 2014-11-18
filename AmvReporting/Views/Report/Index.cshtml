@@ -24,7 +24,7 @@
             }
             @foreach (var report in Model.TopLevelReports)
             {
-                <tr data-tt-id="@report.Id">
+                <tr data-tt-id="@report.AggregateId">
                     <td class="col-md-5">
                         <span class="file">
                             @Html.ActionLink(report.Title, MVC.Report.Edit(report.AggregateId), new { @class = !report.Enabled ? "disabled-report" : "" })

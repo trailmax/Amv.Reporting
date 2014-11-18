@@ -7,7 +7,7 @@ using Raven.Client;
 
 namespace AmvReporting.Domain.Reports.Events
 {
-    public class ReportDenormaliser : 
+    public class ReportDenormaliser :
                                     IEventHandler<ChangeReportListOrderEvent>,
                                     IEventHandler<DisableReportEvent>,
                                     IEventHandler<EnableReportEvent>,

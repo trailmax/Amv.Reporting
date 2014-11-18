@@ -13,6 +13,8 @@ namespace AmvReporting.Domain.Reports
         {
             RaiseEvent(new ReportCreatedEvent(Id, reportGroupId, title, reportType, description, databaseId));
         }
+
+
         private void Apply(ReportCreatedEvent @event)
         {
             Id = @event.AggregateId;

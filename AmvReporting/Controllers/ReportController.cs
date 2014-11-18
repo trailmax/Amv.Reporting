@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Web.Mvc;
 using AmvReporting.Domain.Menus;
+using AmvReporting.Domain.Reports;
 using AmvReporting.Domain.Reports.Commands;
 using AmvReporting.Domain.Reports.Queries;
 using AmvReporting.Domain.Reports.ViewModels;
 using AmvReporting.Infrastructure;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Filters;
+using CommonDomain.Persistence;
+using Newtonsoft.Json;
 
 
 namespace AmvReporting.Controllers
@@ -15,10 +18,12 @@ namespace AmvReporting.Controllers
     public partial class ReportController : BaseController
     {
         private readonly IMediator mediator;
+        private readonly IRepository repository;
 
-        public ReportController(IMediator mediator)
+        public ReportController(IMediator mediator, IRepository repository)
         {
             this.mediator = mediator;
+            this.repository = repository;
         }
 
 
@@ -41,11 +46,24 @@ namespace AmvReporting.Controllers
         }
 
 
+
+
         [HttpPost, ValidateAntiForgeryToken]
         public virtual ActionResult Create(CreateReportCommand command)
         {
-            return ProcessForm(command, RedirectToAction(MVC.Report.Create()), id => RedirectToAction(MVC.Report.Edit(id)));
+            return ProcessForm(command, RedirectToAction(MVC.Report.Create()), id => RedirectToAction(MVC.Report.ShowAggregate(id)));
         }
+
+
+        public virtual ActionResult ShowAggregate(Guid id)
+        {
+            var reportAggregate = repository.GetById<ReportAggregate>(id);
+
+            ViewBag.Json = JsonConvert.SerializeObject(reportAggregate, Formatting.Indented);
+
+            return View();
+        }
+
 
 
         public virtual ActionResult Clone(Guid id)

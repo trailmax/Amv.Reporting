@@ -16,7 +16,7 @@
     }
     @foreach (var report in Model.TopLevelReports)
     {
-        <tr data-tt-id="@report.Id">
+        <tr data-tt-id="@report.AggregateId">
             <td><span class="file">@Html.ActionLink(report.Title, MVC.Home.Report(report.AggregateId))</span></td>
         </tr>
     }

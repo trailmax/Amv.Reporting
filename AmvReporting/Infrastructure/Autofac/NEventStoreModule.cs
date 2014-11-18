@@ -44,6 +44,7 @@ namespace AmvReporting.Infrastructure.Autofac
         {
             return Wireup.Init()
                          .UsingRavenPersistence(componentContext.Resolve<IDocumentStore>())
+                         .InitializeStorageEngine()
                          .UsingJsonSerialization()
                          .HookIntoPipelineUsing(componentContext.Resolve<IEnumerable<IPipelineHook>>())
                          .Build();

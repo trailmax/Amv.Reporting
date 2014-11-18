@@ -32,7 +32,7 @@
             @foreach (var report in Model.Reports)
             {
                 <li>
-                    @Html.HiddenFor(_ => report.Id, new { @id = "ReportIds", @Name = "ReportIds" })
+                    @Html.HiddenFor(_ => report.AggregateId, new { @id = "ReportIds", @Name = "ReportIds" })
                     <span class="glyphicon glyphicon-move"></span> <span class="@(!report.Enabled ? "disabled-report" : "")">@report.Title</span>
                 </li>
             }

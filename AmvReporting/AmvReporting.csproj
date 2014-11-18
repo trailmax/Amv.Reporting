@@ -537,6 +537,7 @@
     <Content Include="Views\Backups\Index.cshtml" />
     <Content Include="Views\Backups\_ViewStart.cshtml" />
     <Content Include="Views\Backups\RestoreBackup.cshtml" />
+    <Content Include="Views\Report\ShowAggregate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
