@@ -2,6 +2,7 @@
 using AmvReporting.Domain.DatabaseConnections.Queries;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Events;
+using AmvReporting.Infrastructure.Helpers;
 using Omu.ValueInjecter;
 using Raven.Client;
 
@@ -61,7 +62,7 @@ namespace AmvReporting.Domain.Reports.Events
             viewmodel.InjectFrom(raisedEvent);
 
             var databaseDetails = mediator.Request(new DatabaseQuery(raisedEvent.DatabaseId));
-            viewmodel.ConnectionString = databaseDetails.ConnectionString;
+            viewmodel.ConnectionString = databaseDetails.CheckForNull(d => d.ConnectionString);
 
             documentSession.Store(viewmodel);
             documentSession.SaveChanges();
@@ -73,7 +74,7 @@ namespace AmvReporting.Domain.Reports.Events
             var viewmodel = GetViewModel(raisedEvent);
             viewmodel.InjectFrom(raisedEvent);
             var databaseDetails = mediator.Request(new DatabaseQuery(raisedEvent.DatabaseId));
-            viewmodel.ConnectionString = databaseDetails.ConnectionString;
+            viewmodel.ConnectionString = databaseDetails.CheckForNull(d => d.ConnectionString);
 
             documentSession.SaveChanges();
         }

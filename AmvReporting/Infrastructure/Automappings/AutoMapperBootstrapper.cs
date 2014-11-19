@@ -11,7 +11,7 @@ namespace AmvReporting.Infrastructure.Automappings
     {
         public static void Initialize()
         {
-            Mapper.CreateMap<ReportViewModel, ReportDetailsViewModel>()
+            Mapper.CreateMap<ReportAggregate, ReportDetailsViewModel>()
                   .ForMember(d => d.RedirectingId, o => o.Ignore());
 
             Mapper.CreateMap<ReportAggregate, EditReportDetailsViewModel>()
@@ -28,6 +28,7 @@ namespace AmvReporting.Infrastructure.Automappings
                   .ForMember(d => d.ParentFullName, o => o.Ignore());
 
             Mapper.CreateMap<ReportAggregate, ReportViewModel>()
+                  .ForMember(d => d.ConnectionString, o => o.Ignore())
                   .ForMember(d => d.AggregateId, o => o.MapFrom(s => s.Id));
 
             Mapper.AddGlobalIgnore("Possible");
