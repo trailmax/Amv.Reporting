@@ -3,13 +3,11 @@ using System.Web.Mvc;
 using AmvReporting.Domain.Menus;
 using AmvReporting.Domain.Reports;
 using AmvReporting.Domain.Reports.Commands;
-using AmvReporting.Domain.Reports.Queries;
 using AmvReporting.Domain.Reports.ViewModels;
 using AmvReporting.Infrastructure;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Filters;
 using CommonDomain.Persistence;
-using Newtonsoft.Json;
 
 
 namespace AmvReporting.Controllers
@@ -55,22 +53,10 @@ namespace AmvReporting.Controllers
         }
 
 
-        public virtual ActionResult ShowAggregate(Guid id)
-        {
-            var reportAggregate = repository.GetById<ReportAggregate>(id);
-
-            ViewBag.Json = JsonConvert.SerializeObject(reportAggregate, Formatting.Indented);
-
-            return View();
-        }
-
-
         [RestoreModelState]
         public virtual ActionResult Edit(Guid id)
         {
-            var query = new SingleReportQuery(id);
-
-            var report = mediator.Request(query);
+            var report = repository.GetById<ReportAggregate>(id);
 
             return AutoMappedView<EditReportDetailsViewModel>(report);
         }
@@ -90,13 +76,9 @@ namespace AmvReporting.Controllers
 
         public virtual ActionResult Clone(Guid id)
         {
-            throw new NotImplementedException();
+            var report = repository.GetById<ReportAggregate>(id);
 
-            //var query = new SingleReportQuery(id);
-
-            //var report = mediator.Request(query);
-
-            //return AutoMappedView<ReportDetailsViewModel>(MVC.Report.Views.Create, report);
+            return AutoMappedView<ReportDetailsViewModel>(MVC.Report.Views.Create, report);
         }
 
         [HttpPost]

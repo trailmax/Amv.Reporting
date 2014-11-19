@@ -1,15 +1,16 @@
 ﻿using System;
-using AmvReporting.Domain.DatabaseConnections;
+using System.Linq;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Helpers;
 using CommonDomain.Persistence;
 using Raven.Client;
 
+
 namespace AmvReporting.Domain.Reports.Queries
 {
     public class ReportResult
     {
-        public Guid Id { get; set; }
+        public Guid AggregateId { get; set; }
         public String Title { get; set; }
         public String Description { get; set; }
         public String Data { get; set; }
@@ -46,29 +47,25 @@ namespace AmvReporting.Domain.Reports.Queries
     public class ReportResultQueryHandler : IQueryHandler<ReportResultQuery, ReportResult>
     {
         private readonly IDocumentSession ravenSession;
-        private readonly IRepository repository;
 
         public ReportResultQueryHandler(IDocumentSession ravenSession, IRepository repository)
         {
             this.ravenSession = ravenSession;
-            this.repository = repository;
         }
 
 
         public ReportResult Handle(ReportResultQuery query)
         {
-            var report = repository.GetById<ReportAggregate>(query.Id);
+            var report = ravenSession.Query<ReportViewModel>().FirstOrDefault(r => r.AggregateId == query.Id);
 
             if (report == null)
             {
-                throw new DomainException("Unable to find report on this path");
+                throw new DomainException("Unable to find report with this id");
             }
-
-            var dbConnection = ravenSession.Load<DatabaseConnection>(report.DatabaseId);
 
             var result = new ReportResult()
                          {
-                             Id = report.Id,
+                             AggregateId = report.AggregateId,
                              Title = report.Title,
                              Description = report.Description,
                              Css = report.Css,
@@ -80,7 +77,7 @@ namespace AmvReporting.Domain.Reports.Queries
 
             using (var sqlServerHelper = new SqlServerHelper())
             {
-                var dataReader = sqlServerHelper.ExecuteQuery(report.Sql, dbConnection.ConnectionString);
+                var dataReader = sqlServerHelper.ExecuteQuery(report.Sql, report.ConnectionString);
                 result.Data = SqlDataSerialiserHelper.GetDataWithColumnsJson(dataReader);
             }
 

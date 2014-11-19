@@ -243,7 +243,6 @@
     <Compile Include="Domain\ReportingConfigs\Commands\UpdateConfigurationCommand.cs" />
     <Compile Include="Domain\Reports\Events\ChangeReportListOrderEvent.cs" />
     <Compile Include="Domain\Reports\Events\SetReportEnabledEvent.cs" />
-    <Compile Include="Domain\Reports\Events\MigrationEvent.cs" />
     <Compile Include="Domain\Reports\Events\ReportCodeUpdatedEvent.cs" />
     <Compile Include="Domain\Reports\Events\ReportCreatedEvent.cs" />
     <Compile Include="Domain\Reports\Events\ReportDenormaliser.cs" />
@@ -331,7 +330,6 @@
     <Compile Include="Domain\Reports\Queries\AllReportsQuery.cs" />
     <Compile Include="Domain\Preview\Queries\PreviewDataQuery.cs" />
     <Compile Include="Domain\Reports\Queries\ReportResultQuery.cs" />
-    <Compile Include="Domain\Reports\Queries\SingleReportQuery.cs" />
     <Compile Include="Domain\Reports\ViewModels\EditReportDetailsViewModel.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportDetailsViewModel.cs" />
     <Compile Include="ReportController.generated.cs">
@@ -534,7 +532,6 @@
     <Content Include="Views\Backups\Index.cshtml" />
     <Content Include="Views\Backups\_ViewStart.cshtml" />
     <Content Include="Views\Backups\RestoreBackup.cshtml" />
-    <Content Include="Views\Report\ShowAggregate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

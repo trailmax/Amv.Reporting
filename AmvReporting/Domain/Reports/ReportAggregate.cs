@@ -54,27 +54,6 @@ namespace AmvReporting.Domain.Reports
         public int? ListOrder { get; private set; }
 
 
-        public ReportAggregate(Guid id, ReportViewModel migratedReport)
-            : this(id)
-        {
-            RaiseEvent(new MigrationEvent(id, migratedReport));
-        }
-        private void Apply(MigrationEvent @event)
-        {
-            ReportGroupId = @event.MigratedReport.ReportGroupId;
-            Title = @event.MigratedReport.Title;
-            ReportType = @event.MigratedReport.ReportType;
-            Description = @event.MigratedReport.Description;
-            DatabaseId = @event.MigratedReport.DatabaseId;
-            Sql = @event.MigratedReport.Sql;
-            JavaScript = @event.MigratedReport.JavaScript;
-            Css = @event.MigratedReport.Css;
-            HtmlOverride = @event.MigratedReport.HtmlOverride;
-            Enabled = @event.MigratedReport.Enabled;
-            ListOrder = @event.MigratedReport.ListOrder;
-        }
-
-
         public void UpdateMetadata(String reportGroupId, String title, ReportType reportType, String description, String databaseId)
         {
             RaiseEvent(new UpdateReportMetadaEvent(this.Id, reportGroupId, title, reportType, description, databaseId));

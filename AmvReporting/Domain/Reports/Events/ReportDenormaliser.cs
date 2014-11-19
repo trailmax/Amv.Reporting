@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using AmvReporting.Domain.DatabaseConnections.Queries;
+using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Events;
 using Omu.ValueInjecter;
 using Raven.Client;
@@ -11,24 +13,20 @@ namespace AmvReporting.Domain.Reports.Events
                                     IEventHandler<SetReportEnabledEvent>,
                                     IEventHandler<ReportCodeUpdatedEvent>,
                                     IEventHandler<ReportCreatedEvent>,
-                                    IEventHandler<UpdateReportMetadaEvent>,
-                                    IEventHandler<MigrationEvent>
+                                    IEventHandler<UpdateReportMetadaEvent>
     {
         private readonly IDocumentSession documentSession;
+        private readonly IMediator mediator;
 
-        public ReportDenormaliser(IDocumentSession documentSession)
+
+        public ReportDenormaliser(IDocumentSession documentSession, IMediator mediator)
         {
             this.documentSession = documentSession;
+            this.mediator = mediator;
         }
 
 
-        private ReportViewModel GetViewModel(IEvent raisedEvent)
-        {
-            var viewModel = documentSession.Query<ReportViewModel>().FirstOrDefault(r => r.AggregateId == raisedEvent.AggregateId);
 
-            viewModel = viewModel ?? new ReportViewModel() { AggregateId = raisedEvent.AggregateId };
-            return viewModel;
-        }
 
 
         public void Handle(ChangeReportListOrderEvent raisedEvent)
@@ -59,8 +57,12 @@ namespace AmvReporting.Domain.Reports.Events
 
         public void Handle(ReportCreatedEvent raisedEvent)
         {
-            var viewmodel = GetViewModel(raisedEvent);
+            var viewmodel = new ReportViewModel() { AggregateId = raisedEvent.AggregateId };
             viewmodel.InjectFrom(raisedEvent);
+
+            var databaseDetails = mediator.Request(new DatabaseQuery(raisedEvent.DatabaseId));
+            viewmodel.ConnectionString = databaseDetails.ConnectionString;
+
             documentSession.Store(viewmodel);
             documentSession.SaveChanges();
         }
@@ -70,19 +72,18 @@ namespace AmvReporting.Domain.Reports.Events
         {
             var viewmodel = GetViewModel(raisedEvent);
             viewmodel.InjectFrom(raisedEvent);
+            var databaseDetails = mediator.Request(new DatabaseQuery(raisedEvent.DatabaseId));
+            viewmodel.ConnectionString = databaseDetails.ConnectionString;
+
             documentSession.SaveChanges();
         }
 
 
-        public void Handle(MigrationEvent raisedEvent)
+        private ReportViewModel GetViewModel(IEvent raisedEvent)
         {
-            var viewmodel = GetViewModel(raisedEvent);
-            viewmodel.InjectFrom(raisedEvent.MigratedReport);
-            viewmodel.AggregateId = raisedEvent.AggregateId;
-            documentSession.Store(viewmodel);
-            documentSession.SaveChanges();
-
             var viewModel = documentSession.Query<ReportViewModel>().FirstOrDefault(r => r.AggregateId == raisedEvent.AggregateId);
+
+            return viewModel;
         }
     }
 }

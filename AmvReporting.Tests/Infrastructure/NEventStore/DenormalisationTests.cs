@@ -128,40 +128,5 @@ namespace AmvReporting.Tests.Infrastructure.NEventStore
             var viewModel = DocumentSession.Query<ReportViewModel>().First(r => r.AggregateId == aggregate.Id);
             Assert.Equal(aggregate.ListOrder, viewModel.ListOrder);
         }
-
-
-        [Fact]
-        public void CreationFromMigration_DenormalisedModel_Matches()
-        {
-            // Arrange
-            var id = Guid.NewGuid();
-            var migrationModel = Fixture.Create<ReportViewModel>();
-            var aggregate = new ReportAggregate(id, migrationModel);
-
-
-            // Act
-            Repository.Save(aggregate, Guid.NewGuid());
-
-            // Assert
-            var viewModel = DocumentSession.Query<ReportViewModel>().First(r => r.AggregateId == aggregate.Id);
-            AssertionHelpers.PropertiesAreEqual(aggregate, viewModel, "Id");
-        }
-
-
-        [Fact]
-        public void CreationFromMigration_Report_IsStored()
-        {
-            // Arrange
-            var migrationModel = Fixture.Create<ReportViewModel>();
-            var aggregate = new ReportAggregate(Guid.NewGuid(), migrationModel);
-
-            // Act
-            Repository.Save(aggregate, Guid.NewGuid());
-
-            // Assert
-            var newReport = Repository.GetById<ReportAggregate>(aggregate.Id);
-            AssertionHelpers.PropertiesAreEqual(aggregate, newReport);
-            AssertionHelpers.PropertiesAreEqual(aggregate, migrationModel, "Id");
-        }
     }
 }
