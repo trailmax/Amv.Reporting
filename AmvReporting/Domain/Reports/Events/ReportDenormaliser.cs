@@ -8,11 +8,11 @@ namespace AmvReporting.Domain.Reports.Events
 {
     public class ReportDenormaliser :
                                     IEventHandler<ChangeReportListOrderEvent>,
-                                    IEventHandler<DisableReportEvent>,
-                                    IEventHandler<EnableReportEvent>,
+                                    IEventHandler<SetReportEnabledEvent>,
                                     IEventHandler<ReportCodeUpdatedEvent>,
                                     IEventHandler<ReportCreatedEvent>,
-                                    IEventHandler<UpdateReportMetadaEvent>
+                                    IEventHandler<UpdateReportMetadaEvent>,
+                                    IEventHandler<MigrationEvent>
     {
         private readonly IDocumentSession documentSession;
 
@@ -39,18 +39,11 @@ namespace AmvReporting.Domain.Reports.Events
         }
 
 
-        public void Handle(DisableReportEvent raisedEvent)
+
+        public void Handle(SetReportEnabledEvent raisedEvent)
         {
             var viewmodel = GetViewModel(raisedEvent);
-            viewmodel.Enabled = false;
-            documentSession.SaveChanges();
-        }
-
-
-        public void Handle(EnableReportEvent raisedEvent)
-        {
-            var viewmodel = GetViewModel(raisedEvent);
-            viewmodel.Enabled = true;
+            viewmodel.Enabled = raisedEvent.IsEnabled;
             documentSession.SaveChanges();
 
         }
@@ -78,6 +71,18 @@ namespace AmvReporting.Domain.Reports.Events
             var viewmodel = GetViewModel(raisedEvent);
             viewmodel.InjectFrom(raisedEvent);
             documentSession.SaveChanges();
+        }
+
+
+        public void Handle(MigrationEvent raisedEvent)
+        {
+            var viewmodel = GetViewModel(raisedEvent);
+            viewmodel.InjectFrom(raisedEvent.MigratedReport);
+            viewmodel.AggregateId = raisedEvent.AggregateId;
+            documentSession.Store(viewmodel);
+            documentSession.SaveChanges();
+
+            var viewModel = documentSession.Query<ReportViewModel>().FirstOrDefault(r => r.AggregateId == raisedEvent.AggregateId);
         }
     }
 }

@@ -140,6 +140,7 @@
     <Compile Include="Domain\Reports\Commands\CreateReportCommandHandlerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ZeroFriction\AutoDomainDataAttribute.cs" />
+    <Compile Include="ZeroFriction\IntegrationTestsBase.cs" />
     <Compile Include="ZeroFriction\StubDomainConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>

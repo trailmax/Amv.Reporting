@@ -55,6 +55,7 @@ namespace AmvReporting.Domain.Reports
 
 
         public ReportAggregate(Guid id, ReportViewModel migratedReport)
+            : this(id)
         {
             RaiseEvent(new MigrationEvent(id, migratedReport));
         }
@@ -102,23 +103,13 @@ namespace AmvReporting.Domain.Reports
         }
 
 
-        public void EnableReport()
+        public void SetReportEnabled(bool isEnabled)
         {
-            RaiseEvent(new EnableReportEvent(this.Id));
+            RaiseEvent(new SetReportEnabledEvent(this.Id, isEnabled));
         }
-        private void Apply(EnableReportEvent @event)
+        private void Apply(SetReportEnabledEvent @event)
         {
-            Enabled = true;
-        }
-
-
-        public void DisableReport()
-        {
-            RaiseEvent(new DisableReportEvent(this.Id));
-        }
-        private void Apply(DisableReportEvent @event)
-        {
-            Enabled = false;
+            Enabled = @event.IsEnabled;
         }
 
 

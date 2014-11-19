@@ -1,7 +1,7 @@
 ﻿using System;
 using AmvReporting.Infrastructure.CQRS;
 using CommonDomain.Persistence;
-using Raven.Client;
+
 
 namespace AmvReporting.Domain.Reports.Queries
 {
@@ -11,19 +11,17 @@ namespace AmvReporting.Domain.Reports.Queries
 
         public SingleReportQuery(Guid aggregateId)
         {
-            AggregateId = AggregateId;
+            AggregateId = aggregateId;
         }
     }
 
     public class SingleReportQueryHandler : IQueryHandler<SingleReportQuery, ReportAggregate>
     {
-        private readonly IDocumentSession ravenSession;
         private readonly IRepository repository;
 
 
-        public SingleReportQueryHandler(IDocumentSession ravenSession, IRepository repository)
+        public SingleReportQueryHandler(IRepository repository)
         {
-            this.ravenSession = ravenSession;
             this.repository = repository;
         }
 

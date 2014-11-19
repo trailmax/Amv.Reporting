@@ -241,10 +241,8 @@
     <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupViewModel.cs" />
     <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupViewModelEnricher.cs" />
     <Compile Include="Domain\ReportingConfigs\Commands\UpdateConfigurationCommand.cs" />
-    <Compile Include="Domain\Reports\Commands\DeleteReportCommandHandler.cs" />
     <Compile Include="Domain\Reports\Events\ChangeReportListOrderEvent.cs" />
-    <Compile Include="Domain\Reports\Events\DisableReportEvent.cs" />
-    <Compile Include="Domain\Reports\Events\EnableReportEvent.cs" />
+    <Compile Include="Domain\Reports\Events\SetReportEnabledEvent.cs" />
     <Compile Include="Domain\Reports\Events\MigrationEvent.cs" />
     <Compile Include="Domain\Reports\Events\ReportCodeUpdatedEvent.cs" />
     <Compile Include="Domain\Reports\Events\ReportCreatedEvent.cs" />

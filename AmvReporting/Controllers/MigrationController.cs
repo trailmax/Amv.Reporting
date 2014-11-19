@@ -63,8 +63,10 @@ namespace AmvReporting.Controllers
         {
             RenameCollection();
 
-            var allViewModels = ravenSession.Query<ReportViewModel>().ToList();
+            documentStore.Conventions.MaxNumberOfRequestsPerSession = 100;
             var migrationDictionary = mediator.Request(new EventStoreMigrationDictionaryQuery());
+            var migratedDocumentsIds = migrationDictionary.Keys.ToList();
+            var allViewModels = ravenSession.Query<ReportViewModel>().ToList().Where(r => !migratedDocumentsIds.Contains(r.Id)).Take(20).ToList();
 
             foreach (var oldReport in allViewModels)
             {
@@ -73,15 +75,14 @@ namespace AmvReporting.Controllers
                 oldReport.AggregateId = newId;
 
                 var newReport = new ReportAggregate(newId, oldReport);
-                var commitId = Guid.NewGuid();
-                repository.Save(newReport, commitId);
+                repository.Save(newReport, Guid.NewGuid());
 
                 migrationDictionary.Add(oldId, newId);
             }
             ravenSession.Store(migrationDictionary);
             ravenSession.SaveChanges();
-
-            return RedirectToAction(MVC.Home.Index());
+            ravenSession.Dispose();
+            return RedirectToAction(MVC.Migration.Index());
         }
 
 

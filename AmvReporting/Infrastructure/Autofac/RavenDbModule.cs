@@ -20,7 +20,7 @@ namespace AmvReporting.Infrastructure.Autofac
             // Register the session, opening a new session per lifetime scope.
             builder.Register(x => x.Resolve<IDocumentStore>().OpenSession())
                  .As<IDocumentSession>()
-                 .InstancePerLifetimeScope();
+                 .InstancePerDependency();
 
 
             base.Load(builder);

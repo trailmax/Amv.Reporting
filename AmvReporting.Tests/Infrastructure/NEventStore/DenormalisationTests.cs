@@ -1,53 +1,27 @@
 ﻿using System;
 using System.Linq;
 using AmvReporting.Domain.Reports;
-using AmvReporting.Infrastructure.Autofac;
-using AmvReporting.Infrastructure.Caching;
-using AmvReporting.Infrastructure.Configuration;
 using AmvReporting.Tests.ZeroFriction;
-using Autofac;
 using CommonDomain.Persistence;
 using Ploeh.AutoFixture;
-using Raven.Client;
-using Raven.Client.Document;
-using Raven.Client.Embedded;
 using Xunit;
 
 
 namespace AmvReporting.Tests.Infrastructure.NEventStore
 {
-    public class DenormalisationTests
+    public class DenormalisationTests : IntegrationTestsBase
     {
-        private readonly IContainer container;
-        private readonly IFixture fixture;
-
-        public DenormalisationTests()
-        {
-            ConfigurationContext.Current = new StubDomainConfiguration();
-
-            fixture = new Fixture(new GreedyEngineParts());
-
-            container = AutofacConfig.Configure();
-            var builder = new ContainerBuilder();
-            builder.RegisterInstance(GetEmbededStorage()).As<IDocumentStore>().SingleInstance();
-            builder.RegisterInstance(NSubstitute.Substitute.For<ICacheProvider>()).As<ICacheProvider>();
-            builder.Update(container);
-        }
-
-
         [Fact]
         public void Report_Is_Stored()
         {
             // Arrange
-            var repository = container.Resolve<IRepository>();
-            var aggregate = fixture.Create<ReportAggregate>();
+            var aggregate = Fixture.Create<ReportAggregate>();
 
             // Act
-            var commitId = Guid.NewGuid();
-            repository.Save(aggregate, commitId);
+            Repository.Save(aggregate, Guid.NewGuid());
 
             // Assert
-            var newReport = repository.GetById<ReportAggregate>(aggregate.Id);
+            var newReport = Repository.GetById<ReportAggregate>(aggregate.Id);
             AssertionHelpers.PropertiesAreEqual(aggregate, newReport);
         }
 
@@ -56,15 +30,13 @@ namespace AmvReporting.Tests.Infrastructure.NEventStore
         public void Denormalised_Model_IsCreated()
         {
             // Arrange
-            var repository = container.Resolve<IRepository>();
-            var documentSession = container.Resolve<IDocumentSession>();
-            var aggregate = fixture.Create<ReportAggregate>();
+            var aggregate = Fixture.Create<ReportAggregate>();
 
             // Act
-            repository.Save(aggregate, Guid.NewGuid());
+            Repository.Save(aggregate, Guid.NewGuid());
 
             // Assert
-            var viewModel = documentSession.Query<ReportViewModel>().FirstOrDefault(r => r.AggregateId == aggregate.Id);
+            var viewModel = DocumentSession.Query<ReportViewModel>().FirstOrDefault(r => r.AggregateId == aggregate.Id);
             AssertionHelpers.PropertiesAreEqual(aggregate, viewModel, "Id");
         }
 
@@ -73,17 +45,15 @@ namespace AmvReporting.Tests.Infrastructure.NEventStore
         public void UpdateCode_DenormalisedModel_RepeatsAggregate()
         {
             // Arrange
-            var repository = container.Resolve<IRepository>();
-            var documentSession = container.Resolve<IDocumentSession>();
-            var aggregate = fixture.Create<ReportAggregate>();
+            var aggregate = Fixture.Create<ReportAggregate>();
             aggregate.UpdateCode(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
 
 
             // Act
-            repository.Save(aggregate, Guid.NewGuid());
+            Repository.Save(aggregate, Guid.NewGuid());
 
             // Assert
-            var viewModel = documentSession.Query<ReportViewModel>().First(r => r.AggregateId == aggregate.Id);
+            var viewModel = DocumentSession.Query<ReportViewModel>().First(r => r.AggregateId == aggregate.Id);
             Assert.Equal(aggregate.Sql, viewModel.Sql);
             Assert.Equal(aggregate.JavaScript, viewModel.JavaScript);
             Assert.Equal(aggregate.Css, viewModel.Css);
@@ -95,17 +65,15 @@ namespace AmvReporting.Tests.Infrastructure.NEventStore
         public void UpdateMetadata_DenormalisedModel_RepeatsAggregate()
         {
             // Arrange
-            var repository = container.Resolve<IRepository>();
-            var documentSession = container.Resolve<IDocumentSession>();
-            var aggregate = fixture.Create<ReportAggregate>();
+            var aggregate = Fixture.Create<ReportAggregate>();
             aggregate.UpdateMetadata(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), ReportType.LineChartWithSelection, Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
 
 
             // Act
-            repository.Save(aggregate, Guid.NewGuid());
+            Repository.Save(aggregate, Guid.NewGuid());
 
             // Assert
-            var viewModel = documentSession.Query<ReportViewModel>().FirstOrDefault(r => r.AggregateId == aggregate.Id);
+            var viewModel = DocumentSession.Query<ReportViewModel>().FirstOrDefault(r => r.AggregateId == aggregate.Id);
             AssertionHelpers.PropertiesAreEqual(aggregate, viewModel, "Id");
         }
 
@@ -114,17 +82,15 @@ namespace AmvReporting.Tests.Infrastructure.NEventStore
         public void EnableReport_DenormalisedModel_IsEnabled()
         {
             // Arrange
-            var repository = container.Resolve<IRepository>();
-            var documentSession = container.Resolve<IDocumentSession>();
-            var aggregate = fixture.Create<ReportAggregate>();
+            var aggregate = Fixture.Create<ReportAggregate>();
 
 
             // Act
-            aggregate.EnableReport();
-            repository.Save(aggregate, Guid.NewGuid());
+            aggregate.SetReportEnabled(true);
+            Repository.Save(aggregate, Guid.NewGuid());
 
             // Assert
-            var viewModel = documentSession.Query<ReportViewModel>().First(r => r.AggregateId == aggregate.Id);
+            var viewModel = DocumentSession.Query<ReportViewModel>().First(r => r.AggregateId == aggregate.Id);
             Assert.True(viewModel.Enabled);
         }
 
@@ -133,17 +99,15 @@ namespace AmvReporting.Tests.Infrastructure.NEventStore
         public void DisableReport_DenormalisedModel_IsDisabled()
         {
             // Arrange
-            var repository = container.Resolve<IRepository>();
-            var documentSession = container.Resolve<IDocumentSession>();
-            var aggregate = fixture.Create<ReportAggregate>();
+            var aggregate = Fixture.Create<ReportAggregate>();
 
 
             // Act
-            aggregate.DisableReport();
-            repository.Save(aggregate, Guid.NewGuid());
+            aggregate.SetReportEnabled(false);
+            Repository.Save(aggregate, Guid.NewGuid());
 
             // Assert
-            var viewModel = documentSession.Query<ReportViewModel>().First(r => r.AggregateId == aggregate.Id);
+            var viewModel = DocumentSession.Query<ReportViewModel>().First(r => r.AggregateId == aggregate.Id);
             Assert.False(viewModel.Enabled);
         }
 
@@ -153,37 +117,51 @@ namespace AmvReporting.Tests.Infrastructure.NEventStore
         public void SetListOrder_DenormalisedModel_HasSameListOrder()
         {
             // Arrange
-            var repository = container.Resolve<IRepository>();
-            var documentSession = container.Resolve<IDocumentSession>();
-            var aggregate = fixture.Create<ReportAggregate>();
+            var aggregate = Fixture.Create<ReportAggregate>();
 
 
             // Act
             aggregate.SetListOrder(45);
-            repository.Save(aggregate, Guid.NewGuid());
+            Repository.Save(aggregate, Guid.NewGuid());
 
             // Assert
-            var viewModel = documentSession.Query<ReportViewModel>().First(r => r.AggregateId == aggregate.Id);
+            var viewModel = DocumentSession.Query<ReportViewModel>().First(r => r.AggregateId == aggregate.Id);
             Assert.Equal(aggregate.ListOrder, viewModel.ListOrder);
         }
 
 
-        private static EmbeddableDocumentStore GetEmbededStorage()
+        [Fact]
+        public void CreationFromMigration_DenormalisedModel_Matches()
         {
-            var embeddableDocumentStore = new EmbeddableDocumentStore { RunInMemory = true };
-            
-            embeddableDocumentStore.Conventions.DefaultQueryingConsistency =
-                ConsistencyOptions.AlwaysWaitForNonStaleResultsAsOfLastWrite;
-            
-            embeddableDocumentStore.Initialize();
+            // Arrange
+            var id = Guid.NewGuid();
+            var migrationModel = Fixture.Create<ReportViewModel>();
+            var aggregate = new ReportAggregate(id, migrationModel);
 
-            return embeddableDocumentStore;
+
+            // Act
+            Repository.Save(aggregate, Guid.NewGuid());
+
+            // Assert
+            var viewModel = DocumentSession.Query<ReportViewModel>().First(r => r.AggregateId == aggregate.Id);
+            AssertionHelpers.PropertiesAreEqual(aggregate, viewModel, "Id");
         }
 
 
-        public void Dispose()
+        [Fact]
+        public void CreationFromMigration_Report_IsStored()
         {
-            container.Dispose();
+            // Arrange
+            var migrationModel = Fixture.Create<ReportViewModel>();
+            var aggregate = new ReportAggregate(Guid.NewGuid(), migrationModel);
+
+            // Act
+            Repository.Save(aggregate, Guid.NewGuid());
+
+            // Assert
+            var newReport = Repository.GetById<ReportAggregate>(aggregate.Id);
+            AssertionHelpers.PropertiesAreEqual(aggregate, newReport);
+            AssertionHelpers.PropertiesAreEqual(aggregate, migrationModel, "Id");
         }
     }
 }

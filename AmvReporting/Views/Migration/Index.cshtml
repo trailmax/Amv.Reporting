@@ -10,7 +10,7 @@
 <p>Number of records in Migration dictionary: @Model.MigrationRecordsCount</p>
 
 
-@if (Model.OldReportsCount > 0)
+@if (Model.OldReportsCount > 0 || Model.MigrationRecordsCount != Model.ReportViewModelsCount)
 {
     <h3>You need to run a migration</h3>
     using (Html.BeginForm(MVC.Migration.RunMigration()))
