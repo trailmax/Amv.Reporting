@@ -1,67 +1,68 @@
-﻿//TODO TESTS
-//using System.Linq;
-//using AmvReporting.Domain.ReportGroups;
-//using AmvReporting.Domain.ReportGroups.Queries;
-//using AmvReporting.Domain.Reports;
-//using AmvReporting.Tests.ZeroFriction;
-//using Ploeh.AutoFixture;
-//using Raven.Client;
-//using Xunit.Extensions;
-
-//namespace AmvReporting.Tests.Domain.ReportGroups.Queries
-//{
-//    public class GroupReorderQueryHandlerTests
-//    {
-//        private ReportGroup topGroup;
-//        private ReportGroup subGroup;
-//        private ReportViewModel subReport;
-//        private ReportViewModel topReport;
-
-//        private void PopulateData(IDocumentSession ravenSession)
-//        {
-//            var fixture = new Fixture();
-
-//            topReport = fixture.Build<ReportViewModel>().Without(r => r.ReportGroupId).Create();
-//            topGroup = fixture.Build<ReportGroup>().Without(g => g.ParentReportGroupId).Create();
-
-//            subGroup = fixture.Build<ReportGroup>().With(g => g.ParentReportGroupId, topGroup.Id).Create();
-
-//            subReport = fixture.Build<ReportViewModel>().With(r => r.ReportGroupId, topGroup.Id).Create();
-
-//            ravenSession.Store(topReport);
-//            ravenSession.Store(topGroup);
-//            ravenSession.Store(subGroup);
-//            ravenSession.Store(subReport);
-//            ravenSession.SaveChanges();
-//        }
+﻿using System.Linq;
+using AmvReporting.Domain.ReportGroups;
+using AmvReporting.Domain.ReportGroups.Queries;
+using AmvReporting.Domain.Reports;
+using AmvReporting.Tests.ZeroFriction;
+using Ploeh.AutoFixture;
+using Raven.Client;
+using Xunit.Extensions;
 
 
-//        [Theory, AutoDomainData]
-//        public void Handle_IdProvided_ListsReturned(IDocumentSession ravenSession, GroupReorderQueryHandler sut)
-//        {
-//            //Arrange
-//            PopulateData(ravenSession);
+namespace AmvReporting.Tests.Domain.ReportGroups.Queries
+{
+    public class GroupReorderQueryHandlerTests
+    {
+        private ReportGroup topGroup;
+        private ReportGroup subGroup;
+        private ReportViewModel subReport;
+        private ReportViewModel topReport;
 
-//            // Act
-//            var result = sut.Handle(new GroupReorderQuery(topGroup.Id));
+        private void PopulateData(IDocumentSession ravenSession)
+        {
+            var fixture = new Fixture();
 
-//            // Assert
-//            AssertionHelpers.PropertiesAreEqual(subReport, result.Reports.Single());
-//            AssertionHelpers.PropertiesAreEqual(subGroup, result.Groups.Single());
-//        }
+            topReport = fixture.Build<ReportViewModel>().Without(r => r.ReportGroupId).Create();
+            topGroup = fixture.Build<ReportGroup>().Without(g => g.ParentReportGroupId).Create();
 
-//        [Theory, AutoDomainData]
-//        public void Handle_NoIdProvided_TopLevelItemsReturned(IDocumentSession ravenSession, GroupReorderQueryHandler sut)
-//        {
-//            //Arrange
-//            PopulateData(ravenSession);
+            subGroup = fixture.Build<ReportGroup>().With(g => g.ParentReportGroupId, topGroup.Id).Create();
 
-//            // Act
-//            var result = sut.Handle(new GroupReorderQuery());
+            subReport = fixture.Build<ReportViewModel>().With(r => r.ReportGroupId, topGroup.Id).Create();
 
-//            // Assert
-//            AssertionHelpers.PropertiesAreEqual(topReport, result.Reports.Single());
-//            AssertionHelpers.PropertiesAreEqual(topGroup, result.Groups.Single());
-//        }
-//    }
-//}
+            ravenSession.Store(topReport);
+            ravenSession.Store(topGroup);
+            ravenSession.Store(subGroup);
+            ravenSession.Store(subReport);
+            ravenSession.SaveChanges();
+        }
+
+
+        [Theory, AutoDomainData]
+        public void Handle_IdProvided_ListsReturned(IDocumentSession ravenSession, GroupReorderQueryHandler sut)
+        {
+            //Arrange
+            PopulateData(ravenSession);
+
+            // Act
+            var result = sut.Handle(new GroupReorderQuery(topGroup.Id));
+
+            // Assert
+            AssertionHelpers.PropertiesAreEqual(subReport, result.Reports.Single());
+            AssertionHelpers.PropertiesAreEqual(subGroup, result.Groups.Single());
+        }
+
+
+        [Theory, AutoDomainData]
+        public void Handle_NoIdProvided_TopLevelItemsReturned(IDocumentSession ravenSession, GroupReorderQueryHandler sut)
+        {
+            //Arrange
+            PopulateData(ravenSession);
+
+            // Act
+            var result = sut.Handle(new GroupReorderQuery());
+
+            // Assert
+            AssertionHelpers.PropertiesAreEqual(topReport, result.Reports.Single());
+            AssertionHelpers.PropertiesAreEqual(topGroup, result.Groups.Single());
+        }
+    }
+}

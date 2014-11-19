@@ -12,7 +12,7 @@ namespace AmvReporting.Domain.ReportGroups.Commands
     {
         public String ParentGroupId { get; set; }
 
-        public String[] ReportIds { get; set; }
+        public Guid[] ReportIds { get; set; }
         public String[] GroupIds { get; set; }
     }
 
@@ -34,12 +34,11 @@ namespace AmvReporting.Domain.ReportGroups.Commands
         {
             if (command.ReportIds == null)
             {
-                command.ReportIds = new string[0];
+                command.ReportIds = new Guid[0];
             }
             for (var i = 0; i < command.ReportIds.Count(); i++)
             {
-                //TODO this is broken
-                var report = repository.GetById<ReportAggregate>(new Guid(command.ReportIds[i]));
+                var report = repository.GetById<ReportAggregate>(command.ReportIds[i]);
                 if (report != null)
                 {
                     report.SetListOrder(i);
@@ -47,7 +46,11 @@ namespace AmvReporting.Domain.ReportGroups.Commands
                 }
             }
 
-            for (var i = 0; i < (command.GroupIds ?? new string[0]).Count(); i++)
+            if (command.GroupIds == null)
+            {
+                command.GroupIds = new string[0];
+            }
+            for (var i = 0; i < (command.GroupIds).Count(); i++)
             {
                 var group = ravenSession.Load<ReportGroup>(command.GroupIds[i]);
                 if (group != null)
