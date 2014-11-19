@@ -42,13 +42,5 @@ namespace AmvReporting.Tests.Explorage
             public String Value2 { get; set; }
             public String Value3 { get; set; }
         }
-
-        public class PrivateValueInjection : IValueInjection
-        {
-            public object Map(object source, object target)
-            {
-                throw new NotImplementedException();
-            }
-        }
     }
 }

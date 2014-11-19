@@ -32,8 +32,7 @@
                     </td>
                     <td class="col-md-2">
                         @Html.ActionLink("View", MVC.Home.Report(report.AggregateId), new { @class = "btn btn-default btn-xs" })
-                        @* TODO make this work: @Url.AjaxDeleteButton(MVC.Report.Delete(), report, i => i.Id)*@
-                        @Url.AjaxDeleteButton(MVC.Report.Delete(), report, "Id")
+                        @Url.AjaxDeleteButton(MVC.Report.Delete(), report, i => i.AggregateId)
                         @Html.ActionLink("Clone", MVC.Report.Clone(report.AggregateId), new { @class = "btn btn-default btn-xs" })
                     </td>
                 </tr>

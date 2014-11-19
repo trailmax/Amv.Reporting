@@ -5,6 +5,6 @@ namespace AmvReporting.Domain.Reports.Commands
 {
     public class DeleteReportCommand : ICommand
     {
-        public String Id { get; set; }
+        public String AggregateId { get; set; }
     }
 }

@@ -6,12 +6,18 @@ namespace AmvReporting.Infrastructure.Helpers
 {
     public static class HtmlHelpers
     {
-        // todo make this work
+        public static MvcHtmlString AjaxDeleteButton<T>(this UrlHelper urlHelper, ActionResult actionResult, T data, Expression<Func<T, Guid>> selector)
+        {
+            return AjaxDeleteButton(urlHelper, actionResult, ExpressionHelper.PropertyValue(data, selector),
+                ExpressionHelper.PropertyName(selector));
+        }
+
         public static MvcHtmlString AjaxDeleteButton<T>(this UrlHelper urlHelper, ActionResult actionResult, T data, Expression<Func<T, String>> selector)
         {
             return AjaxDeleteButton(urlHelper, actionResult, ExpressionHelper.PropertyValue(data, selector),
                 ExpressionHelper.PropertyName(selector));
         }
+
 
         public static MvcHtmlString AjaxDeleteButton(this UrlHelper urlHelper, ActionResult actionResult, object data, String parameterName)
         {

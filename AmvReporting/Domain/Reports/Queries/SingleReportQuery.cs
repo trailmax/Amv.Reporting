@@ -1,32 +1,36 @@
 ﻿using System;
-using System.Linq;
 using AmvReporting.Infrastructure.CQRS;
+using CommonDomain.Persistence;
 using Raven.Client;
 
 namespace AmvReporting.Domain.Reports.Queries
 {
-    public class SingleReportQuery : IQuery<ReportViewModel>
+    public class SingleReportQuery : IQuery<ReportAggregate>
     {
-        public string Id { get; set; }
+        public Guid AggregateId { get; set; }
 
-        public SingleReportQuery(String id)
+        public SingleReportQuery(Guid aggregateId)
         {
-            Id = id;
+            AggregateId = AggregateId;
         }
     }
 
-    public class SingleReportQueryHandler : IQueryHandler<SingleReportQuery, ReportViewModel>
+    public class SingleReportQueryHandler : IQueryHandler<SingleReportQuery, ReportAggregate>
     {
         private readonly IDocumentSession ravenSession;
+        private readonly IRepository repository;
 
-        public SingleReportQueryHandler(IDocumentSession ravenSession)
+
+        public SingleReportQueryHandler(IDocumentSession ravenSession, IRepository repository)
         {
             this.ravenSession = ravenSession;
+            this.repository = repository;
         }
 
-        public ReportViewModel Handle(SingleReportQuery query)
+
+        public ReportAggregate Handle(SingleReportQuery query)
         {
-            var report = ravenSession.Load<ReportViewModel>(query.Id);
+            var report = repository.GetById<ReportAggregate>(query.AggregateId);
 
             return report;
         }

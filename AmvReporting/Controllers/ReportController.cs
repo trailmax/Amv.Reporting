@@ -51,8 +51,7 @@ namespace AmvReporting.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public virtual ActionResult Create(CreateReportCommand command)
         {
-            //return ProcessForm(command, RedirectToAction(MVC.Report.Create()), id => RedirectToAction(MVC.Report.Edit(id)));
-            return ProcessForm(command, RedirectToAction(MVC.Report.Create()), RedirectToAction(MVC.Report.Index()));
+            return ProcessForm(command, RedirectToAction(MVC.Report.Create()), id => RedirectToAction(MVC.Report.Edit(id)));
         }
 
 
@@ -63,6 +62,28 @@ namespace AmvReporting.Controllers
             ViewBag.Json = JsonConvert.SerializeObject(reportAggregate, Formatting.Indented);
 
             return View();
+        }
+
+
+        [RestoreModelState]
+        public virtual ActionResult Edit(Guid id)
+        {
+            var query = new SingleReportQuery(id);
+
+            var report = mediator.Request(query);
+
+            return AutoMappedView<EditReportDetailsViewModel>(report);
+        }
+
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public virtual ActionResult Edit(EditReportCommand command)
+        {
+            if (HttpContext.Request.IsAjaxRequest())
+            {
+                return ProcessJsonForm(command, "Changes are saved");
+            }
+            return ProcessForm(command, RedirectToAction(MVC.Report.Edit(command.Id)), RedirectToAction(MVC.Report.Index()));
         }
 
 
@@ -77,30 +98,6 @@ namespace AmvReporting.Controllers
 
             //return AutoMappedView<ReportDetailsViewModel>(MVC.Report.Views.Create, report);
         }
-
-
-        [RestoreModelState]
-        public virtual ActionResult Edit(Guid id)
-        {
-            throw new NotImplementedException();
-            //var query = new SingleReportQuery(id);
-
-            //var report = mediator.Request(query);
-
-            //return AutoMappedView<EditReportDetailsViewModel>(report);
-        }
-
-
-        [HttpPost, ValidateAntiForgeryToken]
-        public virtual ActionResult Edit(EditReportCommand command)
-        {
-            if (HttpContext.Request.IsAjaxRequest())
-            {
-                return ProcessJsonForm(command, "Changes are saved");
-            }
-            return ProcessForm(command, RedirectToAction(MVC.Report.Edit(command.Id)), RedirectToAction(MVC.Report.Index()));
-        }
-
 
         [HttpPost]
         public virtual ActionResult Delete(DeleteReportCommand command)

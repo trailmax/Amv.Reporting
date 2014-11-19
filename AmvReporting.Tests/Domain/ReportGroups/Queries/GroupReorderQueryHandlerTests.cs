@@ -1,4 +1,4 @@
-﻿//TODO Tests
+﻿//TODO TESTS
 //using System.Linq;
 //using AmvReporting.Domain.ReportGroups;
 //using AmvReporting.Domain.ReportGroups.Queries;
@@ -14,19 +14,19 @@
 //    {
 //        private ReportGroup topGroup;
 //        private ReportGroup subGroup;
-//        private Report subReport;
-//        private Report topReport;
+//        private ReportViewModel subReport;
+//        private ReportViewModel topReport;
 
 //        private void PopulateData(IDocumentSession ravenSession)
 //        {
 //            var fixture = new Fixture();
 
-//            topReport = fixture.Build<Report>().Without(r => r.ReportGroupId).Create();
+//            topReport = fixture.Build<ReportViewModel>().Without(r => r.ReportGroupId).Create();
 //            topGroup = fixture.Build<ReportGroup>().Without(g => g.ParentReportGroupId).Create();
 
 //            subGroup = fixture.Build<ReportGroup>().With(g => g.ParentReportGroupId, topGroup.Id).Create();
 
-//            subReport = fixture.Build<Report>().With(r => r.ReportGroupId, topGroup.Id).Create();
+//            subReport = fixture.Build<ReportViewModel>().With(r => r.ReportGroupId, topGroup.Id).Create();
 
 //            ravenSession.Store(topReport);
 //            ravenSession.Store(topGroup);

@@ -29,10 +29,6 @@ namespace AmvReporting.Domain.Reports.Commands
 
             var commitId = Guid.NewGuid();
             repository.Save(report, commitId);
-
-            //TODO Cache invalidation is broken
-            //var query = new ReportResultQuery(command.Id.ToString());
-            //HttpContext.Current.Cache.Remove(query.CacheKey);
         }
     }
 }
