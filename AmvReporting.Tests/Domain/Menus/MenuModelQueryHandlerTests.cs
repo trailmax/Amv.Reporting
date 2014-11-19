@@ -108,7 +108,7 @@ namespace AmvReporting.Tests.Domain.Menus
         [Fact]
         public void Handle_GroupLessReports_AreInTopLevel()
         {
-            AssertionHelpers.ListsAreEqual(expected.TopLevelReports.OrderBy(r => r.Id), result.TopLevelReports.OrderBy(r => r.Id));
+            AssertionHelpers.ListsAreEqual(expected.TopLevelReports.OrderBy(r => r.AggregateId), result.TopLevelReports.OrderBy(r => r.AggregateId));
         }
 
         [Fact]
@@ -128,8 +128,8 @@ namespace AmvReporting.Tests.Domain.Menus
         public void Handle_FirstLevelReports_Match()
         {
             //Arrange
-            var expectedSecondLevelReports = expected.MenuNodes.First().Reports.OrderBy(r => r.Id).ToList();
-            var resultingSecondLevelReports = result.MenuNodes.First().Reports.OrderBy(r => r.Id).ToList();
+            var expectedSecondLevelReports = expected.MenuNodes.First().Reports.OrderBy(r => r.AggregateId).ToList();
+            var resultingSecondLevelReports = result.MenuNodes.First().Reports.OrderBy(r => r.AggregateId).ToList();
 
             // Assert
             AssertionHelpers.ListsAreEqual(expectedSecondLevelReports, resultingSecondLevelReports);
@@ -156,8 +156,8 @@ namespace AmvReporting.Tests.Domain.Menus
         public void Handle_SecondLevelReports_Match()
         {
             //Arrange
-            var expectedSecondLevel = expected.MenuNodes.First().MenuNodes.First().Reports.OrderBy(r => r.Id);
-            var resultingSecondLevel = result.MenuNodes.First().MenuNodes.First().Reports.OrderBy(r => r.Id);
+            var expectedSecondLevel = expected.MenuNodes.First().MenuNodes.First().Reports.OrderBy(r => r.AggregateId);
+            var resultingSecondLevel = result.MenuNodes.First().MenuNodes.First().Reports.OrderBy(r => r.AggregateId);
 
             // Assert
             AssertionHelpers.ListsAreEqual(expectedSecondLevel, resultingSecondLevel);

@@ -19,6 +19,7 @@ namespace AmvReporting.Infrastructure.Automappings
                   .ForMember(d => d.AggregateId, o => o.MapFrom(s => s.Id));
 
             Mapper.CreateMap<ReportViewModel, ReportIndexViewModel>()
+                  .ForMember(d => d.Id, o => o.Ignore())
                   .ForMember(d => d.GroupFullName, o => o.Ignore());
 
             Mapper.CreateMap<ReportGroup, ReportGroupViewModel>();
@@ -27,7 +28,6 @@ namespace AmvReporting.Infrastructure.Automappings
                   .ForMember(d => d.ParentFullName, o => o.Ignore());
 
             Mapper.CreateMap<ReportAggregate, ReportViewModel>()
-                  .ForMember(d => d.Id, o => o.Ignore())
                   .ForMember(d => d.AggregateId, o => o.MapFrom(s => s.Id));
 
             Mapper.AddGlobalIgnore("Possible");
