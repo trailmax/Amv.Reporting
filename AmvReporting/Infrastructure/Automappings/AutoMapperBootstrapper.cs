@@ -15,7 +15,8 @@ namespace AmvReporting.Infrastructure.Automappings
                   .ForMember(d => d.RedirectingId, o => o.Ignore());
 
             Mapper.CreateMap<ReportAggregate, EditReportDetailsViewModel>()
-                  .ForMember(d => d.RedirectingId, o => o.Ignore());
+                  .ForMember(d => d.RedirectingId, o => o.Ignore())
+                  .ForMember(d => d.AggregateId, o => o.MapFrom(s => s.Id));
 
             Mapper.CreateMap<ReportViewModel, ReportIndexViewModel>()
                   .ForMember(d => d.GroupFullName, o => o.Ignore());

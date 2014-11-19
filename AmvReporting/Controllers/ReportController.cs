@@ -83,7 +83,7 @@ namespace AmvReporting.Controllers
             {
                 return ProcessJsonForm(command, "Changes are saved");
             }
-            return ProcessForm(command, RedirectToAction(MVC.Report.Edit(command.Id)), RedirectToAction(MVC.Report.Index()));
+            return ProcessForm(command, RedirectToAction(MVC.Report.Edit(command.AggregateId)), RedirectToAction(MVC.Report.Index()));
         }
 
 

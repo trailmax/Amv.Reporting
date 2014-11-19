@@ -4,6 +4,6 @@ namespace AmvReporting.Domain.Reports.ViewModels
 {
     public class EditReportDetailsViewModel : ReportDetailsViewModel
     {
-        public Guid Id { get; set; }
+        public Guid AggregateId { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace AmvReporting.Domain.Reports.Commands
 {
     public class EditReportCommand : CreateReportCommand, ICommand
     {
-        public Guid Id { get; set; }
+        public Guid AggregateId { get; set; }
     }
 
 
@@ -23,7 +23,7 @@ namespace AmvReporting.Domain.Reports.Commands
 
         public void Handle(EditReportCommand command)
         {
-            var report = repository.GetById<ReportAggregate>(command.Id);
+            var report = repository.GetById<ReportAggregate>(command.AggregateId);
             report.UpdateMetadata(command.ReportGroupId, command.Title, command.ReportType, command.Description, command.DatabaseId);
             report.UpdateCode(command.Sql, command.JavaScript, command.Css, command.HtmlOverride);
             report.SetReportEnabled(command.Enabled);

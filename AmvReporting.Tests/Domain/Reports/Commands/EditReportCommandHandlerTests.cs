@@ -27,7 +27,7 @@ namespace AmvReporting.Tests.Domain.Reports.Commands
         public void UpdatedAggregate_Matches_Command()
         {
             // Arrange
-            var command = Fixture.Build<EditReportCommand>().With(c => c.Id, aggregateReport.Id).Create();
+            var command = Fixture.Build<EditReportCommand>().With(c => c.AggregateId, aggregateReport.Id).Create();
             var sut = Container.Resolve<ICommandHandler<EditReportCommand>>();
 
             // Act
@@ -43,7 +43,7 @@ namespace AmvReporting.Tests.Domain.Reports.Commands
         public void ViewModel_Matches_Command()
         {
             // Arrange
-            var command = Fixture.Build<EditReportCommand>().With(c => c.Id, aggregateReport.Id).Create();
+            var command = Fixture.Build<EditReportCommand>().With(c => c.AggregateId, aggregateReport.Id).Create();
             var sut = Container.Resolve<ICommandHandler<EditReportCommand>>();
 
             // Act
