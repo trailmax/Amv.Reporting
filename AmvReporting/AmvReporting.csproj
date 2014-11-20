@@ -209,12 +209,8 @@
     <Compile Include="Domain\ReportingConfigs\ReportingConfig.cs" />
     <Compile Include="Domain\ReportingConfigs\Queries\ReportingConfigQuery.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommand.cs" />
-    <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommandHandler.cs" />
-    <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommandValidator.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\DeleteDatabaseCommand.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\EditDatabaseDetailsCommand.cs" />
-    <Compile Include="Domain\DatabaseConnections\Commands\EditDatabaseDetailsCommandHandler.cs" />
-    <Compile Include="Domain\DatabaseConnections\Commands\EditDatabaseDetailsCommandValidator.cs" />
     <Compile Include="Domain\DatabaseConnections\DatabaseConnection.cs" />
     <Compile Include="Domain\DatabaseConnections\Queries\AllDatabasesQuery.cs" />
     <Compile Include="Domain\DatabaseConnections\Queries\CheckDatabaseConnectivityQuery.cs" />
