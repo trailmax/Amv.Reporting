@@ -18,13 +18,13 @@ namespace AmvReporting.Infrastructure.NEventStore
             builder.Register(WireupEventStore).As<IStoreEvents>()
                 .SingleInstance();
 
-            builder.RegisterType<EventStoreRepository>()
-                .As<IRepository>()
-                .InstancePerLifetimeScope();
-
-            //builder.RegisterType<MyEventStoreRepository>()
+            //builder.RegisterType<EventStoreRepository>()
             //    .As<IRepository>()
             //    .InstancePerLifetimeScope();
+
+            builder.RegisterType<MyEventStoreRepository>()
+                .As<IRepository>()
+                .InstancePerLifetimeScope();
 
             builder.RegisterType<AggregateFactory>()
                 .AsImplementedInterfaces()

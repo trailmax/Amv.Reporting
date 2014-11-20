@@ -30,20 +30,8 @@ namespace AmvReporting.Domain.Reports.Commands
             report.SetReportEnabled(command.Enabled);
 
             var commitId = Guid.NewGuid();
-            
-            repository.Save(report, commitId, headers => GetHeaders());
-        }
 
-
-        private Dictionary<String, Object> GetHeaders()
-        {
-            var headers = new Dictionary<String, Object>()
-            {
-                { "DateTime", DateTime.Now },
-                { "Username", "My Name" },
-            };
-
-            return headers;
+            repository.Save(report, commitId);
         }
     }
 }

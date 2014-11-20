@@ -66,7 +66,6 @@ namespace AmvReporting.Infrastructure.NEventStore
 		public virtual void Save(IAggregate aggregate, Guid commitId, Action<IDictionary<string, object>> updateHeaders)
 		{
 			Save(Bucket.Default, aggregate, commitId, updateHeaders);
-
 		}
 
 		public void Save(string bucketId, IAggregate aggregate, Guid commitId, Action<IDictionary<string, object>> updateHeaders)

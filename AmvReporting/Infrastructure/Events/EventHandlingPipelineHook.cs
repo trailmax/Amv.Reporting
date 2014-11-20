@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Threading;
 using Autofac;
 using NEventStore;
+using NEventStore.Persistence;
 
 
 namespace AmvReporting.Infrastructure.Events
@@ -29,6 +31,14 @@ namespace AmvReporting.Infrastructure.Events
 
         public bool PreCommit(CommitAttempt attempt)
         {
+            foreach (var eventMessage in attempt.Events)
+            {
+                Thread.Sleep(10);
+                eventMessage.Headers.Add("DateTime", DateTime.Now);
+                eventMessage.Headers.Add("CommitId", attempt.CommitId);
+                eventMessage.Headers.Add("CommitSequence", attempt.CommitSequence);
+            }
+
             return true;
         }
 
@@ -40,13 +50,13 @@ namespace AmvReporting.Infrastructure.Events
                 var @event = eventMessage.Body;
                 var eventType = @event.GetType();
 
-                Type handlerType = typeof (IEventHandler<>).MakeGenericType(eventType);
-                Type allHandlerTypes = typeof (IEnumerable<>).MakeGenericType(handlerType);
+                Type handlerType = typeof(IEventHandler<>).MakeGenericType(eventType);
+                Type allHandlerTypes = typeof(IEnumerable<>).MakeGenericType(handlerType);
                 var handlers = container.Resolve(allHandlerTypes);
                 foreach (var handler in (IEnumerable)handlers)
                 {
                     var method = handler.GetType().GetMethod("Handle", new[] { eventType });
-                    method.Invoke(handler, new []{ @event });
+                    method.Invoke(handler, new [] { @event });
                 }
             }
         }
