@@ -16,7 +16,8 @@ namespace AmvReporting.Tests.Domain.Reports.Commands
     {
         private readonly ReportAggregate aggregateReport;
 
-        public EditReportCommandHandlerTests() : base()
+        public EditReportCommandHandlerTests()
+            : base()
         {
             aggregateReport = Fixture.Create<ReportAggregate>();
             Repository.Save(aggregateReport, Guid.NewGuid());

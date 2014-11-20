@@ -7,6 +7,7 @@ using Autofac;
 using Ploeh.AutoFixture;
 using Xunit;
 
+
 namespace AmvReporting.Tests.Domain.Reports.Commands
 {
     public class CreateReportCommandHandlerTests : IntegrationTestsBase

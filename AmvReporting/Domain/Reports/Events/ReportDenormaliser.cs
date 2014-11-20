@@ -16,73 +16,85 @@ namespace AmvReporting.Domain.Reports.Events
                                     IEventHandler<ReportCreatedEvent>,
                                     IEventHandler<UpdateReportMetadaEvent>
     {
-        private readonly IDocumentSession documentSession;
+        private readonly IDocumentStore documentStore;
         private readonly IMediator mediator;
 
 
-        public ReportDenormaliser(IDocumentSession documentSession, IMediator mediator)
+        public ReportDenormaliser(IMediator mediator, IDocumentStore documentStore)
         {
-            this.documentSession = documentSession;
             this.mediator = mediator;
+            this.documentStore = documentStore;
         }
-
-
-
 
 
         public void Handle(ChangeReportListOrderEvent raisedEvent)
         {
-            var viewmodel = GetViewModel(raisedEvent);
-            viewmodel.ListOrder = raisedEvent.ListOrder;
-            documentSession.SaveChanges();
+            using (var documentSession = documentStore.OpenSession())
+            {
+                var viewmodel = GetViewModel(raisedEvent, documentSession);
+                viewmodel.ListOrder = raisedEvent.ListOrder;
+                documentSession.SaveChanges();
+            }
         }
 
 
 
         public void Handle(SetReportEnabledEvent raisedEvent)
         {
-            var viewmodel = GetViewModel(raisedEvent);
-            viewmodel.Enabled = raisedEvent.IsEnabled;
-            documentSession.SaveChanges();
-
+            using (var documentSession = documentStore.OpenSession())
+            {
+                var viewmodel = GetViewModel(raisedEvent, documentSession);
+                viewmodel.Enabled = raisedEvent.IsEnabled;
+                documentSession.SaveChanges();
+            }
         }
 
 
         public void Handle(ReportCodeUpdatedEvent raisedEvent)
         {
-            var viewmodel = GetViewModel(raisedEvent);
-            viewmodel.InjectFrom(raisedEvent);
-            documentSession.SaveChanges();
+            using (var documentSession = documentStore.OpenSession())
+            {
+                var viewmodel = GetViewModel(raisedEvent, documentSession);
+                viewmodel.InjectFrom(raisedEvent);
+                documentSession.SaveChanges();
+            }
         }
 
 
         public void Handle(ReportCreatedEvent raisedEvent)
         {
-            var viewmodel = new ReportViewModel() { AggregateId = raisedEvent.AggregateId };
-            viewmodel.InjectFrom(raisedEvent);
+            using (var documentSession = documentStore.OpenSession())
+            {
+                var viewmodel = new ReportViewModel() { AggregateId = raisedEvent.AggregateId };
+                viewmodel.InjectFrom(raisedEvent);
 
-            var databaseDetails = mediator.Request(new DatabaseQuery(raisedEvent.DatabaseId));
-            viewmodel.ConnectionString = databaseDetails.CheckForNull(d => d.ConnectionString);
+                var databaseDetails = mediator.Request(new DatabaseQuery(raisedEvent.DatabaseId));
+                viewmodel.ConnectionString = databaseDetails.CheckForNull(d => d.ConnectionString);
 
-            documentSession.Store(viewmodel);
-            documentSession.SaveChanges();
+                documentSession.Store(viewmodel);
+                documentSession.SaveChanges();
+            }
         }
 
 
         public void Handle(UpdateReportMetadaEvent raisedEvent)
         {
-            var viewmodel = GetViewModel(raisedEvent);
-            viewmodel.InjectFrom(raisedEvent);
-            var databaseDetails = mediator.Request(new DatabaseQuery(raisedEvent.DatabaseId));
-            viewmodel.ConnectionString = databaseDetails.CheckForNull(d => d.ConnectionString);
+            using (var documentSession = documentStore.OpenSession())
+            {
+                var viewmodel = GetViewModel(raisedEvent, documentSession);
+                viewmodel.InjectFrom(raisedEvent);
+                var databaseDetails = mediator.Request(new DatabaseQuery(raisedEvent.DatabaseId));
+                viewmodel.ConnectionString = databaseDetails.CheckForNull(d => d.ConnectionString);
 
-            documentSession.SaveChanges();
+                documentSession.SaveChanges();
+            }
         }
 
 
-        private ReportViewModel GetViewModel(IEvent raisedEvent)
+        private ReportViewModel GetViewModel(IEvent raisedEvent, IDocumentSession documentSession)
         {
-            var viewModel = documentSession.Query<ReportViewModel>().FirstOrDefault(r => r.AggregateId == raisedEvent.AggregateId);
+            var viewModel = documentSession.Query<ReportViewModel>()
+                .FirstOrDefault(r => r.AggregateId == raisedEvent.AggregateId);
 
             return viewModel;
         }

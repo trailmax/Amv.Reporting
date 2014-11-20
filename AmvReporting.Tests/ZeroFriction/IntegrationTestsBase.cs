@@ -17,7 +17,7 @@ namespace AmvReporting.Tests.ZeroFriction
         internal readonly IFixture Fixture;
         internal readonly IRepository Repository;
         internal readonly IDocumentSession DocumentSession;
-
+        internal readonly IDocumentStore DocumentStore;
 
         public IntegrationTestsBase()
         {
@@ -32,7 +32,8 @@ namespace AmvReporting.Tests.ZeroFriction
             builder.Update(Container);
 
             Repository = Container.Resolve<IRepository>();
-            DocumentSession = Container.Resolve<IDocumentSession>();
+            DocumentStore = Container.Resolve<IDocumentStore>();
+            DocumentSession = DocumentStore.OpenSession();
         }
 
         private static EmbeddableDocumentStore GetEmbededStorage()
@@ -50,6 +51,7 @@ namespace AmvReporting.Tests.ZeroFriction
 
         public void Dispose()
         {
+            DocumentSession.Dispose();
             Container.Dispose();
         }
     }
