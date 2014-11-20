@@ -1,0 +1,14 @@
+﻿@model IEnumerable<ReportRevision>
+
+@{
+    ViewBag.Title = "Report Revisions";
+}
+
+<h2>Report Revisions</h2>
+
+<ul>
+    @foreach (var revision in Model)
+    {
+        <li>Name: @revision.ActionName  </li>
+    }
+</ul>

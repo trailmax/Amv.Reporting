@@ -245,6 +245,7 @@
     <Compile Include="Domain\Reports\Events\ReportDenormaliser.cs" />
     <Compile Include="Domain\Reports\Events\ReportUpdatedEvent.cs" />
     <Compile Include="Domain\Reports\Events\UpdateReportMetadaEvent.cs" />
+    <Compile Include="Domain\Reports\Queries\AllReportRevisionsQuery.cs" />
     <Compile Include="Domain\Reports\ReportAggregate.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModel.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModelEnricher.cs" />
@@ -529,6 +530,7 @@
     <Content Include="Views\Backups\Index.cshtml" />
     <Content Include="Views\Backups\_ViewStart.cshtml" />
     <Content Include="Views\Backups\RestoreBackup.cshtml" />
+    <Content Include="Views\Report\ViewAllVersions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
