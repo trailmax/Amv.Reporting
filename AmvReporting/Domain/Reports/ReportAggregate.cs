@@ -100,5 +100,17 @@ namespace AmvReporting.Domain.Reports
         {
             ListOrder = @event.ListOrder;
         }
+
+
+        public void Delete()
+        {
+            RaiseEvent(new DeleteReportEvent(Id));
+        }
+
+
+        private void Apply(DeleteReportEvent @event)
+        {
+            // do nothing here
+        }
     }
 }

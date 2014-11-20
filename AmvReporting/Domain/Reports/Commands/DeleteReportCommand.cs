@@ -1,5 +1,6 @@
 ﻿using System;
 using AmvReporting.Infrastructure.CQRS;
+using CommonDomain.Persistence;
 using Raven.Client;
 
 
@@ -7,24 +8,24 @@ namespace AmvReporting.Domain.Reports.Commands
 {
     public class DeleteReportCommand : ICommand
     {
-        public String AggregateId { get; set; }
+        public Guid AggregateId { get; set; }
     }
 
     public class DeleteReportCommandHandler : ICommandHandler<DeleteReportCommand>
     {
-        private readonly IDocumentSession session;
+        private readonly IRepository repository;
 
-        public DeleteReportCommandHandler(IDocumentSession session)
+        public DeleteReportCommandHandler(IDocumentSession session, IRepository repository)
         {
-            this.session = session;
+            this.repository = repository;
         }
+
 
         public void Handle(DeleteReportCommand command)
         {
-            var toBeDeleted = session.Load<ReportViewModel>(command.AggregateId);
-
-            session.Delete(toBeDeleted);
-            session.SaveChanges();
+            var report = repository.GetById<ReportAggregate>(command.AggregateId);
+            report.Delete();
+            repository.Save(report, Guid.NewGuid());
         }
     }
 }

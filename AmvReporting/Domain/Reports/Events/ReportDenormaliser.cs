@@ -14,7 +14,8 @@ namespace AmvReporting.Domain.Reports.Events
                                     IEventHandler<SetReportEnabledEvent>,
                                     IEventHandler<ReportCodeUpdatedEvent>,
                                     IEventHandler<ReportCreatedEvent>,
-                                    IEventHandler<UpdateReportMetadaEvent>
+                                    IEventHandler<UpdateReportMetadaEvent>,
+                                    IEventHandler<DeleteReportEvent>
     {
         private readonly IDocumentStore documentStore;
         private readonly IMediator mediator;
@@ -97,6 +98,17 @@ namespace AmvReporting.Domain.Reports.Events
                 .FirstOrDefault(r => r.AggregateId == raisedEvent.AggregateId);
 
             return viewModel;
+        }
+
+
+        public void Handle(DeleteReportEvent raisedEvent)
+        {
+            using (var documentSession = documentStore.OpenSession())
+            {
+                var toBeDeleted = GetViewModel(raisedEvent, documentSession);
+                documentSession.Delete(toBeDeleted);
+                documentSession.SaveChanges();
+            }
         }
     }
 }
