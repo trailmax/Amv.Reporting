@@ -246,6 +246,7 @@
     <Compile Include="Domain\Reports\Events\ReportDenormaliser.cs" />
     <Compile Include="Domain\Reports\Events\UpdateReportMetadaEvent.cs" />
     <Compile Include="Domain\Reports\Queries\AllReportRevisionsQuery.cs" />
+    <Compile Include="Domain\Reports\Queries\CompareToLatestQuery.cs" />
     <Compile Include="Domain\Reports\ReportAggregate.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModel.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModelEnricher.cs" />

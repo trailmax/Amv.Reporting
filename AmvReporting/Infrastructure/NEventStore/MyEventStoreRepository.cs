@@ -125,13 +125,17 @@ namespace AmvReporting.Infrastructure.NEventStore
 
 		private static void ApplyEventsToAggregate(int versionToLoad, IEventStream stream, IAggregate aggregate)
 		{
-			if (versionToLoad == 0 || aggregate.Version < versionToLoad)
-			{
-				foreach (var @event in stream.CommittedEvents.Select(x => x.Body))
-				{
-					aggregate.ApplyEvent(@event);
-				}
-			}
+            if (versionToLoad == 0 || aggregate.Version < versionToLoad)
+            {
+                var events = stream.CommittedEvents.ToArray();
+                var topVersion = Math.Min(events.Count(), versionToLoad);
+
+                for (int ver = 0; ver < topVersion; ver++)
+                {
+                    var @event = events[ver].Body;
+                    aggregate.ApplyEvent(@event);
+                }
+            }
 		}
 
 		private IAggregate GetAggregate<TAggregate>(ISnapshot snapshot, IEventStream stream)
@@ -155,7 +159,7 @@ namespace AmvReporting.Infrastructure.NEventStore
 		private IEventStream OpenStream(string bucketId, Guid id, int version, ISnapshot snapshot)
 		{
 			IEventStream stream;
-			var streamId = bucketId + "+" + id;
+			var streamId = bucketId + "+" + id + "+" + version;
 			if (_streams.TryGetValue(streamId, out stream))
 			{
 				return stream;

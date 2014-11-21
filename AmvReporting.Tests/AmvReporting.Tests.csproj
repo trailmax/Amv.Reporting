@@ -126,6 +126,7 @@
     <Compile Include="Domain\ReportGroups\Commands\EditReportGroupCommandHandlerTests.cs" />
     <Compile Include="Domain\ReportGroups\Queries\GroupReorderQueryHandlerTests.cs" />
     <Compile Include="Domain\Reports\Commands\EditReportCommandHandlerTests.cs" />
+    <Compile Include="Explorage\NEventStoreRepositoryTests.cs" />
     <Compile Include="Explorage\SqlFormatter.cs" />
     <Compile Include="Explorage\ValueInjectorTests.cs" />
     <Compile Include="Infrastructure\CQRS\AutofacDecoratorsTests.cs" />

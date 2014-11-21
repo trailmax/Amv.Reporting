@@ -5,7 +5,6 @@ using AmvReporting.Domain.Reports.Queries;
 using AmvReporting.Infrastructure.CQRS;
 using CommonDomain.Persistence;
 using NEventStore;
-using Newtonsoft.Json;
 
 
 namespace AmvReporting.Controllers
@@ -32,7 +31,7 @@ namespace AmvReporting.Controllers
 
         public virtual ActionResult ViewRevision(Guid id, int revisionNumber)
         {
-            var report = repository.GetById<ReportAggregate>(Bucket.Default, id, revisionNumber);
+            var report = repository.GetById<ReportAggregate>(id, revisionNumber);
 
             return View(report);
         }
@@ -40,40 +39,9 @@ namespace AmvReporting.Controllers
 
         public virtual ActionResult CompareToLatest(Guid id, int revisionNumber)
         {
-            var latest = repository.GetById<ReportAggregate>(Bucket.Default, id, int.MaxValue);
-
-            var revision = repository.GetById<ReportAggregate>(Bucket.Default, id, revisionNumber);
-
-            var serializerSettings = new JsonSerializerSettings()
-            {
-                NullValueHandling = NullValueHandling.Ignore
-            };
-
-            var viewmodel = new CompareToLatestViewModel()
-            {
-                AggregateId = id,
-                Latest = latest,
-                LatestJson = JsonConvert.SerializeObject(latest, Formatting.Indented, serializerSettings),
-                Revision = revision,
-                RevisionJson = JsonConvert.SerializeObject(revision, Formatting.Indented, serializerSettings),
-                RevisionNumber = revisionNumber,
-            };
+            var viewmodel = mediator.Request(new CompareToLatestQuery(id, revisionNumber));
 
             return View(viewmodel);
         }
-    }
-
-
-    public class CompareToLatestViewModel
-    {
-        public Guid AggregateId { get; set; }
-
-        public ReportAggregate Latest { get; set; }
-        public String LatestJson { get; set; }
-
-        public ReportAggregate Revision { get; set; }
-        public String RevisionJson { get; set; }
-
-        public int RevisionNumber { get; set; }
     }
 }
