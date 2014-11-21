@@ -165,7 +165,8 @@ namespace AmvReporting.Infrastructure.NEventStore
                 ? _eventStore.OpenStream(bucketId, id, 0, version)
 				: _eventStore.OpenStream(snapshot, version);
 
-			return _streams[streamId] = stream;
+		    var eventStream = _streams[streamId] = stream;
+		    return eventStream;
 		}
 
 		private IEventStream PrepareStream(string bucketId, IAggregate aggregate, Dictionary<string, object> headers)

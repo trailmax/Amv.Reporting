@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 
 namespace AmvReporting.Infrastructure.NEventStore
@@ -18,7 +19,7 @@ namespace AmvReporting.Infrastructure.NEventStore
             var dateString = savedObject.ToString();
 
             DateTime parsedDate;
-            if (DateTime.TryParse(dateString, out parsedDate))
+            if (DateTime.TryParseExact(dateString, MessageHeaders.DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedDate))
             {
                 return parsedDate;
             }

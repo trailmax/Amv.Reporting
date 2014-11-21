@@ -13,6 +13,7 @@ namespace AmvReporting.Infrastructure.NEventStore
     {
         public const String CommitDate = "CommitDate";
         public const String Username = "Username";
+        public const String DateFormat = "dd/MM/yyyy HH:mm:ss.fffffff";
     }
 
 
@@ -41,7 +42,7 @@ namespace AmvReporting.Infrastructure.NEventStore
 
             foreach (var eventMessage in attempt.Events)
             {
-                eventMessage.Headers.Add(MessageHeaders.CommitDate, DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fffffff"));
+                eventMessage.Headers.Add(MessageHeaders.CommitDate, DateTime.Now.ToString(MessageHeaders.DateFormat));
                 eventMessage.Headers.Add(MessageHeaders.Username, principal.Identity.Name);
             }
 
