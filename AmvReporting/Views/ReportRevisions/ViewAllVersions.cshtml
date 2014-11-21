@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ReportRevision>
+
+@{
+    ViewBag.Title = "Report Revisions";
+}
+
+<h2>Report Revisions</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rev #</th>
+            <th>Date</th>
+            <th>User</th>
+            <th>Action</th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var revision in Model)
+    {
+        <tr>
+            <td>@revision.RevisionNumber</td>
+            <td title="@String.Format("{0:dd/MM/yyyy HH:mm:ss.fffffff}", revision.CommitDate)">@String.Format("{0:dd MMM yy}", revision.CommitDate)</td>
+            <td>@revision.Username</td>
+            <td>@revision.EventDescription</td>
+            <td>
+                @Html.ActionLink("View Revision", MVC.ReportRevisions.ViewRevision(revision.AggregateId, revision.RevisionNumber), new { @class = "btn btn-sm btn-info" })
+                @Html.ActionLink("Compare to Latest", MVC.ReportRevisions.CompareToLatest(revision.AggregateId, revision.RevisionNumber), new { @class = "btn btn-sm btn-info" })
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,13 @@
+﻿@model AmvReporting.Controllers.CompareToLatestViewModel
+
+@{
+    ViewBag.Title = "Compare Revision to Latest";
+}
+
+<h2>Compare Revision #@Model.RevisionNumber to Latest</h2>
+
+Revision:
+<pre>@Model.RevisionJson</pre>
+
+Latest: 
+<pre>@Model.LatestJson</pre>

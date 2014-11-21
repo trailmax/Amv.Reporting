@@ -72,18 +72,6 @@ namespace AmvReporting.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
         }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult ViewAllVersions()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ViewAllVersions);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult ViewRevision()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ViewRevision);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ReportController Actions { get { return MVC.Report; } }
@@ -105,8 +93,6 @@ namespace AmvReporting.Controllers
             public readonly string Edit = "Edit";
             public readonly string Clone = "Clone";
             public readonly string Delete = "Delete";
-            public readonly string ViewAllVersions = "ViewAllVersions";
-            public readonly string ViewRevision = "ViewRevision";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -117,8 +103,6 @@ namespace AmvReporting.Controllers
             public const string Edit = "Edit";
             public const string Clone = "Clone";
             public const string Delete = "Delete";
-            public const string ViewAllVersions = "ViewAllVersions";
-            public const string ViewRevision = "ViewRevision";
         }
 
 
@@ -155,23 +139,6 @@ namespace AmvReporting.Controllers
         {
             public readonly string command = "command";
         }
-        static readonly ActionParamsClass_ViewAllVersions s_params_ViewAllVersions = new ActionParamsClass_ViewAllVersions();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_ViewAllVersions ViewAllVersionsParams { get { return s_params_ViewAllVersions; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ViewAllVersions
-        {
-            public readonly string id = "id";
-        }
-        static readonly ActionParamsClass_ViewRevision s_params_ViewRevision = new ActionParamsClass_ViewRevision();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_ViewRevision ViewRevisionParams { get { return s_params_ViewRevision; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ViewRevision
-        {
-            public readonly string id = "id";
-            public readonly string revisionNumber = "revisionNumber";
-        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -187,16 +154,12 @@ namespace AmvReporting.Controllers
                 public readonly string Create = "Create";
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
-                public readonly string ViewAllVersions = "ViewAllVersions";
-                public readonly string ViewRevision = "ViewRevision";
             }
             public readonly string _CreateEdit = "~/Views/Report/_CreateEdit.cshtml";
             public readonly string _ViewStart = "~/Views/Report/_ViewStart.cshtml";
             public readonly string Create = "~/Views/Report/Create.cshtml";
             public readonly string Edit = "~/Views/Report/Edit.cshtml";
             public readonly string Index = "~/Views/Report/Index.cshtml";
-            public readonly string ViewAllVersions = "~/Views/Report/ViewAllVersions.cshtml";
-            public readonly string ViewRevision = "~/Views/Report/ViewRevision.cshtml";
         }
     }
 
@@ -284,31 +247,6 @@ namespace AmvReporting.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
             DeleteOverride(callInfo, command);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void ViewAllVersionsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult ViewAllVersions(System.Guid id)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ViewAllVersions);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            ViewAllVersionsOverride(callInfo, id);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void ViewRevisionOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, int revisionNumber);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult ViewRevision(System.Guid id, int revisionNumber)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ViewRevision);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "revisionNumber", revisionNumber);
-            ViewRevisionOverride(callInfo, id, revisionNumber);
             return callInfo;
         }
 

@@ -9,7 +9,7 @@
     <li><a href="#code" data-toggle="tab">Code</a></li>
     @if (ViewBag.AggregateId != null)
     {
-        <li>@Html.ActionLink("Revisions", MVC.Report.ViewAllVersions((Guid)ViewBag.AggregateId))</li>
+        <li>@Html.ActionLink("Revisions", MVC.ReportRevisions.ViewAllVersions((Guid)ViewBag.AggregateId))</li>
     }
 </ul>
 

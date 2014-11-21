@@ -198,6 +198,7 @@
     <Compile Include="Controllers\MigrationController.cs" />
     <Compile Include="Controllers\ReportingConfigController.cs" />
     <Compile Include="Controllers\ReportGroupController.cs" />
+    <Compile Include="Controllers\ReportRevisionsController.cs" />
     <Compile Include="DatabaseController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -245,7 +246,6 @@
     <Compile Include="Domain\Reports\Events\ReportDenormaliser.cs" />
     <Compile Include="Domain\Reports\Events\UpdateReportMetadaEvent.cs" />
     <Compile Include="Domain\Reports\Queries\AllReportRevisionsQuery.cs" />
-    <Compile Include="Domain\Reports\Queries\ReportRevisionQuery.cs" />
     <Compile Include="Domain\Reports\ReportAggregate.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModel.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModelEnricher.cs" />
@@ -338,6 +338,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="ReportingConfigController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportRevisionsController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="SharedController.generated.cs">
@@ -531,8 +534,10 @@
     <Content Include="Views\Backups\Index.cshtml" />
     <Content Include="Views\Backups\_ViewStart.cshtml" />
     <Content Include="Views\Backups\RestoreBackup.cshtml" />
-    <Content Include="Views\Report\ViewAllVersions.cshtml" />
-    <Content Include="Views\Report\ViewRevision.cshtml" />
+    <Content Include="Views\ReportRevisions\ViewAllVersions.cshtml" />
+    <Content Include="Views\ReportRevisions\ViewRevision.cshtml" />
+    <Content Include="Views\ReportRevisions\CompareToLatest.cshtml" />
+    <Content Include="Views\ReportRevisions\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

@@ -36,7 +36,7 @@ namespace AmvReporting.Tests.Infrastructure.NEventStore
         public void GetCommitDate_SavedDate_MatchesSavedDate()
         {
             var dictionary = new Dictionary<String, object>();
-            var date = DateTime.Now;
+            var date = new DateTime(2014, 11, 21, 00, 31, 59, 290);
             dictionary.Add(MessageHeaders.CommitDate, date.ToString("dd/MM/yyyy HH:mm:ss.fffffff"));
 
             var result = dictionary.GetCommitDate();

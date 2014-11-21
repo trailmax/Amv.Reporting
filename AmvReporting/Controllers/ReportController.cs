@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using AmvReporting.Domain.Menus;
 using AmvReporting.Domain.Reports;
 using AmvReporting.Domain.Reports.Commands;
-using AmvReporting.Domain.Reports.Queries;
 using AmvReporting.Domain.Reports.ViewModels;
 using AmvReporting.Infrastructure;
 using AmvReporting.Infrastructure.CQRS;
@@ -86,22 +85,6 @@ namespace AmvReporting.Controllers
         public virtual ActionResult Delete(DeleteReportCommand command)
         {
             return ProcessJsonForm(command, "Report Deleted");
-        }
-
-
-        public virtual ActionResult ViewAllVersions(Guid id)
-        {
-            var result = mediator.Request(new AllReportRevisionsQuery(id));
-            ViewBag.AggregateId = id;
-            return View(result);
-        }
-
-
-        public virtual ActionResult ViewRevision(Guid id, int revisionNumber)
-        {
-            var result = mediator.Request(new ReportRevisionQuery(id, revisionNumber));
-
-            return View(result);
         }
     }
 }
