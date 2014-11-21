@@ -1,9 +1,12 @@
 ﻿using System;
+using System.ComponentModel;
 using AmvReporting.Infrastructure.Events;
 
 
 namespace AmvReporting.Domain.Reports.Events
 {
+    [Serializable]
+    [Description("Changed report visibility")]
     public class SetReportEnabledEvent : IEvent
     {
         public SetReportEnabledEvent(Guid aggregateId, bool isEnabled)

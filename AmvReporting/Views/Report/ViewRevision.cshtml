@@ -1,0 +1,11 @@
+﻿@using Newtonsoft.Json
+@model ReportAggregate
+
+@{
+    ViewBag.Title = "Report Revision View";
+}
+
+<h2>Report Revision View</h2>
+
+
+<pre>@JsonConvert.SerializeObject(Model, Formatting.Indented)</pre>

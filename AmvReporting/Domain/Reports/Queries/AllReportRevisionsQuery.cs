@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel;
+using System.Reflection;
 using AmvReporting.Infrastructure.CQRS;
+using AmvReporting.Infrastructure.Helpers;
+using AmvReporting.Infrastructure.NEventStore;
 using NEventStore;
 
 
@@ -10,13 +12,15 @@ namespace AmvReporting.Domain.Reports.Queries
 {
     public class ReportRevision
     {
-        public String ActionName { get; set; }
+        public Guid AggregateId { get; set; }
 
-        public object CommitId { get; set; }
+        public DateTime? CommitDate { get; set; }
 
-        public object DateTime { get; set; }
+        public int RevisionNumber { get; set; }
 
-        public object CommitSequence { get; set; }
+        public String Username { get; set; }
+
+        public String EventDescription { get; set; }
     }
 
     public class AllReportRevisionsQuery : IQuery<IEnumerable<ReportRevision>>
@@ -46,55 +50,39 @@ namespace AmvReporting.Domain.Reports.Queries
             {
                 var result = new List<ReportRevision>();
 
+                var revisionNumber = 0;
                 foreach (var committedEvent in stream.CommittedEvents)
                 {
+                    revisionNumber++;
                     var headers = committedEvent.Headers;
-                    object commitSequence;
-                    headers.TryGetValue("CommitSequence", out commitSequence);
-                    object dateTime;
-                    headers.TryGetValue("DateTime", out dateTime);
-                    object commitId;
-                    headers.TryGetValue("CommitId", out commitId);
 
-
-                    var reportRevision = new ReportRevision();
-                    reportRevision.ActionName = committedEvent.Body.GetType().Name;
-                    reportRevision.CommitId = commitId;
-                    reportRevision.CommitSequence = commitSequence;
-                    reportRevision.DateTime = dateTime;
-                    //reportRevision.CommitId = commitId != null ? (Guid?)new Guid((string)commitId) : null;
-                    //reportRevision.CommitSequence = commitSequence != null ? (int?)commitSequence : null;
-                    //reportRevision.DateTime = dateTime != null ? (DateTime?)dateTime : null;
+                    var @event = committedEvent.Body;
+                    var reportRevision = new ReportRevision
+                    {
+                        EventDescription = GetDescription(@event),
+                        AggregateId = query.AggregateId,
+                        CommitDate = headers.GetCommitDate(),
+                        RevisionNumber = revisionNumber,
+                        Username = headers.GetUsername(),
+                    };
 
                     result.Add(reportRevision);
                 }
 
-                //List<ReportRevision> result = stream.CommittedEvents
-                //                   .Select(e => new ReportRevision()
-                //                   {
-                //                       ActionName = e.Body.GetType().Name,
-                //                       RevisionNumber = e.Headers.TryGetValue(""),
-                //                   })
-                //                   .ToList();
                 return result;
+            }
+        }
 
 
-                //var events = stream.CommittedEvents.ToList();
-                //foreach (var eventMessage in events)
-                //{
-                //    var @event = eventMessage.Body;
-                //    var eventType = @event.GetType();
-
-
-                //    //var h = eventMessage.Headers;
-                //    //if (h.Count > 0)
-                //    //{
-                //    //    var hh = h;
-                //    //}
-                //}
+        private String GetDescription(object @event)
+        {
+            var attribute = @event.GetType().GetCustomAttribute<DescriptionAttribute>();
+            if (attribute == null)
+            {
+                return @event.GetType().Name.ToSeparatedWords().LowerCasePrepositions();
             }
 
-            throw new NotImplementedException();
+            return attribute.Description;
         }
     }
 }

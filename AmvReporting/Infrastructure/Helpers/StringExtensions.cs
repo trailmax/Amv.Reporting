@@ -14,9 +14,30 @@ namespace AmvReporting.Infrastructure.Helpers
         {
             if (value != null)
             {
-                return Regex.Replace(value, "([A-Z][a-z]?)", " $1").Trim();
+                var regex = @"(?<=[A-Z])(?=[A-Z][a-z])|(?<=[^A-Z])(?=[A-Z])|(?<=[A-Za-z])(?=[^A-Za-z])";
+                var r = new Regex(regex);
+                return r.Replace(value, " ").Trim();
             }
             return null;
+        }
+
+        public static string LowerCasePrepositions(this string value)
+        {
+            const string Prepositions = "As At But By For In Of Off On Onto Per Than To Up Via With";
+            var tokens = value.Split(' ');
+            if (tokens.Length == 1)
+            {
+                return value;
+            }
+            // Always leave the first and last word capitalised
+            for (var i = 1; i < tokens.Length - 1; i++)
+            {
+                if (Prepositions.Contains(tokens[i]))
+                {
+                    tokens[i] = tokens[i].ToLower();
+                }
+            }
+            return string.Join(" ", tokens);
         }
 
 

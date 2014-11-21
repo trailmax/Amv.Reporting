@@ -92,6 +92,14 @@ namespace AmvReporting.Controllers
         public virtual ActionResult ViewAllVersions(Guid id)
         {
             var result = mediator.Request(new AllReportRevisionsQuery(id));
+            ViewBag.AggregateId = id;
+            return View(result);
+        }
+
+
+        public virtual ActionResult ViewRevision(Guid id, int revisionNumber)
+        {
+            var result = mediator.Request(new ReportRevisionQuery(id, revisionNumber));
 
             return View(result);
         }

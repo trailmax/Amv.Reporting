@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Web.Mvc;
 using AmvReporting.Domain.Reports.Queries;
 using AmvReporting.Infrastructure.Caching;
@@ -8,6 +9,7 @@ using AmvReporting.Infrastructure.Events;
 namespace AmvReporting.Domain.Reports.Events
 {
     [Serializable]
+    [Description("Updated source codes")]
     public class ReportCodeUpdatedEvent : IEvent
     {
         public ReportCodeUpdatedEvent(Guid aggregateId, string sql, string javaScript, string css, string htmlOverride)

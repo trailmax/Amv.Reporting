@@ -243,22 +243,23 @@
     <Compile Include="Domain\Reports\Events\ReportCodeUpdatedEvent.cs" />
     <Compile Include="Domain\Reports\Events\ReportCreatedEvent.cs" />
     <Compile Include="Domain\Reports\Events\ReportDenormaliser.cs" />
-    <Compile Include="Domain\Reports\Events\ReportUpdatedEvent.cs" />
     <Compile Include="Domain\Reports\Events\UpdateReportMetadaEvent.cs" />
     <Compile Include="Domain\Reports\Queries\AllReportRevisionsQuery.cs" />
+    <Compile Include="Domain\Reports\Queries\ReportRevisionQuery.cs" />
     <Compile Include="Domain\Reports\ReportAggregate.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModel.cs" />
     <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModelEnricher.cs" />
     <Compile Include="HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\NEventStore\EventHandlingPipelineHook.cs" />
+    <Compile Include="Infrastructure\NEventStore\EventHeaderHelpers.cs" />
     <Compile Include="Infrastructure\NEventStore\MyEventStoreRepository.cs" />
     <Compile Include="Infrastructure\NEventStore\NEventStoreModule.cs" />
     <Compile Include="Infrastructure\Caching\ICacheProvider.cs" />
     <Compile Include="Infrastructure\Caching\MemoryCacheProvider.cs" />
     <Compile Include="Infrastructure\CQRS\CachedQueryHandlerDecorator.cs" />
     <Compile Include="Infrastructure\CQRS\ICachedQuery.cs" />
-    <Compile Include="Infrastructure\Events\EventHandlingPipelineHook.cs" />
     <Compile Include="Infrastructure\Events\IEvent.cs" />
     <Compile Include="Infrastructure\Events\IDomainEventDispatcher.cs" />
     <Compile Include="Infrastructure\Events\IEventHandler.cs" />
@@ -531,6 +532,7 @@
     <Content Include="Views\Backups\_ViewStart.cshtml" />
     <Content Include="Views\Backups\RestoreBackup.cshtml" />
     <Content Include="Views\Report\ViewAllVersions.cshtml" />
+    <Content Include="Views\Report\ViewRevision.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

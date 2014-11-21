@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using AmvReporting.Infrastructure.CQRS;
 using CommonDomain.Persistence;
 

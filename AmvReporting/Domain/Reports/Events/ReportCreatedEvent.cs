@@ -1,10 +1,12 @@
 using System;
+using System.ComponentModel;
 using AmvReporting.Infrastructure.Events;
 
 
 namespace AmvReporting.Domain.Reports.Events
 {
     [Serializable]
+    [Description("Created report")]
     public class ReportCreatedEvent : IEvent
     {
         public ReportCreatedEvent(Guid aggregateId, String reportGroupId, String title, ReportType reportType, String description, String databaseId)

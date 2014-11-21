@@ -1,10 +1,12 @@
 ﻿using System;
+using System.ComponentModel;
 using AmvReporting.Infrastructure.Events;
 
 
 namespace AmvReporting.Domain.Reports.Events
 {
     [Serializable]
+    [Description("Updated report metadata")]
     public class UpdateReportMetadaEvent : IEvent
     {
         public String ReportGroupId { get; set; }

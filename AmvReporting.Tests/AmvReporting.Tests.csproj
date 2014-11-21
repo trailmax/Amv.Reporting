@@ -133,7 +133,9 @@
     <Compile Include="Infrastructure\Helpers\ExpressionHelperTests.cs" />
     <Compile Include="Infrastructure\Automappings\AutoMapperBootstrapperTests.cs" />
     <Compile Include="Infrastructure\Helpers\ObjectExtensionsTests.cs" />
+    <Compile Include="Infrastructure\Helpers\StringExtensionsTests.cs" />
     <Compile Include="Infrastructure\NEventStore\DenormalisationTests.cs" />
+    <Compile Include="Infrastructure\NEventStore\EventHeaderHelpersTests.cs" />
     <Compile Include="ZeroFriction\DomainCustomisation.cs" />
     <Compile Include="ZeroFriction\AssertionHelpers.cs" />
     <Compile Include="ZeroFriction\AssertionHelpersTests.cs" />

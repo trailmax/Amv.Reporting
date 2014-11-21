@@ -1,15 +1,21 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Threading;
+using System.Security.Principal;
+using AmvReporting.Infrastructure.Events;
 using Autofac;
 using NEventStore;
-using NEventStore.Persistence;
 
 
-namespace AmvReporting.Infrastructure.Events
+namespace AmvReporting.Infrastructure.NEventStore
 {
+    public static class MessageHeaders
+    {
+        public const String CommitDate = "CommitDate";
+        public const String Username = "Username";
+    }
+
+
     public class EventHandlingPipelineHook : IPipelineHook
     {
         private readonly ILifetimeScope container;
@@ -31,12 +37,12 @@ namespace AmvReporting.Infrastructure.Events
 
         public bool PreCommit(CommitAttempt attempt)
         {
+            var principal = container.Resolve<IPrincipal>();
+
             foreach (var eventMessage in attempt.Events)
             {
-                Thread.Sleep(10);
-                eventMessage.Headers.Add("DateTime", DateTime.Now);
-                eventMessage.Headers.Add("CommitId", attempt.CommitId);
-                eventMessage.Headers.Add("CommitSequence", attempt.CommitSequence);
+                eventMessage.Headers.Add(MessageHeaders.CommitDate, DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fffffff"));
+                eventMessage.Headers.Add(MessageHeaders.Username, principal.Identity.Name);
             }
 
             return true;

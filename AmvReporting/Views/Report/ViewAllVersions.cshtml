@@ -6,9 +6,24 @@
 
 <h2>Report Revisions</h2>
 
-<ul>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rev #</th>
+            <th>Date</th>
+            <th>User</th>
+            <th>Action</th>
+            <th></th>
+        </tr>
+    </thead>
     @foreach (var revision in Model)
     {
-        <li>Name: @revision.ActionName  DateTime: @revision.DateTime; CommitId: @revision.CommitId; CommitSequence: @revision.CommitSequence; </li>
+        <tr>
+            <td>@revision.RevisionNumber</td>
+            <td> <p title="@revision.CommitDate">@String.Format("{0:dd MMM yy}", revision.CommitDate)</p> </td>
+            <td>@revision.Username</td>
+            <td>@revision.EventDescription</td>
+            <td>@Html.ActionLink("View Revision", MVC.Report.ViewRevision(revision.AggregateId, revision.RevisionNumber))</td>
+        </tr>
     }
-</ul>
+</table>

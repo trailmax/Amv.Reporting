@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Claims;
+using System.Security.Principal;
+using System.Web;
 using AmvReporting.Infrastructure.Caching;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Events;
@@ -82,8 +85,27 @@ namespace AmvReporting.Infrastructure.Autofac
                 .As<ICacheProvider>()
                 .InstancePerDependency();
 
+            builder.Register(c => GetPrincipal()).As<IPrincipal>().InstancePerDependency();
 
             base.Load(builder);
+        }
+
+
+        private static IPrincipal GetPrincipal()
+        {
+            // there is no good/easy/elegant way to check if HttpContext.Current is present or null.
+            // so the safest is to do try-catch. And exception will only be trown only in cases where there 
+            // is no Http request - in application_startup. And there it is not critical
+            try
+            {
+                return HttpContext.Current.User ?? new ClaimsPrincipal(new ClaimsIdentity());
+            }
+            catch (Exception)
+            {
+                // return blank principal with no authentication
+                var identity = new ClaimsIdentity();
+                return new ClaimsPrincipal(identity);
+            }
         }
     }
 }
