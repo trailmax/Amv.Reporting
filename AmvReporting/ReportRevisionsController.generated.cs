@@ -126,7 +126,7 @@ namespace AmvReporting.Controllers
         public class ActionParamsClass_CompareToLatest
         {
             public readonly string id = "id";
-            public readonly string revisiontNumber = "revisiontNumber";
+            public readonly string revisiontNumber = "revisionNumber";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -184,12 +184,12 @@ namespace AmvReporting.Controllers
         partial void CompareToLatestOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, int revisiontNumber);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult CompareToLatest(System.Guid id, int revisiontNumber)
+        public override System.Web.Mvc.ActionResult CompareToLatest(System.Guid id, int revisionNumber)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CompareToLatest);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "revisiontNumber", revisiontNumber);
-            CompareToLatestOverride(callInfo, id, revisiontNumber);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "revisionNumber", revisionNumber);
+            CompareToLatestOverride(callInfo, id, revisionNumber);
             return callInfo;
         }
 

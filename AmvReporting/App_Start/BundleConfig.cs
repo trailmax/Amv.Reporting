@@ -37,6 +37,12 @@ namespace AmvReporting
             styleBundle.Include("~/Content/jquery.treetable.theme.default.css");
             bundles.Add(styleBundle);
 
+            var mergelyBundle = new BetterStyleBundle("~/Content/mergely_css").Include(
+                "~/Content/mergely.css",
+                "~/Content/codemirror.css");
+            bundles.Add(mergelyBundle);
+
+
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
                 "~/Scripts/DataTables/js/jquery.dataTables.js",
                 "~/Scripts/DataTables/extras/FixedHeader/FixedHeader.js",
@@ -53,6 +59,11 @@ namespace AmvReporting
                 "~/Scripts/flot/jquery.flot.stack.patched.js",
                 "~/Scripts/flot/excanvas.js",
                 "~/Scripts/jquery.treetable.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/mergely_js").Include(
+                "~/Scripts/codemirror.js",
+                "~/Scripts/mergely.js",
+                "~/Scripts/searchcursor.js"));
 
 
 #if !DEBUG

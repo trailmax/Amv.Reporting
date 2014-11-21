@@ -355,10 +355,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\codemirror.css" />
     <Content Include="Content\Errors\page404.aspx" />
     <Content Include="Content\Errors\page500.aspx" />
     <Content Include="Content\jquery.treetable.css" />
     <Content Include="Content\jquery.treetable.theme.default.css" />
+    <Content Include="Content\mergely.css" />
     <Content Include="Examples\Google_Graphs.htm" />
     <Content Include="Examples\StackingTwoSeries.html" />
     <Content Include="Examples\Stacking.html" />
@@ -371,6 +373,8 @@
     <Content Include="Scripts\amplify.store.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\codemirror.js" />
+    <Content Include="Scripts\codemirror.min.js" />
     <Content Include="Scripts\DataTables\extras\FixedHeader\FixedHeader.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -517,11 +521,14 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\mergely.js" />
+    <Content Include="Scripts\mergely.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\searchcursor.js" />
     <Content Include="Views\Database\_CommonScripts.cshtml" />
     <Content Include="Content\flot.css" />
     <Content Include="Examples\BarChart.html" />
@@ -537,7 +544,7 @@
     <Content Include="Views\ReportRevisions\ViewAllVersions.cshtml" />
     <Content Include="Views\ReportRevisions\ViewRevision.cshtml" />
     <Content Include="Views\ReportRevisions\CompareToLatest.cshtml" />
-    <Content Include="Views\ReportRevisions\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdminContainerFree.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

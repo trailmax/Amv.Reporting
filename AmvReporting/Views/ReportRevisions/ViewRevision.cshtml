@@ -2,10 +2,10 @@
 @model ReportAggregate
 
 @{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     ViewBag.Title = "Report Revision View";
 }
 
 <h2>Report Revision View</h2>
-
 
 <pre>@JsonConvert.SerializeObject(Model, Formatting.Indented)</pre>

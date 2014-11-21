@@ -80,6 +80,8 @@ namespace Links
         public static readonly string amplify_store_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/amplify.store.min.js") ? Url("amplify.store.min.js") : Url("amplify.store.js");
         public static readonly string bootstrap_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/bootstrap.min.js") ? Url("bootstrap.min.js") : Url("bootstrap.js");
         public static readonly string bootstrap_min_js = Url("bootstrap.min.js");
+        public static readonly string codemirror_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/codemirror.min.js") ? Url("codemirror.min.js") : Url("codemirror.js");
+        public static readonly string codemirror_min_js = Url("codemirror.min.js");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class DataTables {
             private const string URLPATH = "~/Scripts/DataTables";
@@ -308,11 +310,14 @@ namespace Links
         public static readonly string jquery_validate_min_js = Url("jquery.validate.min.js");
         public static readonly string jquery_validate_unobtrusive_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate.unobtrusive.min.js") ? Url("jquery.validate.unobtrusive.min.js") : Url("jquery.validate.unobtrusive.js");
         public static readonly string jquery_validate_unobtrusive_min_js = Url("jquery.validate.unobtrusive.min.js");
+        public static readonly string mergely_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/mergely.min.js") ? Url("mergely.min.js") : Url("mergely.js");
+        public static readonly string mergely_min_js = Url("mergely.min.js");
         public static readonly string modernizr_2_8_3_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/modernizr-2.8.3.min.js") ? Url("modernizr-2.8.3.min.js") : Url("modernizr-2.8.3.js");
         public static readonly string respond_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/respond.min.js") ? Url("respond.min.js") : Url("respond.js");
         public static readonly string respond_matchmedia_addListener_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/respond.matchmedia.addListener.min.js") ? Url("respond.matchmedia.addListener.min.js") : Url("respond.matchmedia.addListener.js");
         public static readonly string respond_matchmedia_addListener_min_js = Url("respond.matchmedia.addListener.min.js");
         public static readonly string respond_min_js = Url("respond.min.js");
+        public static readonly string searchcursor_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/searchcursor.min.js") ? Url("searchcursor.min.js") : Url("searchcursor.js");
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -328,6 +333,8 @@ namespace Links
              
         public static readonly string bootstrap_css_map = Url("bootstrap.css.map");
         public static readonly string bootstrap_min_css = Url("bootstrap.min.css");
+        public static readonly string codemirror_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/codemirror.min.css") ? Url("codemirror.min.css") : Url("codemirror.css");
+             
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class Errors {
             private const string URLPATH = "~/Content/Errors";
@@ -340,6 +347,8 @@ namespace Links
         public static readonly string jquery_treetable_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.treetable.min.css") ? Url("jquery.treetable.min.css") : Url("jquery.treetable.css");
              
         public static readonly string jquery_treetable_theme_default_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.treetable.theme.default.min.css") ? Url("jquery.treetable.theme.default.min.css") : Url("jquery.treetable.theme.default.css");
+             
+        public static readonly string mergely_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/mergely.min.css") ? Url("mergely.min.css") : Url("mergely.css");
              
         public static readonly string Site_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Site.min.css") ? Url("Site.min.css") : Url("Site.css");
              

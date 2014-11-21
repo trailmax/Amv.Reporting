@@ -1,13 +1,49 @@
 ﻿@model AmvReporting.Controllers.CompareToLatestViewModel
 
 @{
+    Layout = "~/Views/Shared/_LayoutAdminContainerFree.cshtml";
     ViewBag.Title = "Compare Revision to Latest";
 }
 
-<h2>Compare Revision #@Model.RevisionNumber to Latest</h2>
+@section css
+{
+    @Styles.Render("~/Content/mergely_css")
+}
 
-Revision:
-<pre>@Model.RevisionJson</pre>
 
-Latest: 
-<pre>@Model.LatestJson</pre>
+<div class="admin-content">
+    <div id="alert-placeholder"></div>
+
+    <h2>Compare Revision #@Model.RevisionNumber to Latest</h2>
+
+    <div id="compare"></div>
+
+    <div id="revision" class="hidden">@Model.RevisionJson</div>
+    <div id="latest" class="hidden">@Model.LatestJson</div>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/mergely_js")
+
+    <script>
+        $(document).ready(function () {
+            //var revison = $('#revision')[0];
+            //document.write(revison.innerHTML);
+            var revision = $('#revision')[0].innerHTML;
+            var latest = $('#latest')[0].innerHTML;
+            //document.write(revision);
+            //document.write(latest);
+            $('#compare').mergely({
+                cmsettings: { readOnly: false, lineNumbers: true },
+                lhs: function (setValue) {
+
+                    setValue(revision);
+                },
+                rhs: function (setValue) {
+                    setValue(latest);
+                }
+            });
+        });
+    </script>
+}

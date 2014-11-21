@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<ReportRevision>
 
 @{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     ViewBag.Title = "Report Revisions";
 }
 
@@ -24,8 +25,8 @@
             <td>@revision.Username</td>
             <td>@revision.EventDescription</td>
             <td>
-                @Html.ActionLink("View Revision", MVC.ReportRevisions.ViewRevision(revision.AggregateId, revision.RevisionNumber), new { @class = "btn btn-sm btn-info" })
-                @Html.ActionLink("Compare to Latest", MVC.ReportRevisions.CompareToLatest(revision.AggregateId, revision.RevisionNumber), new { @class = "btn btn-sm btn-info" })
+                @Html.ActionLink("View Revision", MVC.ReportRevisions.ViewRevision(revision.AggregateId, revision.RevisionNumber), new { @class = "btn btn-sm btn-default" })
+                @Html.ActionLink("Compare to Latest", MVC.ReportRevisions.CompareToLatest(revision.AggregateId, revision.RevisionNumber), new { @class = "btn btn-sm btn-success" })
             </td>
         </tr>
     }

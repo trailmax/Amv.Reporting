@@ -35,3 +35,6 @@
 /// <reference path="datatables/extras/scroller/js/datatables.scroller.js" />
 /// <reference path="datatables/extras/tabletools/js/tabletools.js" />
 /// <reference path="datatables/extras/tabletools/js/zeroclipboard.js" />
+/// <reference path="codemirror.js" />
+/// <reference path="mergely.js" />
+/// <reference path="searchcursor.js" />
