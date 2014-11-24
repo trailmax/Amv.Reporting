@@ -1,6 +1,7 @@
 ﻿using AmvReporting.Domain.ReportGroups;
 using AmvReporting.Domain.ReportGroups.ViewModels;
 using AmvReporting.Domain.Reports;
+using AmvReporting.Domain.Reports.Events;
 using AmvReporting.Domain.Reports.ViewModels;
 using AutoMapper;
 

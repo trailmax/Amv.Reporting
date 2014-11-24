@@ -19,9 +19,9 @@ namespace AmvReporting.Domain.Reports.Events
 
         public String DatabaseId { get; private set; }
 
-        public bool IsEnabled { get; private set; }
+        public bool Enabled { get; private set; }
 
-        public UpdateReportMetadaEvent(Guid aggregateId, String reportGroupId, String title, ReportType reportType, String description, String databaseId, bool isEnabled)
+        public UpdateReportMetadaEvent(Guid aggregateId, String reportGroupId, String title, ReportType reportType, String description, String databaseId, bool enabled)
         {
             AggregateId = aggregateId;
             ReportGroupId = reportGroupId;
@@ -29,7 +29,7 @@ namespace AmvReporting.Domain.Reports.Events
             ReportType = reportType;
             Description = description;
             DatabaseId = databaseId;
-            IsEnabled = isEnabled;
+            Enabled = enabled;
         }
 
 

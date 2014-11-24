@@ -27,7 +27,7 @@ namespace AmvReporting.Domain.Reports
             ReportType = @event.ReportType;
             Description = @event.Description;
             DatabaseId = @event.DatabaseId;
-            Enabled = @event.IsEnabled;
+            Enabled = @event.Enabled;
         }
 
 
@@ -66,6 +66,7 @@ namespace AmvReporting.Domain.Reports
             ReportType = @event.ReportType;
             Description = @event.Description;
             DatabaseId = @event.DatabaseId;
+            Enabled = @event.Enabled;
         }
 
 
