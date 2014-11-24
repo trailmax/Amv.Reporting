@@ -4,7 +4,6 @@ using AmvReporting.Domain.Reports;
 using AmvReporting.Domain.Reports.Queries;
 using AmvReporting.Infrastructure.CQRS;
 using CommonDomain.Persistence;
-using NEventStore;
 
 
 namespace AmvReporting.Controllers

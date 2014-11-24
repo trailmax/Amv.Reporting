@@ -28,16 +28,11 @@
 
     <script>
         $(document).ready(function () {
-            //var revison = $('#revision')[0];
-            //document.write(revison.innerHTML);
             var revision = $('#revision')[0].innerHTML;
             var latest = $('#latest')[0].innerHTML;
-            //document.write(revision);
-            //document.write(latest);
             $('#compare').mergely({
                 cmsettings: { readOnly: false, lineNumbers: true },
                 lhs: function (setValue) {
-
                     setValue(revision);
                 },
                 rhs: function (setValue) {
