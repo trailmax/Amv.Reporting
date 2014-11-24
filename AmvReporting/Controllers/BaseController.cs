@@ -59,5 +59,18 @@ namespace AmvReporting.Controllers
                 ViewData.Model = model;
             }
         }
+
+
+        /// <summary>
+        /// Add errors from ErrorList to ModelState
+        /// </summary>
+        /// <param name="errors"></param>
+        protected void AddErrorsToModelState(ErrorList errors)
+        {
+            foreach (var error in errors)
+            {
+                ModelState.AddModelError(error.FieldName, error.ToString());
+            }
+        }
     }
 }

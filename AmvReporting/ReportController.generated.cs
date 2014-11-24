@@ -56,9 +56,9 @@ namespace AmvReporting.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Edit()
+        public virtual System.Web.Mvc.ActionResult EditCode()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditCode);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -90,7 +90,7 @@ namespace AmvReporting.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Create = "Create";
-            public readonly string Edit = "Edit";
+            public readonly string EditCode = "EditCode";
             public readonly string Clone = "Clone";
             public readonly string Delete = "Delete";
         }
@@ -100,7 +100,7 @@ namespace AmvReporting.Controllers
         {
             public const string Index = "Index";
             public const string Create = "Create";
-            public const string Edit = "Edit";
+            public const string EditCode = "EditCode";
             public const string Clone = "Clone";
             public const string Delete = "Delete";
         }
@@ -114,14 +114,13 @@ namespace AmvReporting.Controllers
         {
             public readonly string command = "command";
         }
-        static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
+        static readonly ActionParamsClass_EditCode s_params_EditCode = new ActionParamsClass_EditCode();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
+        public ActionParamsClass_EditCode EditCodeParams { get { return s_params_EditCode; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Edit
+        public class ActionParamsClass_EditCode
         {
             public readonly string id = "id";
-            public readonly string command = "command";
         }
         static readonly ActionParamsClass_Clone s_params_Clone = new ActionParamsClass_Clone();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -203,26 +202,14 @@ namespace AmvReporting.Controllers
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id);
+        partial void EditCodeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(System.Guid id)
+        public override System.Web.Mvc.ActionResult EditCode(System.Guid id)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditCode);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            EditOverride(callInfo, id);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.Reports.Commands.EditReportCommand command);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(AmvReporting.Domain.Reports.Commands.EditReportCommand command)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
-            EditOverride(callInfo, command);
+            EditCodeOverride(callInfo, id);
             return callInfo;
         }
 

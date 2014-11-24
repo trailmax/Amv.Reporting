@@ -36,23 +36,33 @@ namespace AmvReporting.Controllers
         [RestoreModelState]
         public virtual ActionResult Create()
         {
-            var model = new ReportDetailsViewModel()
+            var model = new CreateReportCommand()
                         {
                             Enabled = true,
                         };
-            return EnrichedView(model);
+            return View(model);
         }
 
 
         [HttpPost]
         public virtual ActionResult Create(CreateReportCommand command)
         {
-            return ProcessForm(command, RedirectToAction(MVC.Report.Create()), id => RedirectToAction(MVC.Report.Edit(id)));
+            if (!ModelState.IsValid)
+            {
+                return View(command);
+            }
+            var errors = mediator.ProcessCommand(command);
+            AddErrorsToModelState(errors);
+            if (ModelState.IsValid)
+            {
+                return View(command);
+            }
+
+            return RedirectToAction(MVC.Report.EditCode(command.AggregateId));
         }
 
 
-        [RestoreModelState]
-        public virtual ActionResult Edit(Guid id)
+        public virtual ActionResult EditCode(Guid id)
         {
             var report = repository.GetById<ReportAggregate>(id);
 
@@ -60,15 +70,25 @@ namespace AmvReporting.Controllers
         }
 
 
-        [HttpPost]
-        public virtual ActionResult Edit(EditReportCommand command)
-        {
-            if (HttpContext.Request.IsAjaxRequest())
-            {
-                return ProcessJsonForm(command, "Changes are saved");
-            }
-            return ProcessForm(command, RedirectToAction(MVC.Report.Edit(command.AggregateId)), RedirectToAction(MVC.Report.Index()));
-        }
+
+        //[RestoreModelState]
+        //public virtual ActionResult Edit(Guid id)
+        //{
+        //    var report = repository.GetById<ReportAggregate>(id);
+
+        //    return AutoMappedView<EditReportDetailsViewModel>(report);
+        //}
+
+
+        //[HttpPost]
+        //public virtual ActionResult Edit(EditReportCommand command)
+        //{
+        //    if (HttpContext.Request.IsAjaxRequest())
+        //    {
+        //        return ProcessJsonForm(command, "Changes are saved");
+        //    }
+        //    return ProcessForm(command, RedirectToAction(MVC.Report.Edit(command.AggregateId)), RedirectToAction(MVC.Report.Index()));
+        //}
         
 
         public virtual ActionResult Clone(Guid id)

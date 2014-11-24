@@ -23,7 +23,7 @@ namespace AmvReporting.Tests.Domain.Reports.Commands
             sut.Handle(command);
 
             // Assert
-            var aggregateReport = Repository.GetById<ReportAggregate>(command.RedirectingId);
+            var aggregateReport = Repository.GetById<ReportAggregate>(command.AggregateId);
 
             AssertionHelpers.PropertiesAreEqual(command, aggregateReport);
         }
@@ -40,7 +40,7 @@ namespace AmvReporting.Tests.Domain.Reports.Commands
             sut.Handle(command);
 
             // Assert
-            var viewModel = DocumentSession.Query<ReportViewModel>().First(r => r.AggregateId == command.RedirectingId);
+            var viewModel = DocumentSession.Query<ReportViewModel>().First(r => r.AggregateId == command.AggregateId);
             AssertionHelpers.PropertiesAreEqual(command, viewModel);
         }
     }

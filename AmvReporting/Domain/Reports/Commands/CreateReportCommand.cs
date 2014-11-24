@@ -1,47 +1,51 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
 using AmvReporting.Infrastructure.CQRS;
 using CommonDomain.Persistence;
 
 
 namespace AmvReporting.Domain.Reports.Commands
 {
-    public class CreateReportCommand : IRedirectingCommand
+    public class CreateReportCommand : ICommand
     {
+        public CreateReportCommand()
+        {
+            AggregateId = Guid.NewGuid();
+        }
+        public Guid AggregateId { get; private set; }
+
+        public String ReportGroupId { get; set; }
+
         [Required]
         public String Title { get; set; }
 
         [Required]
-        public ReportType ReportType { get; set; }
-
-        public String ReportGroupId { get; set; }
-
+        public String DatabaseId { get; set; }
+        
         [DataType(DataType.MultilineText)]
         public String Description { get; set; }
 
-        [AllowHtml]
-        [Required, DataType(DataType.MultilineText)]
-        public String Sql { get; set; }
-
-        [AllowHtml]
-        [DataType(DataType.MultilineText)]
-        public String JavaScript { get; set; }
-
-        [DataType(DataType.MultilineText)]
-        public String Css { get; set; }
-
-        [AllowHtml]
-        [DataType(DataType.MultilineText)]
-        public String HtmlOverride { get; set; }
-
-
-        [Required]
-        public String DatabaseId { get; set; }
-
         public bool Enabled { get; set; }
 
-        public Guid RedirectingId { get; set; }
+        [Required]
+        public ReportType ReportType { get; set; }
+
+        //[AllowHtml]
+        //[Required, DataType(DataType.MultilineText)]
+        //public String Sql { get; set; }
+
+        //[AllowHtml]
+        //[DataType(DataType.MultilineText)]
+        //public String JavaScript { get; set; }
+
+        //[DataType(DataType.MultilineText)]
+        //public String Css { get; set; }
+
+        //[AllowHtml]
+        //[DataType(DataType.MultilineText)]
+        //public String HtmlOverride { get; set; }
+
+        //public Guid RedirectingId { get; set; }
     }
 
 
@@ -57,19 +61,13 @@ namespace AmvReporting.Domain.Reports.Commands
 
         public void Handle(CreateReportCommand command)
         {
-            var newId = Guid.NewGuid();
-            command.RedirectingId = newId;
-
-            var report = new ReportAggregate(newId,
+            var report = new ReportAggregate(command.AggregateId,
                                     command.ReportGroupId,
                                     command.Title,
                                     command.ReportType,
                                     command.Description,
                                     command.DatabaseId,
                                     command.Enabled);
-
-            report.UpdateCode(command.Sql, command.JavaScript, command.Css, command.HtmlOverride);
-            report.SetListOrder(0);
 
             var commitId = Guid.NewGuid();
             repository.Save(report, commitId);

@@ -238,6 +238,8 @@
     <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupViewModel.cs" />
     <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupViewModelEnricher.cs" />
     <Compile Include="Domain\ReportingConfigs\Commands\UpdateConfigurationCommand.cs" />
+    <Compile Include="Domain\Reports\Commands\UpdateReportCodeCommand.cs" />
+    <Compile Include="Domain\Reports\Commands\UpdateReportMetadataCommand.cs" />
     <Compile Include="Domain\Reports\Events\ChangeReportListOrderEvent.cs" />
     <Compile Include="Domain\Reports\Events\DeleteReportEvent.cs" />
     <Compile Include="Domain\Reports\Events\ReportCodeUpdatedEvent.cs" />
@@ -252,6 +254,10 @@
     <Compile Include="HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Dropdowns\DatabaseDropdownQuery.cs" />
+    <Compile Include="Infrastructure\Dropdowns\IDropdownQuery.cs" />
+    <Compile Include="Infrastructure\Dropdowns\IDropdownQueryHandler.cs" />
+    <Compile Include="Infrastructure\Dropdowns\ReportsGroupsDropdownQuery.cs" />
     <Compile Include="Infrastructure\NEventStore\EventHandlingPipelineHook.cs" />
     <Compile Include="Infrastructure\NEventStore\EventHeaderHelpers.cs" />
     <Compile Include="Infrastructure\NEventStore\MyEventStoreRepository.cs" />
@@ -315,6 +321,8 @@
     <Compile Include="Infrastructure\NEventStore\EmbeddedRavenStorageFractory.cs" />
     <Compile Include="Infrastructure\NEventStore\RavenEmbeddedPersistenceWireup.cs" />
     <Compile Include="Infrastructure\NEventStore\RavenPersistenceWireupExtensions.cs" />
+    <Compile Include="Infrastructure\PageGeneration\DropDownBuilder.cs" />
+    <Compile Include="Infrastructure\PageGeneration\HtmlBuildersFactory.cs" />
     <Compile Include="Infrastructure\RestoreModelStateAttribute.cs" />
     <Compile Include="Domain\DomainException.cs" />
     <Compile Include="Domain\Reports\ReportViewModel.cs" />

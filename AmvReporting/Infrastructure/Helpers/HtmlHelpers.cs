@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Web.Mvc;
+using AmvReporting.Infrastructure.PageGeneration;
+
 
 namespace AmvReporting.Infrastructure.Helpers
 {
@@ -32,6 +34,13 @@ namespace AmvReporting.Infrastructure.Helpers
             tagBuilder.MergeAttribute("data-url", urlHelper.Action(actionResult));
 
             return new MvcHtmlString(tagBuilder.ToString(TagRenderMode.Normal));
+        }
+
+
+
+        public static HtmlBuildersFactory<TModel> Domain<TModel>(this HtmlHelper<TModel> html)
+        {
+            return new HtmlBuildersFactory<TModel>(html);
         }
     }
 }

@@ -8,7 +8,10 @@ using AmvReporting.Infrastructure.ModelEnrichers;
 
 namespace AmvReporting.Domain.Reports.ViewModels
 {
-    public class ReportDetailsViewModelEnricher : IModelEnricher<ReportDetailsViewModel>, IModelEnricher<EditReportDetailsViewModel>
+    //TODO REMOVE
+    public class ReportDetailsViewModelEnricher : 
+            //IModelEnricher<ReportDetailsViewModel>, 
+            IModelEnricher<EditReportDetailsViewModel>
     {
         private readonly IMediator mediator;
 
@@ -17,12 +20,12 @@ namespace AmvReporting.Domain.Reports.ViewModels
             this.mediator = mediator;
         }
 
-        public ReportDetailsViewModel Enrich(ReportDetailsViewModel model)
-        {
-            PopulateDropdowns(model);
+        //public ReportDetailsViewModel Enrich(ReportDetailsViewModel model)
+        //{
+        //    PopulateDropdowns(model);
 
-            return model;
-        }
+        //    return model;
+        //}
 
         public EditReportDetailsViewModel Enrich(EditReportDetailsViewModel model)
         {

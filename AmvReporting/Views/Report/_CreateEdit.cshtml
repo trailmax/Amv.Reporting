@@ -1,4 +1,5 @@
-﻿@model ReportDetailsViewModel
+﻿@*@using AmvReporting.Infrastructure.Dropdowns
+@model ReportDetailsViewModel
 
 @Html.ValidationSummary(false)
 
@@ -18,7 +19,7 @@
     <div class="tab-pane active" id="basic">
         <div class="form-group">
             @Html.LabelFor(m => m.ReportGroupId, new { @class = "control-label" })
-            @Html.DropDownListFor(m => m.ReportGroupId, Model.PossibleGroups, "Choose...", new { @class = "form-control" })
+            @Html.Domain().Dropdown(m => m.ReportGroupId, new ReportsGroupsDropdownQuery())
             @Html.ValidationMessageFor(m => m.ReportGroupId)
         </div>
 
@@ -30,7 +31,7 @@
 
         <div class="form-group">
             @Html.LabelFor(m => m.DatabaseId, new { @class = "control-label" })
-            @Html.DropDownListFor(m => m.DatabaseId, Model.PossibleDatabases, "Choose...", new { @class = "form-control" })
+            @Html.Domain().Dropdown(m => m.DatabaseId, new DatabaseDropdownQuery())
             @Html.ValidationMessageFor(m => m.DatabaseId)
         </div>
 
@@ -47,11 +48,11 @@
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.ReportType, new { @class = "control-label" })
-            @Html.DropDownListFor(m => m.ReportType, new ReportType().ToSelectListItems(), "Choose...", new { @class = "form-control" })
+            @Html.Domain().Dropdown(m => m.ReportType, new ReportType().ToSelectListItems())
             @Html.ValidationMessageFor(m => m.ReportType)
         </div>
-    </div>
-    <div class="tab-pane" id="code">
+    </div>*@
+    @*<div class="tab-pane" id="code">
         <div class="form-group">
             @Html.LabelFor(m => m.Sql, new { @class = "control-label" })
             @Html.TextAreaFor(m => m.Sql, new { @class = "form-control", rows = 10 })
@@ -105,8 +106,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <input type="submit" value="Save" class="btn btn-default" />
+    </div>*@
+    @*<input type="submit" value="Save" class="btn btn-default" />
     @Html.ActionLink("Back To List", MVC.Report.Index(), new { @class = "btn btn-default" })
 </div>
-<div class="col-md-6" id="previewContainer"></div>
+<div class="col-md-6" id="previewContainer"></div>*@

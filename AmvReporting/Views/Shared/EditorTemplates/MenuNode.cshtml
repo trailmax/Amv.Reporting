@@ -17,7 +17,7 @@
     <tr data-tt-parent-id="@report.ReportGroupId" data-tt-id="@report.AggregateId">
         <td>
             <span class="file">
-                @Html.ActionLink(report.Title, MVC.Report.Edit(report.AggregateId), new { @class = !report.Enabled ? "disabled-report" : "" })
+                @Html.ActionLink(report.Title, MVC.Report.EditCode(report.AggregateId), new { @class = !report.Enabled ? "disabled-report" : "" })
             </span>
         </td>
         <td>

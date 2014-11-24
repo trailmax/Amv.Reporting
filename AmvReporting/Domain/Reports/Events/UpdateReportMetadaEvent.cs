@@ -9,6 +9,8 @@ namespace AmvReporting.Domain.Reports.Events
     [Description("Updated report metadata")]
     public class UpdateReportMetadaEvent : IEvent
     {
+        public Guid AggregateId { get; private set; }
+
         public String ReportGroupId { get; set; }
 
         public String Title { get; set; }
@@ -31,8 +33,5 @@ namespace AmvReporting.Domain.Reports.Events
             DatabaseId = databaseId;
             Enabled = enabled;
         }
-
-
-        public Guid AggregateId { get; private set; }
     }
 }
