@@ -65,10 +65,10 @@ namespace AmvReporting.Domain.Reports.Commands
                                     command.Title,
                                     command.ReportType,
                                     command.Description,
-                                    command.DatabaseId);
+                                    command.DatabaseId,
+                                    command.Enabled);
 
             report.UpdateCode(command.Sql, command.JavaScript, command.Css, command.HtmlOverride);
-            report.SetReportEnabled(command.Enabled);
             report.SetListOrder(0);
 
             var commitId = Guid.NewGuid();

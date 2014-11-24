@@ -8,7 +8,6 @@ namespace AmvReporting.Domain.Reports.Events
 {
     public class ReportDenormaliser :
                                     IEventHandler<ChangeReportListOrderEvent>,
-                                    IEventHandler<SetReportEnabledEvent>,
                                     IEventHandler<ReportCodeUpdatedEvent>,
                                     IEventHandler<ReportCreatedEvent>,
                                     IEventHandler<UpdateReportMetadaEvent>,
@@ -29,18 +28,6 @@ namespace AmvReporting.Domain.Reports.Events
             {
                 var viewmodel = GetViewModel(raisedEvent, documentSession);
                 viewmodel.ListOrder = raisedEvent.ListOrder;
-                documentSession.SaveChanges();
-            }
-        }
-
-
-
-        public void Handle(SetReportEnabledEvent raisedEvent)
-        {
-            using (var documentSession = documentStore.OpenSession())
-            {
-                var viewmodel = GetViewModel(raisedEvent, documentSession);
-                viewmodel.Enabled = raisedEvent.IsEnabled;
                 documentSession.SaveChanges();
             }
         }

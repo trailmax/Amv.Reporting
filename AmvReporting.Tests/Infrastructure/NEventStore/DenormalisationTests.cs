@@ -66,7 +66,7 @@ namespace AmvReporting.Tests.Infrastructure.NEventStore
         {
             // Arrange
             var aggregate = Fixture.Create<ReportAggregate>();
-            aggregate.UpdateMetadata(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), ReportType.LineChartWithSelection, Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
+            aggregate.UpdateMetadata(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), ReportType.LineChartWithSelection, Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), true);
 
 
             // Act
@@ -77,39 +77,6 @@ namespace AmvReporting.Tests.Infrastructure.NEventStore
             AssertionHelpers.PropertiesAreEqual(aggregate, viewModel, "Id");
         }
 
-
-        [Fact]
-        public void EnableReport_DenormalisedModel_IsEnabled()
-        {
-            // Arrange
-            var aggregate = Fixture.Create<ReportAggregate>();
-
-
-            // Act
-            aggregate.SetReportEnabled(true);
-            Repository.Save(aggregate, Guid.NewGuid());
-
-            // Assert
-            var viewModel = DocumentSession.Query<ReportViewModel>().First(r => r.AggregateId == aggregate.Id);
-            Assert.True(viewModel.Enabled);
-        }
-
-
-        [Fact]
-        public void DisableReport_DenormalisedModel_IsDisabled()
-        {
-            // Arrange
-            var aggregate = Fixture.Create<ReportAggregate>();
-
-
-            // Act
-            aggregate.SetReportEnabled(false);
-            Repository.Save(aggregate, Guid.NewGuid());
-
-            // Assert
-            var viewModel = DocumentSession.Query<ReportViewModel>().First(r => r.AggregateId == aggregate.Id);
-            Assert.False(viewModel.Enabled);
-        }
 
 
 

@@ -9,7 +9,7 @@ namespace AmvReporting.Domain.Reports.Events
     [Description("Created report")]
     public class ReportCreatedEvent : IEvent
     {
-        public ReportCreatedEvent(Guid aggregateId, String reportGroupId, String title, ReportType reportType, String description, String databaseId)
+        public ReportCreatedEvent(Guid aggregateId, string reportGroupId, string title, ReportType reportType, string description, string databaseId, bool isEnabled)
         {
             AggregateId = aggregateId;
             ReportGroupId = reportGroupId;
@@ -17,6 +17,7 @@ namespace AmvReporting.Domain.Reports.Events
             ReportType = reportType;
             Description = description;
             DatabaseId = databaseId;
+            IsEnabled = isEnabled;
         }
 
         public String ReportGroupId { get; set; }
@@ -28,6 +29,8 @@ namespace AmvReporting.Domain.Reports.Events
         public String Description { get; set; }
 
         public String DatabaseId { get; private set; }
+
+        public bool IsEnabled { get; private set; }
 
         public Guid AggregateId { get; private set; }
     }

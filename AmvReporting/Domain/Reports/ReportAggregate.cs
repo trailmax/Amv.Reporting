@@ -14,10 +14,10 @@ namespace AmvReporting.Domain.Reports
         }
 
 
-        public ReportAggregate(Guid id, String reportGroupId, String title, ReportType reportType, String description, String databaseId)
+        public ReportAggregate(Guid id, String reportGroupId, String title, ReportType reportType, String description, String databaseId, bool isEnabled)
             : this(id)
         {
-            RaiseEvent(new ReportCreatedEvent(Id, reportGroupId, title, reportType, description, databaseId));
+            RaiseEvent(new ReportCreatedEvent(Id, reportGroupId, title, reportType, description, databaseId, isEnabled));
         }
         private void Apply(ReportCreatedEvent @event)
         {
@@ -27,6 +27,7 @@ namespace AmvReporting.Domain.Reports
             ReportType = @event.ReportType;
             Description = @event.Description;
             DatabaseId = @event.DatabaseId;
+            Enabled = @event.IsEnabled;
         }
 
 
@@ -54,9 +55,9 @@ namespace AmvReporting.Domain.Reports
         public int? ListOrder { get; private set; }
 
 
-        public void UpdateMetadata(String reportGroupId, String title, ReportType reportType, String description, String databaseId)
+        public void UpdateMetadata(String reportGroupId, String title, ReportType reportType, String description, String databaseId, bool isEnabled)
         {
-            RaiseEvent(new UpdateReportMetadaEvent(this.Id, reportGroupId, title, reportType, description, databaseId));
+            RaiseEvent(new UpdateReportMetadaEvent(this.Id, reportGroupId, title, reportType, description, databaseId, isEnabled));
         }
         private void Apply(UpdateReportMetadaEvent @event)
         {
@@ -79,16 +80,6 @@ namespace AmvReporting.Domain.Reports
             JavaScript = @event.JavaScript;
             Css = @event.Css;
             HtmlOverride = @event.HtmlOverride;
-        }
-
-
-        public void SetReportEnabled(bool isEnabled)
-        {
-            RaiseEvent(new SetReportEnabledEvent(this.Id, isEnabled));
-        }
-        private void Apply(SetReportEnabledEvent @event)
-        {
-            Enabled = @event.IsEnabled;
         }
 
 
