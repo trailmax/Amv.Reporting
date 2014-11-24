@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Reflection;
 using AmvReporting.Infrastructure.CQRS;
 using CommonDomain.Persistence;
 using NEventStore;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 
 namespace AmvReporting.Domain.Reports.Queries
@@ -48,7 +50,8 @@ namespace AmvReporting.Domain.Reports.Queries
         {
             var serializerSettings = new JsonSerializerSettings()
             {
-                NullValueHandling = NullValueHandling.Ignore
+                NullValueHandling = NullValueHandling.Ignore,
+                ContractResolver = new TypeOnlyContractResolver<ReportAggregate>(),
             };
 
             var latest = repository.GetById<ReportAggregate>(query.AggregateId);
@@ -68,6 +71,17 @@ namespace AmvReporting.Domain.Reports.Queries
             };
 
             return viewmodel;
+        }
+    }
+
+
+    public class TypeOnlyContractResolver<T> : DefaultContractResolver
+    {
+        protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
+        {
+            JsonProperty property = base.CreateProperty(member, memberSerialization);
+            property.ShouldSerialize = instance => property.DeclaringType == typeof(T);
+            return property;
         }
     }
 }
