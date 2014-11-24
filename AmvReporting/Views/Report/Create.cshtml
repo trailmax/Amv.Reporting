@@ -10,59 +10,45 @@
     <div class="row">
         @Html.ValidationSummary(false)
 
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(m => m.ReportGroupId, new { @class = "control-label" })
+                @Html.Domain().Dropdown(m => m.ReportGroupId, new ReportsGroupsDropdownQuery())
+                @Html.ValidationMessageFor(m => m.ReportGroupId)
+            </div>
 
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs">
-            <li><a href="#basic" data-toggle="tab">Basic Details</a></li>
-            <li><a href="#code" data-toggle="tab">Code</a></li>
-            @if (ViewBag.AggregateId != null)
-            {
-                <li>@Html.ActionLink("Revisions", MVC.ReportRevisions.ViewAllVersions((Guid)ViewBag.AggregateId))</li>
-            }
-        </ul>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Title, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Title)
+            </div>
 
-        <!-- Tab panes -->
-        <div class="tab-content col-md-6">
-            <div class="tab-pane active" id="basic">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.ReportGroupId, new { @class = "control-label" })
-                    @Html.Domain().Dropdown(m => m.ReportGroupId, new ReportsGroupsDropdownQuery())
-                    @Html.ValidationMessageFor(m => m.ReportGroupId)
-                </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.DatabaseId, new { @class = "control-label" })
+                @Html.Domain().Dropdown(m => m.DatabaseId, new DatabaseDropdownQuery())
+                @Html.ValidationMessageFor(m => m.DatabaseId)
+            </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Title, new { @class = "control-label" })
-                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Title)
-                </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Description, new { @class = "control-label" })
+                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 10 })
+                @Html.ValidationMessageFor(m => m.Description)
+            </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(m => m.DatabaseId, new { @class = "control-label" })
-                    @Html.Domain().Dropdown(m => m.DatabaseId, new DatabaseDropdownQuery())
-                    @Html.ValidationMessageFor(m => m.DatabaseId)
-                </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Enabled, new { @class = "control-label" })
+                @Html.CheckBoxFor(m => m.Enabled)
+                @Html.ValidationMessageFor(m => m.Enabled)
+            </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Description, new { @class = "control-label" })
-                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 10 })
-                    @Html.ValidationMessageFor(m => m.Description)
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Enabled, new { @class = "control-label" })
-                    @Html.CheckBoxFor(m => m.Enabled)
-                    @Html.ValidationMessageFor(m => m.Enabled)
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.ReportType, new { @class = "control-label" })
-                    @Html.Domain().Dropdown(m => m.ReportType, new ReportType().ToSelectListItems())
-                    @Html.ValidationMessageFor(m => m.ReportType)
-                </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ReportType, new { @class = "control-label" })
+                @Html.Domain().Dropdown(m => m.ReportType, new ReportType().ToSelectListItems())
+                @Html.ValidationMessageFor(m => m.ReportType)
             </div>
 
             <input type="submit" value="Save" class="btn btn-default" />
             @Html.ActionLink("Back To List", MVC.Report.Index(), new { @class = "btn btn-default" })
         </div>
-        <div class="col-md-6" id="previewContainer"></div>
     </div>
 }

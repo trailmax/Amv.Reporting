@@ -53,7 +53,7 @@ namespace AmvReporting.Controllers
             }
             var errors = mediator.ProcessCommand(command);
             AddErrorsToModelState(errors);
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(command);
             }
