@@ -44,8 +44,6 @@ namespace AmvReporting.Controllers
         }
 
 
-
-
         [HttpPost]
         public virtual ActionResult Create(CreateReportCommand command)
         {
@@ -71,8 +69,7 @@ namespace AmvReporting.Controllers
             }
             return ProcessForm(command, RedirectToAction(MVC.Report.Edit(command.AggregateId)), RedirectToAction(MVC.Report.Index()));
         }
-
-
+        
 
         public virtual ActionResult Clone(Guid id)
         {
@@ -80,6 +77,7 @@ namespace AmvReporting.Controllers
 
             return AutoMappedView<ReportDetailsViewModel>(MVC.Report.Views.Create, report);
         }
+
 
         [HttpPost]
         public virtual ActionResult Delete(DeleteReportCommand command)

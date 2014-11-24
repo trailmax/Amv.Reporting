@@ -37,11 +37,13 @@ namespace T4MVC
             public class _ViewNamesClass
             {
                 public readonly string _LayoutAdmin = "_LayoutAdmin";
+                public readonly string _LayoutAdminContainerFree = "_LayoutAdminContainerFree";
                 public readonly string _LayoutClient = "_LayoutClient";
                 public readonly string _LayoutMinimal = "_LayoutMinimal";
                 public readonly string Error = "Error";
             }
             public readonly string _LayoutAdmin = "~/Views/Shared/_LayoutAdmin.cshtml";
+            public readonly string _LayoutAdminContainerFree = "~/Views/Shared/_LayoutAdminContainerFree.cshtml";
             public readonly string _LayoutClient = "~/Views/Shared/_LayoutClient.cshtml";
             public readonly string _LayoutMinimal = "~/Views/Shared/_LayoutMinimal.cshtml";
             public readonly string Error = "~/Views/Shared/Error.cshtml";

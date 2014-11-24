@@ -126,7 +126,7 @@ namespace AmvReporting.Controllers
         public class ActionParamsClass_CompareToLatest
         {
             public readonly string id = "id";
-            public readonly string revisiontNumber = "revisionNumber";
+            public readonly string revisionNumber = "revisionNumber";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -138,12 +138,10 @@ namespace AmvReporting.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string _ViewStart = "_ViewStart";
                 public readonly string CompareToLatest = "CompareToLatest";
                 public readonly string ViewAllVersions = "ViewAllVersions";
                 public readonly string ViewRevision = "ViewRevision";
             }
-            public readonly string _ViewStart = "~/Views/ReportRevisions/_ViewStart.cshtml";
             public readonly string CompareToLatest = "~/Views/ReportRevisions/CompareToLatest.cshtml";
             public readonly string ViewAllVersions = "~/Views/ReportRevisions/ViewAllVersions.cshtml";
             public readonly string ViewRevision = "~/Views/ReportRevisions/ViewRevision.cshtml";
@@ -181,7 +179,7 @@ namespace AmvReporting.Controllers
         }
 
         [NonAction]
-        partial void CompareToLatestOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, int revisiontNumber);
+        partial void CompareToLatestOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, int revisionNumber);
 
         [NonAction]
         public override System.Web.Mvc.ActionResult CompareToLatest(System.Guid id, int revisionNumber)

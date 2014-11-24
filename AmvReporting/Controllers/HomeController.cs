@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using AmvReporting.Domain.Menus;
+using AmvReporting.Domain.Migrations;
 using AmvReporting.Domain.ReportingConfigs.Queries;
 using AmvReporting.Domain.Reports.Queries;
 using AmvReporting.Infrastructure.CQRS;
@@ -34,6 +35,19 @@ namespace AmvReporting.Controllers
             result.GlobalJs = config.GlobalJavascript;
 
             return View(result);
+        }
+
+
+        public virtual ActionResult LegacyReport(string id)
+        {
+            var migrationDocument = mediator.Request(new EventStoreMigrationDictionaryQuery());
+            Guid migrationId;
+            if (migrationDocument.TryGetValue(id, out migrationId))
+            {
+                return RedirectToAction(MVC.Home.Report(migrationId));
+            }
+
+            return RedirectToAction(MVC.Home.Index());
         }
     }
 }

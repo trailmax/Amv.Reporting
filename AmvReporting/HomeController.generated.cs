@@ -60,6 +60,12 @@ namespace AmvReporting.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Report);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult LegacyReport()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LegacyReport);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public HomeController Actions { get { return MVC.Home; } }
@@ -78,6 +84,7 @@ namespace AmvReporting.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Report = "Report";
+            public readonly string LegacyReport = "LegacyReport";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -85,6 +92,7 @@ namespace AmvReporting.Controllers
         {
             public const string Index = "Index";
             public const string Report = "Report";
+            public const string LegacyReport = "LegacyReport";
         }
 
 
@@ -93,6 +101,14 @@ namespace AmvReporting.Controllers
         public ActionParamsClass_Report ReportParams { get { return s_params_Report; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Report
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_LegacyReport s_params_LegacyReport = new ActionParamsClass_LegacyReport();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_LegacyReport LegacyReportParams { get { return s_params_LegacyReport; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_LegacyReport
         {
             public readonly string id = "id";
         }
@@ -141,6 +157,18 @@ namespace AmvReporting.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Report);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             ReportOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void LegacyReportOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult LegacyReport(string id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LegacyReport);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            LegacyReportOverride(callInfo, id);
             return callInfo;
         }
 
