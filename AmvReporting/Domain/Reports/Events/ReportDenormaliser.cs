@@ -1,8 +1,5 @@
 ﻿using System.Linq;
-using AmvReporting.Domain.DatabaseConnections.Queries;
-using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Events;
-using AmvReporting.Infrastructure.Helpers;
 using Omu.ValueInjecter;
 using Raven.Client;
 
@@ -18,12 +15,10 @@ namespace AmvReporting.Domain.Reports.Events
                                     IEventHandler<DeleteReportEvent>
     {
         private readonly IDocumentStore documentStore;
-        private readonly IMediator mediator;
 
 
-        public ReportDenormaliser(IMediator mediator, IDocumentStore documentStore)
+        public ReportDenormaliser(IDocumentStore documentStore)
         {
-            this.mediator = mediator;
             this.documentStore = documentStore;
         }
 
@@ -68,10 +63,6 @@ namespace AmvReporting.Domain.Reports.Events
             {
                 var viewmodel = new ReportViewModel() { AggregateId = raisedEvent.AggregateId };
                 viewmodel.InjectFrom(raisedEvent);
-
-                var databaseDetails = mediator.Request(new DatabaseQuery(raisedEvent.DatabaseId));
-                viewmodel.ConnectionString = databaseDetails.CheckForNull(d => d.ConnectionString);
-
                 documentSession.Store(viewmodel);
                 documentSession.SaveChanges();
             }
@@ -84,9 +75,6 @@ namespace AmvReporting.Domain.Reports.Events
             {
                 var viewmodel = GetViewModel(raisedEvent, documentSession);
                 viewmodel.InjectFrom(raisedEvent);
-                var databaseDetails = mediator.Request(new DatabaseQuery(raisedEvent.DatabaseId));
-                viewmodel.ConnectionString = databaseDetails.CheckForNull(d => d.ConnectionString);
-
                 documentSession.SaveChanges();
             }
         }

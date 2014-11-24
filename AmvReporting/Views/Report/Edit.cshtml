@@ -8,7 +8,7 @@
 
 <h2>Edit Report</h2>
 
-@Html.ActionLink("View Report", MVC.Home.Report(Model.AggregateId), new { @class = "btn btn-default btn-xs", style = "position: absolute; right: 15px; top: 70px;", target = "_blank" })
+@Html.ActionLink("View Report", MVC.Home.ReportAggregate(Model.AggregateId), new { @class = "btn btn-default btn-xs", style = "position: absolute; right: 15px; top: 70px;", target = "_blank" })
 
 @using (Html.BeginForm(MVC.Report.Edit(), FormMethod.Post, new { role = "form", @class = "submit-by-ajax" }))
 {

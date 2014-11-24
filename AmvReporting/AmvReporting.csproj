@@ -627,7 +627,7 @@
     <Content Include="Views\Report\Index.cshtml" />
     <Content Include="Views\Report\Edit.cshtml" />
     <Content Include="Views\Report\_CreateEdit.cshtml" />
-    <Content Include="Views\Home\Report.cshtml" />
+    <Content Include="Views\Home\ReportAggregate.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutMinimal.cshtml" />
     <Content Include="Views\Report\_ViewStart.cshtml" />

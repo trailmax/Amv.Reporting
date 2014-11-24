@@ -25,7 +25,7 @@ namespace AmvReporting.Domain.Reports
         [AllowHtml]
         public String HtmlOverride { get; set; }
 
-        public String ConnectionString { get; set; }
+        public String DatabaseId { get; set; }
 
         public bool Enabled { get; set; }
 

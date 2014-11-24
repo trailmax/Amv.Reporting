@@ -28,7 +28,6 @@ namespace AmvReporting.Infrastructure.Automappings
                   .ForMember(d => d.ParentFullName, o => o.Ignore());
 
             Mapper.CreateMap<ReportAggregate, ReportViewModel>()
-                  .ForMember(d => d.ConnectionString, o => o.Ignore())
                   .ForMember(d => d.AggregateId, o => o.MapFrom(s => s.Id));
 
             Mapper.AddGlobalIgnore("Possible");

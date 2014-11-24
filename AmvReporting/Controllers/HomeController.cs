@@ -6,6 +6,7 @@ using AmvReporting.Domain.ReportingConfigs.Queries;
 using AmvReporting.Domain.Reports.Queries;
 using AmvReporting.Infrastructure.CQRS;
 
+
 namespace AmvReporting.Controllers
 {
     public partial class HomeController : BaseController
@@ -25,7 +26,7 @@ namespace AmvReporting.Controllers
         }
 
 
-        public virtual ActionResult Report(Guid id)
+        public virtual ActionResult ReportAggregate(Guid id)
         {
             var query = new ReportResultQuery(id);
             var result = mediator.Request(query);
@@ -38,13 +39,13 @@ namespace AmvReporting.Controllers
         }
 
 
-        public virtual ActionResult LegacyReport(string id)
+        public virtual ActionResult Report(string id)
         {
             var migrationDocument = mediator.Request(new EventStoreMigrationDictionaryQuery());
             Guid migrationId;
             if (migrationDocument.TryGetValue(id, out migrationId))
             {
-                return RedirectToAction(MVC.Home.Report(migrationId));
+                return RedirectToAction(MVC.Home.ReportAggregate(migrationId));
             }
 
             return RedirectToAction(MVC.Home.Index());

@@ -10,6 +10,6 @@
 @foreach (var report in Model.Reports)
 {
     <tr data-tt-parent-id="@report.ReportGroupId" data-tt-id="@report.AggregateId">
-        <td><span class="file">@Html.ActionLink(report.Title, MVC.Home.Report(report.AggregateId))</span></td>
+        <td><span class="file">@Html.ActionLink(report.Title, MVC.Home.ReportAggregate(report.AggregateId))</span></td>
     </tr>
 }

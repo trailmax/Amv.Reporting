@@ -56,15 +56,15 @@ namespace AmvReporting.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Report()
+        public virtual System.Web.Mvc.ActionResult ReportAggregate()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Report);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ReportAggregate);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult LegacyReport()
+        public virtual System.Web.Mvc.ActionResult Report()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LegacyReport);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Report);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -83,32 +83,32 @@ namespace AmvReporting.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string ReportAggregate = "ReportAggregate";
             public readonly string Report = "Report";
-            public readonly string LegacyReport = "LegacyReport";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string ReportAggregate = "ReportAggregate";
             public const string Report = "Report";
-            public const string LegacyReport = "LegacyReport";
         }
 
 
+        static readonly ActionParamsClass_ReportAggregate s_params_ReportAggregate = new ActionParamsClass_ReportAggregate();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ReportAggregate ReportAggregateParams { get { return s_params_ReportAggregate; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ReportAggregate
+        {
+            public readonly string id = "id";
+        }
         static readonly ActionParamsClass_Report s_params_Report = new ActionParamsClass_Report();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Report ReportParams { get { return s_params_Report; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Report
-        {
-            public readonly string id = "id";
-        }
-        static readonly ActionParamsClass_LegacyReport s_params_LegacyReport = new ActionParamsClass_LegacyReport();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_LegacyReport LegacyReportParams { get { return s_params_LegacyReport; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_LegacyReport
         {
             public readonly string id = "id";
         }
@@ -124,11 +124,11 @@ namespace AmvReporting.Controllers
             {
                 public readonly string _ViewStart = "_ViewStart";
                 public readonly string Index = "Index";
-                public readonly string Report = "Report";
+                public readonly string ReportAggregate = "ReportAggregate";
             }
             public readonly string _ViewStart = "~/Views/Home/_ViewStart.cshtml";
             public readonly string Index = "~/Views/Home/Index.cshtml";
-            public readonly string Report = "~/Views/Home/Report.cshtml";
+            public readonly string ReportAggregate = "~/Views/Home/ReportAggregate.cshtml";
         }
     }
 
@@ -149,26 +149,26 @@ namespace AmvReporting.Controllers
         }
 
         [NonAction]
-        partial void ReportOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id);
+        partial void ReportAggregateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Report(System.Guid id)
+        public override System.Web.Mvc.ActionResult ReportAggregate(System.Guid id)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Report);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ReportAggregate);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            ReportOverride(callInfo, id);
+            ReportAggregateOverride(callInfo, id);
             return callInfo;
         }
 
         [NonAction]
-        partial void LegacyReportOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
+        partial void ReportOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult LegacyReport(string id)
+        public override System.Web.Mvc.ActionResult Report(string id)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LegacyReport);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Report);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            LegacyReportOverride(callInfo, id);
+            ReportOverride(callInfo, id);
             return callInfo;
         }
 
