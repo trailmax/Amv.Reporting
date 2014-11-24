@@ -176,7 +176,7 @@ namespace AmvReporting.Infrastructure.NEventStore
 		private IEventStream PrepareStream(string bucketId, IAggregate aggregate, Dictionary<string, object> headers)
 		{
 			IEventStream stream;
-			var streamId = bucketId + "+" + aggregate.Id;
+			var streamId = bucketId + "+" + aggregate.Id + "+" + int.MaxValue;
 			if (!_streams.TryGetValue(streamId, out stream))
 			{
 				_streams[streamId] = stream = _eventStore.CreateStream(bucketId, aggregate.Id);
