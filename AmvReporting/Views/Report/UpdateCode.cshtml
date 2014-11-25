@@ -19,7 +19,7 @@
 </div>
 
 <div class="row">
-    @using (Html.BeginForm(MVC.Report.UpdateMetadata(), FormMethod.Post, new { role = "form", @class = "submit-by-ajax" }))
+    @using (Html.BeginForm(MVC.Report.UpdateCode(), FormMethod.Post, new { role = "form", @class = "submit-by-ajax" }))
     {
         @Html.ValidationSummary(false)
         @Html.HiddenFor(m => m.AggregateId)
