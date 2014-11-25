@@ -25,7 +25,7 @@ namespace AmvReporting.Infrastructure.Dropdowns
         public IEnumerable<SelectListItem> Handle(DatabaseDropdownQuery query)
         {
             var result = ravenSession.Query<DatabaseConnection>()
-                .ToSelectListItems(t => t.Name, v => v.Name);
+                .ToSelectListItems(t => t.Name, v => v.Id);
 
             return result;
         }

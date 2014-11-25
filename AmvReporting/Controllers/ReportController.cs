@@ -7,6 +7,7 @@ using AmvReporting.Domain.Reports.ViewModels;
 using AmvReporting.Infrastructure;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Filters;
+using AutoMapper;
 using CommonDomain.Persistence;
 
 
@@ -58,38 +59,78 @@ namespace AmvReporting.Controllers
                 return View(command);
             }
 
-            return RedirectToAction(MVC.Report.EditCode(command.AggregateId));
+            return RedirectToAction(MVC.Report.UpdateCode(command.AggregateId));
         }
 
 
-        public virtual ActionResult EditCode(Guid id)
+
+        public virtual ActionResult UpdateMetadata(Guid id)
         {
             var report = repository.GetById<ReportAggregate>(id);
 
-            return AutoMappedView<EditReportDetailsViewModel>(report);
+            var model = Mapper.Map<UpdateReportMetadataCommand>(report);
+
+            return View(model);
         }
 
 
 
-        //[RestoreModelState]
-        //public virtual ActionResult Edit(Guid id)
-        //{
-        //    var report = repository.GetById<ReportAggregate>(id);
+        [HttpPost]
+        public virtual ActionResult UpdateMetadata(UpdateReportMetadataCommand command)
+        {
+            if (HttpContext.Request.IsAjaxRequest())
+            {
+                return ProcessJsonForm(command, "Changes are saved");
+            }
 
-        //    return AutoMappedView<EditReportDetailsViewModel>(report);
-        //}
+            if (!ModelState.IsValid)
+            {
+                return View(command);
+            }
+            var errors = mediator.ProcessCommand(command);
+            AddErrorsToModelState(errors);
+            if (!ModelState.IsValid)
+            {
+                return View(command);
+            }
+
+            return RedirectToAction(MVC.Report.UpdateMetadata(command.AggregateId));
+        }
 
 
-        //[HttpPost]
-        //public virtual ActionResult Edit(EditReportCommand command)
-        //{
-        //    if (HttpContext.Request.IsAjaxRequest())
-        //    {
-        //        return ProcessJsonForm(command, "Changes are saved");
-        //    }
-        //    return ProcessForm(command, RedirectToAction(MVC.Report.Edit(command.AggregateId)), RedirectToAction(MVC.Report.Index()));
-        //}
-        
+
+        public virtual ActionResult UpdateCode(Guid id)
+        {
+            var report = repository.GetById<ReportAggregate>(id);
+
+            var model = Mapper.Map<UpdateReportCodeCommand>(report);
+
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public virtual ActionResult UpdateCode(UpdateReportCodeCommand command)
+        {
+            if (HttpContext.Request.IsAjaxRequest())
+            {
+                return ProcessJsonForm(command, "Changes are saved");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(command);
+            }
+            var errors = mediator.ProcessCommand(command);
+            AddErrorsToModelState(errors);
+            if (!ModelState.IsValid)
+            {
+                return View(command);
+            }
+
+            return RedirectToAction(MVC.Report.UpdateCode(command.AggregateId));
+        }
+
 
         public virtual ActionResult Clone(Guid id)
         {

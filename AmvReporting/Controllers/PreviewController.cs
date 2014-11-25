@@ -23,9 +23,9 @@ namespace AmvReporting.Controllers
 
 
         [HttpPost]
-        public virtual ActionResult Data(String sql, String databaseId, ReportType reportType)
+        public virtual ActionResult Data(Guid aggregateId, String sql)
         {
-            var query = new PreviewDataQuery(sql, databaseId, reportType);
+            var query = new PreviewDataQuery(aggregateId, sql);
             var result = mediator.Request(query);
 
             return PartialView(result);
@@ -35,7 +35,7 @@ namespace AmvReporting.Controllers
         [HttpPost]
         public virtual ActionResult Report(PreviewReportModel model)
         {
-            var query = new PreviewDataQuery(model.Sql, model.DatabaseId, model.ReportType);
+            var query = new PreviewDataQuery(model.AggregateId, model.Sql);
             var queryResult = mediator.Request(query);
             var config = mediator.Request(new ReportingConfigQuery());
 
@@ -46,7 +46,7 @@ namespace AmvReporting.Controllers
                                GlobalJs = config.GlobalJavascript,
                                Css = model.Css,
                                GlobalCss = config.GlobalCss,
-                               ReportType = model.ReportType,
+                               ReportType = queryResult.ReportType,
                                HtmlOverride = model.HtmlOverride,
                            };
 

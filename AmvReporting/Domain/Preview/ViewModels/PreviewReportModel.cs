@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Web.Mvc;
-using AmvReporting.Domain.Reports;
+
 
 namespace AmvReporting.Domain.Preview.ViewModels
 {
     public class PreviewReportModel
     {
-        public String DatabaseId { get; set; }
-        
-        public ReportType ReportType { get; set; }
+        public Guid AggregateId { get; set; }
 
         public String Sql { get; set; }
 

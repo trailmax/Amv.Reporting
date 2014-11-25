@@ -30,22 +30,6 @@ namespace AmvReporting.Domain.Reports.Commands
         [Required]
         public ReportType ReportType { get; set; }
 
-        //[AllowHtml]
-        //[Required, DataType(DataType.MultilineText)]
-        //public String Sql { get; set; }
-
-        //[AllowHtml]
-        //[DataType(DataType.MultilineText)]
-        //public String JavaScript { get; set; }
-
-        //[DataType(DataType.MultilineText)]
-        //public String Css { get; set; }
-
-        //[AllowHtml]
-        //[DataType(DataType.MultilineText)]
-        //public String HtmlOverride { get; set; }
-
-        //public Guid RedirectingId { get; set; }
     }
 
 

@@ -116,9 +116,8 @@ namespace AmvReporting.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Data
         {
+            public readonly string aggregateId = "aggregateId";
             public readonly string sql = "sql";
-            public readonly string databaseId = "databaseId";
-            public readonly string reportType = "reportType";
         }
         static readonly ActionParamsClass_Report s_params_Report = new ActionParamsClass_Report();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -168,16 +167,15 @@ namespace AmvReporting.Controllers
         public T4MVC_PreviewController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void DataOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string sql, string databaseId, AmvReporting.Domain.Reports.ReportType reportType);
+        partial void DataOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid aggregateId, string sql);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Data(string sql, string databaseId, AmvReporting.Domain.Reports.ReportType reportType)
+        public override System.Web.Mvc.ActionResult Data(System.Guid aggregateId, string sql)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Data);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "aggregateId", aggregateId);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sql", sql);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "databaseId", databaseId);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "reportType", reportType);
-            DataOverride(callInfo, sql, databaseId, reportType);
+            DataOverride(callInfo, aggregateId, sql);
             return callInfo;
         }
 

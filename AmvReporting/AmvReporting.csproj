@@ -275,7 +275,6 @@
     <Compile Include="Infrastructure\Helpers\SqlServerHelper.cs" />
     <Compile Include="Domain\Reports\Commands\CreateReportCommand.cs" />
     <Compile Include="Domain\Reports\Commands\DeleteReportCommand.cs" />
-    <Compile Include="Domain\Reports\Commands\EditReportCommand.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DatabaseController.cs" />
     <Compile Include="Controllers\PreviewController.cs" />
@@ -553,6 +552,8 @@
     <Content Include="Views\ReportRevisions\ViewRevision.cshtml" />
     <Content Include="Views\ReportRevisions\CompareToLatest.cshtml" />
     <Content Include="Views\Shared\_LayoutAdminContainerFree.cshtml" />
+    <Content Include="Views\Report\_Metadata.cshtml" />
+    <Content Include="Views\Report\UpdateCode.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -632,7 +633,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Report\Create.cshtml" />
     <Content Include="Views\Report\Index.cshtml" />
-    <Content Include="Views\Report\Edit.cshtml" />
+    <Content Include="Views\Report\UpdateMetadata.cshtml" />
     <Content Include="Views\Report\_CreateEdit.cshtml" />
     <Content Include="Views\Home\ReportAggregate.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />

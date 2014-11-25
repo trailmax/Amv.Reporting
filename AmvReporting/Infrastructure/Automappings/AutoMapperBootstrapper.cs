@@ -1,6 +1,7 @@
 ﻿using AmvReporting.Domain.ReportGroups;
 using AmvReporting.Domain.ReportGroups.ViewModels;
 using AmvReporting.Domain.Reports;
+using AmvReporting.Domain.Reports.Commands;
 using AmvReporting.Domain.Reports.ViewModels;
 using AutoMapper;
 
@@ -13,8 +14,16 @@ namespace AmvReporting.Infrastructure.Automappings
         {
             Mapper.CreateMap<ReportAggregate, ReportDetailsViewModel>()
                   .ForMember(d => d.AggregateId, o => o.MapFrom(s => s.Id));
+ 
             Mapper.CreateMap<ReportAggregate, EditReportDetailsViewModel>()
                   .ForMember(d => d.AggregateId, o => o.MapFrom(s => s.Id));
+
+            Mapper.CreateMap<ReportAggregate, UpdateReportMetadataCommand>()
+                  .ForMember(d => d.AggregateId, o => o.MapFrom(s => s.Id));
+
+            Mapper.CreateMap<ReportAggregate, UpdateReportCodeCommand>()
+                  .ForMember(d => d.AggregateId, o => o.MapFrom(s => s.Id));
+
 
             Mapper.CreateMap<ReportViewModel, ReportIndexViewModel>()
                   .ForMember(d => d.Id, o => o.Ignore())
