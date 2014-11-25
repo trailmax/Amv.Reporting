@@ -23,7 +23,7 @@ namespace AmvReporting.Controllers
         [RestoreModelState]
         public virtual ActionResult Create()
         {
-            return EnrichedView(new ReportGroupViewModel());
+            return View(new ReportGroupViewModel());
         }
 
 

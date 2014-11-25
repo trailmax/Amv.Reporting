@@ -232,10 +232,7 @@
     <Compile Include="Domain\Preview\ViewModels\PreviewReportModel.cs" />
     <Compile Include="Domain\Preview\ViewModels\ReportResultPreview.cs" />
     <Compile Include="Domain\ReportGroups\ReportGroupHelpers.cs" />
-    <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupIndexViewModel.cs" />
-    <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupIndexViewModelEnricher.cs" />
     <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupViewModel.cs" />
-    <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupViewModelEnricher.cs" />
     <Compile Include="Domain\ReportingConfigs\Commands\UpdateConfigurationCommand.cs" />
     <Compile Include="Domain\Reports\Commands\UpdateReportCodeCommand.cs" />
     <Compile Include="Domain\Reports\Commands\UpdateReportMetadataCommand.cs" />
@@ -248,14 +245,13 @@
     <Compile Include="Domain\Reports\Queries\AllReportRevisionsQuery.cs" />
     <Compile Include="Domain\Reports\Queries\CompareToLatestQuery.cs" />
     <Compile Include="Domain\Reports\ReportAggregate.cs" />
-    <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModel.cs" />
-    <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModelEnricher.cs" />
     <Compile Include="HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Dropdowns\DatabaseDropdownQuery.cs" />
     <Compile Include="Infrastructure\Dropdowns\IDropdownQuery.cs" />
     <Compile Include="Infrastructure\Dropdowns\IDropdownQueryHandler.cs" />
+    <Compile Include="Infrastructure\Dropdowns\ReportGroupParentsDropdownQuery.cs" />
     <Compile Include="Infrastructure\Dropdowns\ReportsGroupsDropdownQuery.cs" />
     <Compile Include="Infrastructure\NEventStore\EventHandlingPipelineHook.cs" />
     <Compile Include="Infrastructure\NEventStore\EventHeaderHelpers.cs" />
@@ -314,7 +310,6 @@
     <Compile Include="Infrastructure\Helpers\RavenIdResolver.cs" />
     <Compile Include="Infrastructure\Helpers\StringExtensions.cs" />
     <Compile Include="Infrastructure\IModelEnricher.cs" />
-    <Compile Include="Domain\Reports\ViewModels\ReportDetailsViewModelEnricher.cs" />
     <Compile Include="Infrastructure\NEventStore\AggregateFactory.cs" />
     <Compile Include="Infrastructure\NEventStore\EmbeddedRavenStorageFractory.cs" />
     <Compile Include="Infrastructure\NEventStore\RavenEmbeddedPersistenceWireup.cs" />
@@ -335,8 +330,6 @@
     <Compile Include="Domain\Reports\Queries\AllReportsQuery.cs" />
     <Compile Include="Domain\Preview\Queries\PreviewDataQuery.cs" />
     <Compile Include="Domain\Reports\Queries\ReportResultQuery.cs" />
-    <Compile Include="Domain\Reports\ViewModels\EditReportDetailsViewModel.cs" />
-    <Compile Include="Domain\Reports\ViewModels\ReportDetailsViewModel.cs" />
     <Compile Include="ReportController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>

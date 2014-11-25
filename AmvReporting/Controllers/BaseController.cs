@@ -7,18 +7,18 @@ namespace AmvReporting.Controllers
 {
     public abstract partial class BaseController : Controller
     {
-        protected FormActionResult<TForm> ProcessForm<TForm>(TForm form, ActionResult both) where TForm : ICommand
-        {
-            return new FormActionResult<TForm>(form, both);
-        }
+        //protected FormActionResult<TForm> ProcessForm<TForm>(TForm form, ActionResult both) where TForm : ICommand
+        //{
+        //    return new FormActionResult<TForm>(form, both);
+        //}
         protected FormActionResult<TForm> ProcessForm<TForm>(TForm form, ActionResult failure, ActionResult success) where TForm : ICommand
         {
             return new FormActionResult<TForm>(form, failure, success);
         }
-        protected FormActionResult<TForm> ProcessForm<TForm>(TForm form, ActionResult both, Func<Guid, ActionResult> redirector) where TForm : ICommand
-        {
-            return new FormActionResult<TForm>(form, both, redirector);
-        }
+        //protected FormActionResult<TForm> ProcessForm<TForm>(TForm form, ActionResult both, Func<Guid, ActionResult> redirector) where TForm : ICommand
+        //{
+        //    return new FormActionResult<TForm>(form, both, redirector);
+        //}
 
 
         protected JsonFormActionResult<T> ProcessJsonForm<T>(T command, String successMessage) where T : ICommand
@@ -27,16 +27,16 @@ namespace AmvReporting.Controllers
         }
 
 
-        public EnrichViewResult<T> EnrichedView<T>(string viewName, T model) where T : class
-        {
-            AssignModel(model);
-            return new EnrichViewResult<T>(viewName, ViewData, TempData);
-        }
-        public EnrichViewResult<T> EnrichedView<T>(T model) where T : class
-        {
-            AssignModel(model);
-            return new EnrichViewResult<T>(ViewData, TempData);
-        }
+        //public EnrichViewResult<T> EnrichedView<T>(string viewName, T model) where T : class
+        //{
+        //    AssignModel(model);
+        //    return new EnrichViewResult<T>(viewName, ViewData, TempData);
+        //}
+        //public EnrichViewResult<T> EnrichedView<T>(T model) where T : class
+        //{
+        //    AssignModel(model);
+        //    return new EnrichViewResult<T>(ViewData, TempData);
+        //}
 
 
         public AutoMapViewResult<T> AutoMappedView<T>(string viewName, object model) where T : class

@@ -5,6 +5,8 @@ using AmvReporting.Domain.DatabaseConnections.Queries;
 using AmvReporting.Infrastructure;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Filters;
+using AutoMapper;
+
 
 namespace AmvReporting.Controllers
 {
@@ -33,7 +35,19 @@ namespace AmvReporting.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public virtual ActionResult Create(CreateDatabaseDetailsCommand command)
         {
-            return ProcessForm(command, RedirectToAction(MVC.Database.Create()), RedirectToAction(MVC.Database.Index()));
+            if (!ModelState.IsValid)
+            {
+                return View(command);
+            }
+            var errors = mediator.ProcessCommand(command);
+            AddErrorsToModelState(errors);
+            if (!ModelState.IsValid)
+            {
+                return View(command);
+            }
+            return RedirectToAction(MVC.Database.Index());
+
+            //return ProcessForm(command, RedirectToAction(MVC.Database.Create()), RedirectToAction(MVC.Database.Index()));
         }
 
         [RestoreModelState]
@@ -41,13 +55,27 @@ namespace AmvReporting.Controllers
         {
             var database = mediator.Request(new DatabaseQuery(dbId));
 
-            return View(database);
+            var viewModel = Mapper.Map<EditDatabaseDetailsCommand>(database);
+
+            return View(viewModel);
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public virtual ActionResult Edit(EditDatabaseDetailsCommand command)
         {
-            return ProcessForm(command, RedirectToAction(MVC.Database.Edit(command.Id)), RedirectToAction(MVC.Database.Index()));
+            if (!ModelState.IsValid)
+            {
+                return View(command);
+            }
+            var errors = mediator.ProcessCommand(command);
+            AddErrorsToModelState(errors);
+            if (!ModelState.IsValid)
+            {
+                return View(command);
+            }
+
+            return RedirectToAction(MVC.Database.Index());
+            //return ProcessForm(command, RedirectToAction(MVC.Database.Edit(command.Id)), RedirectToAction(MVC.Database.Index()));
         }
 
 

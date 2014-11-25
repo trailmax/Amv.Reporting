@@ -4,6 +4,8 @@ using AmvReporting.Domain.ReportingConfigs.Queries;
 using AmvReporting.Infrastructure;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Filters;
+using AutoMapper;
+
 
 namespace AmvReporting.Controllers
 {
@@ -17,12 +19,15 @@ namespace AmvReporting.Controllers
             this.mediator = mediator;
         }
 
+
         [RestoreModelState]
         public virtual ActionResult Index()
         {
             var appConfig = mediator.Request(new ReportingConfigQuery());
 
-            return View(appConfig);
+            var viewModel = Mapper.Map<UpdateConfigurationCommand>(appConfig);
+
+            return View(viewModel);
         }
 
 
@@ -34,7 +39,18 @@ namespace AmvReporting.Controllers
                 return ProcessJsonForm(command, "Configuration Updated");
             }
 
-            return ProcessForm(command, RedirectToAction(MVC.ReportingConfig.Index()));
+            if (!ModelState.IsValid)
+            {
+                return View(command);
+            }
+            var errors = mediator.ProcessCommand(command);
+            AddErrorsToModelState(errors);
+            if (!ModelState.IsValid)
+            {
+                return View(command);
+            }
+
+            return RedirectToAction(MVC.ReportingConfig.Index());
         }
 	}
 }

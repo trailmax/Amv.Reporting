@@ -68,12 +68,6 @@ namespace AmvReporting.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Clone()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Clone);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Delete()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
@@ -98,7 +92,6 @@ namespace AmvReporting.Controllers
             public readonly string Create = "Create";
             public readonly string UpdateMetadata = "UpdateMetadata";
             public readonly string UpdateCode = "UpdateCode";
-            public readonly string Clone = "Clone";
             public readonly string Delete = "Delete";
         }
 
@@ -109,7 +102,6 @@ namespace AmvReporting.Controllers
             public const string Create = "Create";
             public const string UpdateMetadata = "UpdateMetadata";
             public const string UpdateCode = "UpdateCode";
-            public const string Clone = "Clone";
             public const string Delete = "Delete";
         }
 
@@ -139,14 +131,6 @@ namespace AmvReporting.Controllers
         {
             public readonly string id = "id";
             public readonly string command = "command";
-        }
-        static readonly ActionParamsClass_Clone s_params_Clone = new ActionParamsClass_Clone();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Clone CloneParams { get { return s_params_Clone; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Clone
-        {
-            public readonly string id = "id";
         }
         static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -266,18 +250,6 @@ namespace AmvReporting.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateCode);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
             UpdateCodeOverride(callInfo, command);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void CloneOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Clone(System.Guid id)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Clone);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            CloneOverride(callInfo, id);
             return callInfo;
         }
 

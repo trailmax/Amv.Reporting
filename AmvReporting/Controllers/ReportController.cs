@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using AmvReporting.Domain.Menus;
 using AmvReporting.Domain.Reports;
 using AmvReporting.Domain.Reports.Commands;
-using AmvReporting.Domain.Reports.ViewModels;
 using AmvReporting.Infrastructure;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Filters;
@@ -132,12 +131,13 @@ namespace AmvReporting.Controllers
         }
 
 
-        public virtual ActionResult Clone(Guid id)
-        {
-            var report = repository.GetById<ReportAggregate>(id);
+        //TODO Restore Clone
+        //public virtual ActionResult Clone(Guid id)
+        //{
+        //    var report = repository.GetById<ReportAggregate>(id);
 
-            return AutoMappedView<ReportDetailsViewModel>(MVC.Report.Views.Create, report);
-        }
+        //    return AutoMappedView<ReportDetailsViewModel>(MVC.Report.Views.Create, report);
+        //}
 
 
         [HttpPost]
