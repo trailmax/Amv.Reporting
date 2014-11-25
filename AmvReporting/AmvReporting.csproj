@@ -274,7 +274,6 @@
     <Compile Include="Controllers\DatabaseController.cs" />
     <Compile Include="Controllers\PreviewController.cs" />
     <Compile Include="Infrastructure\ActionResults\AutoMapViewResult.cs" />
-    <Compile Include="Infrastructure\ActionResults\EnrichViewResult.cs" />
     <Compile Include="Infrastructure\ActionResults\FormActionResult.cs" />
     <Compile Include="Infrastructure\ActionResults\JsonFormActionResult.cs" />
     <Compile Include="Infrastructure\Autofac\AmvReportingModule.cs" />
@@ -309,7 +308,6 @@
     <Compile Include="Infrastructure\Helpers\HtmlHelpers.cs" />
     <Compile Include="Infrastructure\Helpers\RavenIdResolver.cs" />
     <Compile Include="Infrastructure\Helpers\StringExtensions.cs" />
-    <Compile Include="Infrastructure\IModelEnricher.cs" />
     <Compile Include="Infrastructure\NEventStore\AggregateFactory.cs" />
     <Compile Include="Infrastructure\NEventStore\EmbeddedRavenStorageFractory.cs" />
     <Compile Include="Infrastructure\NEventStore\RavenEmbeddedPersistenceWireup.cs" />

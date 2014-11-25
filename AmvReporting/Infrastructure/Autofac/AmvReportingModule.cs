@@ -6,7 +6,6 @@ using System.Web;
 using AmvReporting.Infrastructure.Caching;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Events;
-using AmvReporting.Infrastructure.ModelEnrichers;
 using Autofac;
 using Autofac.Core;
 
@@ -74,11 +73,6 @@ namespace AmvReporting.Infrastructure.Autofac
 
             builder.RegisterTypes(types)
                 .AsClosedTypesOf(typeof(IEventHandler<>))
-                .InstancePerLifetimeScope();
-
-
-            builder.RegisterTypes(types)
-                .AsClosedTypesOf(typeof(IModelEnricher<>))
                 .InstancePerLifetimeScope();
 
             builder.RegisterType<MemoryCacheProvider>()

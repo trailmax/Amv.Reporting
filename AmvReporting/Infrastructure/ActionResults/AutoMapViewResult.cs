@@ -4,18 +4,19 @@ using AutoMapper;
 
 namespace AmvReporting.Infrastructure.ActionResults
 {
-    public class AutoMapViewResult<TDestination> : EnrichViewResult<TDestination> where TDestination : class
+    public class AutoMapViewResult<TDestination> : ViewResult
     {
         public AutoMapViewResult(String viewName, ViewDataDictionary viewData, TempDataDictionary tempData)
-            : base(viewName, viewData, tempData)
         {
-            // nothing to see here, move on.
+            ViewName = viewName;
+            ViewData = viewData;
+            TempData = tempData;
         }
 
         public AutoMapViewResult(ViewDataDictionary viewData, TempDataDictionary tempData)
-            : base(viewData, tempData)
         {
-            // and here there is whole lot of nothing
+            ViewData = viewData;
+            TempData = tempData;
         }
 
 

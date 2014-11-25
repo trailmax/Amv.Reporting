@@ -2,6 +2,7 @@
 
 namespace AmvReporting.Infrastructure
 {
+    // TODO GET rid of this one
     public class RestoreModelStateAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)

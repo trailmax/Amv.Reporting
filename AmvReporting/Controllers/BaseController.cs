@@ -27,18 +27,6 @@ namespace AmvReporting.Controllers
         }
 
 
-        //public EnrichViewResult<T> EnrichedView<T>(string viewName, T model) where T : class
-        //{
-        //    AssignModel(model);
-        //    return new EnrichViewResult<T>(viewName, ViewData, TempData);
-        //}
-        //public EnrichViewResult<T> EnrichedView<T>(T model) where T : class
-        //{
-        //    AssignModel(model);
-        //    return new EnrichViewResult<T>(ViewData, TempData);
-        //}
-
-
         public AutoMapViewResult<T> AutoMappedView<T>(string viewName, object model) where T : class
         {
             AssignModel(model);
