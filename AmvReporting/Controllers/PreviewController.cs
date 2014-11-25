@@ -62,24 +62,5 @@ namespace AmvReporting.Controllers
 
             return Json(formattedSql);
         }
-
-
-        [HttpPost, ValidateInput(false)]
-        public virtual ActionResult ParseHtml(String rawData)
-        {
-            var sqlParsingResult = mediator.Request(new RawHtmlInputQuery(rawData));
-
-            if (!sqlParsingResult.IsSuccess)
-            {
-                return Json(sqlParsingResult);
-            }
-            var cleanedSql = mediator.Request(new CleanseSqlQuery(sqlParsingResult.Payload));
-
-            var formattedSql = mediator.Request(new FormattedSqlQuery(cleanedSql));
-
-            sqlParsingResult.Payload = formattedSql;
-
-            return Json(sqlParsingResult);
-        }
     }
 }

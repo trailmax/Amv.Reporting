@@ -8,11 +8,7 @@ namespace AmvReporting.Domain.Reports.Commands
 {
     public class CreateReportCommand : ICommand
     {
-        public CreateReportCommand()
-        {
-            AggregateId = Guid.NewGuid();
-        }
-        public Guid AggregateId { get; private set; }
+        public Guid AggregateId { get; set; }
 
         public String ReportGroupId { get; set; }
 
@@ -45,6 +41,8 @@ namespace AmvReporting.Domain.Reports.Commands
 
         public void Handle(CreateReportCommand command)
         {
+            var newId = Guid.NewGuid();
+            command.AggregateId = newId;
             var report = new ReportAggregate(command.AggregateId,
                                     command.ReportGroupId,
                                     command.Title,

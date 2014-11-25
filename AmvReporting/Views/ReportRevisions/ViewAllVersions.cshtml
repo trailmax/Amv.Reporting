@@ -36,8 +36,16 @@
             <td>@revision.Username</td>
             <td>@revision.EventDescription</td>
             <td>
-                @Html.ActionLink("View Revision", MVC.ReportRevisions.ViewRevision(revision.AggregateId, revision.RevisionNumber), new { @class = "btn btn-sm btn-default" })
-                @Html.ActionLink("Compare to Latest", MVC.ReportRevisions.CompareToLatest(revision.AggregateId, revision.RevisionNumber), new { @class = "btn btn-sm btn-success" })
+                @if (revision.RevisionNumber < Model.Max(r => r.RevisionNumber))
+                {
+                    @Html.ActionLink("View Revision", MVC.ReportRevisions.ViewRevision(revision.AggregateId, revision.RevisionNumber), new { @class = "btn btn-sm btn-default" })
+                    <text>&nbsp;</text>
+                    @Html.ActionLink("Compare to Latest", MVC.ReportRevisions.CompareToLatest(revision.AggregateId, revision.RevisionNumber), new { @class = "btn btn-sm btn-success" })
+                }
+                else
+                {
+                    <text>Latest</text>
+                }
             </td>
         </tr>
     }

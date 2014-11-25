@@ -72,28 +72,6 @@
                 });
             };
 
-            // when user is submitting row html
-            $('#parseRowHtml').on('click', function() {
-                var postData = {};
-                postData['rawData'] = $('#Sql').val();
-
-                $.ajax({
-                    type: 'POST',
-                    url: '@Url.Action(MVC.Preview.ParseHtml())',
-                    data: postData,
-                    error: function () {
-                        $.showWarning('Communication Error: could not connect to the server');
-                    },
-                    success: function (data) {
-                        if (data.IsSuccess) {
-                            refreshSqlTextBox(data.Payload);
-                        } else {
-                            $.showWarning(data.ErrorMessage);
-                        }
-                    },
-                });
-            });
-
             // on report create/edit show the data returned by the sql server
             $('#previewData').on('click', function() {
                 var postData = {};

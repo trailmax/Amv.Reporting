@@ -166,7 +166,6 @@ namespace AmvReporting.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string _CreateEdit = "_CreateEdit";
                 public readonly string _Metadata = "_Metadata";
                 public readonly string _ViewStart = "_ViewStart";
                 public readonly string Create = "Create";
@@ -174,7 +173,6 @@ namespace AmvReporting.Controllers
                 public readonly string UpdateCode = "UpdateCode";
                 public readonly string UpdateMetadata = "UpdateMetadata";
             }
-            public readonly string _CreateEdit = "~/Views/Report/_CreateEdit.cshtml";
             public readonly string _Metadata = "~/Views/Report/_Metadata.cshtml";
             public readonly string _ViewStart = "~/Views/Report/_ViewStart.cshtml";
             public readonly string Create = "~/Views/Report/Create.cshtml";

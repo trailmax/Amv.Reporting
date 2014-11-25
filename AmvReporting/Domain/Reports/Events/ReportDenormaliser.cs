@@ -22,28 +22,6 @@ namespace AmvReporting.Domain.Reports.Events
         }
 
 
-        public void Handle(ChangeReportListOrderEvent raisedEvent)
-        {
-            using (var documentSession = documentStore.OpenSession())
-            {
-                var viewmodel = GetViewModel(raisedEvent, documentSession);
-                viewmodel.ListOrder = raisedEvent.ListOrder;
-                documentSession.SaveChanges();
-            }
-        }
-
-
-        public void Handle(ReportCodeUpdatedEvent raisedEvent)
-        {
-            using (var documentSession = documentStore.OpenSession())
-            {
-                var viewmodel = GetViewModel(raisedEvent, documentSession);
-                viewmodel.InjectFrom(raisedEvent);
-                documentSession.SaveChanges();
-            }
-        }
-
-
         public void Handle(ReportCreatedEvent raisedEvent)
         {
             using (var documentSession = documentStore.OpenSession())
@@ -67,12 +45,25 @@ namespace AmvReporting.Domain.Reports.Events
         }
 
 
-        private ReportViewModel GetViewModel(IEvent raisedEvent, IDocumentSession documentSession)
+        public void Handle(ReportCodeUpdatedEvent raisedEvent)
         {
-            var viewModel = documentSession.Query<ReportViewModel>()
-                .FirstOrDefault(r => r.AggregateId == raisedEvent.AggregateId);
+            using (var documentSession = documentStore.OpenSession())
+            {
+                var viewmodel = GetViewModel(raisedEvent, documentSession);
+                viewmodel.InjectFrom(raisedEvent);
+                documentSession.SaveChanges();
+            }
+        }
 
-            return viewModel;
+
+        public void Handle(ChangeReportListOrderEvent raisedEvent)
+        {
+            using (var documentSession = documentStore.OpenSession())
+            {
+                var viewmodel = GetViewModel(raisedEvent, documentSession);
+                viewmodel.ListOrder = raisedEvent.ListOrder;
+                documentSession.SaveChanges();
+            }
         }
 
 
@@ -84,6 +75,15 @@ namespace AmvReporting.Domain.Reports.Events
                 documentSession.Delete(toBeDeleted);
                 documentSession.SaveChanges();
             }
+        }
+
+
+        private ReportViewModel GetViewModel(IEvent raisedEvent, IDocumentSession documentSession)
+        {
+            var viewModel = documentSession.Query<ReportViewModel>()
+                .FirstOrDefault(r => r.AggregateId == raisedEvent.AggregateId);
+
+            return viewModel;
         }
     }
 }
