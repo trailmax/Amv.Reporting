@@ -7,5 +7,11 @@
 }
 
 <h2>Report Revision View</h2>
-
+<div role="tabpanel" class="tabpanel">
+    <ul class="nav nav-tabs" role="tablist">
+        <li>@Html.ActionLink("Meta", MVC.Report.UpdateMetadata(Model.Id), new { role = "tabpanel", @class = "tab-pane" })</li>
+        <li>@Html.ActionLink("Code", MVC.Report.UpdateCode(Model.Id), new { role = "tabpanel", @class = "tab-pane" })</li>
+        <li class="active">@Html.ActionLink("Revisions", MVC.ReportRevisions.ViewAllVersions(Model.Id), new { role = "tabpanel", @class = "tab-pane" })</li>
+    </ul>
+</div>
 <pre>@JsonConvert.SerializeObject(Model, Formatting.Indented)</pre>

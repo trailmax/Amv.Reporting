@@ -118,3 +118,7 @@ ul.extra-spacing {
     ul.extra-spacing a {
         margin: 10px;
     }
+
+.tabpanel {
+    margin-bottom: 15px;
+}

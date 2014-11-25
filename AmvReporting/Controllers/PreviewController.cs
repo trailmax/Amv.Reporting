@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using AmvReporting.Domain.Preview.Queries;
 using AmvReporting.Domain.Preview.ViewModels;
 using AmvReporting.Domain.ReportingConfigs.Queries;
-using AmvReporting.Domain.Reports;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Filters;
 

@@ -10,7 +10,7 @@
 @Html.ActionLink("View Report", MVC.Home.ReportAggregate(Model.AggregateId), new { @class = "btn btn-default btn-xs", style = "position: absolute; right: 15px; top: 70px;", target = "_blank" })
 
 <!-- Nav tabs -->
-<div role="tabpanel">
+<div role="tabpanel" class="tabpanel">
     <ul class="nav nav-tabs" role="tablist">
         <li>@Html.ActionLink("Meta", MVC.Report.UpdateMetadata(Model.AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
         <li class="active"><a class="tab-pane">Code</a></li>

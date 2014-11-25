@@ -13,9 +13,17 @@
 
 <div class="admin-content">
     <div id="alert-placeholder"></div>
+    <div class="container">
+        <h2>Compare Revision #@Model.RevisionNumber to Latest</h2>
 
-    <h2>Compare Revision #@Model.RevisionNumber to Latest</h2>
-
+        <div role="tabpanel" class="tabpanel">
+            <ul class="nav nav-tabs" role="tablist">
+                <li>@Html.ActionLink("Meta", MVC.Report.UpdateMetadata(Model.AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+                <li>@Html.ActionLink("Code", MVC.Report.UpdateCode(Model.AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+                <li class="active">@Html.ActionLink("Revisions", MVC.ReportRevisions.ViewAllVersions(Model.AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+            </ul>
+        </div>
+    </div>
     <div id="compare"></div>
 
     <div id="revision" class="hidden">@Model.RevisionJson</div>

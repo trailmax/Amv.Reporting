@@ -3,9 +3,20 @@
 @{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     ViewBag.Title = "Report Revisions";
+    var aggregateId = Model.First().AggregateId;
 }
 
 <h2>Report Revisions</h2>
+
+<!-- Nav tabs -->
+<div role="tabpanel" class="tabpanel">
+    <ul class="nav nav-tabs" role="tablist">
+        <li>@Html.ActionLink("Meta", MVC.Report.UpdateMetadata(aggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+        <li>@Html.ActionLink("Code", MVC.Report.UpdateCode(aggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+        <li class="active">@Html.ActionLink("Revisions", MVC.ReportRevisions.ViewAllVersions(aggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+    </ul>
+</div>
+
 
 <table class="table">
     <thead>
