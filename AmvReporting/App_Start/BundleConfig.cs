@@ -39,7 +39,8 @@ namespace AmvReporting
 
             var mergelyBundle = new BetterStyleBundle("~/Content/mergely_css").Include(
                 "~/Content/mergely.css",
-                "~/Content/codemirror.css");
+                "~/Scripts/CodeMirror/codemirror.css",
+                "~/Scripts/CodeMirror/addon/display/fullscreen.css");
             bundles.Add(mergelyBundle);
 
 
@@ -61,7 +62,9 @@ namespace AmvReporting
                 "~/Scripts/jquery.treetable.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/mergely_js").Include(
-                "~/Scripts/codemirror.js",
+                "~/Scripts/CodeMirror/codemirror.js",
+                "~/Scripts/CodeMirror/mode/sql.js",
+                "~/Scripts/CodeMirror/addon/display/fullscreen.js",
                 "~/Scripts/mergely.js",
                 "~/Scripts/searchcursor.js"));
 

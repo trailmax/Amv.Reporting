@@ -4,6 +4,11 @@
     ViewBag.Title = "Edit Report Metadata";
 }
 
+@section css
+{
+    @Styles.Render("~/Content/mergely_css")
+}
+
 
 <h2>Edit Report</h2>
 
@@ -19,7 +24,7 @@
 </div>
 
 <div class="row">
-    @using (Html.BeginForm(MVC.Report.UpdateCode(), FormMethod.Post, new { role = "form", @class = "submit-by-ajax" }))
+    @using (Html.BeginForm(MVC.Report.UpdateCode(), FormMethod.Post, new { role = "form", @class = "submit-by-ajax", id = "code-form" }))
     {
         @Html.ValidationSummary(false)
         @Html.HiddenFor(m => m.AggregateId)
@@ -84,3 +89,100 @@
     }
     <div class="col-md-6" id="previewContainer"></div>
 </div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/mergely_js")
+    <script>
+        $(document).ready(function () {
+            var sqlEditor = CodeMirror.fromTextArea(document.getElementById("Sql"), {
+                lineNumbers: true,
+                mode: 'text/x-sql',
+                matchBrackets: true,
+                smartIndent: true,
+                indentUnit: 4,
+                extraKeys: {
+                    "F11": function (cm) {
+                        cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+                    },
+                    "Esc": function (cm) {
+                        if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+                    },
+                    "Ctrl-S": function (cm) {
+                        cm.save();
+                        $('#code-form').submit();
+                    },
+                    "F5": function (cm) {
+                        cm.save();
+                        $('#previewData').click();
+                    },
+                    "Ctrl-L": "deleteLine",
+                }
+            });
+
+
+            var refreshPreview = function (data) {
+                $('#previewContainer').fadeOut(500, function () {
+                    $('#previewContainer').html(data);
+                    $('#previewContainer').fadeIn(500);
+                });
+            };
+
+            var refreshSqlTextBox = function (data) {
+                $('#Sql').fadeOut(500, function () {
+                    $('#Sql').val(data);
+                    $('#Sql').fadeIn(500);
+                });
+            };
+
+            // on report create/edit show the data returned by the sql server
+            $('#previewData').on('click', function () {
+                var postData = {};
+                postData['sql'] = $('#Sql').val();
+                postData['aggregateId'] = $('#AggregateId').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action(MVC.Preview.Data())',
+                    data: postData,
+                    error: function () {
+                        $.showWarning('Communication Error: could not connect to the server');
+                    },
+                    success: refreshPreview,
+                });
+            });
+
+            // cleanse and format SQL string
+            $('#cleanseAndFormatSql').on('click', function () {
+                var postData = {};
+                postData['sql'] = $('#Sql').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action(MVC.Preview.CleanseAndFormatSql())',
+                    data: postData,
+                    error: function () {
+                        $.showWarning('Communication Error: could not connect to the server');
+                    },
+                    success: refreshSqlTextBox,
+                });
+            });
+
+
+            // on report create/edit show the actual report in the same window
+            $('#previewFullReport').on('click', function () {
+                var valid = $('form').valid();
+                if (valid) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action(MVC.Preview.Report())',
+                        data: $('form').serialize(),
+                        error: function () {
+                            $.showWarning('Communication Error: could not connect to the server');
+                        },
+                        success: refreshPreview,
+                    });
+                }
+            });
+        });
+    </script>
+}

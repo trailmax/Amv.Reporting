@@ -58,68 +58,6 @@
                 return false;
             });
 
-            var refreshPreview = function(data) {
-                $('#previewContainer').fadeOut(500, function () {
-                    $('#previewContainer').html(data);
-                    $('#previewContainer').fadeIn(500);
-                });
-            };
-
-            var refreshSqlTextBox = function(data) {
-                $('#Sql').fadeOut(500, function() {
-                    $('#Sql').val(data);
-                    $('#Sql').fadeIn(500);
-                });
-            };
-
-            // on report create/edit show the data returned by the sql server
-            $('#previewData').on('click', function() {
-                var postData = {};
-                postData['sql'] = $('#Sql').val();
-                postData['aggregateId'] = $('#AggregateId').val();
-
-                $.ajax({
-                    type: 'POST',
-                    url: '@Url.Action(MVC.Preview.Data())',
-                    data: postData,
-                    error: function() {
-                        $.showWarning('Communication Error: could not connect to the server');
-                    },
-                    success: refreshPreview,
-                });
-            });
-
-            // cleanse and format SQL string
-            $('#cleanseAndFormatSql').on('click', function() {
-                var postData = {};
-                postData['sql'] = $('#Sql').val();
-
-                $.ajax({
-                    type: 'POST',
-                    url: '@Url.Action(MVC.Preview.CleanseAndFormatSql())',
-                    data: postData,
-                    error: function() {
-                        $.showWarning('Communication Error: could not connect to the server');
-                    },
-                    success: refreshSqlTextBox,
-                });
-            });
-
-            // on report create/edit show the actual report in the same window
-            $('#previewFullReport').on('click', function () {
-                var valid = $('form').valid();
-                if (valid) {
-                    $.ajax({
-                        type: 'POST',
-                        url: '@Url.Action(MVC.Preview.Report())',
-                        data: $('form').serialize(),
-                        error: function() {
-                            $.showWarning('Communication Error: could not connect to the server');
-                        },
-                        success: refreshPreview,
-                    });
-                }
-            });
 
             // sortable list for reordering of groups
             $('.sortable').sortable();
