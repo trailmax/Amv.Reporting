@@ -67,9 +67,7 @@ namespace AmvReporting.Controllers
         {
             var report = repository.GetById<ReportAggregate>(id);
 
-            var model = Mapper.Map<UpdateReportMetadataCommand>(report);
-
-            return View(model);
+            return MappedView<UpdateReportMetadataCommand>(report);
         }
 
 
@@ -102,9 +100,7 @@ namespace AmvReporting.Controllers
         {
             var report = repository.GetById<ReportAggregate>(id);
 
-            var model = Mapper.Map<UpdateReportCodeCommand>(report);
-
-            return View(model);
+            return MappedView<UpdateReportCodeCommand>(report);
         }
 
 
@@ -136,7 +132,7 @@ namespace AmvReporting.Controllers
         //{
         //    var report = repository.GetById<ReportAggregate>(id);
 
-        //    return AutoMappedView<ReportDetailsViewModel>(MVC.Report.Views.Create, report);
+        //    return MappedView<ReportDetailsViewModel>(MVC.Report.Views.Create, report);
         //}
 
 

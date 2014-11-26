@@ -248,6 +248,8 @@
     <Compile Include="HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\ActionResults\AutoMapViewResult.cs" />
+    <Compile Include="Infrastructure\ActionResults\QueryResult.cs" />
     <Compile Include="Infrastructure\Dropdowns\DatabaseDropdownQuery.cs" />
     <Compile Include="Infrastructure\Dropdowns\IDropdownQuery.cs" />
     <Compile Include="Infrastructure\Dropdowns\IDropdownQueryHandler.cs" />
@@ -273,7 +275,6 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DatabaseController.cs" />
     <Compile Include="Controllers\PreviewController.cs" />
-    <Compile Include="Infrastructure\ActionResults\AutoMapViewResult.cs" />
     <Compile Include="Infrastructure\ActionResults\FormActionResult.cs" />
     <Compile Include="Infrastructure\ActionResults\JsonFormActionResult.cs" />
     <Compile Include="Infrastructure\Autofac\AmvReportingModule.cs" />

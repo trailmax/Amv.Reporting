@@ -2,6 +2,8 @@
 using System.Web.Mvc;
 using AmvReporting.Infrastructure.ActionResults;
 using AmvReporting.Infrastructure.CQRS;
+using AutoMapper;
+
 
 namespace AmvReporting.Controllers
 {
@@ -27,25 +29,18 @@ namespace AmvReporting.Controllers
         }
 
 
-        public AutoMapViewResult<T> AutoMappedView<T>(string viewName, object model) where T : class
+        public ActionResult MappedView<T>(string viewName, object model) where T : class
         {
-            AssignModel(model);
-            return new AutoMapViewResult<T>(viewName, ViewData, TempData);
+            var mappeddata = Mapper.Map<T>(model);
+
+            return View(viewName, mappeddata);
         }
 
-        public AutoMapViewResult<T> AutoMappedView<T>(object model) where T : class
+        public ActionResult MappedView<T>(object model) where T : class
         {
-            AssignModel(model);
-            return new AutoMapViewResult<T>(ViewData, TempData);
-        }
+            var mappeddata = Mapper.Map<T>(model);
 
-
-        private void AssignModel(object model)
-        {
-            if (model != null)
-            {
-                ViewData.Model = model;
-            }
+            return View(mappeddata);
         }
 
 
@@ -59,6 +54,12 @@ namespace AmvReporting.Controllers
             {
                 ModelState.AddModelError(error.FieldName, error.ToString());
             }
+        }
+
+
+        protected QueryResult<TResult> View<TResult>(IQuery<TResult> query)
+        {
+            return new QueryResult<TResult>(query);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using AmvReporting.Domain.DatabaseConnections.Commands;
 using AmvReporting.Domain.DatabaseConnections.Queries;
 using AmvReporting.Infrastructure;
@@ -46,19 +47,15 @@ namespace AmvReporting.Controllers
                 return View(command);
             }
             return RedirectToAction(MVC.Database.Index());
-
-            //return ProcessForm(command, RedirectToAction(MVC.Database.Create()), RedirectToAction(MVC.Database.Index()));
         }
+
 
         [RestoreModelState]
         public virtual ActionResult Edit(String dbId)
         {
-            var database = mediator.Request(new DatabaseQuery(dbId));
-
-            var viewModel = Mapper.Map<EditDatabaseDetailsCommand>(database);
-
-            return View(viewModel);
+            return View(new DatabaseQuery(dbId)).MapTo<EditDatabaseDetailsCommand>();
         }
+
 
         [HttpPost, ValidateAntiForgeryToken]
         public virtual ActionResult Edit(EditDatabaseDetailsCommand command)

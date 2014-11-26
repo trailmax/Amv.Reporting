@@ -4,7 +4,6 @@ using AmvReporting.Domain.ReportingConfigs.Queries;
 using AmvReporting.Infrastructure;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Filters;
-using AutoMapper;
 
 
 namespace AmvReporting.Controllers
@@ -25,9 +24,7 @@ namespace AmvReporting.Controllers
         {
             var appConfig = mediator.Request(new ReportingConfigQuery());
 
-            var viewModel = Mapper.Map<UpdateConfigurationCommand>(appConfig);
-
-            return View(viewModel);
+            return MappedView<UpdateConfigurationCommand>(appConfig);
         }
 
 

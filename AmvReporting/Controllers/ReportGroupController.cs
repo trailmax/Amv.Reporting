@@ -7,6 +7,7 @@ using AmvReporting.Infrastructure;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Filters;
 
+
 namespace AmvReporting.Controllers
 {
     [RoleAuthorizeFilter]
@@ -39,7 +40,8 @@ namespace AmvReporting.Controllers
         public virtual ActionResult Edit(String id)
         {
             var model = mediator.Request(new ReportGroupQuery(id));
-            return AutoMappedView<ReportGroupViewModel>(model);
+
+            return MappedView<ReportGroupViewModel>(model);
         }
 
 
