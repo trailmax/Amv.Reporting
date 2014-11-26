@@ -9,18 +9,10 @@ namespace AmvReporting.Controllers
 {
     public abstract partial class BaseController : Controller
     {
-        //protected ProcessCommandResult<TForm> ProcessCommand<TForm>(TForm form, ActionResult both) where TForm : ICommand
-        //{
-        //    return new ProcessCommandResult<TForm>(form, both);
-        //}
         protected ProcessCommandResult<TForm> ProcessCommand<TForm>(TForm form, ActionResult failure, ActionResult success) where TForm : ICommand
         {
             return new ProcessCommandResult<TForm>(form, failure, success);
         }
-        //protected ProcessCommandResult<TForm> ProcessCommand<TForm>(TForm form, ActionResult both, Func<Guid, ActionResult> redirector) where TForm : ICommand
-        //{
-        //    return new ProcessCommandResult<TForm>(form, both, redirector);
-        //}
 
 
         protected JsonFormActionResult<T> ProcessJsonForm<T>(T command, String successMessage) where T : ICommand
