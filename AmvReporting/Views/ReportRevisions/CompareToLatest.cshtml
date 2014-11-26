@@ -24,17 +24,12 @@
             </ul>
         </div>
     </div>
+    <h3 class="pull-right">Latest</h3>
+    <h3>Revision #@Model.RevisionNumber below</h3>
     <div id="compare"></div>
-    
-    <div>
-        <h2> Revision #@Model.RevisionNumber</h2>
-        <div id="revision" class="hidden">@Model.RevisionJson</div>
-    </div>
-    
-    <div>
-        <h2>Latest</h2>
-        <div id="latest" class="hidden">@Model.LatestJson</div>
-    </div>
+
+    <div id="revision" class="hidden">@Model.RevisionJson</div>
+    <div id="latest" class="hidden">@Model.LatestJson</div>
 </div>
 
 @section scripts
@@ -46,7 +41,10 @@
             var revision = $('#revision')[0].innerHTML;
             var latest = $('#latest')[0].innerHTML;
             $('#compare').mergely({
-                cmsettings: { readOnly: false, lineNumbers: true },
+                width: 'auto',
+                height: 600,
+                ignorews: true,
+                cmsettings: { readOnly: true, lineNumbers: true },
                 lhs: function (setValue) {
                     setValue(revision);
                 },
