@@ -126,6 +126,7 @@
     <Compile Include="Domain\ReportGroups\Queries\GroupReorderQueryHandlerTests.cs" />
     <Compile Include="Domain\Reports\Commands\UpdateReportMetadataCommandHandlerTests.cs" />
     <Compile Include="Domain\Reports\Commands\UpdateReportCodeCommandHandlerTests.cs" />
+    <Compile Include="Domain\Reports\Queries\CompareToLatestQueryHandlerTests.cs" />
     <Compile Include="Explorage\NEventStoreRepositoryTests.cs" />
     <Compile Include="Explorage\SqlFormatter.cs" />
     <Compile Include="Explorage\ValueInjectorTests.cs" />

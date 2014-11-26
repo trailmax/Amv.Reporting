@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Reflection;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Helpers;
@@ -69,7 +70,7 @@ namespace AmvReporting.Domain.Reports.Queries
                     result.Add(reportRevision);
                 }
 
-                return result;
+                return result.OrderByDescending(r => r.RevisionNumber);
             }
         }
 

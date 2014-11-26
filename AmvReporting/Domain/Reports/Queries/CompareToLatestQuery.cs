@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Web;
 using AmvReporting.Infrastructure.CQRS;
 using CommonDomain.Persistence;
 using NEventStore;
@@ -37,12 +38,10 @@ namespace AmvReporting.Domain.Reports.Queries
     public class CompareToLatestQueryHandler : IQueryHandler<CompareToLatestQuery, CompareToLatestViewModel>
     {
         private readonly IRepository repository;
-        private readonly IStoreEvents storeEvents;
 
-        public CompareToLatestQueryHandler(IRepository repository, IStoreEvents storeEvents)
+        public CompareToLatestQueryHandler(IRepository repository)
         {
             this.repository = repository;
-            this.storeEvents = storeEvents;
         }
 
 
@@ -65,12 +64,20 @@ namespace AmvReporting.Domain.Reports.Queries
             var viewmodel = new CompareToLatestViewModel()
             {
                 AggregateId = query.AggregateId,
-                RevisionJson = revisionJson,
-                LatestJson = latestJson,
+                RevisionJson = UnescapeString(revisionJson),
+                LatestJson = UnescapeString(latestJson),
                 RevisionNumber = query.RevisionNumber,
             };
 
             return viewmodel;
+        }
+
+        public static String UnescapeString(String source)
+        {
+            var unescaped = System.Text.RegularExpressions.Regex.Unescape(source);
+            var htmlDecode = HttpUtility.HtmlDecode(unescaped);
+
+            return htmlDecode;
         }
     }
 
