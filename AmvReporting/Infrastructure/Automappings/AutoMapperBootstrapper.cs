@@ -1,7 +1,7 @@
 ﻿using AmvReporting.Domain.DatabaseConnections;
 using AmvReporting.Domain.DatabaseConnections.Commands;
 using AmvReporting.Domain.ReportGroups;
-using AmvReporting.Domain.ReportGroups.ViewModels;
+using AmvReporting.Domain.ReportGroups.Commands;
 using AmvReporting.Domain.ReportingConfigs;
 using AmvReporting.Domain.ReportingConfigs.Commands;
 using AmvReporting.Domain.Reports;
@@ -21,7 +21,7 @@ namespace AmvReporting.Infrastructure.Automappings
             Mapper.CreateMap<ReportAggregate, UpdateReportCodeCommand>()
                   .ForMember(d => d.AggregateId, o => o.MapFrom(s => s.Id));
 
-            Mapper.CreateMap<ReportGroup, ReportGroupViewModel>();
+            Mapper.CreateMap<ReportGroup, EditReportGroupCommand>();
 
             Mapper.CreateMap<ReportAggregate, ReportViewModel>()
                   .ForMember(d => d.AggregateId, o => o.MapFrom(s => s.Id));

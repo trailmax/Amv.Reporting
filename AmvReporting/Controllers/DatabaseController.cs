@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using AmvReporting.Domain.DatabaseConnections.Commands;
 using AmvReporting.Domain.DatabaseConnections.Queries;
-using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Filters;
 
 
@@ -11,13 +10,6 @@ namespace AmvReporting.Controllers
     [RoleAuthorizeFilter]
     public partial class DatabaseController : BaseController
     {
-        private readonly IMediator mediator;
-
-        public DatabaseController(IMediator mediator)
-        {
-            this.mediator = mediator;
-        }
-
         public virtual ActionResult Index()
         {
             return View(new AllDatabasesQuery());
@@ -59,9 +51,7 @@ namespace AmvReporting.Controllers
         [HttpPost]
         public virtual ActionResult CheckDatabaseConnection(String connectionString)
         {
-            var result = mediator.Request(new CheckDatabaseConnectivityQuery(connectionString));
-
-            return Json(result);
+            return View(new CheckDatabaseConnectivityQuery(connectionString)).DoJson();
         }
     }
 }

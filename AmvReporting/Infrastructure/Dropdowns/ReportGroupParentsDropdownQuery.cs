@@ -11,6 +11,11 @@ namespace AmvReporting.Infrastructure.Dropdowns
 {
     public class ReportGroupParentsDropdownQuery : IDropdownQuery
     {
+        public ReportGroupParentsDropdownQuery()
+        {
+            // nothing here
+        }
+
         public ReportGroupParentsDropdownQuery(string groupId)
         {
             GroupId = groupId;

@@ -41,8 +41,6 @@ namespace AmvReporting.Domain.Reports.Commands
 
         public void Handle(CreateReportCommand command)
         {
-            var newId = Guid.NewGuid();
-            command.AggregateId = newId;
             var report = new ReportAggregate(command.AggregateId,
                                     command.ReportGroupId,
                                     command.Title,

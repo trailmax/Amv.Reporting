@@ -8,7 +8,7 @@ using AmvReporting.Infrastructure.CQRS;
 
 namespace AmvReporting.Controllers
 {
-    public partial class BackupsController : Controller
+    public partial class BackupsController : BaseController
     {
         private readonly IMediator mediator;
 
@@ -20,9 +20,7 @@ namespace AmvReporting.Controllers
 
         public virtual ActionResult Index()
         {
-            var model = mediator.Request(new AllBackupsQuery());
-            
-            return View(model);
+            return View(new AllBackupsQuery());
         }
 
 

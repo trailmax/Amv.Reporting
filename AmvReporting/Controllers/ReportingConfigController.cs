@@ -1,8 +1,6 @@
 ﻿using System.Web.Mvc;
 using AmvReporting.Domain.ReportingConfigs.Commands;
 using AmvReporting.Domain.ReportingConfigs.Queries;
-using AmvReporting.Infrastructure;
-using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Filters;
 
 
@@ -11,15 +9,6 @@ namespace AmvReporting.Controllers
     [RoleAuthorizeFilter]
     public partial class ReportingConfigController : BaseController
     {
-        private readonly IMediator mediator;
-
-        public ReportingConfigController(IMediator mediator)
-        {
-            this.mediator = mediator;
-        }
-
-
-        [RestoreModelState]
         public virtual ActionResult Index()
         {
             return View(new ReportingConfigQuery()).MapTo<UpdateConfigurationCommand>();
@@ -34,18 +23,7 @@ namespace AmvReporting.Controllers
                 return ProcessJsonForm(command, "Configuration Updated");
             }
 
-            if (!ModelState.IsValid)
-            {
-                return View(command);
-            }
-            var errors = mediator.ProcessCommand(command);
-            AddErrorsToModelState(errors);
-            if (!ModelState.IsValid)
-            {
-                return View(command);
-            }
-
-            return RedirectToAction(MVC.ReportingConfig.Index());
+            return ProcessCommand(command, View(command), RedirectToAction(MVC.ReportingConfig.Index()));
         }
 	}
 }

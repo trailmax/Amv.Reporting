@@ -232,7 +232,6 @@
     <Compile Include="Domain\Preview\ViewModels\PreviewReportModel.cs" />
     <Compile Include="Domain\Preview\ViewModels\ReportResultPreview.cs" />
     <Compile Include="Domain\ReportGroups\ReportGroupHelpers.cs" />
-    <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupViewModel.cs" />
     <Compile Include="Domain\ReportingConfigs\Commands\UpdateConfigurationCommand.cs" />
     <Compile Include="Domain\Reports\Commands\UpdateReportCodeCommand.cs" />
     <Compile Include="Domain\Reports\Commands\UpdateReportMetadataCommand.cs" />
@@ -310,7 +309,6 @@
     <Compile Include="Infrastructure\NEventStore\RavenPersistenceWireupExtensions.cs" />
     <Compile Include="Infrastructure\PageGeneration\DropDownBuilder.cs" />
     <Compile Include="Infrastructure\PageGeneration\HtmlBuildersFactory.cs" />
-    <Compile Include="Infrastructure\RestoreModelStateAttribute.cs" />
     <Compile Include="Domain\DomainException.cs" />
     <Compile Include="Domain\Reports\ReportViewModel.cs" />
     <Compile Include="Domain\Reports\ReportType.cs" />

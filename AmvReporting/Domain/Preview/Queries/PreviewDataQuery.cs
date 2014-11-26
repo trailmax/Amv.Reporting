@@ -8,6 +8,15 @@ using Raven.Client;
 
 namespace AmvReporting.Domain.Preview.Queries
 {
+    public class PreviewDataResult
+    {
+        public bool IsSuccess { get; set; }
+        public String ExceptionMessage { get; set; }
+        public String Data { get; set; }
+        public ReportType ReportType { get; set; }
+    }
+
+
     public class PreviewDataQuery : IQuery<PreviewDataResult>
     {
         public string Sql { get; set; }
@@ -18,14 +27,6 @@ namespace AmvReporting.Domain.Preview.Queries
             AggregateId = aggregateId;
             Sql = sql;
         }
-    }
-
-    public class PreviewDataResult
-    {
-        public bool IsSuccess { get; set; }
-        public String ExceptionMessage { get; set; }
-        public String Data { get; set; }
-        public ReportType ReportType { get; set; }
     }
 
 

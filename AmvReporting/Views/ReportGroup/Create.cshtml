@@ -1,4 +1,4 @@
-﻿@model ReportGroupViewModel
+﻿@model AmvReporting.Domain.ReportGroups.Commands.CreateReportGroupCommand
 
 @{
     ViewBag.Title = "New Report Group";
@@ -12,7 +12,7 @@
 
     <div class="form-group">
         @Html.LabelFor(r => r.ParentReportGroupId, new { @class = "control-label" })
-        @Html.Domain().Dropdown(r => r.ParentReportGroupId, new ReportGroupParentsDropdownQuery(Model.Id))
+        @Html.Domain().Dropdown(r => r.ParentReportGroupId, new ReportGroupParentsDropdownQuery())
         @Html.ValidationMessageFor(r => r.ParentReportGroupId)
     </div>
     <div class="form-group">

@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using AmvReporting.Domain.Reports;
-using AmvReporting.Domain.Reports.Events;
 using AmvReporting.Infrastructure.CQRS;
 using CommonDomain.Persistence;
 using Raven.Client;

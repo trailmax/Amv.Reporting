@@ -10,6 +10,9 @@ namespace AmvReporting.Infrastructure.ActionResults
     {
         private readonly IQuery<TResult> query;
         private Type destinationType;
+        private bool doJson;
+        private bool jsonAllowGet;
+
 
         public QueryResult(IQuery<TResult> query)
         {
@@ -24,6 +27,13 @@ namespace AmvReporting.Infrastructure.ActionResults
         }
 
 
+        public QueryResult<TResult> DoJson(bool allowGet = false)
+        {
+            this.doJson = true;
+            this.jsonAllowGet = allowGet;
+            return this;
+        }
+
         public override void ExecuteResult(ControllerContext context)
         {
             var mediator = DependencyResolver.Current.GetService<IMediator>();
@@ -37,9 +47,23 @@ namespace AmvReporting.Infrastructure.ActionResults
                 ViewData.Model = mappedResult;
             }
 
+            if (doJson)
+            {
+                var jsonResult = new JsonResult()
+                                     {
+                                         Data = ViewData.Model,
+                                     };
+                if (jsonAllowGet)
+                {
+                    jsonResult.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                }
 
-
-            base.ExecuteResult(context);
+                jsonResult.ExecuteResult(context);
+            }
+            else
+            {
+                base.ExecuteResult(context);
+            }
         }
     }
 }

@@ -26,6 +26,9 @@ namespace AmvReporting.Controllers
     public partial class ReportGroupController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ReportGroupController() { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected ReportGroupController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]

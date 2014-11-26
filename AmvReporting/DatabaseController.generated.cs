@@ -26,6 +26,9 @@ namespace AmvReporting.Controllers
     public partial class DatabaseController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public DatabaseController() { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected DatabaseController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]

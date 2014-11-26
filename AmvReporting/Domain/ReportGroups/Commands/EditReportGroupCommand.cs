@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using AmvReporting.Infrastructure.CQRS;
 using Raven.Client;
 
@@ -8,6 +9,8 @@ namespace AmvReporting.Domain.ReportGroups.Commands
     {
         public String Id { get; set; }
         public String Title { get; set; }
+
+        [Display(Name = "Parent Group")]
         public String ParentReportGroupId { get; set; }
         public bool Enabled { get; set; }
     }

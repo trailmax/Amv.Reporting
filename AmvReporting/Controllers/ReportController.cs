@@ -3,10 +3,7 @@ using System.Web.Mvc;
 using AmvReporting.Domain.Menus;
 using AmvReporting.Domain.Reports;
 using AmvReporting.Domain.Reports.Commands;
-using AmvReporting.Infrastructure;
-using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Filters;
-using AutoMapper;
 using CommonDomain.Persistence;
 
 
@@ -15,25 +12,20 @@ namespace AmvReporting.Controllers
     [RoleAuthorizeFilter]
     public partial class ReportController : BaseController
     {
-        private readonly IMediator mediator;
         private readonly IRepository repository;
 
-        public ReportController(IMediator mediator, IRepository repository)
+        public ReportController(IRepository repository)
         {
-            this.mediator = mediator;
             this.repository = repository;
         }
 
 
         public virtual ActionResult Index()
         {
-            var model = mediator.Request(new MenuModelQuery(true));
-
-            return View(model);
+            return View(new MenuModelQuery(true));
         }
 
 
-        [RestoreModelState]
         public virtual ActionResult Create()
         {
             var model = new CreateReportCommand()
@@ -47,18 +39,8 @@ namespace AmvReporting.Controllers
         [HttpPost]
         public virtual ActionResult Create(CreateReportCommand command)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(command);
-            }
-            var errors = mediator.ProcessCommand(command);
-            AddErrorsToModelState(errors);
-            if (!ModelState.IsValid)
-            {
-                return View(command);
-            }
-
-            return RedirectToAction(MVC.Report.UpdateCode(command.AggregateId));
+            command.AggregateId = Guid.NewGuid();
+            return ProcessCommand(command, View(command), RedirectToAction(MVC.Report.UpdateCode(command.AggregateId)));
         }
 
 
@@ -80,18 +62,7 @@ namespace AmvReporting.Controllers
                 return ProcessJsonForm(command, "Changes are saved");
             }
 
-            if (!ModelState.IsValid)
-            {
-                return View(command);
-            }
-            var errors = mediator.ProcessCommand(command);
-            AddErrorsToModelState(errors);
-            if (!ModelState.IsValid)
-            {
-                return View(command);
-            }
-
-            return RedirectToAction(MVC.Report.UpdateMetadata(command.AggregateId));
+            return ProcessCommand(command, View(command), RedirectToAction(MVC.Report.UpdateMetadata(command.AggregateId)));
         }
 
 
@@ -112,18 +83,7 @@ namespace AmvReporting.Controllers
                 return ProcessJsonForm(command, "Changes are saved");
             }
 
-            if (!ModelState.IsValid)
-            {
-                return View(command);
-            }
-            var errors = mediator.ProcessCommand(command);
-            AddErrorsToModelState(errors);
-            if (!ModelState.IsValid)
-            {
-                return View(command);
-            }
-
-            return RedirectToAction(MVC.Report.UpdateCode(command.AggregateId));
+            return ProcessCommand(command, View(command), RedirectToAction(MVC.Report.UpdateMetadata(command.AggregateId)));
         }
 
 
