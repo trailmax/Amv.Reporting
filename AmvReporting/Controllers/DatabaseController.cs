@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 using AmvReporting.Domain.DatabaseConnections.Commands;
 using AmvReporting.Domain.DatabaseConnections.Queries;
-using AmvReporting.Infrastructure;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Filters;
-using AutoMapper;
 
 
 namespace AmvReporting.Controllers
@@ -23,11 +20,10 @@ namespace AmvReporting.Controllers
 
         public virtual ActionResult Index()
         {
-            var databases = mediator.Request(new AllDatabasesQuery());
-            return View(databases);
+            return View(new AllDatabasesQuery());
         }
 
-        [RestoreModelState]
+
         public virtual ActionResult Create()
         {
             return View();
@@ -36,21 +32,10 @@ namespace AmvReporting.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public virtual ActionResult Create(CreateDatabaseDetailsCommand command)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(command);
-            }
-            var errors = mediator.ProcessCommand(command);
-            AddErrorsToModelState(errors);
-            if (!ModelState.IsValid)
-            {
-                return View(command);
-            }
-            return RedirectToAction(MVC.Database.Index());
+            return ProcessCommand(command, View(command), RedirectToAction(MVC.Database.Index()));
         }
 
 
-        [RestoreModelState]
         public virtual ActionResult Edit(String dbId)
         {
             return View(new DatabaseQuery(dbId)).MapTo<EditDatabaseDetailsCommand>();
@@ -60,19 +45,7 @@ namespace AmvReporting.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public virtual ActionResult Edit(EditDatabaseDetailsCommand command)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(command);
-            }
-            var errors = mediator.ProcessCommand(command);
-            AddErrorsToModelState(errors);
-            if (!ModelState.IsValid)
-            {
-                return View(command);
-            }
-
-            return RedirectToAction(MVC.Database.Index());
-            //return ProcessForm(command, RedirectToAction(MVC.Database.Edit(command.Id)), RedirectToAction(MVC.Database.Index()));
+            return ProcessCommand(command, View(command), RedirectToAction(MVC.Database.Index()));
         }
 
 

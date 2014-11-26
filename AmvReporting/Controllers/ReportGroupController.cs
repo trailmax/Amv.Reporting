@@ -31,7 +31,7 @@ namespace AmvReporting.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public virtual ActionResult Create(CreateReportGroupCommand command)
         {
-            return ProcessForm(command, RedirectToAction(MVC.ReportGroup.Create()),
+            return ProcessCommand(command, RedirectToAction(MVC.ReportGroup.Create()),
                 RedirectToAction(MVC.Report.Index()));
         }
 
@@ -39,16 +39,14 @@ namespace AmvReporting.Controllers
         [RestoreModelState]
         public virtual ActionResult Edit(String id)
         {
-            var model = mediator.Request(new ReportGroupQuery(id));
-
-            return MappedView<ReportGroupViewModel>(model);
+            return View(new ReportGroupQuery(id)).MapTo<ReportGroupViewModel>();
         }
 
 
         [HttpPost, ValidateAntiForgeryToken]
         public virtual ActionResult Edit(EditReportGroupCommand command)
         {
-            return ProcessForm(command, 
+            return ProcessCommand(command, 
                 RedirectToAction(MVC.ReportGroup.Edit(command.Id)), 
                 RedirectToAction(MVC.Report.Index()));
         }
@@ -64,7 +62,7 @@ namespace AmvReporting.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public virtual ActionResult Reorder(ReorderGroupCommand command)
         {
-            return ProcessForm(command, 
+            return ProcessCommand(command, 
                 RedirectToAction(MVC.ReportGroup.Reorder(command.ParentGroupId)),
                 RedirectToAction(MVC.Report.Index()));
         }

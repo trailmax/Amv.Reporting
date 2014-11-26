@@ -22,9 +22,7 @@ namespace AmvReporting.Controllers
         [RestoreModelState]
         public virtual ActionResult Index()
         {
-            var appConfig = mediator.Request(new ReportingConfigQuery());
-
-            return MappedView<UpdateConfigurationCommand>(appConfig);
+            return View(new ReportingConfigQuery()).MapTo<UpdateConfigurationCommand>();
         }
 
 

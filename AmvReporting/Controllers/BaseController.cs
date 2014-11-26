@@ -9,17 +9,17 @@ namespace AmvReporting.Controllers
 {
     public abstract partial class BaseController : Controller
     {
-        //protected FormActionResult<TForm> ProcessForm<TForm>(TForm form, ActionResult both) where TForm : ICommand
+        //protected ProcessCommandResult<TForm> ProcessCommand<TForm>(TForm form, ActionResult both) where TForm : ICommand
         //{
-        //    return new FormActionResult<TForm>(form, both);
+        //    return new ProcessCommandResult<TForm>(form, both);
         //}
-        protected FormActionResult<TForm> ProcessForm<TForm>(TForm form, ActionResult failure, ActionResult success) where TForm : ICommand
+        protected ProcessCommandResult<TForm> ProcessCommand<TForm>(TForm form, ActionResult failure, ActionResult success) where TForm : ICommand
         {
-            return new FormActionResult<TForm>(form, failure, success);
+            return new ProcessCommandResult<TForm>(form, failure, success);
         }
-        //protected FormActionResult<TForm> ProcessForm<TForm>(TForm form, ActionResult both, Func<Guid, ActionResult> redirector) where TForm : ICommand
+        //protected ProcessCommandResult<TForm> ProcessCommand<TForm>(TForm form, ActionResult both, Func<Guid, ActionResult> redirector) where TForm : ICommand
         //{
-        //    return new FormActionResult<TForm>(form, both, redirector);
+        //    return new ProcessCommandResult<TForm>(form, both, redirector);
         //}
 
 
@@ -28,13 +28,6 @@ namespace AmvReporting.Controllers
             return new JsonFormActionResult<T>(command, successMessage);
         }
 
-
-        public ActionResult MappedView<T>(string viewName, object model) where T : class
-        {
-            var mappeddata = Mapper.Map<T>(model);
-
-            return View(viewName, mappeddata);
-        }
 
         public ActionResult MappedView<T>(object model) where T : class
         {

@@ -248,7 +248,6 @@
     <Compile Include="HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\ActionResults\AutoMapViewResult.cs" />
     <Compile Include="Infrastructure\ActionResults\QueryResult.cs" />
     <Compile Include="Infrastructure\Dropdowns\DatabaseDropdownQuery.cs" />
     <Compile Include="Infrastructure\Dropdowns\IDropdownQuery.cs" />
@@ -275,7 +274,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DatabaseController.cs" />
     <Compile Include="Controllers\PreviewController.cs" />
-    <Compile Include="Infrastructure\ActionResults\FormActionResult.cs" />
+    <Compile Include="Infrastructure\ActionResults\ProcessCommandResult.cs" />
     <Compile Include="Infrastructure\ActionResults\JsonFormActionResult.cs" />
     <Compile Include="Infrastructure\Autofac\AmvReportingModule.cs" />
     <Compile Include="Infrastructure\Autofac\AutofacConfig.cs" />
@@ -287,13 +286,10 @@
     <Compile Include="Infrastructure\CQRS\IMediator.cs" />
     <Compile Include="Infrastructure\CQRS\IQuery.cs" />
     <Compile Include="Infrastructure\CQRS\IQueryHandler.cs" />
-    <Compile Include="Infrastructure\CQRS\IRedirectingCommand.cs" />
     <Compile Include="Infrastructure\CQRS\ErrorList.cs" />
     <Compile Include="Infrastructure\CQRS\ICommand.cs" />
     <Compile Include="Infrastructure\CQRS\ICommandHandler.cs" />
     <Compile Include="Infrastructure\CQRS\ICommandValidator.cs" />
-    <Compile Include="Infrastructure\CQRS\IErrorMessage.cs" />
-    <Compile Include="Infrastructure\CQRS\IErrorMessageFormatter.cs" />
     <Compile Include="Infrastructure\CQRS\NullObjectCommandValidator.cs" />
     <Compile Include="Infrastructure\CQRS\StringErrorMessage.cs" />
     <Compile Include="Controllers\ReportController.cs" />
@@ -302,7 +298,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\ConventionProvider.cs" />
-    <Compile Include="Infrastructure\CQRS\StringErrorMessageFormatter.cs" />
     <Compile Include="Infrastructure\Helpers\EnumerableExtensions.cs" />
     <Compile Include="Infrastructure\Helpers\EnumExtensions.cs" />
     <Compile Include="Infrastructure\Helpers\ExpressionHelper.cs" />

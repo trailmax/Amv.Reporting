@@ -11,17 +11,9 @@ namespace AmvReporting.Infrastructure.ActionResults
         private readonly IQuery<TResult> query;
         private Type destinationType;
 
-
         public QueryResult(IQuery<TResult> query)
         {
             this.query = query;
-        }
-
-
-        public QueryResult<TResult> MapTo(Type providedType)
-        {
-            destinationType = providedType;
-            return this;
         }
 
 
@@ -41,9 +33,11 @@ namespace AmvReporting.Infrastructure.ActionResults
 
             if (destinationType != null)
             {
-                var mappedResult = Mapper.Map(result, typeof (TResult), destinationType);
+                var mappedResult = Mapper.Map(result, typeof(TResult), destinationType);
                 ViewData.Model = mappedResult;
             }
+
+
 
             base.ExecuteResult(context);
         }

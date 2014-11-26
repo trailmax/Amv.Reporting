@@ -44,12 +44,6 @@ namespace AmvReporting.Infrastructure.Autofac
                 .AsClosedTypesOf(typeof(ICommandValidator<>))
                 .InstancePerLifetimeScope();
 
-
-            // Register General Error message formatters
-            builder.RegisterTypes(types)
-                .AsClosedTypesOf(typeof(IErrorMessageFormatter<>))
-                .InstancePerLifetimeScope();
-
             //Register All Query Handlers
             builder.RegisterTypes(types)
                 .AsClosedTypesOf(typeof(IQueryHandler<,>))
