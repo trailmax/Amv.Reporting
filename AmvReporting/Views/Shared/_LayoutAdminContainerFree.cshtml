@@ -3,6 +3,7 @@
 }
 @section css
 {
+    @Styles.Render(Bundles.AdminCss)
     @RenderSection("css", required: false)
 }
 
@@ -25,6 +26,8 @@
     
 
 @section scripts{
+    @Scripts.Render(Bundles.AdminJs)
+
     @RenderSection("scripts", required: false)
 
     <script language="javascript">
