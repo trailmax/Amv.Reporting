@@ -28,8 +28,8 @@
     <h3>Revision #@Model.RevisionNumber below</h3>
     <div id="compare"></div>
 
-    <div id="revision" class="hidden">@Model.RevisionJson</div>
-    <div id="latest" class="hidden">@Model.LatestJson</div>
+    <pre id="revision" class="hidden">@Html.Raw(Model.RevisionJson)</pre>
+    <pre id="latest" class="hidden">@Html.Raw(Model.LatestJson)</pre>
 </div>
 
 @section scripts
