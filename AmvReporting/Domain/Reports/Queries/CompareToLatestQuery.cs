@@ -3,7 +3,6 @@ using System.Reflection;
 using System.Web;
 using AmvReporting.Infrastructure.CQRS;
 using CommonDomain.Persistence;
-using NEventStore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 

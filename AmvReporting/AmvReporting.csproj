@@ -351,6 +351,7 @@
     <Content Include="Content\jquery.treetable.css" />
     <Content Include="Content\jquery.treetable.theme.default.css" />
     <Content Include="Content\mergely.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="Examples\Google_Graphs.htm" />
     <Content Include="Examples\StackingTwoSeries.html" />
     <Content Include="Examples\Stacking.html" />
@@ -614,6 +615,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\searchcursor.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Views\Database\_CommonScripts.cshtml" />
     <Content Include="Content\flot.css" />
     <Content Include="Examples\BarChart.html" />

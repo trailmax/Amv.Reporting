@@ -33,6 +33,7 @@ namespace AmvReporting
                 "~/Scripts/Datatables/extras/Scroller/css/dataTables.scroller.css",
                 "~/Scripts/Datatables/extras/TableTools/css/TableTools.css",
                 "~/Scripts/Datatables/extras/TableTools/css/TableTools_JUI.css",
+                "~/Content/toastr.min.css",
                 "~/Content/jquery.treetable.css");
             styleBundle.Include("~/Content/jquery.treetable.theme.default.css");
             bundles.Add(styleBundle);
@@ -52,6 +53,7 @@ namespace AmvReporting
                 "~/Scripts/DataTables/extras/TableTools/js/ZeroClipboard.js",
                 "~/Scripts/ie8.js",
                 "~/Scripts/amplify.store.js",
+                "~/Scripts/toastr.min.js",
                 "~/Scripts/jquery.treetablePersist.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/flot").Include(

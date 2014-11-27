@@ -23,20 +23,12 @@
     @Scripts.Render("~/bundles/flot")
     
     <script type="text/javascript" language="javascript">
-        jQuery.showAlert = function (message, alertLevel) {
-            $('#alert-placeholder').html('<div class="in alert ' + alertLevel + '" id="alert-message"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>');
-            window.setTimeout(function () {
-                $("#alert-message").fadeTo(500, 0).slideUp(500, function () {
-                    $(this).remove();
-                });
-            }, 5000);
-        };
-
         jQuery.showWarning = function (message) {
-            $.showAlert(message, 'alert-danger');
+            toastr.warning(message);
         };
         jQuery.showSuccess = function (message) {
-            $.showAlert(message, 'alert-success');
+
+            toastr.success(message);
         };
 
         $('#treetable').persistedTreeTable({
