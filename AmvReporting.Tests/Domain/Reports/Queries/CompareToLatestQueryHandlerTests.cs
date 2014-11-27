@@ -1,4 +1,5 @@
-﻿using AmvReporting.Domain.Reports.Queries;
+﻿using System;
+using AmvReporting.Domain.Reports.Queries;
 using FluentAssertions;
 using Xunit;
 
@@ -12,10 +13,7 @@ namespace AmvReporting.Tests.Domain.Reports.Queries
         {
             // Arrange
             var source = @"""Sql"": ""SELECT TOP 10 *\r\nFROM people\r\n"",";
-            var expected = 
-@"""Sql"": ""SELECT TOP 10 *
-FROM people
-"",";
+            var expected = String.Format(@"""Sql"": ""SELECT TOP 10 *{0}FROM people{0}"",", Environment.NewLine);
             // act
             var result = CompareToLatestQueryHandler.UnescapeString(source);
 
