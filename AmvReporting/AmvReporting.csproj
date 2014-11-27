@@ -425,11 +425,11 @@
     <Content Include="Scripts\CodeMirror\codemirror.css" />
     <Content Include="Scripts\CodeMirror\codemirror.js" />
     <Content Include="Scripts\CodeMirror\mode\css.js" />
-    <Content Include="Scripts\CodeMirror\mode\htmlembedded.js" />
     <Content Include="Scripts\CodeMirror\mode\htmlmixed.js" />
     <Content Include="Scripts\CodeMirror\mode\javascript.js" />
     <Content Include="Scripts\CodeMirror\mode\meta.js" />
     <Content Include="Scripts\CodeMirror\mode\sql.js" />
+    <Content Include="Scripts\CodeMirror\mode\xml.js" />
     <Content Include="Scripts\CodeMirror\theme\3024-day.css" />
     <Content Include="Scripts\CodeMirror\theme\3024-night.css" />
     <Content Include="Scripts\CodeMirror\theme\ambiance-mobile.css" />

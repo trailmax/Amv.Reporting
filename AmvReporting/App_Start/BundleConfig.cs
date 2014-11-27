@@ -64,6 +64,10 @@ namespace AmvReporting
             bundles.Add(new ScriptBundle("~/bundles/mergely_js").Include(
                 "~/Scripts/CodeMirror/codemirror.js",
                 "~/Scripts/CodeMirror/mode/sql.js",
+                "~/Scripts/CodeMirror/mode/javascript.js",
+                "~/Scripts/CodeMirror/mode/css.js",
+                "~/Scripts/CodeMirror/mode/xml.js",
+                "~/Scripts/CodeMirror/mode/htmlmixed.js",
                 "~/Scripts/CodeMirror/addon/display/fullscreen.js",
                 "~/Scripts/mergely.js",
                 "~/Scripts/searchcursor.js"));

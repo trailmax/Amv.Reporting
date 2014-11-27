@@ -94,31 +94,65 @@
     @Scripts.Render("~/bundles/mergely_js")
     <script>
         $(document).ready(function () {
+            var extraKeys = {
+                "F11": function (cm) {
+                    cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+                },
+                "Esc": function (cm) {
+                    if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+                },
+                "Ctrl-S": function (cm) {
+                    cm.save();
+                    $('#code-form').submit();
+                },
+                "F5": function (cm) {
+                    cm.save();
+                    $('#previewData').click();
+                },
+                "Ctrl-F5": function (cm) {
+                    cm.save();
+                    $('#previewFullReport').click();
+                },
+                "Ctrl-L": "deleteLine",
+            };
+
             var sqlEditor = CodeMirror.fromTextArea(document.getElementById("Sql"), {
                 lineNumbers: true,
                 mode: 'text/x-sql',
                 matchBrackets: true,
                 smartIndent: true,
                 indentUnit: 4,
-                extraKeys: {
-                    "F11": function (cm) {
-                        cm.setOption("fullScreen", !cm.getOption("fullScreen"));
-                    },
-                    "Esc": function (cm) {
-                        if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
-                    },
-                    "Ctrl-S": function (cm) {
-                        cm.save();
-                        $('#code-form').submit();
-                    },
-                    "F5": function (cm) {
-                        cm.save();
-                        $('#previewData').click();
-                    },
-                    "Ctrl-L": "deleteLine",
-                }
+                extraKeys: extraKeys,
             });
 
+
+            var javascriptEditor = CodeMirror.fromTextArea(document.getElementById("JavaScript"), {
+                lineNumbers: true,
+                mode: 'text/javascript',
+                matchBrackets: true,
+                smartIndent: true,
+                indentUnit: 4,
+                extraKeys: extraKeys,
+            });
+
+
+            var htmlEditor = CodeMirror.fromTextArea(document.getElementById("HtmlOverride"), {
+                lineNumbers: true,
+                mode: 'text/html',
+                matchBrackets: true,
+                smartIndent: true,
+                indentUnit: 4,
+                extraKeys: extraKeys,
+            });
+
+            var cssEditor = CodeMirror.fromTextArea(document.getElementById("Css"), {
+                lineNumbers: true,
+                mode: 'text/css',
+                matchBrackets: true,
+                smartIndent: true,
+                indentUnit: 4,
+                extraKeys: extraKeys,
+            });
 
             var refreshPreview = function (data) {
                 $('#previewContainer').fadeOut(500, function () {
