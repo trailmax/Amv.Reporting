@@ -3,6 +3,11 @@
 @{
     ViewBag.Title = "Application Configuration";
 }
+@section css
+{
+    @Styles.Render("~/Content/mergely_css")
+}
+
 
 <h2>Application Configuration</h2>
 
@@ -11,16 +16,51 @@
     @Html.AntiForgeryToken()
     
     <div class="form-group">
-        @Html.LabelFor(m => m.GlobalCss, new { @class = "control-label" })
-        @Html.TextAreaFor(m => m.GlobalCss, new { @class = "form-control", rows = 10 })
-        @Html.ValidationMessageFor(m => m.GlobalCss)
-    </div>
-    <div class="form-group">
         <div>This JS will be placeed within Document ready and after variables with data.</div>
         @Html.LabelFor(m => m.GlobalJavascript, new { @class = "control-label" })
         @Html.TextAreaFor(m => m.GlobalJavascript, new { @class = "form-control", rows = 10 })
         @Html.ValidationMessageFor(m => m.GlobalJavascript)
-    </div>    
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.GlobalCss, new { @class = "control-label" })
+        @Html.TextAreaFor(m => m.GlobalCss, new { @class = "form-control", rows = 10 })
+        @Html.ValidationMessageFor(m => m.GlobalCss)
+    </div>
     
     <input type="submit" value="Save" class="btn btn-default" />
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/mergely_js")
+    <script>
+        $(document).ready(function () {
+            var extraKeys = {
+                "F11": function (cm) {
+                    cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+                },
+                "Esc": function (cm) {
+                    if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+                },
+                "Ctrl-L": "deleteLine",
+            };
+
+            var javascriptEditor = CodeMirror.fromTextArea(document.getElementById("GlobalJavascript"), {
+                lineNumbers: true,
+                mode: 'text/javascript',
+                matchBrackets: true,
+                smartIndent: true,
+                indentUnit: 4,
+                extraKeys: extraKeys,
+            });
+
+            var cssEditor = CodeMirror.fromTextArea(document.getElementById("GlobalCss"), {
+                lineNumbers: true,
+                mode: 'text/css',
+                matchBrackets: true,
+                smartIndent: true,
+                indentUnit: 4,
+                extraKeys: extraKeys,
+            });
+        });
+    </script>
 }
