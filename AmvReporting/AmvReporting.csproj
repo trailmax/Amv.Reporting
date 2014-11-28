@@ -199,6 +199,7 @@
     <Compile Include="Controllers\ReportingConfigController.cs" />
     <Compile Include="Controllers\ReportGroupController.cs" />
     <Compile Include="Controllers\ReportRevisionsController.cs" />
+    <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="DatabaseController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -245,6 +246,13 @@
     <Compile Include="Domain\Reports\Queries\AllReportRevisionsQuery.cs" />
     <Compile Include="Domain\Reports\Queries\CompareToLatestQuery.cs" />
     <Compile Include="Domain\Reports\ReportAggregate.cs" />
+    <Compile Include="Domain\Templates\Commands\CreateTemplateCommand.cs" />
+    <Compile Include="Domain\Templates\Commands\UpdateTemplateCommand.cs" />
+    <Compile Include="Domain\Templates\Events\CreateTemplateEvent.cs" />
+    <Compile Include="Domain\Templates\Events\TemplateDenormaliser.cs" />
+    <Compile Include="Domain\Templates\Events\UpdateTemplateEvent.cs" />
+    <Compile Include="Domain\Templates\Queries\AllTemplatesQuery.cs" />
+    <Compile Include="Domain\Templates\TemplateAggregate.cs" />
     <Compile Include="HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -341,6 +349,9 @@
     <Compile Include="T4MVC.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TemplateController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Content Include="Content\bootstrap-theme.css" />
@@ -635,6 +646,9 @@
     <Content Include="Views\Shared\_LayoutAdminContainerFree.cshtml" />
     <Content Include="Views\Report\_Metadata.cshtml" />
     <Content Include="Views\Report\UpdateCode.cshtml" />
+    <Content Include="Views\Template\Index.cshtml" />
+    <Content Include="Views\Template\Create.cshtml" />
+    <Content Include="Views\Template\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
