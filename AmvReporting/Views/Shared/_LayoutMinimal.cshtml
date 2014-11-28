@@ -18,13 +18,6 @@
     @Scripts.Render(Bundles.ClientJs)
    
     <script type="text/javascript" language="javascript">
-        jQuery.showWarning = function (message) {
-            toastr.warning(message);
-        };
-        jQuery.showSuccess = function (message) {
-            toastr.success(message);
-        };
-
         $('#treetable').persistedTreeTable({
             persist: true,
             expandable: true,

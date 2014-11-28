@@ -31,7 +31,16 @@
     @RenderSection("scripts", required: false)
 
     <script language="javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
+            function showWarning(message) {
+                toastr.warning(message);
+            };
+
+            function showSuccess(message) {
+                toastr.success(message);
+            };
+
+
             // Generalised delete button for entries in the tables
             $('.delete-by-ajax').on('click', function(event) {
                 event.stopPropagation();
@@ -46,14 +55,14 @@
                         url: self.data('url'),
                         data: postData,
                         error: function() {
-                            $.showWarning('Could not delete record');
+                            showWarning('Could not delete record');
                         },
                         success: function(data) {
                             if (data.Success) {
-                                $.showSuccess(data.SuccessMessage);
+                                showSuccess(data.SuccessMessage);
                                 self.closest('tr').delay(500).fadeOut(1000);
                             } else {
-                                $.showWarning('Unable to delete the record: ' + data.FailureMessage);
+                                showWarning('Unable to delete the record: ' + data.FailureMessage);
                             }
                         }
                     });
@@ -75,13 +84,13 @@
                     url: $form.attr('action'),
                     data: $form.serialize(),
                     error: function () {
-                        $.showWarning('Could not submit form');
+                        showWarning('Could not submit form');
                     },
                     success: function (data) {
                         if (data.Success) {
-                            $.showSuccess(data.SuccessMessage);
+                            showSuccess(data.SuccessMessage);
                         } else {
-                            $.showWarning('Unable to submit form: ' + data.FailureMessage);
+                            showWarning('Unable to submit form: ' + data.FailureMessage);
                         }
                     }
                 });

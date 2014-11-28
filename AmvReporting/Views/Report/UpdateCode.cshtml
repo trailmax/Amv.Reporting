@@ -179,7 +179,7 @@
                     url: '@Url.Action(MVC.Preview.Data())',
                     data: postData,
                     error: function () {
-                        $.showWarning('Communication Error: could not connect to the server');
+                        showWarning('Communication Error: could not connect to the server');
                     },
                     success: refreshPreview,
                 });
@@ -195,7 +195,7 @@
                     url: '@Url.Action(MVC.Preview.CleanseAndFormatSql())',
                     data: postData,
                     error: function () {
-                        $.showWarning('Communication Error: could not connect to the server');
+                        showWarning('Communication Error: could not connect to the server');
                     },
                     success: refreshSqlTextBox,
                 });
@@ -211,7 +211,7 @@
                         url: '@Url.Action(MVC.Preview.Report())',
                         data: $('form').serialize(),
                         error: function () {
-                            $.showWarning('Communication Error: could not connect to the server');
+                            showWarning('Communication Error: could not connect to the server');
                         },
                         success: refreshPreview,
                     });
