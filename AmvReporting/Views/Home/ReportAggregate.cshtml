@@ -29,6 +29,20 @@
     else if (Model.ReportType == ReportType.Table)
     {
         <table id="report"></table>
+        <script>
+            var oDataTable = $('.report').dataTable({
+                aaData: data,
+                aoColumns: columns,
+                iDisplayLength: 50,
+                sDom: 'Tlfrtip',
+                aaSorting: [],
+                oTableTools: {
+                    sSwfPath: '../Scripts/DataTables/extras/TableTools/swf/copy_csv_xls_pdf.swf',
+                    aButtons: ["copy", 'pdf', 'xls']
+                },
+                aLengthMenu: [[20, 50, 100, -1], [20, 50, 100, "All"]],
+            });
+        </script>
     }
     else if (Model.ReportType == ReportType.LineChart)
     {
