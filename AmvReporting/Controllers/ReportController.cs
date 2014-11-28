@@ -87,13 +87,14 @@ namespace AmvReporting.Controllers
         }
 
 
-        //TODO Restore Clone
-        //public virtual ActionResult Clone(Guid id)
-        //{
-        //    var report = repository.GetById<ReportAggregate>(id);
-
-        //    return MappedView<ReportDetailsViewModel>(MVC.Report.Views.Create, report);
-        //}
+        public virtual ActionResult Clone(Guid id)
+        {
+            var newId = Guid.NewGuid();
+            var cloneCommand = new CloneReportCommand(id, newId);
+            return ProcessCommand(cloneCommand,
+                                  RedirectToAction(MVC.Report.UpdateMetadata(newId)),
+                                  RedirectToAction(MVC.Report.UpdateMetadata(newId)));
+        }
 
 
         [HttpPost]

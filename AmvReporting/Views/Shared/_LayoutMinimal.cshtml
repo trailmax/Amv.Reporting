@@ -8,26 +8,20 @@
         <meta http-equiv="X-UA-Compatible" content="IE=8" />
     }
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
+    @Styles.Render(Bundles.ClientCss)
     @RenderSection("css", required: false)
 </head>
 <body>
 
     @RenderBody()
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/js")
-    @Scripts.Render("~/bundles/flot")
     
+    @Scripts.Render(Bundles.ClientJs)
+   
     <script type="text/javascript" language="javascript">
         jQuery.showWarning = function (message) {
             toastr.warning(message);
         };
         jQuery.showSuccess = function (message) {
-
             toastr.success(message);
         };
 

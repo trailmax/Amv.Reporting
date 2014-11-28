@@ -101,10 +101,8 @@ namespace AmvReporting.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string _ViewStart = "_ViewStart";
                 public readonly string Index = "Index";
             }
-            public readonly string _ViewStart = "~/Views/ReportingConfig/_ViewStart.cshtml";
             public readonly string Index = "~/Views/ReportingConfig/Index.cshtml";
         }
     }

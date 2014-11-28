@@ -233,6 +233,7 @@
     <Compile Include="Domain\Preview\ViewModels\ReportResultPreview.cs" />
     <Compile Include="Domain\ReportGroups\ReportGroupHelpers.cs" />
     <Compile Include="Domain\ReportingConfigs\Commands\UpdateConfigurationCommand.cs" />
+    <Compile Include="Domain\Reports\Commands\CloneReportCommand.cs" />
     <Compile Include="Domain\Reports\Commands\UpdateReportCodeCommand.cs" />
     <Compile Include="Domain\Reports\Commands\UpdateReportMetadataCommand.cs" />
     <Compile Include="Domain\Reports\Events\ChangeReportListOrderEvent.cs" />
@@ -731,7 +732,6 @@
     <Content Include="Views\Shared\EditorTemplates\MenuNode.cshtml" />
     <Content Include="Views\ReportGroup\Reorder.cshtml" />
     <Content Include="Views\ReportingConfig\Index.cshtml" />
-    <Content Include="Views\ReportingConfig\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

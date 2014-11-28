@@ -23,8 +23,7 @@
         <td>
             @Html.ActionLink("View", MVC.Home.ReportAggregate(report.AggregateId), new { @class = "btn btn-default btn-xs" })
             @Url.AjaxDeleteButton(MVC.Report.Delete(), report, i => i.AggregateId)
-            @*TODO FIX*@
-            @*@Html.ActionLink("Clone", MVC.Report.Clone(report.AggregateId), new { @class = "btn btn-default btn-xs" })*@
+            @Html.ActionLink("Clone", MVC.Report.Clone(report.AggregateId), new { @class = "btn btn-default btn-xs" })
         </td>
     </tr>
 }
