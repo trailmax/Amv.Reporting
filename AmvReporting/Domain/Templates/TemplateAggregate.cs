@@ -34,7 +34,6 @@ namespace AmvReporting.Domain.Templates
 
         public bool AllowOverrides { get; private set; }
 
-
         public void UpdateTemplate(String title, String javascript, String html, bool allowOverrides)
         {
             RaiseEvent(new UpdateTemplateEvent(Id, title, javascript, html, allowOverrides));

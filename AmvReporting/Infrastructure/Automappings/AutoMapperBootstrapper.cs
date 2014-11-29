@@ -35,7 +35,7 @@ namespace AmvReporting.Infrastructure.Automappings
 
 
             Mapper.CreateMap<TemplateAggregate, UpdateTemplateCommand>()
-                .ForMember(d => d.AggregateID, o => o.MapFrom(s => s.Id));
+                .ForMember(d => d.AggregateId, o => o.MapFrom(s => s.Id));
 
 
             Mapper.AddGlobalIgnore("Possible");

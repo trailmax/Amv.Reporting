@@ -41,6 +41,8 @@ namespace AmvReporting.Domain.Templates.Events
     {
         public Guid AggregateId { get; set; }
 
+        public String Title { get; set; }
+
         public String JavaScript { get; set; }
 
         public String Html { get; set; }

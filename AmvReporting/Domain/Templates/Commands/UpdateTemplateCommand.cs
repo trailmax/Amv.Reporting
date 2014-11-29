@@ -22,7 +22,7 @@ namespace AmvReporting.Domain.Templates.Commands
 
         public void Handle(UpdateTemplateCommand command)
         {
-            var template = repository.GetById<TemplateAggregate>(command.AggregateID);
+            var template = repository.GetById<TemplateAggregate>(command.AggregateId);
             template.UpdateTemplate(command.Title, command.JavaScript, command.Html, command.AllowOverrides);
 
             var commitId = Guid.NewGuid();

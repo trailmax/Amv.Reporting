@@ -58,7 +58,6 @@ namespace AmvReporting
                 "~/Scripts/jquery.validate.unobtrusive.js",
                 "~/Scripts/jquery-ui-1.10.3.custom.js",
                 "~/Scripts/toastr.min.js",
-                "~/Scripts/searchcursor.js",
                 "~/Scripts/CodeMirror/codemirror.js",
                 "~/Scripts/CodeMirror/mode/sql.js",
                 "~/Scripts/CodeMirror/mode/javascript.js",
@@ -66,6 +65,7 @@ namespace AmvReporting
                 "~/Scripts/CodeMirror/mode/xml.js",
                 "~/Scripts/CodeMirror/mode/htmlmixed.js",
                 "~/Scripts/CodeMirror/addon/display/fullscreen.js",
+                "~/Scripts/searchcursor.js",
                 "~/Scripts/mergely.js"
                 ));
 

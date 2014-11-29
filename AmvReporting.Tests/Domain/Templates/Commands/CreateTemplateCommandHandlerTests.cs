@@ -23,7 +23,7 @@ namespace AmvReporting.Tests.Domain.Templates.Commands
             sut.Handle(command);
 
             // Assert
-            var templateAggregate = Repository.GetById<TemplateAggregate>(command.AggregateID);
+            var templateAggregate = Repository.GetById<TemplateAggregate>(command.AggregateId);
 
             AssertionHelpers.PropertiesAreEqual(command, templateAggregate);
         }
@@ -39,7 +39,7 @@ namespace AmvReporting.Tests.Domain.Templates.Commands
             sut.Handle(command);
 
             // Assert
-            var veiwModel = DocumentSession.Query<TemplateViewModel>().First(t => t.AggregateId == command.AggregateID);
+            var veiwModel = DocumentSession.Query<TemplateViewModel>().First(t => t.AggregateId == command.AggregateId);
             AssertionHelpers.PropertiesAreEqual(command, veiwModel);
         }
     }

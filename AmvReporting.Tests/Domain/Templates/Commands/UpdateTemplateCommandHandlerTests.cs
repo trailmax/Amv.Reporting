@@ -27,7 +27,7 @@ namespace AmvReporting.Tests.Domain.Templates.Commands
         [Fact]
         public void UpdatedAggregated_Matches_Command()
         {
-            var command = Fixture.Build<UpdateTemplateCommand>().With(c => c.AggregateID, templateAggregate.Id).Create();
+            var command = Fixture.Build<UpdateTemplateCommand>().With(c => c.AggregateId, templateAggregate.Id).Create();
             var sut = Container.Resolve<ICommandHandler<UpdateTemplateCommand>>();
 
             // Act
@@ -42,7 +42,7 @@ namespace AmvReporting.Tests.Domain.Templates.Commands
         public void ViewModel_Matches_Command()
         {
             // Arrange
-            var command = Fixture.Build<UpdateTemplateCommand>().With(c => c.AggregateID, templateAggregate.Id).Create();
+            var command = Fixture.Build<UpdateTemplateCommand>().With(c => c.AggregateId, templateAggregate.Id).Create();
             var sut = Container.Resolve<ICommandHandler<UpdateTemplateCommand>>();
 
             // Act

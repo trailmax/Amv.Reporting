@@ -31,7 +31,7 @@ namespace AmvReporting.Controllers
         [HttpPost]
         public virtual ActionResult Create(CreateTemplateCommand command)
         {
-            command.AggregateID = Guid.NewGuid();
+            command.AggregateId = Guid.NewGuid();
             return ProcessCommand(command, View(command), RedirectToAction(MVC.Template.Index()));
         }
 
@@ -44,6 +44,11 @@ namespace AmvReporting.Controllers
         [HttpPost]
         public virtual ActionResult Update(UpdateTemplateCommand command)
         {
+            if (HttpContext.Request.IsAjaxRequest())
+            {
+                return ProcessJsonForm(command, "Changes are saved");
+            }
+
             return ProcessCommand(command, View(command), RedirectToAction(MVC.Template.Index()));
         }
     }

@@ -117,10 +117,14 @@ namespace AmvReporting.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string _CommonScripts = "_CommonScripts";
+                public readonly string _CreateEdit = "_CreateEdit";
                 public readonly string Create = "Create";
                 public readonly string Index = "Index";
                 public readonly string Update = "Update";
             }
+            public readonly string _CommonScripts = "~/Views/Template/_CommonScripts.cshtml";
+            public readonly string _CreateEdit = "~/Views/Template/_CreateEdit.cshtml";
             public readonly string Create = "~/Views/Template/Create.cshtml";
             public readonly string Index = "~/Views/Template/Index.cshtml";
             public readonly string Update = "~/Views/Template/Update.cshtml";

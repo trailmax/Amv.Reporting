@@ -7,7 +7,7 @@ namespace AmvReporting.Domain.Templates.Commands
 {
     public class CreateTemplateCommand : ICommand
     {
-        public Guid AggregateID { get; set; }
+        public Guid AggregateId { get; set; }
 
         public String Title { get; set; }
 
@@ -31,7 +31,7 @@ namespace AmvReporting.Domain.Templates.Commands
 
         public void Handle(CreateTemplateCommand command)
         {
-            var template = new TemplateAggregate(command.AggregateID, command.Title, command.JavaScript, command.Html, command.AllowOverrides);
+            var template = new TemplateAggregate(command.AggregateId, command.Title, command.JavaScript, command.Html, command.AllowOverrides);
             var commitId = Guid.NewGuid();
             repository.Save(template, commitId);
         }

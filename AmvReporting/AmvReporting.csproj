@@ -649,6 +649,8 @@
     <Content Include="Views\Template\Index.cshtml" />
     <Content Include="Views\Template\Create.cshtml" />
     <Content Include="Views\Template\Update.cshtml" />
+    <Content Include="Views\Template\_CreateEdit.cshtml" />
+    <Content Include="Views\Template\_CommonScripts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
