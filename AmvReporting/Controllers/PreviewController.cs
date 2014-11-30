@@ -34,20 +34,19 @@ namespace AmvReporting.Controllers
         [HttpPost]
         public virtual ActionResult Report(PreviewReportModel model)
         {
-            var query = new PreviewDataQuery(model.AggregateId, model.Sql);
-            var queryResult = mediator.Request(query);
+            var previewData = mediator.Request(new PreviewDataQuery(model.AggregateId, model.Sql));
             var config = mediator.Request(new ReportingConfigQuery());
 
             var outModel = new ReportResultPreview()
                            {
-                               Data = queryResult.Data,
-                               JavaScript = model.JavaScript,
+                               Data = previewData.Data,
+                               ReportJavaScript = model.JavaScript,
+                               ReportHtml = model.HtmlOverride,
+                               ReportCss = model.Css,
+                               TemplateJavascript = previewData.TemplateJavaScript,
+                               TemplateHtml = previewData.TemplateHtml,
                                GlobalJs = config.GlobalJavascript,
-                               Css = model.Css,
                                GlobalCss = config.GlobalCss,
-                               HtmlOverride = model.HtmlOverride,
-                               TemplateJavascript = queryResult.TemplateJavaScript,
-                               TemplateHtml = queryResult.TemplateHtml,
                            };
 
             return PartialView(outModel);

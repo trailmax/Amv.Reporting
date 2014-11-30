@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using AmvReporting.Domain.DatabaseConnections;
+using AmvReporting.Domain.ReportingConfigs.Queries;
 using AmvReporting.Domain.Templates.Events;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Helpers;
@@ -15,11 +16,11 @@ namespace AmvReporting.Domain.Reports.Queries
         public String Title { get; set; }
         public String Description { get; set; }
         public String Data { get; set; }
-        public String JavaScript { get; set; }
-        public String HtmlOverride { get; set; }
         public String GlobalJs { get; set; }
-        public String Css { get; set; }
         public String GlobalCss { get; set; }
+        public String ReportJavaScript { get; set; }
+        public String ReportHtml { get; set; }
+        public String ReportCss { get; set; }
         public String TemplateJavascript { get; set; }
         public String TemplateHtml { get; set; }
     }
@@ -49,10 +50,12 @@ namespace AmvReporting.Domain.Reports.Queries
     public class ReportResultQueryHandler : IQueryHandler<ReportResultQuery, ReportResult>
     {
         private readonly IDocumentSession ravenSession;
+        private readonly IMediator mediator;
 
-        public ReportResultQueryHandler(IDocumentSession ravenSession)
+        public ReportResultQueryHandler(IDocumentSession ravenSession, IMediator mediator)
         {
             this.ravenSession = ravenSession;
+            this.mediator = mediator;
         }
 
 
@@ -60,8 +63,6 @@ namespace AmvReporting.Domain.Reports.Queries
         {
             var report = ravenSession.Query<ReportViewModel>().Include<ReportViewModel>(r => r.DatabaseId)
                 .FirstOrDefault(r => r.AggregateId == query.Id);
-            var template = ravenSession.Query<TemplateViewModel>()
-                                       .SingleOrDefault(t => t.AggregateId == query.Id);
 
             if (report == null)
             {
@@ -69,19 +70,24 @@ namespace AmvReporting.Domain.Reports.Queries
             }
 
             var dbConnection = ravenSession.Load<DatabaseConnection>(report.DatabaseId);
+            var template = ravenSession.Query<TemplateViewModel>()
+                                       .SingleOrDefault(t => t.AggregateId == report.TemplateId);
+
+            var config = mediator.Request(new ReportingConfigQuery());
 
             var result = new ReportResult()
                          {
                              AggregateId = report.AggregateId,
                              Title = report.Title,
                              Description = report.Description,
-                             Css = report.Css,
-                             JavaScript = report.JavaScript,
-                             HtmlOverride = report.HtmlOverride,
+                             ReportCss = report.Css,
+                             ReportJavaScript = report.JavaScript,
+                             ReportHtml = report.HtmlOverride,
                              TemplateJavascript = template.CheckForNull(t => t.JavaScript),
-                             TemplateHtml = template.CheckForNull(t => t.Html)
+                             TemplateHtml = template.CheckForNull(t => t.Html),
+                             GlobalCss = config.GlobalCss,
+                             GlobalJs = config.GlobalJavascript,
                          };
-
 
             using (var sqlServerHelper = new SqlServerHelper())
             {

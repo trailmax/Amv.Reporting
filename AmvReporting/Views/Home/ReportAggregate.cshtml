@@ -7,7 +7,7 @@
 {
     <style>
         @Model.GlobalCss
-        @Model.Css
+        @Model.ReportCss
     </style>
 }
 
@@ -21,58 +21,9 @@
     @Model.Description
 </h5>
 
-@{
-    if (!String.IsNullOrEmpty(Model.HtmlOverride))
-    {
-        @Html.Raw(Model.HtmlOverride);
-    }
-    else if (Model.ReportType == ReportType.Table)
-    {
-        <table id="report"></table>
-        <script>
-            var oDataTable = $('.report').dataTable({
-                aaData: data,
-                aoColumns: columns,
-                iDisplayLength: 50,
-                sDom: 'Tlfrtip',
-                aaSorting: [],
-                oTableTools: {
-                    sSwfPath: '../Scripts/DataTables/extras/TableTools/swf/copy_csv_xls_pdf.swf',
-                    aButtons: ["copy", 'pdf', 'xls']
-                },
-                aLengthMenu: [[20, 50, 100, -1], [20, 50, 100, "All"]],
-            });
-        </script>
-    }
-    else if (Model.ReportType == ReportType.LineChart)
-    {
-        <div class="graph-container">
-            <div id="report" style="height: 600px;"></div>
-        </div>
-    }
-    else if (Model.ReportType == ReportType.LineChartWithSelection)
-    {
-        <div class="row">
-            <div class="col-md-8 graph-container">
-                <div id="report" style="height: 600px;"></div>
-            </div>
-            <div class="col-md-4" id="choices"></div>
-        </div>
-    }
-    else if (Model.ReportType == ReportType.GoogleGraphs)
-    {
-        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-        <script>
-            // load google chart api
-            google.load('visualization', '1.0', { 'packages': ['corechart'] });
-        </script>
-        <div class="graph-container">
-            <div id="report" style="height: 600px;"></div>
-        </div>
-    }
-}
+@Html.Raw(Model.TemplateHtml)
 
-
+@Html.Raw(Model.ReportHtml)
 
 @section scripts
 {
@@ -82,7 +33,9 @@
 
             @Html.Raw(Model.GlobalJs)
 
-            @Html.Raw(Model.JavaScript)
+            @Html.Raw(Model.TemplateJavascript)
+
+            @Html.Raw(Model.ReportJavaScript)
         });
     </script>
 }

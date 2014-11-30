@@ -27,8 +27,7 @@ namespace AmvReporting.Controllers
 
         public virtual ActionResult ReportAggregate(Guid id)
         {
-            var query = new ReportResultQuery(id);
-            var result = mediator.Request(query);
+            var result = mediator.Request(new ReportResultQuery(id));
 
             var config = mediator.Request(new ReportingConfigQuery());
             result.GlobalCss = config.GlobalCss;
