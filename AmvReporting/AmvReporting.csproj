@@ -322,7 +322,6 @@
     <Compile Include="Infrastructure\PageGeneration\HtmlBuildersFactory.cs" />
     <Compile Include="Domain\DomainException.cs" />
     <Compile Include="Domain\Reports\ReportViewModel.cs" />
-    <Compile Include="Domain\Reports\ReportType.cs" />
     <Compile Include="MigrationController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>

@@ -12,7 +12,7 @@ namespace AmvReporting.Domain.Reports
 
         public String Title { get; set; }
 
-        public ReportType ReportType { get; set; }
+        public Guid? TemplateId { get; set; }
 
         public String Description { get; set; }
 

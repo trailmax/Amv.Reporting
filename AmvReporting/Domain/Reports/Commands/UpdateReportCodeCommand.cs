@@ -11,6 +11,8 @@ namespace AmvReporting.Domain.Reports.Commands
     {
         public Guid AggregateId { get; set; }
 
+        public Guid? TemplateId { get; set; }
+
         [AllowHtml]
         [Required, DataType(DataType.MultilineText)]
         public String Sql { get; set; }
@@ -41,7 +43,7 @@ namespace AmvReporting.Domain.Reports.Commands
         public void Handle(UpdateReportCodeCommand command)
         {
             var report = repository.GetById<ReportAggregate>(command.AggregateId);
-            report.UpdateCode(command.Sql, command.JavaScript, command.Css, command.HtmlOverride);
+            report.UpdateCode(command.TemplateId, command.Sql, command.JavaScript, command.Css, command.HtmlOverride);
 
             var commitId = Guid.NewGuid();
 

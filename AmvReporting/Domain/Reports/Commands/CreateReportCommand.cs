@@ -22,10 +22,6 @@ namespace AmvReporting.Domain.Reports.Commands
         public String Description { get; set; }
 
         public bool Enabled { get; set; }
-
-        [Required]
-        public ReportType ReportType { get; set; }
-
     }
 
 
@@ -44,7 +40,6 @@ namespace AmvReporting.Domain.Reports.Commands
             var report = new ReportAggregate(command.AggregateId,
                                     command.ReportGroupId,
                                     command.Title,
-                                    command.ReportType,
                                     command.Description,
                                     command.DatabaseId,
                                     command.Enabled);

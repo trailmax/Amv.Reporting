@@ -45,8 +45,9 @@ namespace AmvReporting.Controllers
                                GlobalJs = config.GlobalJavascript,
                                Css = model.Css,
                                GlobalCss = config.GlobalCss,
-                               ReportType = queryResult.ReportType,
                                HtmlOverride = model.HtmlOverride,
+                               TemplateJavascript = queryResult.TemplateJavaScript,
+                               TemplateHtml = queryResult.TemplateHtml,
                            };
 
             return PartialView(outModel);

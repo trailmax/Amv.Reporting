@@ -1,5 +1,5 @@
 using System;
-using AmvReporting.Domain.Reports;
+
 
 namespace AmvReporting.Domain.Preview.ViewModels
 {
@@ -11,6 +11,7 @@ namespace AmvReporting.Domain.Preview.ViewModels
         public String Css { get; set; }
         public String GlobalCss { get; set; }
         public String HtmlOverride { get; set; }
-        public ReportType ReportType { get; set; }
+        public String TemplateJavascript { get; set; }
+        public String TemplateHtml { get; set; }
     }
 }

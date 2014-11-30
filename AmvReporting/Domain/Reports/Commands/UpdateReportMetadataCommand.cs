@@ -25,7 +25,7 @@ namespace AmvReporting.Domain.Reports.Commands
         {
             var report = repository.GetById<ReportAggregate>(command.AggregateId);
 
-            report.UpdateMetadata(command.ReportGroupId, command.Title, command.ReportType, command.Description, command.DatabaseId, command.Enabled);
+            report.UpdateMetadata(command.ReportGroupId, command.Title, command.Description, command.DatabaseId, command.Enabled);
 
             var commitId = Guid.NewGuid();
             repository.Save(report, commitId);

@@ -14,17 +14,16 @@ namespace AmvReporting.Domain.Reports
         }
 
 
-        public ReportAggregate(Guid id, String reportGroupId, String title, ReportType reportType, String description, String databaseId, bool isEnabled)
+        public ReportAggregate(Guid id, String reportGroupId, String title, String description, String databaseId, bool isEnabled)
             : this(id)
         {
-            RaiseEvent(new ReportCreatedEvent(Id, reportGroupId, title, reportType, description, databaseId, isEnabled));
+            RaiseEvent(new ReportCreatedEvent(Id, reportGroupId, title, description, databaseId, isEnabled));
         }
         private void Apply(ReportCreatedEvent @event)
         {
             Id = @event.AggregateId;
             ReportGroupId = @event.ReportGroupId;
             Title = @event.Title;
-            ReportType = @event.ReportType;
             Description = @event.Description;
             DatabaseId = @event.DatabaseId;
             Enabled = @event.Enabled;
@@ -35,7 +34,7 @@ namespace AmvReporting.Domain.Reports
 
         public String Title { get; private set; }
 
-        public ReportType ReportType { get; private set; }
+        public Guid? TemplateId { get; private set; }
 
         public String Description { get; private set; }
 
@@ -55,28 +54,28 @@ namespace AmvReporting.Domain.Reports
         public int? ListOrder { get; private set; }
 
 
-        public void UpdateMetadata(String reportGroupId, String title, ReportType reportType, String description, String databaseId, bool isEnabled)
+        public void UpdateMetadata(String reportGroupId, String title, String description, String databaseId, bool isEnabled)
         {
-            RaiseEvent(new UpdateReportMetadaEvent(this.Id, reportGroupId, title, reportType, description, databaseId, isEnabled));
+            RaiseEvent(new UpdateReportMetadaEvent(this.Id, reportGroupId, title, description, databaseId, isEnabled));
         }
         private void Apply(UpdateReportMetadaEvent @event)
         {
             ReportGroupId = @event.ReportGroupId;
             Title = @event.Title;
-            ReportType = @event.ReportType;
             Description = @event.Description;
             DatabaseId = @event.DatabaseId;
             Enabled = @event.Enabled;
         }
 
 
-        public void UpdateCode(string sql, string javaScript, string css, string htmlOverride)
+        public void UpdateCode(Guid? templateId, string sql, string javaScript, string css, string htmlOverride)
         {
-            var @event = new ReportCodeUpdatedEvent(this.Id, sql, javaScript, css, htmlOverride);
+            var @event = new ReportCodeUpdatedEvent(this.Id, templateId, sql, javaScript, css, htmlOverride);
             RaiseEvent(@event);
         }
         private void Apply(ReportCodeUpdatedEvent @event)
         {
+            TemplateId = @event.TemplateId;
             Sql = @event.Sql;
             JavaScript = @event.JavaScript;
             Css = @event.Css;

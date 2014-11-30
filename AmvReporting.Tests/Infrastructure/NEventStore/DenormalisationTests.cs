@@ -46,7 +46,7 @@ namespace AmvReporting.Tests.Infrastructure.NEventStore
         {
             // Arrange
             var aggregate = Fixture.Create<ReportAggregate>();
-            aggregate.UpdateCode(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
+            aggregate.UpdateCode(Guid.NewGuid(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
 
 
             // Act
@@ -66,7 +66,7 @@ namespace AmvReporting.Tests.Infrastructure.NEventStore
         {
             // Arrange
             var aggregate = Fixture.Create<ReportAggregate>();
-            aggregate.UpdateMetadata(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), ReportType.LineChartWithSelection, Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), true);
+            aggregate.UpdateMetadata(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), true);
 
 
             // Act

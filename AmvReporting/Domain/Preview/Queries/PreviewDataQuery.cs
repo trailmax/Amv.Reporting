@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using AmvReporting.Domain.DatabaseConnections;
 using AmvReporting.Domain.Reports;
+using AmvReporting.Domain.Templates.Events;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Helpers;
 using Raven.Client;
@@ -13,7 +14,8 @@ namespace AmvReporting.Domain.Preview.Queries
         public bool IsSuccess { get; set; }
         public String ExceptionMessage { get; set; }
         public String Data { get; set; }
-        public ReportType ReportType { get; set; }
+        public String TemplateJavaScript { get; set; }
+        public String TemplateHtml { get; set; }
     }
 
 
@@ -52,9 +54,13 @@ namespace AmvReporting.Domain.Preview.Queries
 
             var database = ravenSession.Load<DatabaseConnection>(report.DatabaseId);
 
+            var template = ravenSession.Query<TemplateViewModel>()
+                .SingleOrDefault(t => t.AggregateId == report.TemplateId);
+
             var result = new PreviewDataResult()
             {
-                ReportType = report.ReportType,
+                TemplateJavaScript = template.CheckForNull(t => t.JavaScript),
+                TemplateHtml = template.CheckForNull(t => t.Html),
             };
 
             try

@@ -36,11 +36,10 @@ namespace AmvReporting.Domain.Reports.Commands
             var newReport = new ReportAggregate(command.NewAggregateId,
                                                 report.ReportGroupId,
                                                 report.Title,
-                                                report.ReportType,
                                                 report.Description,
                                                 report.DatabaseId,
                                                 report.Enabled);
-            newReport.UpdateCode(report.Sql, report.JavaScript, report.Css, report.HtmlOverride);
+            newReport.UpdateCode(report.TemplateId, report.Sql, report.JavaScript, report.Css, report.HtmlOverride);
             newReport.SetListOrder(report.ListOrder ?? 0);
 
             var commitId = Guid.NewGuid();

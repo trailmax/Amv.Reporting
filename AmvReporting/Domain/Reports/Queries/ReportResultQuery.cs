@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Linq;
 using AmvReporting.Domain.DatabaseConnections;
-using AmvReporting.Domain.DatabaseConnections.Queries;
+using AmvReporting.Domain.Templates.Events;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Helpers;
-using CommonDomain.Persistence;
 using Raven.Client;
 
 
@@ -21,7 +20,8 @@ namespace AmvReporting.Domain.Reports.Queries
         public String GlobalJs { get; set; }
         public String Css { get; set; }
         public String GlobalCss { get; set; }
-        public ReportType ReportType { get; set; }
+        public String TemplateJavascript { get; set; }
+        public String TemplateHtml { get; set; }
     }
 
 
@@ -60,7 +60,8 @@ namespace AmvReporting.Domain.Reports.Queries
         {
             var report = ravenSession.Query<ReportViewModel>().Include<ReportViewModel>(r => r.DatabaseId)
                 .FirstOrDefault(r => r.AggregateId == query.Id);
-
+            var template = ravenSession.Query<TemplateViewModel>()
+                                       .SingleOrDefault(t => t.AggregateId == query.Id);
 
             if (report == null)
             {
@@ -77,7 +78,8 @@ namespace AmvReporting.Domain.Reports.Queries
                              Css = report.Css,
                              JavaScript = report.JavaScript,
                              HtmlOverride = report.HtmlOverride,
-                             ReportType = report.ReportType,
+                             TemplateJavascript = template.CheckForNull(t => t.JavaScript),
+                             TemplateHtml = template.CheckForNull(t => t.Html)
                          };
 
 

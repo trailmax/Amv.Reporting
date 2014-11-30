@@ -75,8 +75,8 @@ namespace AmvReporting.Controllers
                 var oldId = oldReport.Id;
                 migrationDictionary.Add(oldId, newId);
 
-                var newReport = new ReportAggregate(newId, oldReport.ReportGroupId, oldReport.Title, oldReport.ReportType, oldReport.Description, oldReport.DatabaseId, oldReport.Enabled);
-                newReport.UpdateCode(oldReport.Sql, oldReport.JavaScript, oldReport.Css, oldReport.HtmlOverride);
+                var newReport = new ReportAggregate(newId, oldReport.ReportGroupId, oldReport.Title, oldReport.Description, oldReport.DatabaseId, oldReport.Enabled);
+                newReport.UpdateCode(null, oldReport.Sql, oldReport.JavaScript, oldReport.Css, oldReport.HtmlOverride);
                 newReport.SetListOrder(oldReport.ListOrder ?? 0);
 
                 repository.Save(newReport, Guid.NewGuid());
@@ -145,5 +145,14 @@ namespace AmvReporting.Domain.Reports
         public bool Enabled { get; set; }
 
         public int? ListOrder { get; set; }
+    }
+
+    [Obsolete("Replaced by Report Templates")]
+    public enum ReportType
+    {
+        Table,
+        LineChart,
+        LineChartWithSelection,
+        GoogleGraphs,
     }
 }

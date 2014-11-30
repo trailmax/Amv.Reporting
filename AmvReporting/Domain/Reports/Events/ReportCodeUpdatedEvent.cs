@@ -12,15 +12,18 @@ namespace AmvReporting.Domain.Reports.Events
     [Description("Updated source codes")]
     public class ReportCodeUpdatedEvent : IEvent
     {
-        public ReportCodeUpdatedEvent(Guid aggregateId, string sql, string javaScript, string css, string htmlOverride)
+        public ReportCodeUpdatedEvent(Guid aggregateId, Guid? templateId, string sql, string javaScript, string css, string htmlOverride)
         {
             AggregateId = aggregateId;
+            TemplateId = templateId;
             Sql = sql;
             JavaScript = javaScript;
             Css = css;
             HtmlOverride = htmlOverride;
         }
 
+
+        public Guid? TemplateId { get; set; }
 
         public String Sql { get; private set; }
 

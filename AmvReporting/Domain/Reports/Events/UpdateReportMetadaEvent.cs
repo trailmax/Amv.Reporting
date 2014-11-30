@@ -15,20 +15,17 @@ namespace AmvReporting.Domain.Reports.Events
 
         public String Title { get; set; }
 
-        public ReportType ReportType { get; set; }
-
         public String Description { get; set; }
 
         public String DatabaseId { get; private set; }
 
         public bool Enabled { get; private set; }
 
-        public UpdateReportMetadaEvent(Guid aggregateId, String reportGroupId, String title, ReportType reportType, String description, String databaseId, bool enabled)
+        public UpdateReportMetadaEvent(Guid aggregateId, String reportGroupId, String title, String description, String databaseId, bool enabled)
         {
             AggregateId = aggregateId;
             ReportGroupId = reportGroupId;
             Title = title;
-            ReportType = reportType;
             Description = description;
             DatabaseId = databaseId;
             Enabled = enabled;
