@@ -9,9 +9,9 @@ using AmvReporting.Infrastructure.NEventStore;
 using NEventStore;
 
 
-namespace AmvReporting.Domain.Reports.Queries
+namespace AmvReporting.Domain.EventSourcing
 {
-    public class ReportRevision
+    public class AggregateRevision
     {
         public Guid AggregateId { get; set; }
 
@@ -24,32 +24,32 @@ namespace AmvReporting.Domain.Reports.Queries
         public String EventDescription { get; set; }
     }
 
-    public class AllReportRevisionsQuery : IQuery<IEnumerable<ReportRevision>>
+    public class AllAggregateRevisionsQuery : IQuery<IEnumerable<AggregateRevision>>
     {
         public Guid AggregateId { get; set; }
 
-        public AllReportRevisionsQuery(Guid id)
+        public AllAggregateRevisionsQuery(Guid id)
         {
             AggregateId = id;
         }
     }
 
-    public class AllReportRevisionsQueryHandler : IQueryHandler<AllReportRevisionsQuery, IEnumerable<ReportRevision>>
+    public class AllAggregateRevisionsQueryHandler : IQueryHandler<AllAggregateRevisionsQuery, IEnumerable<AggregateRevision>>
     {
         private readonly IStoreEvents storeEvents;
 
 
-        public AllReportRevisionsQueryHandler(IStoreEvents storeEvents)
+        public AllAggregateRevisionsQueryHandler(IStoreEvents storeEvents)
         {
             this.storeEvents = storeEvents;
         }
 
 
-        public IEnumerable<ReportRevision> Handle(AllReportRevisionsQuery query)
+        public IEnumerable<AggregateRevision> Handle(AllAggregateRevisionsQuery query)
         {
             using (var stream = storeEvents.OpenStream(query.AggregateId, 0, int.MaxValue))
             {
-                var result = new List<ReportRevision>();
+                var result = new List<AggregateRevision>();
 
                 var revisionNumber = 0;
                 foreach (var committedEvent in stream.CommittedEvents)
@@ -58,7 +58,7 @@ namespace AmvReporting.Domain.Reports.Queries
                     var headers = committedEvent.Headers;
 
                     var @event = committedEvent.Body;
-                    var reportRevision = new ReportRevision
+                    var revision = new AggregateRevision
                     {
                         EventDescription = GetDescription(@event),
                         AggregateId = query.AggregateId,
@@ -67,7 +67,7 @@ namespace AmvReporting.Domain.Reports.Queries
                         Username = headers.GetUsername(),
                     };
 
-                    result.Add(reportRevision);
+                    result.Add(revision);
                 }
 
                 return result.OrderByDescending(r => r.RevisionNumber);

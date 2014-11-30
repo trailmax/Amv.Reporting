@@ -1,23 +1,17 @@
 ﻿@model IEnumerable<AmvReporting.Domain.EventSourcing.AggregateRevision>
 
 @{
+    ViewBag.Title = "Revisions of Template";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-    ViewBag.Title = "Report Revisions";
-    var aggregateId = Model.First().AggregateId;
 }
 
-<h2>Report Revisions</h2>
-
-<!-- Nav tabs -->
+<h2>Revisions for template "@ViewBag.Header"</h2>
 <div role="tabpanel" class="tabpanel">
     <ul class="nav nav-tabs" role="tablist">
-        <li>@Html.ActionLink("Meta", MVC.Report.UpdateMetadata(aggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
-        <li>@Html.ActionLink("Code", MVC.Report.UpdateCode(aggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
-        <li class="active">@Html.ActionLink("Revisions", MVC.ReportRevisions.ViewAllVersions(aggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+        <li>@Html.ActionLink("Edit", MVC.Template.Update(Model.First().AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+        <li class="active">@Html.ActionLink("Revisions", MVC.Template.ViewRevisions(Model.First().AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
     </ul>
 </div>
-
-
 <table class="table">
     <thead>
         <tr>
@@ -38,9 +32,7 @@
             <td>
                 @if (revision.RevisionNumber < Model.Max(r => r.RevisionNumber))
                 {
-                    @Html.ActionLink("View Revision", MVC.ReportRevisions.ViewRevision(revision.AggregateId, revision.RevisionNumber), new { @class = "btn btn-sm btn-default" })
-                    <text>&nbsp;</text>
-                    @Html.ActionLink("Compare to Latest", MVC.ReportRevisions.CompareToLatest(revision.AggregateId, revision.RevisionNumber), new { @class = "btn btn-sm btn-success" })
+                    @Html.ActionLink("Compare to Latest", MVC.Template.CompareToLatest(revision.AggregateId, revision.RevisionNumber), new { @class = "btn btn-sm btn-success" })
                 }
                 else
                 {

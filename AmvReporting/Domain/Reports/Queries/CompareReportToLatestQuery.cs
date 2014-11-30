@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Reflection;
 using System.Web;
 using AmvReporting.Infrastructure.CQRS;
+using AmvReporting.Infrastructure.Helpers;
 using CommonDomain.Persistence;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 
 namespace AmvReporting.Domain.Reports.Queries
 {
-    public class CompareToLatestViewModel
+    public class CompareReportToLatestViewModel
     {
         public Guid AggregateId { get; set; }
 
@@ -18,11 +17,13 @@ namespace AmvReporting.Domain.Reports.Queries
         public String RevisionJson { get; set; }
 
         public int RevisionNumber { get; set; }
+
+        public String Title { get; set; }
     }
 
-    public class CompareToLatestQuery : IQuery<CompareToLatestViewModel>
+    public class CompareReportToLatestQuery : IQuery<CompareReportToLatestViewModel>
     {
-        public CompareToLatestQuery(Guid aggregateId, int revisionNumber)
+        public CompareReportToLatestQuery(Guid aggregateId, int revisionNumber)
         {
             AggregateId = aggregateId;
             RevisionNumber = revisionNumber;
@@ -34,17 +35,17 @@ namespace AmvReporting.Domain.Reports.Queries
     }
 
 
-    public class CompareToLatestQueryHandler : IQueryHandler<CompareToLatestQuery, CompareToLatestViewModel>
+    public class CompareReportToLatestQueryHandler : IQueryHandler<CompareReportToLatestQuery, CompareReportToLatestViewModel>
     {
         private readonly IRepository repository;
 
-        public CompareToLatestQueryHandler(IRepository repository)
+        public CompareReportToLatestQueryHandler(IRepository repository)
         {
             this.repository = repository;
         }
 
 
-        public CompareToLatestViewModel Handle(CompareToLatestQuery query)
+        public CompareReportToLatestViewModel Handle(CompareReportToLatestQuery query)
         {
             var serializerSettings = new JsonSerializerSettings()
             {
@@ -60,34 +61,18 @@ namespace AmvReporting.Domain.Reports.Queries
 
 
 
-            var viewmodel = new CompareToLatestViewModel()
+            var viewmodel = new CompareReportToLatestViewModel()
             {
                 AggregateId = query.AggregateId,
-                RevisionJson = UnescapeString(revisionJson),
-                LatestJson = UnescapeString(latestJson),
+                RevisionJson = revisionJson.Unescape(),
+                LatestJson = latestJson.Unescape(),
                 RevisionNumber = query.RevisionNumber,
+                Title = latest.Title,
             };
 
             return viewmodel;
         }
 
-        public static String UnescapeString(String source)
-        {
-            var unescaped = System.Text.RegularExpressions.Regex.Unescape(source);
-            var htmlDecode = HttpUtility.HtmlDecode(unescaped);
 
-            return htmlDecode;
-        }
-    }
-
-
-    public class TypeOnlyContractResolver<T> : DefaultContractResolver
-    {
-        protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
-        {
-            JsonProperty property = base.CreateProperty(member, memberSerialization);
-            property.ShouldSerialize = instance => property.DeclaringType == typeof(T);
-            return property;
-        }
     }
 }

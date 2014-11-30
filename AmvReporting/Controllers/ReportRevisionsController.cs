@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using AmvReporting.Domain.EventSourcing;
 using AmvReporting.Domain.Reports;
 using AmvReporting.Domain.Reports.Queries;
 using CommonDomain.Persistence;
@@ -20,7 +21,7 @@ namespace AmvReporting.Controllers
 
         public virtual ActionResult ViewAllVersions(Guid id)
         {
-            return View(new AllReportRevisionsQuery(id));
+            return View(new AllAggregateRevisionsQuery(id));
         }
 
 
@@ -34,7 +35,7 @@ namespace AmvReporting.Controllers
 
         public virtual ActionResult CompareToLatest(Guid id, int revisionNumber)
         {
-            return View(new CompareToLatestQuery(id, revisionNumber));
+            return View(new CompareReportToLatestQuery(id, revisionNumber));
         }
     }
 }

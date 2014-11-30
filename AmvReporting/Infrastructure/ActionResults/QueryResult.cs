@@ -14,9 +14,11 @@ namespace AmvReporting.Infrastructure.ActionResults
         private bool jsonAllowGet;
 
 
-        public QueryResult(IQuery<TResult> query)
+        public QueryResult(IQuery<TResult> query, ViewDataDictionary viewData, TempDataDictionary tempData)
         {
             this.query = query;
+            ViewData = viewData;
+            TempData = tempData;
         }
 
 

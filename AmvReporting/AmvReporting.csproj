@@ -206,6 +206,8 @@
     <Compile Include="Domain\Backup\AllBackupsQuery.cs" />
     <Compile Include="Domain\Backup\Commands\CreateBackupCommand.cs" />
     <Compile Include="Domain\Backup\Commands\RestoreBackupCommand.cs" />
+    <Compile Include="Domain\Templates\Queries\CompareTemplateToLatestQuery.cs" />
+    <Compile Include="Infrastructure\Helpers\TypeOnlyContractResolver.cs" />
     <Compile Include="Domain\Migrations\EventStoreMigrationDictionaryQuery.cs" />
     <Compile Include="Domain\Migrations\EventStoreMigrationDictonary.cs" />
     <Compile Include="Domain\ReportingConfigs\ReportingConfig.cs" />
@@ -243,8 +245,8 @@
     <Compile Include="Domain\Reports\Events\ReportCreatedEvent.cs" />
     <Compile Include="Domain\Reports\Events\ReportDenormaliser.cs" />
     <Compile Include="Domain\Reports\Events\UpdateReportMetadaEvent.cs" />
-    <Compile Include="Domain\Reports\Queries\AllReportRevisionsQuery.cs" />
-    <Compile Include="Domain\Reports\Queries\CompareToLatestQuery.cs" />
+    <Compile Include="Domain\EventSourcing\AllAggregateRevisionsQuery.cs" />
+    <Compile Include="Domain\Reports\Queries\CompareReportToLatestQuery.cs" />
     <Compile Include="Domain\Reports\ReportAggregate.cs" />
     <Compile Include="Domain\Templates\Commands\CreateTemplateCommand.cs" />
     <Compile Include="Domain\Templates\Commands\UpdateTemplateCommand.cs" />
@@ -651,6 +653,8 @@
     <Content Include="Views\Template\Update.cshtml" />
     <Content Include="Views\Template\_CreateEdit.cshtml" />
     <Content Include="Views\Template\_CommonScripts.cshtml" />
+    <Content Include="Views\Template\ViewRevisions.cshtml" />
+    <Content Include="Views\Template\CompareToLatest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using System.Web;
+
 
 namespace AmvReporting.Infrastructure.Helpers
 {
@@ -46,6 +48,15 @@ namespace AmvReporting.Infrastructure.Helpers
             var guid = Guid.Empty;
             Guid.TryParse(value, out guid);
             return guid;
+        }
+
+
+        public static String Unescape(this String source)
+        {
+            var unescaped = Regex.Unescape(source);
+            var htmlDecode = HttpUtility.HtmlDecode(unescaped);
+
+            return htmlDecode;
         }
     }
 }

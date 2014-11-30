@@ -1,4 +1,5 @@
 using System;
+using System.Web.Mvc;
 using AmvReporting.Infrastructure.CQRS;
 using CommonDomain.Persistence;
 
@@ -11,8 +12,10 @@ namespace AmvReporting.Domain.Templates.Commands
 
         public String Title { get; set; }
 
+        [AllowHtml]
         public String JavaScript { get; set; }
 
+        [AllowHtml]
         public String Html { get; set; }
 
         public bool AllowOverrides { get; set; }

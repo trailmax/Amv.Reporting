@@ -60,6 +60,18 @@ namespace AmvReporting.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Update);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ViewRevisions()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ViewRevisions);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult CompareToLatest()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CompareToLatest);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public TemplateController Actions { get { return MVC.Template; } }
@@ -79,6 +91,8 @@ namespace AmvReporting.Controllers
             public readonly string Index = "Index";
             public readonly string Create = "Create";
             public readonly string Update = "Update";
+            public readonly string ViewRevisions = "ViewRevisions";
+            public readonly string CompareToLatest = "CompareToLatest";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -87,6 +101,8 @@ namespace AmvReporting.Controllers
             public const string Index = "Index";
             public const string Create = "Create";
             public const string Update = "Update";
+            public const string ViewRevisions = "ViewRevisions";
+            public const string CompareToLatest = "CompareToLatest";
         }
 
 
@@ -107,6 +123,23 @@ namespace AmvReporting.Controllers
             public readonly string id = "id";
             public readonly string command = "command";
         }
+        static readonly ActionParamsClass_ViewRevisions s_params_ViewRevisions = new ActionParamsClass_ViewRevisions();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ViewRevisions ViewRevisionsParams { get { return s_params_ViewRevisions; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ViewRevisions
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_CompareToLatest s_params_CompareToLatest = new ActionParamsClass_CompareToLatest();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_CompareToLatest CompareToLatestParams { get { return s_params_CompareToLatest; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_CompareToLatest
+        {
+            public readonly string id = "id";
+            public readonly string revisionNumber = "revisionNumber";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -119,15 +152,19 @@ namespace AmvReporting.Controllers
             {
                 public readonly string _CommonScripts = "_CommonScripts";
                 public readonly string _CreateEdit = "_CreateEdit";
+                public readonly string CompareToLatest = "CompareToLatest";
                 public readonly string Create = "Create";
                 public readonly string Index = "Index";
                 public readonly string Update = "Update";
+                public readonly string ViewRevisions = "ViewRevisions";
             }
             public readonly string _CommonScripts = "~/Views/Template/_CommonScripts.cshtml";
             public readonly string _CreateEdit = "~/Views/Template/_CreateEdit.cshtml";
+            public readonly string CompareToLatest = "~/Views/Template/CompareToLatest.cshtml";
             public readonly string Create = "~/Views/Template/Create.cshtml";
             public readonly string Index = "~/Views/Template/Index.cshtml";
             public readonly string Update = "~/Views/Template/Update.cshtml";
+            public readonly string ViewRevisions = "~/Views/Template/ViewRevisions.cshtml";
         }
     }
 
@@ -191,6 +228,31 @@ namespace AmvReporting.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Update);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
             UpdateOverride(callInfo, command);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ViewRevisionsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ViewRevisions(System.Guid id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ViewRevisions);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ViewRevisionsOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CompareToLatestOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, int revisionNumber);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult CompareToLatest(System.Guid id, int revisionNumber)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CompareToLatest);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "revisionNumber", revisionNumber);
+            CompareToLatestOverride(callInfo, id, revisionNumber);
             return callInfo;
         }
 

@@ -6,7 +6,13 @@
 }
 
 <h2>Update Report Template</h2>
-@using (Html.BeginForm(MVC.Template.Update(), FormMethod.Post, new { role = "form", @class = "submit-by-ajax", id="template-form"}))
+<div role="tabpanel" class="tabpanel">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">@Html.ActionLink("Edit", MVC.Template.Update(Model.AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+        <li>@Html.ActionLink("Revisions", MVC.Template.ViewRevisions(Model.AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+    </ul>
+</div>
+@using (Html.BeginForm(MVC.Template.Update(), FormMethod.Post, new { role = "form", @class = "submit-by-ajax", id = "template-form" }))
 {
     @Html.HiddenFor(m => m.AggregateId)
     @Html.Partial(MVC.Template.Views._CreateEdit)

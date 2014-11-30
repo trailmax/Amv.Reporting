@@ -1,4 +1,4 @@
-﻿@model CompareReportToLatestViewModel
+﻿@model AmvReporting.Domain.Templates.Queries.CompareTemplateToLatestViewModel
 
 @{
     Layout = "~/Views/Shared/_LayoutAdminContainerFree.cshtml";
@@ -13,15 +13,14 @@
 
 <div class="admin-content">
     <div class="container">
-        <h2>Compare Revision #@Model.RevisionNumber to Latest</h2>
-
+        <h2>Compare Template "@Model.Title" Revision #@Model.RevisionNumber to Latest</h2>
         <div role="tabpanel" class="tabpanel">
             <ul class="nav nav-tabs" role="tablist">
-                <li>@Html.ActionLink("Meta", MVC.Report.UpdateMetadata(Model.AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
-                <li>@Html.ActionLink("Code", MVC.Report.UpdateCode(Model.AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
-                <li class="active">@Html.ActionLink("Revisions", MVC.ReportRevisions.ViewAllVersions(Model.AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+                <li>@Html.ActionLink("Edit", MVC.Template.Update(Model.AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+                <li class="active">@Html.ActionLink("Revisions", MVC.Template.ViewRevisions(Model.AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
             </ul>
         </div>
+
     </div>
     <h3 class="pull-right">Latest</h3>
     <h3>Revision #@Model.RevisionNumber below</h3>

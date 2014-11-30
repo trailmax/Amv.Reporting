@@ -14,21 +14,21 @@ namespace AmvReporting.Infrastructure.NEventStore
 	{
 		private const string AggregateTypeHeader = "AggregateType";
 
-		private readonly IDetectConflicts _conflictDetector;
+		private readonly IDetectConflicts conflictDetector;
 
-		private readonly IStoreEvents _eventStore;
+		private readonly IStoreEvents eventStore;
 
-		private readonly IConstructAggregates _factory;
+		private readonly IConstructAggregates factory;
 
-		private readonly IDictionary<string, ISnapshot> _snapshots = new Dictionary<string, ISnapshot>();
+		private readonly IDictionary<string, ISnapshot> snapshots = new Dictionary<string, ISnapshot>();
 
-		private readonly IDictionary<string, IEventStream> _streams = new Dictionary<string, IEventStream>();
+		private readonly IDictionary<string, IEventStream> streams = new Dictionary<string, IEventStream>();
 
         public MyEventStoreRepository(IStoreEvents eventStore, IConstructAggregates factory, IDetectConflicts conflictDetector)
 		{
-			_eventStore = eventStore;
-			_factory = factory;
-			_conflictDetector = conflictDetector;
+			this.eventStore = eventStore;
+			this.factory = factory;
+			this.conflictDetector = conflictDetector;
 		}
 
 		public void Dispose()
@@ -111,15 +111,15 @@ namespace AmvReporting.Infrastructure.NEventStore
 				return;
 			}
 
-			lock (_streams)
+			lock (streams)
 			{
-				foreach (var stream in _streams)
+				foreach (var stream in streams)
 				{
 					stream.Value.Dispose();
 				}
 
-				_snapshots.Clear();
-				_streams.Clear();
+				snapshots.Clear();
+				streams.Clear();
 			}
 		}
 
@@ -141,16 +141,16 @@ namespace AmvReporting.Infrastructure.NEventStore
 		private IAggregate GetAggregate<TAggregate>(ISnapshot snapshot, IEventStream stream)
 		{
 			IMemento memento = snapshot == null ? null : snapshot.Payload as IMemento;
-			return _factory.Build(typeof(TAggregate), stream.StreamId.ToGuid(), memento);
+			return factory.Build(typeof(TAggregate), stream.StreamId.ToGuid(), memento);
 		}
 
 		private ISnapshot GetSnapshot(string bucketId, Guid id, int version)
 		{
 			ISnapshot snapshot;
 			var snapshotId = bucketId + id;
-			if (!_snapshots.TryGetValue(snapshotId, out snapshot))
+			if (!snapshots.TryGetValue(snapshotId, out snapshot))
 			{
-				_snapshots[snapshotId] = snapshot = _eventStore.Advanced.GetSnapshot(bucketId, id, version);
+				snapshots[snapshotId] = snapshot = eventStore.Advanced.GetSnapshot(bucketId, id, version);
 			}
 
 			return snapshot;
@@ -160,16 +160,16 @@ namespace AmvReporting.Infrastructure.NEventStore
 		{
 			IEventStream stream;
 			var streamId = bucketId + "+" + id + "+" + version;
-			if (_streams.TryGetValue(streamId, out stream))
+			if (streams.TryGetValue(streamId, out stream))
 			{
 				return stream;
 			}
 
 			stream = snapshot == null 
-                ? _eventStore.OpenStream(bucketId, id, 0, version)
-				: _eventStore.OpenStream(snapshot, version);
+                ? eventStore.OpenStream(bucketId, id, 0, version)
+				: eventStore.OpenStream(snapshot, version);
 
-		    var eventStream = _streams[streamId] = stream;
+		    var eventStream = streams[streamId] = stream;
 		    return eventStream;
 		}
 
@@ -177,9 +177,9 @@ namespace AmvReporting.Infrastructure.NEventStore
 		{
 			IEventStream stream;
 			var streamId = bucketId + "+" + aggregate.Id + "+" + int.MaxValue;
-			if (!_streams.TryGetValue(streamId, out stream))
+			if (!streams.TryGetValue(streamId, out stream))
 			{
-				_streams[streamId] = stream = _eventStore.CreateStream(bucketId, aggregate.Id);
+				streams[streamId] = stream = eventStore.CreateStream(bucketId, aggregate.Id);
 			}
 
 			foreach (var item in headers)
@@ -214,7 +214,7 @@ namespace AmvReporting.Infrastructure.NEventStore
 		{
 			IEnumerable<object> committed = stream.CommittedEvents.Skip(skip).Select(x => x.Body);
 			IEnumerable<object> uncommitted = stream.UncommittedEvents.Select(x => x.Body);
-			return _conflictDetector.ConflictsWith(uncommitted, committed);
+			return conflictDetector.ConflictsWith(uncommitted, committed);
 		}
 	}
 }
