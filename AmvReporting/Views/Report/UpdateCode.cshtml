@@ -4,11 +4,6 @@
     ViewBag.Title = "Edit Report Metadata";
 }
 
-@section css
-{
-    @Styles.Render("~/Content/mergely_css")
-}
-
 
 <h2>Edit Report</h2>
 
@@ -50,29 +45,17 @@
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.JavaScript, new { @class = "control-label" })
-                <div>Report element is #report. So you'll need JS to point to this element</div>
                 @Html.TextAreaFor(m => m.JavaScript, new { @class = "form-control", rows = 10 })
                 @Html.ValidationMessageFor(m => m.JavaScript)
                 <a id="previewFullReport">Preview Report <span class="glyphicon glyphicon-forward"></span></a>
             </div>
 
-            <div class="panel-group" id="misc-accordion">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="misc-accordion" href="#collapseHtml">
-                                Html Override
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseHtml" class="panel-collapse collapse">
-                        <div class="form-group panel-body">
-                            <div>If this is populated, this overrides any pre-populated HTML</div>
-                            @Html.TextAreaFor(m => m.HtmlOverride, new { @class = "form-control", rows = 5 })
-                            @Html.ValidationMessageFor(m => m.HtmlOverride)
-                        </div>
-                    </div>
-                </div>
+
+            
+            <div class="form-group">
+                @Html.LabelFor(m => m.HtmlOverride, new { @class = "control-label" })
+                @Html.TextAreaFor(m => m.HtmlOverride, new { @class = "form-control", rows = 5 })
+                @Html.ValidationMessageFor(m => m.HtmlOverride)
             </div>
 
             <input type="submit" value="Update" class="btn btn-default" />
@@ -83,7 +66,6 @@
 </div>
 
 @section scripts{
-    @Scripts.Render("~/bundles/mergely_js")
     <script>
         $(document).ready(function () {
             var extraKeys = {
@@ -137,14 +119,6 @@
                 extraKeys: extraKeys,
             });
 
-            var cssEditor = CodeMirror.fromTextArea(document.getElementById("Css"), {
-                lineNumbers: true,
-                mode: 'text/css',
-                matchBrackets: true,
-                smartIndent: true,
-                indentUnit: 4,
-                extraKeys: extraKeys,
-            });
 
             var refreshPreview = function (data) {
                 $('#previewContainer').fadeOut(500, function () {

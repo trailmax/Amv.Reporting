@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -27,5 +28,23 @@ namespace AmvReporting
             var container = AutofacConfig.Configure();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
+
+
+        //Header removal
+        protected void Application_PreSendRequestHeaders(object sender, EventArgs e)
+        {
+            // Remove the "Server" HTTP Header from response
+            var app = sender as HttpApplication;
+            if (app == null || app.Context == null)
+            {
+                return;
+            }
+            var headers = app.Context.Response.Headers;
+            headers.Remove("Server");
+            headers.Remove("X-AspNetMvc-Version");
+            headers.Remove("X-AspNet-Version");
+            headers.Remove("X-Powered-By");
+        }
+
     }
 }
