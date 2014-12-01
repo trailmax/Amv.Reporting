@@ -97,6 +97,7 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -132,6 +133,7 @@
     <Compile Include="Explorage\NEventStoreRepositoryTests.cs" />
     <Compile Include="Explorage\SqlFormatter.cs" />
     <Compile Include="Explorage\ValueInjectorTests.cs" />
+    <Compile Include="Infrastructure\AsyncVoidMethods.cs" />
     <Compile Include="Infrastructure\CQRS\AutofacDecoratorsTests.cs" />
     <Compile Include="Infrastructure\CQRS\AutofacMediatorTests.cs" />
     <Compile Include="Infrastructure\Helpers\ExpressionHelperTests.cs" />
