@@ -16,8 +16,6 @@ namespace AmvReporting.Domain.Reports.Queries
         public String Title { get; set; }
         public String Description { get; set; }
         public String Data { get; set; }
-        public String GlobalJs { get; set; }
-        public String GlobalCss { get; set; }
         public String ReportJavaScript { get; set; }
         public String ReportHtml { get; set; }
         public String TemplateJavascript { get; set; }
@@ -72,8 +70,6 @@ namespace AmvReporting.Domain.Reports.Queries
             var template = ravenSession.Query<TemplateViewModel>()
                                        .SingleOrDefault(t => t.AggregateId == report.TemplateId);
 
-            var config = mediator.Request(new ReportingConfigQuery());
-
             var result = new ReportResult()
                          {
                              AggregateId = report.AggregateId,
@@ -83,8 +79,6 @@ namespace AmvReporting.Domain.Reports.Queries
                              ReportHtml = report.HtmlOverride,
                              TemplateJavascript = template.CheckForNull(t => t.JavaScript),
                              TemplateHtml = template.CheckForNull(t => t.Html),
-                             GlobalCss = config.GlobalCss,
-                             GlobalJs = config.GlobalJavascript,
                          };
 
             using (var sqlServerHelper = new SqlServerHelper())

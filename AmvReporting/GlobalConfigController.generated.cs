@@ -23,13 +23,10 @@ using System.Web.Routing;
 using T4MVC;
 namespace AmvReporting.Controllers
 {
-    public partial class ReportingConfigController
+    public partial class GlobalConfigController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ReportingConfigController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected ReportingConfigController(Dummy d) { }
+        protected GlobalConfigController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -59,13 +56,13 @@ namespace AmvReporting.Controllers
 
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ReportingConfigController Actions { get { return MVC.ReportingConfig; } }
+        public GlobalConfigController Actions { get { return MVC.GlobalConfig; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "ReportingConfig";
+        public readonly string Name = "GlobalConfig";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "ReportingConfig";
+        public const string NameConst = "GlobalConfig";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -74,12 +71,16 @@ namespace AmvReporting.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string GlobalCss = "GlobalCss";
+            public readonly string GlobalJs = "GlobalJs";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string GlobalCss = "GlobalCss";
+            public const string GlobalJs = "GlobalJs";
         }
 
 
@@ -101,16 +102,20 @@ namespace AmvReporting.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string GlobalCss = "GlobalCss";
+                public readonly string GlobalJs = "GlobalJs";
                 public readonly string Index = "Index";
             }
-            public readonly string Index = "~/Views/ReportingConfig/Index.cshtml";
+            public readonly string GlobalCss = "~/Views/GlobalConfig/GlobalCss.cshtml";
+            public readonly string GlobalJs = "~/Views/GlobalConfig/GlobalJs.cshtml";
+            public readonly string Index = "~/Views/GlobalConfig/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_ReportingConfigController : AmvReporting.Controllers.ReportingConfigController
+    public partial class T4MVC_GlobalConfigController : AmvReporting.Controllers.GlobalConfigController
     {
-        public T4MVC_ReportingConfigController() : base(Dummy.Instance) { }
+        public T4MVC_GlobalConfigController() : base(Dummy.Instance) { }
 
         [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -132,6 +137,28 @@ namespace AmvReporting.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
             IndexOverride(callInfo, command);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GlobalCssOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult GlobalCss()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.GlobalCss);
+            GlobalCssOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GlobalJsOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult GlobalJs()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.GlobalJs);
+            GlobalJsOverride(callInfo);
             return callInfo;
         }
 

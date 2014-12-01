@@ -4,7 +4,7 @@
 }
 
 <style>
-    @Model.GlobalCss
+    @Html.Raw(Model.GlobalCss)
 </style>
 
 <div id="javascriptError"></div>
@@ -13,11 +13,11 @@
 @Html.Raw(Model.ReportHtml)
 
 <script type="text/javascript">
+    @Html.Raw(Model.GlobalJs)
+
     $(document).ready(function () {
         try {
             @Html.Raw(Model.Data)
-
-            @Html.Raw(Model.GlobalJs)
 
             @Html.Raw(Model.TemplateJavascript)
 

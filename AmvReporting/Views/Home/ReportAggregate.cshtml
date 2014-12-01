@@ -3,12 +3,6 @@
 @{
     ViewBag.Title = Model.Title;
 }
-@section css
-{
-    <style>
-        @Model.GlobalCss
-    </style>
-}
 
 @Html.ActionLink("Edit", MVC.Report.UpdateCode(Model.AggregateId), new { @class = "admin-link btn btn-default btn-xs" })
 
@@ -29,8 +23,6 @@
     <script type="text/javascript">
         $(document).ready(function () {
             @Html.Raw(Model.Data)
-
-            @Html.Raw(Model.GlobalJs)
 
             @Html.Raw(Model.TemplateJavascript)
 

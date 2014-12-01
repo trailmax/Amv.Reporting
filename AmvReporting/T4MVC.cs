@@ -27,12 +27,12 @@ public static partial class MVC
 {
     public static AmvReporting.Controllers.BackupsController Backups = new AmvReporting.Controllers.T4MVC_BackupsController();
     public static AmvReporting.Controllers.DatabaseController Database = new AmvReporting.Controllers.T4MVC_DatabaseController();
+    public static AmvReporting.Controllers.GlobalConfigController GlobalConfig = new AmvReporting.Controllers.T4MVC_GlobalConfigController();
     public static AmvReporting.Controllers.HomeController Home = new AmvReporting.Controllers.T4MVC_HomeController();
     public static AmvReporting.Controllers.MigrationController Migration = new AmvReporting.Controllers.T4MVC_MigrationController();
     public static AmvReporting.Controllers.PreviewController Preview = new AmvReporting.Controllers.T4MVC_PreviewController();
     public static AmvReporting.Controllers.ReportController Report = new AmvReporting.Controllers.T4MVC_ReportController();
     public static AmvReporting.Controllers.ReportGroupController ReportGroup = new AmvReporting.Controllers.T4MVC_ReportGroupController();
-    public static AmvReporting.Controllers.ReportingConfigController ReportingConfig = new AmvReporting.Controllers.T4MVC_ReportingConfigController();
     public static AmvReporting.Controllers.ReportRevisionsController ReportRevisions = new AmvReporting.Controllers.T4MVC_ReportRevisionsController();
     public static AmvReporting.Controllers.TemplateController Template = new AmvReporting.Controllers.T4MVC_TemplateController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
@@ -61,6 +61,19 @@ internal partial class T4MVC_System_Web_Mvc_ActionResult : System.Web.Mvc.Action
     }
      
     public override void ExecuteResult(System.Web.Mvc.ControllerContext context) { }
+    
+    public string Controller { get; set; }
+    public string Action { get; set; }
+    public string Protocol { get; set; }
+    public RouteValueDictionary RouteValueDictionary { get; set; }
+}
+[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+internal partial class T4MVC_System_Web_Mvc_PartialViewResult : System.Web.Mvc.PartialViewResult, IT4MVCActionResult
+{
+    public T4MVC_System_Web_Mvc_PartialViewResult(string area, string controller, string action, string protocol = null): base()
+    {
+        this.InitMVCT4Result(area, controller, action, protocol);
+    }
     
     public string Controller { get; set; }
     public string Action { get; set; }

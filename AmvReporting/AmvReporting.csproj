@@ -194,7 +194,7 @@
     </Compile>
     <Compile Include="Controllers\BackupsController.cs" />
     <Compile Include="Controllers\MigrationController.cs" />
-    <Compile Include="Controllers\ReportingConfigController.cs" />
+    <Compile Include="Controllers\GlobalConfigController.cs" />
     <Compile Include="Controllers\ReportGroupController.cs" />
     <Compile Include="Controllers\ReportRevisionsController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
@@ -206,6 +206,9 @@
     <Compile Include="Domain\Backup\Commands\RestoreBackupCommand.cs" />
     <Compile Include="Domain\Preview\Queries\PreviewReportQuery.cs" />
     <Compile Include="Domain\Templates\Queries\CompareTemplateToLatestQuery.cs" />
+    <Compile Include="GlobalConfigController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\Dropdowns\TemplatesDropdownQuery.cs" />
     <Compile Include="Infrastructure\Helpers\TypeOnlyContractResolver.cs" />
     <Compile Include="Domain\Migrations\EventStoreMigrationDictionaryQuery.cs" />
@@ -334,9 +337,6 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="ReportGroupController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ReportingConfigController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="ReportRevisionsController.generated.cs">
@@ -653,6 +653,8 @@
     <Content Include="Views\Template\_CommonScripts.cshtml" />
     <Content Include="Views\Template\ViewRevisions.cshtml" />
     <Content Include="Views\Template\CompareToLatest.cshtml" />
+    <Content Include="Views\GlobalConfig\GlobalCss.cshtml" />
+    <Content Include="Views\GlobalConfig\GlobalJs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -749,7 +751,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\MenuNode.cshtml" />
     <Content Include="Views\ReportGroup\Reorder.cshtml" />
-    <Content Include="Views\ReportingConfig\Index.cshtml" />
+    <Content Include="Views\GlobalConfig\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
