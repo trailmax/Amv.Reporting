@@ -12,7 +12,7 @@
         <li>@Html.ActionLink("Revisions", MVC.Template.ViewRevisions(Model.AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
     </ul>
 </div>
-@using (Html.BeginForm(MVC.Template.Update(), FormMethod.Post, new { role = "form", @class = "submit-by-ajax", id = "template-form" }))
+@using (Html.BeginForm(MVC.Template.Update(), FormMethod.Post, new { role = "form", @class = "submit-by-ajax" }))
 {
     @Html.HiddenFor(m => m.AggregateId)
     @Html.Partial(MVC.Template.Views._CreateEdit)

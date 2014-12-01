@@ -8,13 +8,7 @@ namespace AmvReporting.Infrastructure.Helpers
 {
     public static class HtmlHelpers
     {
-        public static MvcHtmlString AjaxDeleteButton<T>(this UrlHelper urlHelper, ActionResult actionResult, T data, Expression<Func<T, Guid>> selector)
-        {
-            return AjaxDeleteButton(urlHelper, actionResult, ExpressionHelper.PropertyValue(data, selector),
-                ExpressionHelper.PropertyName(selector));
-        }
-
-        public static MvcHtmlString AjaxDeleteButton<T>(this UrlHelper urlHelper, ActionResult actionResult, T data, Expression<Func<T, String>> selector)
+        public static MvcHtmlString AjaxDeleteButton<T, TResult>(this UrlHelper urlHelper, ActionResult actionResult, T data, Expression<Func<T, TResult>> selector)
         {
             return AjaxDeleteButton(urlHelper, actionResult, ExpressionHelper.PropertyValue(data, selector),
                 ExpressionHelper.PropertyName(selector));
@@ -36,7 +30,10 @@ namespace AmvReporting.Infrastructure.Helpers
             return new MvcHtmlString(tagBuilder.ToString(TagRenderMode.Normal));
         }
 
-
+        public static String ElementId<T, TResult>(this HtmlHelper<T> htmlHelper, Expression<Func<T, TResult>> selector)
+        {
+            return ExpressionHelper.PropertyName(selector);
+        }
 
         public static HtmlBuildersFactory<TModel> Domain<TModel>(this HtmlHelper<TModel> html)
         {

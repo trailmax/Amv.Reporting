@@ -37,6 +37,8 @@ namespace AmvReporting.Domain.Preview.Queries
 
         [AllowHtml]
         public String HtmlOverride { get; set; }
+
+        public Guid TemplateId { get; set; }
     }
 
 
@@ -66,7 +68,7 @@ namespace AmvReporting.Domain.Preview.Queries
             }
 
             var template = ravenSession.Query<TemplateViewModel>()
-                                       .FirstOrDefault(t => t.AggregateId == report.TemplateId);
+                                       .FirstOrDefault(t => t.AggregateId == query.TemplateId);
 
             var previewData = mediator.Request(new PreviewDataQuery(query.AggregateId, query.Sql));
             var config = mediator.Request(new ReportingConfigQuery());
@@ -75,8 +77,8 @@ namespace AmvReporting.Domain.Preview.Queries
             var outModel = new ReportResultPreview()
                            {
                                Data = previewData.Data,
-                               ReportJavaScript = report.JavaScript,
-                               ReportHtml = report.HtmlOverride,
+                               ReportJavaScript = query.JavaScript,
+                               ReportHtml = query.HtmlOverride,
                                TemplateJavascript = template.CheckForNull(t => t.JavaScript),
                                TemplateHtml = template.CheckForNull(t => t.Html),
                                GlobalJs = config.GlobalJavascript,

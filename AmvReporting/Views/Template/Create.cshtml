@@ -6,7 +6,7 @@
 }
 
 <h2>Create Report Template</h2>
-@using (Html.BeginForm(MVC.Template.Create(), FormMethod.Post, new { role = "form", @id = "template-form" }))
+@using (Html.BeginForm(MVC.Template.Create(), FormMethod.Post, new { role = "form" }))
 {
     @Html.Partial(MVC.Template.Views._CreateEdit)
     <div class="row">

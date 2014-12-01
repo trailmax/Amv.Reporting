@@ -9,8 +9,8 @@ namespace AmvReporting.Tests.Infrastructure.Helpers
         [Fact]
         public void PropertyName_Always_NameMatches()
         {
-            Assert.Equal("Name", ExpressionHelper.PropertyName<ClassOne>(t => t.Name));
-            Assert.Equal("FullName", ExpressionHelper.PropertyName<ClassOne>(t => t.FullName));
+            Assert.Equal("Name", ExpressionHelper.PropertyName<ClassOne, String>(t => t.Name));
+            Assert.Equal("FullName", ExpressionHelper.PropertyName<ClassOne, String>(t => t.FullName));
         }
 
         [Fact]

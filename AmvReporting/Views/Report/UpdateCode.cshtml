@@ -25,7 +25,6 @@
         @Html.HiddenFor(m => m.AggregateId)
 
         <div class="col-md-6">
-            
 
             <div class="form-group">
                 @Html.LabelFor(m => m.TemplateId, new { @class = "control-label" })
@@ -51,7 +50,7 @@
             </div>
 
 
-            
+
             <div class="form-group">
                 @Html.LabelFor(m => m.HtmlOverride, new { @class = "control-label" })
                 @Html.TextAreaFor(m => m.HtmlOverride, new { @class = "form-control", rows = 5 })
@@ -76,48 +75,46 @@
                     if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
                 },
                 "Ctrl-S": function (cm) {
-                    cm.save();
-                    $('#code-form').submit();
+                    $('form').submit();
                 },
                 "F5": function (cm) {
-                    cm.save();
                     $('#previewData').click();
                 },
                 "Ctrl-F5": function (cm) {
-                    cm.save();
                     $('#previewFullReport').click();
                 },
                 "Ctrl-L": "deleteLine",
             };
 
-            var sqlEditor = CodeMirror.fromTextArea(document.getElementById("Sql"), {
+            var codeMirrors = [];
+
+            codeMirrors.push(CodeMirror.fromTextArea(document.getElementById('@Html.ElementId(m => m.Sql)'), {
                 lineNumbers: true,
                 mode: 'text/x-sql',
                 matchBrackets: true,
                 smartIndent: true,
                 indentUnit: 4,
                 extraKeys: extraKeys,
-            });
+            }));
 
 
-            var javascriptEditor = CodeMirror.fromTextArea(document.getElementById("JavaScript"), {
+            codeMirrors.push(CodeMirror.fromTextArea(document.getElementById('@Html.ElementId(m => m.JavaScript)'), {
                 lineNumbers: true,
                 mode: 'text/javascript',
                 matchBrackets: true,
                 smartIndent: true,
                 indentUnit: 4,
                 extraKeys: extraKeys,
-            });
+            }));
 
-
-            var htmlEditor = CodeMirror.fromTextArea(document.getElementById("HtmlOverride"), {
+            codeMirrors.push(CodeMirror.fromTextArea(document.getElementById('@Html.ElementId(m => m.HtmlOverride)'), {
                 lineNumbers: true,
                 mode: 'text/html',
                 matchBrackets: true,
                 smartIndent: true,
                 indentUnit: 4,
                 extraKeys: extraKeys,
-            });
+            }));
 
 
             var refreshPreview = function (data) {
@@ -128,17 +125,28 @@
             };
 
             var refreshSqlTextBox = function (data) {
-                $('#Sql').fadeOut(500, function () {
-                    $('#Sql').val(data);
-                    $('#Sql').fadeIn(500);
+                $('#@Html.ElementId(m => m.Sql)').fadeOut(500, function () {
+                    $('#@Html.ElementId(m => m.Sql)').val(data);
+                    $('#@Html.ElementId(m => m.Sql)').fadeIn(500);
                 });
             };
 
+            function saveMirrors() {
+                codeMirrors.forEach(function (mirror) {
+                    mirror.save();
+                });
+            }
+
+            $('form').on('submit', function () {
+                saveMirrors();
+            });
+
             // on report create/edit show the data returned by the sql server
             $('#previewData').on('click', function () {
+                saveMirrors();
                 var postData = {};
-                postData['sql'] = $('#Sql').val();
-                postData['aggregateId'] = $('#AggregateId').val();
+                postData['sql'] = $('#@Html.ElementId(m => m.Sql)').val();
+                postData['aggregateId'] = $('#@Html.ElementId(m => m.AggregateId)').val();
 
                 $.ajax({
                     type: 'POST',
@@ -153,8 +161,9 @@
 
             // cleanse and format SQL string
             $('#cleanseAndFormatSql').on('click', function () {
+                saveMirrors();
                 var postData = {};
-                postData['sql'] = $('#Sql').val();
+                postData['sql'] = $('#@Html.ElementId(m => m.Sql)').val();
 
                 $.ajax({
                     type: 'POST',
@@ -170,6 +179,7 @@
 
             // on report create/edit show the actual report in the same window
             $('#previewFullReport').on('click', function () {
+                saveMirrors();
                 var valid = $('form').valid();
                 if (valid) {
                     $.ajax({
