@@ -46,7 +46,5 @@ namespace AmvReporting.Domain.Templates.Events
         public String JavaScript { get; set; }
 
         public String Html { get; set; }
-
-        public bool AllowOverrides { get; set; }
     }
 }

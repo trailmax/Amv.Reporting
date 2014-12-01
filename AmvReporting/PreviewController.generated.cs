@@ -117,7 +117,7 @@ namespace AmvReporting.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Report
         {
-            public readonly string model = "model";
+            public readonly string query = "query";
         }
         static readonly ActionParamsClass_CleanseAndFormatSql s_params_CleanseAndFormatSql = new ActionParamsClass_CleanseAndFormatSql();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -164,14 +164,14 @@ namespace AmvReporting.Controllers
         }
 
         [NonAction]
-        partial void ReportOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.Preview.ViewModels.PreviewReportModel model);
+        partial void ReportOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.Preview.Queries.PreviewReportQuery query);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Report(AmvReporting.Domain.Preview.ViewModels.PreviewReportModel model)
+        public override System.Web.Mvc.ActionResult Report(AmvReporting.Domain.Preview.Queries.PreviewReportQuery query)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Report);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            ReportOverride(callInfo, model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "query", query);
+            ReportOverride(callInfo, query);
             return callInfo;
         }
 

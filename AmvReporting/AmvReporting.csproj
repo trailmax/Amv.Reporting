@@ -206,6 +206,7 @@
     <Compile Include="Domain\Backup\AllBackupsQuery.cs" />
     <Compile Include="Domain\Backup\Commands\CreateBackupCommand.cs" />
     <Compile Include="Domain\Backup\Commands\RestoreBackupCommand.cs" />
+    <Compile Include="Domain\Preview\Queries\PreviewReportQuery.cs" />
     <Compile Include="Domain\Templates\Queries\CompareTemplateToLatestQuery.cs" />
     <Compile Include="Infrastructure\Helpers\TypeOnlyContractResolver.cs" />
     <Compile Include="Domain\Migrations\EventStoreMigrationDictionaryQuery.cs" />
@@ -232,8 +233,6 @@
     <Compile Include="Domain\ReportGroups\Queries\GroupReorderQuery.cs" />
     <Compile Include="Domain\ReportGroups\Queries\ReportGroupQuery.cs" />
     <Compile Include="Domain\ReportGroups\ReportGroup.cs" />
-    <Compile Include="Domain\Preview\ViewModels\PreviewReportModel.cs" />
-    <Compile Include="Domain\Preview\ViewModels\ReportResultPreview.cs" />
     <Compile Include="Domain\ReportGroups\ReportGroupHelpers.cs" />
     <Compile Include="Domain\ReportingConfigs\Commands\UpdateConfigurationCommand.cs" />
     <Compile Include="Domain\Reports\Commands\CloneReportCommand.cs" />

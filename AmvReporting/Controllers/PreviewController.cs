@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
 using AmvReporting.Domain.Preview.Queries;
-using AmvReporting.Domain.Preview.ViewModels;
-using AmvReporting.Domain.ReportingConfigs.Queries;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Filters;
 
@@ -24,32 +22,17 @@ namespace AmvReporting.Controllers
         [HttpPost]
         public virtual ActionResult Data(Guid aggregateId, String sql)
         {
-            var query = new PreviewDataQuery(aggregateId, sql);
-            var result = mediator.Request(query);
+            var result = mediator.Request(new PreviewDataQuery(aggregateId, sql));
 
             return PartialView(result);
         }
 
 
         [HttpPost]
-        public virtual ActionResult Report(PreviewReportModel model)
+        public virtual ActionResult Report(PreviewReportQuery query)
         {
-            var previewData = mediator.Request(new PreviewDataQuery(model.AggregateId, model.Sql));
-            var config = mediator.Request(new ReportingConfigQuery());
-
-            var outModel = new ReportResultPreview()
-                           {
-                               Data = previewData.Data,
-                               ReportJavaScript = model.JavaScript,
-                               ReportHtml = model.HtmlOverride,
-                               ReportCss = model.Css,
-                               TemplateJavascript = previewData.TemplateJavaScript,
-                               TemplateHtml = previewData.TemplateHtml,
-                               GlobalJs = config.GlobalJavascript,
-                               GlobalCss = config.GlobalCss,
-                           };
-
-            return PartialView(outModel);
+            var reportPreview = mediator.Request(query);
+            return PartialView(reportPreview);
         }
 
 

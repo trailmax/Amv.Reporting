@@ -17,8 +17,6 @@ namespace AmvReporting.Domain.Templates.Commands
 
         [AllowHtml]
         public String Html { get; set; }
-
-        public bool AllowOverrides { get; set; }
     }
 
     public class CreateTemplateCommandHandler : ICommandHandler<CreateTemplateCommand>
@@ -34,7 +32,7 @@ namespace AmvReporting.Domain.Templates.Commands
 
         public void Handle(CreateTemplateCommand command)
         {
-            var template = new TemplateAggregate(command.AggregateId, command.Title, command.JavaScript, command.Html, command.AllowOverrides);
+            var template = new TemplateAggregate(command.AggregateId, command.Title, command.JavaScript, command.Html);
             var commitId = Guid.NewGuid();
             repository.Save(template, commitId);
         }

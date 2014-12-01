@@ -19,9 +19,3 @@
     @Html.TextAreaFor(m => m.Html, new { @class = "form-control" })
     @Html.ValidationMessageFor(m => m.Html)
 </div>
-
-<div class="form-group">
-    @Html.LabelFor(m => m.AllowOverrides, new { @class = "control-label" })
-    @Html.EditorFor(m => m.AllowOverrides, new { @class = "form-control" })
-    @Html.ValidationMessageFor(m => m.AllowOverrides)
-</div>

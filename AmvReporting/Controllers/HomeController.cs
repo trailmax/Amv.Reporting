@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using AmvReporting.Domain.Menus;
 using AmvReporting.Domain.Migrations;
-using AmvReporting.Domain.ReportingConfigs.Queries;
 using AmvReporting.Domain.Reports.Queries;
 using AmvReporting.Infrastructure.CQRS;
 
@@ -27,13 +26,7 @@ namespace AmvReporting.Controllers
 
         public virtual ActionResult ReportAggregate(Guid id)
         {
-            var result = mediator.Request(new ReportResultQuery(id));
-
-            var config = mediator.Request(new ReportingConfigQuery());
-            result.GlobalCss = config.GlobalCss;
-            result.GlobalJs = config.GlobalJavascript;
-
-            return View(result);
+            return View(new ReportResultQuery(id));
         }
 
 

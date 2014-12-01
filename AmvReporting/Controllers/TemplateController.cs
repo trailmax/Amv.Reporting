@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
 using AmvReporting.Domain.EventSourcing;
-using AmvReporting.Domain.Reports.Queries;
 using AmvReporting.Domain.Templates;
 using AmvReporting.Domain.Templates.Commands;
 using AmvReporting.Domain.Templates.Queries;

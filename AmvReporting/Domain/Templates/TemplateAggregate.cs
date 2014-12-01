@@ -13,16 +13,15 @@ namespace AmvReporting.Domain.Templates
         }
 
 
-        public TemplateAggregate(Guid id, String title, String javascript, String html, bool allowOverrides) : this(id)
+        public TemplateAggregate(Guid id, String title, String javascript, String html) : this(id)
         {
-            RaiseEvent(new CreateTemplateEvent(id, title, javascript, html, allowOverrides));
+            RaiseEvent(new CreateTemplateEvent(id, title, javascript, html));
         }
         private void Apply(CreateTemplateEvent @event)
         {
             this.Title = @event.Title;
             this.JavaScript = @event.JavaScript;
             this.Html = @event.Html;
-            this.AllowOverrides = @event.AllowOverrides;
         }
 
 
@@ -32,18 +31,15 @@ namespace AmvReporting.Domain.Templates
 
         public String Html { get; private set; }
 
-        public bool AllowOverrides { get; private set; }
-
-        public void UpdateTemplate(String title, String javascript, String html, bool allowOverrides)
+        public void UpdateTemplate(String title, String javascript, String html)
         {
-            RaiseEvent(new UpdateTemplateEvent(Id, title, javascript, html, allowOverrides));
+            RaiseEvent(new UpdateTemplateEvent(Id, title, javascript, html));
         }
         private void Apply(UpdateTemplateEvent @event)
         {
             this.Title = @event.Title;
             this.JavaScript = @event.JavaScript;
             this.Html = @event.Html;
-            this.AllowOverrides = @event.AllowOverrides;
         }
     }
 }
