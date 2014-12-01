@@ -42,8 +42,6 @@ namespace AmvReporting.Domain.Reports
 
         public String JavaScript { get; private set; }
 
-        public String Css { get; private set; }
-
         [AllowHtml]
         public String HtmlOverride { get; private set; }
 
@@ -68,9 +66,9 @@ namespace AmvReporting.Domain.Reports
         }
 
 
-        public void UpdateCode(Guid? templateId, string sql, string javaScript, string css, string htmlOverride)
+        public void UpdateCode(Guid? templateId, string sql, string javaScript, string htmlOverride)
         {
-            var @event = new ReportCodeUpdatedEvent(this.Id, templateId, sql, javaScript, css, htmlOverride);
+            var @event = new ReportCodeUpdatedEvent(this.Id, templateId, sql, javaScript, htmlOverride);
             RaiseEvent(@event);
         }
         private void Apply(ReportCodeUpdatedEvent @event)
@@ -78,7 +76,6 @@ namespace AmvReporting.Domain.Reports
             TemplateId = @event.TemplateId;
             Sql = @event.Sql;
             JavaScript = @event.JavaScript;
-            Css = @event.Css;
             HtmlOverride = @event.HtmlOverride;
         }
 

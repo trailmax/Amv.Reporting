@@ -76,7 +76,7 @@ namespace AmvReporting.Controllers
                 migrationDictionary.Add(oldId, newId);
 
                 var newReport = new ReportAggregate(newId, oldReport.ReportGroupId, oldReport.Title, oldReport.Description, oldReport.DatabaseId, oldReport.Enabled);
-                newReport.UpdateCode(null, oldReport.Sql, oldReport.JavaScript, oldReport.Css, oldReport.HtmlOverride);
+                newReport.UpdateCode(null, oldReport.Sql, oldReport.JavaScript, oldReport.HtmlOverride);
                 newReport.SetListOrder(oldReport.ListOrder ?? 0);
 
                 repository.Save(newReport, Guid.NewGuid());

@@ -21,9 +21,6 @@ namespace AmvReporting.Domain.Reports.Commands
         [DataType(DataType.MultilineText)]
         public String JavaScript { get; set; }
 
-        [DataType(DataType.MultilineText)]
-        public String Css { get; set; }
-
         [AllowHtml]
         [DataType(DataType.MultilineText)]
         public String HtmlOverride { get; set; }
@@ -43,7 +40,7 @@ namespace AmvReporting.Domain.Reports.Commands
         public void Handle(UpdateReportCodeCommand command)
         {
             var report = repository.GetById<ReportAggregate>(command.AggregateId);
-            report.UpdateCode(command.TemplateId, command.Sql, command.JavaScript, command.Css, command.HtmlOverride);
+            report.UpdateCode(command.TemplateId, command.Sql, command.JavaScript, command.HtmlOverride);
 
             var commitId = Guid.NewGuid();
 

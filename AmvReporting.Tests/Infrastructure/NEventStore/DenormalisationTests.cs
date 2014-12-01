@@ -46,7 +46,7 @@ namespace AmvReporting.Tests.Infrastructure.NEventStore
         {
             // Arrange
             var aggregate = Fixture.Create<ReportAggregate>();
-            aggregate.UpdateCode(Guid.NewGuid(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
+            aggregate.UpdateCode(Guid.NewGuid(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
 
 
             // Act
@@ -56,7 +56,6 @@ namespace AmvReporting.Tests.Infrastructure.NEventStore
             var viewModel = DocumentSession.Query<ReportViewModel>().First(r => r.AggregateId == aggregate.Id);
             Assert.Equal(aggregate.Sql, viewModel.Sql);
             Assert.Equal(aggregate.JavaScript, viewModel.JavaScript);
-            Assert.Equal(aggregate.Css, viewModel.Css);
             Assert.Equal(aggregate.HtmlOverride, viewModel.HtmlOverride);
         }
 

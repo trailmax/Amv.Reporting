@@ -20,8 +20,6 @@ namespace AmvReporting.Domain.Reports
 
         public String JavaScript { get; set; }
 
-        public String Css { get; set; }
-
         [AllowHtml]
         public String HtmlOverride { get; set; }
 

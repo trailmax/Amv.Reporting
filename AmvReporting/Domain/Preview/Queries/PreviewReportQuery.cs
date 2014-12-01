@@ -15,7 +15,6 @@ namespace AmvReporting.Domain.Preview.Queries
     {
         public String Data { get; set; }
         public String ReportJavaScript { get; set; }
-        public String ReportCss { get; set; }
         public String ReportHtml { get; set; }
         public String GlobalJs { get; set; }
         public String GlobalCss { get; set; }
@@ -35,8 +34,6 @@ namespace AmvReporting.Domain.Preview.Queries
 
         [AllowHtml]
         public String JavaScript { get; set; }
-
-        public String Css { get; set; }
 
         [AllowHtml]
         public String HtmlOverride { get; set; }
@@ -80,7 +77,6 @@ namespace AmvReporting.Domain.Preview.Queries
                                Data = previewData.Data,
                                ReportJavaScript = report.JavaScript,
                                ReportHtml = report.HtmlOverride,
-                               ReportCss = report.Css,
                                TemplateJavascript = template.CheckForNull(t => t.JavaScript),
                                TemplateHtml = template.CheckForNull(t => t.Html),
                                GlobalJs = config.GlobalJavascript,

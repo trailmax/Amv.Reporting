@@ -20,7 +20,6 @@ namespace AmvReporting.Domain.Reports.Queries
         public String GlobalCss { get; set; }
         public String ReportJavaScript { get; set; }
         public String ReportHtml { get; set; }
-        public String ReportCss { get; set; }
         public String TemplateJavascript { get; set; }
         public String TemplateHtml { get; set; }
     }
@@ -80,7 +79,6 @@ namespace AmvReporting.Domain.Reports.Queries
                              AggregateId = report.AggregateId,
                              Title = report.Title,
                              Description = report.Description,
-                             ReportCss = report.Css,
                              ReportJavaScript = report.JavaScript,
                              ReportHtml = report.HtmlOverride,
                              TemplateJavascript = template.CheckForNull(t => t.JavaScript),

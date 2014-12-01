@@ -208,6 +208,7 @@
     <Compile Include="Domain\Backup\Commands\RestoreBackupCommand.cs" />
     <Compile Include="Domain\Preview\Queries\PreviewReportQuery.cs" />
     <Compile Include="Domain\Templates\Queries\CompareTemplateToLatestQuery.cs" />
+    <Compile Include="Infrastructure\Dropdowns\TemplatesDropdownQuery.cs" />
     <Compile Include="Infrastructure\Helpers\TypeOnlyContractResolver.cs" />
     <Compile Include="Domain\Migrations\EventStoreMigrationDictionaryQuery.cs" />
     <Compile Include="Domain\Migrations\EventStoreMigrationDictonary.cs" />
