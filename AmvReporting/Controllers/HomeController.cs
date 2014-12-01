@@ -20,13 +20,13 @@ namespace AmvReporting.Controllers
 
         public virtual ActionResult Index()
         {
-            return View(new MenuModelQuery());
+            return QueriedView(new MenuModelQuery());
         }
 
 
         public virtual ActionResult ReportAggregate(Guid id)
         {
-            return View(new ReportResultQuery(id));
+            return QueriedView(new ReportResultQuery(id));
         }
 
 

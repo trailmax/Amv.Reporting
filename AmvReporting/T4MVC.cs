@@ -78,6 +78,7 @@ namespace Links
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
         public static readonly string _references_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/_references.min.js") ? Url("_references.min.js") : Url("_references.js");
+        public static readonly string AdminScripts_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/AdminScripts.min.js") ? Url("AdminScripts.min.js") : Url("AdminScripts.js");
         public static readonly string amplify_store_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/amplify.store.min.js") ? Url("amplify.store.min.js") : Url("amplify.store.js");
         public static readonly string bootstrap_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/bootstrap.min.js") ? Url("bootstrap.min.js") : Url("bootstrap.js");
         public static readonly string bootstrap_min_js = Url("bootstrap.min.js");

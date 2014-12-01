@@ -97,3 +97,4 @@
 /// <reference path="codemirror/mode/sql.js" />
 /// <reference path="codemirror/mode/xml.js" />
 /// <reference path="toastr.min.js" />
+/// <reference path="adminscripts.js" />

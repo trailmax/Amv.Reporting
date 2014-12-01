@@ -29,7 +29,7 @@ namespace AmvReporting.Controllers
 
         public virtual ActionResult Edit(String id)
         {
-            return View(new ReportGroupQuery(id)).MapTo<EditReportGroupCommand>();
+            return QueriedView(new ReportGroupQuery(id)).MapTo<EditReportGroupCommand>();
         }
 
 
@@ -42,7 +42,7 @@ namespace AmvReporting.Controllers
 
         public virtual ActionResult Reorder(String id)
         {
-            return View(new GroupReorderQuery(id));
+            return QueriedView(new GroupReorderQuery(id));
         }
 
         [HttpPost, ValidateAntiForgeryToken]

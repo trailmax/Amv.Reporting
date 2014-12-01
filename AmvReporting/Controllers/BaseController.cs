@@ -42,7 +42,7 @@ namespace AmvReporting.Controllers
         }
 
 
-        protected QueryResult<TResult> View<TResult>(IQuery<TResult> query)
+        protected QueryResult<TResult> QueriedView<TResult>(IQuery<TResult> query)
         {
             return new QueryResult<TResult>(query, ViewData, TempData);
         }

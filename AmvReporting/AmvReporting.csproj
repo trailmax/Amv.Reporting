@@ -372,6 +372,7 @@
     <Content Include="Examples\TableTree.html" />
     <Content Include="Examples\Timesheet.htm" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\AdminScripts.js" />
     <Content Include="Scripts\amplify.store.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

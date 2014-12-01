@@ -32,7 +32,11 @@ namespace AmvReporting.Infrastructure.Helpers
 
         public static String ElementId<T, TResult>(this HtmlHelper<T> htmlHelper, Expression<Func<T, TResult>> selector)
         {
-            return ExpressionHelper.PropertyName(selector);
+            var text = System.Web.Mvc.ExpressionHelper.GetExpressionText(selector);
+            var fullName = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(text);
+            var id = TagBuilder.CreateSanitizedId(fullName);
+
+            return id;
         }
 
         public static HtmlBuildersFactory<TModel> Domain<TModel>(this HtmlHelper<TModel> html)

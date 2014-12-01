@@ -12,7 +12,7 @@ namespace AmvReporting.Controllers
     {
         public virtual ActionResult Index()
         {
-            return View(new AllDatabasesQuery());
+            return QueriedView(new AllDatabasesQuery());
         }
 
 
@@ -30,7 +30,7 @@ namespace AmvReporting.Controllers
 
         public virtual ActionResult Edit(String dbId)
         {
-            return View(new DatabaseQuery(dbId)).MapTo<EditDatabaseDetailsCommand>();
+            return QueriedView(new DatabaseQuery(dbId)).MapTo<EditDatabaseDetailsCommand>();
         }
 
 
@@ -51,7 +51,7 @@ namespace AmvReporting.Controllers
         [HttpPost]
         public virtual ActionResult CheckDatabaseConnection(String connectionString)
         {
-            return View(new CheckDatabaseConnectivityQuery(connectionString)).DoJson();
+            return QueriedView(new CheckDatabaseConnectivityQuery(connectionString)).DoJson();
         }
     }
 }

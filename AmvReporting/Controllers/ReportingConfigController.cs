@@ -11,7 +11,7 @@ namespace AmvReporting.Controllers
     {
         public virtual ActionResult Index()
         {
-            return View(new ReportingConfigQuery()).MapTo<UpdateConfigurationCommand>();
+            return QueriedView(new ReportingConfigQuery()).MapTo<UpdateConfigurationCommand>();
         }
 
 

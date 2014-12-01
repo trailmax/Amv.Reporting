@@ -66,7 +66,8 @@ namespace AmvReporting
                 "~/Scripts/CodeMirror/mode/htmlmixed.js",
                 "~/Scripts/CodeMirror/addon/display/fullscreen.js",
                 "~/Scripts/searchcursor.js",
-                "~/Scripts/mergely.js"
+                "~/Scripts/mergely.js",
+                "~/Scripts/AdminScripts.js"
                 ));
 
             var adminStyleBundle = new BetterStyleBundle(Bundles.AdminCss).Include(

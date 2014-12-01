@@ -87,15 +87,15 @@
             };
 
             var codeMirrors = [];
-
-            codeMirrors.push(CodeMirror.fromTextArea(document.getElementById('@Html.ElementId(m => m.Sql)'), {
+            var sqlCodeMirror = CodeMirror.fromTextArea(document.getElementById('@Html.ElementId(m => m.Sql)'), {
                 lineNumbers: true,
                 mode: 'text/x-sql',
                 matchBrackets: true,
                 smartIndent: true,
                 indentUnit: 4,
                 extraKeys: extraKeys,
-            }));
+            });
+            codeMirrors.push(sqlCodeMirror);
 
 
             codeMirrors.push(CodeMirror.fromTextArea(document.getElementById('@Html.ElementId(m => m.JavaScript)'), {
@@ -124,12 +124,6 @@
                 });
             };
 
-            var refreshSqlTextBox = function (data) {
-                $('#@Html.ElementId(m => m.Sql)').fadeOut(500, function () {
-                    $('#@Html.ElementId(m => m.Sql)').val(data);
-                    $('#@Html.ElementId(m => m.Sql)').fadeIn(500);
-                });
-            };
 
             function saveMirrors() {
                 codeMirrors.forEach(function (mirror) {
@@ -172,7 +166,10 @@
                     error: function () {
                         showWarning('Communication Error: could not connect to the server');
                     },
-                    success: refreshSqlTextBox,
+                    success: function (data) {
+                        sqlCodeMirror.setValue(data);
+                        showSuccess("Sql re-formatted");
+                    },
                 });
             });
 

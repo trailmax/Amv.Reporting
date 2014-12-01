@@ -21,7 +21,7 @@ namespace AmvReporting.Controllers
 
         public virtual ActionResult ViewAllVersions(Guid id)
         {
-            return View(new AllAggregateRevisionsQuery(id));
+            return QueriedView(new AllAggregateRevisionsQuery(id));
         }
 
 
@@ -35,7 +35,7 @@ namespace AmvReporting.Controllers
 
         public virtual ActionResult CompareToLatest(Guid id, int revisionNumber)
         {
-            return View(new CompareReportToLatestQuery(id, revisionNumber));
+            return QueriedView(new CompareReportToLatestQuery(id, revisionNumber));
         }
     }
 }

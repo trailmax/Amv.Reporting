@@ -20,7 +20,7 @@ namespace AmvReporting.Controllers
 
         public virtual ActionResult Index()
         {
-            return View(new AllBackupsQuery());
+            return QueriedView(new AllBackupsQuery());
         }
 
 

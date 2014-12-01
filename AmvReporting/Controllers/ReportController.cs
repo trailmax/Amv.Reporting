@@ -22,7 +22,7 @@ namespace AmvReporting.Controllers
 
         public virtual ActionResult Index()
         {
-            return View(new MenuModelQuery(true));
+            return QueriedView(new MenuModelQuery(true));
         }
 
 
