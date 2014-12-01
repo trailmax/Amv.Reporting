@@ -1,17 +1,25 @@
-﻿function showWarning(message) {
-    toastr.warning(message);
-};
+﻿(function (window) {
 
-function showSuccess(message) {
-    toastr.success(message);
-};
+    window.showWarning = function (message) {
+        toastr.options.closeButton = true;
+        toastr.warning(message);
+    }
 
-var codeMirrors = [];
-function saveMirrors() {
-    codeMirrors.forEach(function (mirror) {
-        mirror.save();
-    });
-}
+    window.showSuccess = function (message) {
+        toastr.options.closeButton = true;
+        toastr.success(message);
+    }
+
+    window.codeMirrors = [];
+
+    window.saveMirrors = function() {
+        window.codeMirrors.forEach(function (mirror) {
+            mirror.save();
+        });
+    }
+
+})(window);
+
 
 $(document).ready(function () {
 
