@@ -6,6 +6,13 @@ function showSuccess(message) {
     toastr.success(message);
 };
 
+var codeMirrors = [];
+function saveMirrors() {
+    codeMirrors.forEach(function (mirror) {
+        mirror.save();
+    });
+}
+
 $(document).ready(function () {
 
     // Generalised delete button for entries in the tables
@@ -41,8 +48,16 @@ $(document).ready(function () {
     // sortable list for reordering of groups
     $('.sortable').sortable();
 
+
+    $('form').on('submit', function (e) {
+        saveMirrors();
+    });
+
+
     $('.submit-by-ajax').on('submit', function (ev) {
         ev.preventDefault();
+
+        saveMirrors();
 
         var $form = $(this);
 

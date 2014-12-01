@@ -15,7 +15,6 @@
             "Ctrl-L": "deleteLine",
         };
 
-        var codeMirrors = [];
         codeMirrors.push(CodeMirror.fromTextArea(document.getElementById("@Html.ElementId(m => m.JavaScript)"), {
             lineNumbers: true,
             mode: 'text/javascript',
@@ -34,15 +33,5 @@
             indentUnit: 4,
             extraKeys: extraKeys,
         }));
-
-        function saveMirrors() {
-            codeMirrors.forEach(function (mirror) {
-                mirror.save();
-            });
-        }
-
-        $('form').on('submit', function () {
-            saveMirrors();
-        });
     });
 </script>

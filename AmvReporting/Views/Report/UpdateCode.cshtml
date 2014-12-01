@@ -86,7 +86,6 @@
                 "Ctrl-L": "deleteLine",
             };
 
-            var codeMirrors = [];
             var sqlCodeMirror = CodeMirror.fromTextArea(document.getElementById('@Html.ElementId(m => m.Sql)'), {
                 lineNumbers: true,
                 mode: 'text/x-sql',
@@ -124,16 +123,6 @@
                 });
             };
 
-
-            function saveMirrors() {
-                codeMirrors.forEach(function (mirror) {
-                    mirror.save();
-                });
-            }
-
-            $('form').on('submit', function () {
-                saveMirrors();
-            });
 
             // on report create/edit show the data returned by the sql server
             $('#previewData').on('click', function () {
