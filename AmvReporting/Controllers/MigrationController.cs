@@ -145,11 +145,19 @@ namespace AmvReporting.Controllers
                 table = new TemplateAggregate(Guid.NewGuid(), MigratingTemplates.Table.Title, MigratingTemplates.Table.Js, MigratingTemplates.Table.Html);
                 repository.Save(table, Guid.NewGuid());
             }
+            else
+            {
+                table = GetTemplate(MigratingTemplates.Table.Title);
+            }
 
             if (!TemplateExists(MigratingTemplates.LineChart.Title))
             {
                 lineChart = new TemplateAggregate(Guid.NewGuid(), MigratingTemplates.LineChart.Title, "", MigratingTemplates.LineChart.Html);
                 repository.Save(lineChart, Guid.NewGuid());
+            }
+            else
+            {
+                lineChart = GetTemplate(MigratingTemplates.LineChart.Title);
             }
 
             if (!TemplateExists(MigratingTemplates.LineChartWithSelection.Title))
@@ -157,11 +165,19 @@ namespace AmvReporting.Controllers
                 lineChartWithSelecetion = new TemplateAggregate(Guid.NewGuid(), MigratingTemplates.LineChartWithSelection.Title, "", MigratingTemplates.LineChartWithSelection.Html);
                 repository.Save(lineChartWithSelecetion, Guid.NewGuid());
             }
+            else
+            {
+                lineChartWithSelecetion = GetTemplate(MigratingTemplates.LineChartWithSelection.Title);
+            }
 
             if (!TemplateExists(MigratingTemplates.GoogleGraphs.Title))
             {
                 googleGraphs = new TemplateAggregate(Guid.NewGuid(), MigratingTemplates.GoogleGraphs.Title, "", MigratingTemplates.GoogleGraphs.Html);
                 repository.Save(googleGraphs, Guid.NewGuid());
+            }
+            else
+            {
+                googleGraphs = GetTemplate(MigratingTemplates.GoogleGraphs.Title);
             }
 
             if (!TemplateExists(MigratingTemplates.PivotedTable.Title))
@@ -169,12 +185,25 @@ namespace AmvReporting.Controllers
                 pivotedTable = new TemplateAggregate(Guid.NewGuid(), MigratingTemplates.PivotedTable.Title, MigratingTemplates.PivotedTable.Js, MigratingTemplates.PivotedTable.Html);
                 repository.Save(pivotedTable, Guid.NewGuid());
             }
+            else
+            {
+                pivotedTable = GetTemplate(MigratingTemplates.PivotedTable.Title);
+            }
         }
 
 
         public bool TemplateExists(String title)
         {
             return ravenSession.Query<TemplateViewModel>().Any(t => t.Title == title);
+        }
+
+
+        private TemplateAggregate GetTemplate(string title)
+        {
+            var viewModel = ravenSession.Query<TemplateViewModel>().FirstOrDefault(t => t.Title == title);
+            var template = repository.GetById<TemplateAggregate>(viewModel.AggregateId);
+
+            return template;
         }
     }
 

@@ -14,6 +14,8 @@
 <div class="admin-content">
     <div class="container">
         <h2>Compare Revision #@Model.RevisionNumber to Latest</h2>
+        
+        @Html.ActionLink("View Report", MVC.Home.ReportAggregate(Model.AggregateId), new { @class = "btn btn-default btn-xs", style = "position: absolute; right: 15px; top: 70px;", target = "_blank" })
 
         <div role="tabpanel" class="tabpanel">
             <ul class="nav nav-tabs" role="tablist">
