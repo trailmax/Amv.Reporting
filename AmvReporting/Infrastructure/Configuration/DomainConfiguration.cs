@@ -32,5 +32,13 @@ namespace AmvReporting.Infrastructure.Configuration
 
             return result;
         }
+
+
+        public string GetGoogleAnalyticsCode()
+        {
+            var result = ConfigurationManager.AppSettings["GoogleAnalyticsCode"];
+
+            return result;
+        }
     }
 }

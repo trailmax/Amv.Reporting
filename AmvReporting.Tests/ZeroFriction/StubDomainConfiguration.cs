@@ -32,5 +32,11 @@ namespace AmvReporting.Tests.ZeroFriction
         {
             throw new NotSupportedException();
         }
+
+
+        public string GetGoogleAnalyticsCode()
+        {
+            throw new NotSupportedException();
+        }
     }
 }

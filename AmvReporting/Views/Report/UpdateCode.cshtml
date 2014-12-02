@@ -86,7 +86,7 @@
                 "Ctrl-L": "deleteLine",
             };
 
-            var sqlCodeMirror = CodeMirror.fromTextArea(document.getElementById('@Html.ElementId(m => m.Sql)'), {
+            var sqlCodeMirror = CodeMirror.fromTextArea(document.getElementById('@Html.IdFor(m => m.Sql)'), {
                 lineNumbers: true,
                 mode: 'text/x-sql',
                 matchBrackets: true,
@@ -97,7 +97,7 @@
             codeMirrors.push(sqlCodeMirror);
 
 
-            codeMirrors.push(CodeMirror.fromTextArea(document.getElementById('@Html.ElementId(m => m.JavaScript)'), {
+            codeMirrors.push(CodeMirror.fromTextArea(document.getElementById('@Html.IdFor(m => m.JavaScript)'), {
                 lineNumbers: true,
                 mode: 'text/javascript',
                 matchBrackets: true,
@@ -106,7 +106,7 @@
                 extraKeys: extraKeys,
             }));
 
-            codeMirrors.push(CodeMirror.fromTextArea(document.getElementById('@Html.ElementId(m => m.HtmlOverride)'), {
+            codeMirrors.push(CodeMirror.fromTextArea(document.getElementById('@Html.IdFor(m => m.HtmlOverride)'), {
                 lineNumbers: true,
                 mode: 'text/html',
                 matchBrackets: true,
@@ -128,8 +128,8 @@
             $('#previewData').on('click', function () {
                 saveMirrors();
                 var postData = {};
-                postData['sql'] = $('#@Html.ElementId(m => m.Sql)').val();
-                postData['aggregateId'] = $('#@Html.ElementId(m => m.AggregateId)').val();
+                postData['sql'] = $('#@Html.IdFor(m => m.Sql)').val();
+                postData['aggregateId'] = $('#@Html.IdFor(m => m.AggregateId)').val();
 
                 $.ajax({
                     type: 'POST',
@@ -146,7 +146,7 @@
             $('#cleanseAndFormatSql').on('click', function () {
                 saveMirrors();
                 var postData = {};
-                postData['sql'] = $('#@Html.ElementId(m => m.Sql)').val();
+                postData['sql'] = $('#@Html.IdFor(m => m.Sql)').val();
 
                 $.ajax({
                     type: 'POST',

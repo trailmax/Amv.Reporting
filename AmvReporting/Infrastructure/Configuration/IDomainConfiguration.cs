@@ -8,5 +8,6 @@ namespace AmvReporting.Infrastructure.Configuration
         string GetBackupPath();
         bool EnableRavenStudio();
         String AdministratorRoleNames();
+        String GetGoogleAnalyticsCode();
     }
 }

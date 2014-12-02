@@ -47,7 +47,7 @@
                 "Ctrl-L": "deleteLine",
             };
 
-            codeMirrors.push(CodeMirror.fromTextArea(document.getElementById('@Html.ElementId(m => m.GlobalJavascript)'), {
+            codeMirrors.push(CodeMirror.fromTextArea(document.getElementById('@Html.IdFor(m => m.GlobalJavascript)'), {
                 lineNumbers: true,
                 mode: 'text/javascript',
                 matchBrackets: true,
@@ -56,7 +56,7 @@
                 extraKeys: extraKeys,
             }));
 
-            codeMirrors.push(CodeMirror.fromTextArea(document.getElementById('@Html.ElementId(m => m.GlobalCss)'), {
+            codeMirrors.push(CodeMirror.fromTextArea(document.getElementById('@Html.IdFor(m => m.GlobalCss)'), {
                 lineNumbers: true,
                 mode: 'text/css',
                 matchBrackets: true,

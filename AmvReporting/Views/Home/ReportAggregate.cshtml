@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = Model.Title;
+    ViewBag.ReportGroupName = Model.ReportGroupName;
 }
 
 @Html.ActionLink("Edit", MVC.Report.UpdateCode(Model.AggregateId), new { @class = "admin-link btn btn-default btn-xs" })

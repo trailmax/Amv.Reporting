@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using AmvReporting.Domain.DatabaseConnections;
-using AmvReporting.Domain.ReportingConfigs.Queries;
+using AmvReporting.Domain.ReportGroups;
 using AmvReporting.Domain.Templates.Events;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Helpers;
@@ -20,6 +20,7 @@ namespace AmvReporting.Domain.Reports.Queries
         public String ReportHtml { get; set; }
         public String TemplateJavascript { get; set; }
         public String TemplateHtml { get; set; }
+        public String ReportGroupName { get; set; }
     }
 
 
@@ -47,18 +48,17 @@ namespace AmvReporting.Domain.Reports.Queries
     public class ReportResultQueryHandler : IQueryHandler<ReportResultQuery, ReportResult>
     {
         private readonly IDocumentSession ravenSession;
-        private readonly IMediator mediator;
 
-        public ReportResultQueryHandler(IDocumentSession ravenSession, IMediator mediator)
+        public ReportResultQueryHandler(IDocumentSession ravenSession)
         {
             this.ravenSession = ravenSession;
-            this.mediator = mediator;
         }
 
 
         public ReportResult Handle(ReportResultQuery query)
         {
-            var report = ravenSession.Query<ReportViewModel>().Include<ReportViewModel>(r => r.DatabaseId)
+            var report = ravenSession.Query<ReportViewModel>()
+                .Include<ReportViewModel>(r => r.DatabaseId)
                 .FirstOrDefault(r => r.AggregateId == query.Id);
 
             if (report == null)
@@ -67,6 +67,7 @@ namespace AmvReporting.Domain.Reports.Queries
             }
 
             var dbConnection = ravenSession.Load<DatabaseConnection>(report.DatabaseId);
+            var reportGroup = ravenSession.Load<ReportGroup>(report.ReportGroupId);
             var template = ravenSession.Query<TemplateViewModel>()
                                        .SingleOrDefault(t => t.AggregateId == report.TemplateId);
 
@@ -79,6 +80,7 @@ namespace AmvReporting.Domain.Reports.Queries
                              ReportHtml = report.HtmlOverride,
                              TemplateJavascript = template.CheckForNull(t => t.JavaScript),
                              TemplateHtml = template.CheckForNull(t => t.Html),
+                             ReportGroupName = reportGroup.CheckForNull(g => g.Title),
                          };
 
             using (var sqlServerHelper = new SqlServerHelper())
