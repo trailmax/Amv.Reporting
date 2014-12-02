@@ -1,14 +1,17 @@
 ﻿@{
     Layout = "~/Views/Shared/_LayoutMinimal.cshtml";
 }
-@section scripts{
-    @RenderSection("scripts", required: false)
-}
 @section css
 {
+    @Html.Action(MVC.GlobalConfig.GlobalCss())
     @RenderSection("css", required: false)
 }
 
 <div class="container client-content">
     @RenderBody()
 </div>
+
+@section scripts{
+    @Html.Action(MVC.GlobalConfig.GlobalJs())
+    @RenderSection("scripts", required: false)
+}

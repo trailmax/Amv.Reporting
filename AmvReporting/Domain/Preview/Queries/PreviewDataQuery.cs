@@ -1,5 +1,5 @@
 using System;
-using System.Text;
+using System.Linq;
 using AmvReporting.Domain.DatabaseConnections;
 using AmvReporting.Domain.Reports;
 using AmvReporting.Infrastructure.CQRS;
@@ -8,25 +8,24 @@ using Raven.Client;
 
 namespace AmvReporting.Domain.Preview.Queries
 {
-    public class PreviewDataQuery : IQuery<PreviewDataResult>
-    {
-        public string Sql { get; set; }
-        public String DatabaseId { get; set; }
-        public ReportType ReportType { get; set; }
-
-        public PreviewDataQuery(string sql, string databaseId, ReportType reportType)
-        {
-            Sql = sql;
-            DatabaseId = databaseId;
-            ReportType = reportType;
-        }
-    }
-
     public class PreviewDataResult
     {
         public bool IsSuccess { get; set; }
         public String ExceptionMessage { get; set; }
         public String Data { get; set; }
+    }
+
+
+    public class PreviewDataQuery : IQuery<PreviewDataResult>
+    {
+        public string Sql { get; set; }
+        public Guid AggregateId { get; set; }
+
+        public PreviewDataQuery(Guid aggregateId, string sql)
+        {
+            AggregateId = aggregateId;
+            Sql = sql;
+        }
     }
 
 
@@ -42,7 +41,15 @@ namespace AmvReporting.Domain.Preview.Queries
 
         public PreviewDataResult Handle(PreviewDataQuery query)
         {
-            var database = ravenSession.Load<DatabaseConnection>(query.DatabaseId);
+            var report = ravenSession.Query<ReportViewModel>().Include<ReportViewModel>(r => r.DatabaseId)
+                .FirstOrDefault(r => r.AggregateId == query.AggregateId);
+
+            if (report == null)
+            {
+                throw new DomainException("Unable to find report with this id");
+            }
+
+            var database = ravenSession.Load<DatabaseConnection>(report.DatabaseId);
 
             var result = new PreviewDataResult();
 

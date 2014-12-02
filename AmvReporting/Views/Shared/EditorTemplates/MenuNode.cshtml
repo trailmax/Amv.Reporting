@@ -14,16 +14,16 @@
 }
 @foreach (var report in Model.Reports)
 {
-    <tr data-tt-parent-id="@report.ReportGroupId" data-tt-id="@report.Id">
+    <tr data-tt-parent-id="@report.ReportGroupId" data-tt-id="@report.AggregateId">
         <td>
             <span class="file">
-                @Html.ActionLink(report.Title, MVC.Report.Edit(report.Id), new { @class = !report.Enabled ? "disabled-report" : "" })
+                @Html.ActionLink(report.Title, MVC.Report.UpdateCode(report.AggregateId), new { @class = !report.Enabled ? "disabled-report" : "" })
             </span>
         </td>
         <td>
-            @Html.ActionLink("View", MVC.Home.Report(report.Id), new { @class = "btn btn-default btn-xs" })
-            @Url.AjaxDeleteButton(MVC.Report.Delete(), report, i => i.Id)
-            @Html.ActionLink("Clone", MVC.Report.Clone(report.Id), new { @class = "btn btn-default btn-xs" })
+            @Html.ActionLink("View", MVC.Home.ReportAggregate(report.AggregateId), new { @class = "btn btn-default btn-xs" })
+            @Url.AjaxDeleteButton(MVC.Report.Delete(), report, i => i.AggregateId)
+            @Html.ActionLink("Clone", MVC.Report.Clone(report.AggregateId), new { @class = "btn btn-default btn-xs" })
         </td>
     </tr>
 }

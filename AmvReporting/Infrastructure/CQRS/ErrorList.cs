@@ -10,7 +10,7 @@ namespace AmvReporting.Infrastructure.CQRS
     /// It provide a ToString implementation for Error message and it will be included in ToString
     /// when called on ErrorList
     /// </summary>
-    public class ErrorList : List<IErrorMessage>
+    public class ErrorList : List<StringErrorMessage>
     {
         public override string ToString()
         {

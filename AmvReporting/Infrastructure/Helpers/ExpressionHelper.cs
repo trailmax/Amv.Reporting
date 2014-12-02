@@ -12,7 +12,8 @@ namespace AmvReporting.Infrastructure.Helpers
             return result;
         }
 
-        public static String PropertyName<T>(Expression<Func<T, String>> selector)
+
+        public static String PropertyName<T, TResult>(Expression<Func<T, TResult>> selector)
         {
             var name = ((MemberExpression)selector.Body).Member.Name;
             return name;

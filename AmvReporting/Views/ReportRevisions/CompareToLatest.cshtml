@@ -1,0 +1,58 @@
+﻿@model CompareReportToLatestViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdminContainerFree.cshtml";
+    ViewBag.Title = "Compare Revision to Latest";
+}
+
+@section css
+{
+    @Styles.Render("~/Content/mergely_css")
+}
+
+
+<div class="admin-content">
+    <div class="container">
+        <h2>Compare Revision #@Model.RevisionNumber to Latest</h2>
+        
+        @Html.ActionLink("View Report", MVC.Home.ReportAggregate(Model.AggregateId), new { @class = "btn btn-default btn-xs", style = "position: absolute; right: 15px; top: 70px;", target = "_blank" })
+
+        <div role="tabpanel" class="tabpanel">
+            <ul class="nav nav-tabs" role="tablist">
+                <li>@Html.ActionLink("Meta", MVC.Report.UpdateMetadata(Model.AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+                <li>@Html.ActionLink("Code", MVC.Report.UpdateCode(Model.AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+                <li class="active">@Html.ActionLink("Revisions", MVC.ReportRevisions.ViewAllVersions(Model.AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+            </ul>
+        </div>
+    </div>
+    <h3 class="pull-right">Latest</h3>
+    <h3>Revision #@Model.RevisionNumber below</h3>
+    <div id="compare"></div>
+
+    <pre id="revision" class="hidden">@Html.Raw(Model.RevisionJson)</pre>
+    <pre id="latest" class="hidden">@Html.Raw(Model.LatestJson)</pre>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/mergely_js")
+
+    <script>
+        $(document).ready(function () {
+            var revision = $('#revision')[0].innerHTML;
+            var latest = $('#latest')[0].innerHTML;
+            $('#compare').mergely({
+                width: 'auto',
+                height: 600,
+                ignorews: true,
+                cmsettings: { readOnly: true, lineNumbers: true },
+                lhs: function (setValue) {
+                    setValue(revision);
+                },
+                rhs: function (setValue) {
+                    setValue(latest);
+                }
+            });
+        });
+    </script>
+}

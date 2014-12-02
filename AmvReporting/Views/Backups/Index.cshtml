@@ -1,0 +1,25 @@
+﻿@model IEnumerable<AmvReporting.Domain.Backup.BackupViewModel>
+
+<h2>Backups</h2>
+
+@if (!Model.Any())
+{
+    <h4>No backups yet</h4>
+}
+else
+{
+    <ul class="extra-spacing">
+        @foreach (var backup in Model)
+        {
+            <li title="@backup.FullPath">
+                @backup.Name
+                @Html.ActionLink("Restore", MVC.Backups.RestoreBackup(backup.Name), new { @class="btn btn-sm btn-danger" })
+            </li>
+        }
+    </ul>
+}
+
+@using (Html.BeginForm(MVC.Backups.CreateBackup()))
+{
+    <input type="submit" value="Create Backup" class="btn btn-lg btn-warning" />
+}

@@ -1,0 +1,21 @@
+﻿@model AmvReporting.Domain.Templates.Commands.CreateTemplateCommand
+           
+@Html.AntiForgeryToken()
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Title, new { @class = "control-label" })
+    @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Title)
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.JavaScript, new { @class = "control-label" })
+    @Html.TextAreaFor(m => m.JavaScript, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.JavaScript)
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Html, new { @class = "control-label" })
+    @Html.TextAreaFor(m => m.Html, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Html)
+</div>

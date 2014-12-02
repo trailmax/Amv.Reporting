@@ -72,12 +72,6 @@ namespace AmvReporting.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CleanseAndFormatSql);
         }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult ParseHtml()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ParseHtml);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public PreviewController Actions { get { return MVC.Preview; } }
@@ -97,7 +91,6 @@ namespace AmvReporting.Controllers
             public readonly string Data = "Data";
             public readonly string Report = "Report";
             public readonly string CleanseAndFormatSql = "CleanseAndFormatSql";
-            public readonly string ParseHtml = "ParseHtml";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -106,7 +99,6 @@ namespace AmvReporting.Controllers
             public const string Data = "Data";
             public const string Report = "Report";
             public const string CleanseAndFormatSql = "CleanseAndFormatSql";
-            public const string ParseHtml = "ParseHtml";
         }
 
 
@@ -116,9 +108,8 @@ namespace AmvReporting.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Data
         {
+            public readonly string aggregateId = "aggregateId";
             public readonly string sql = "sql";
-            public readonly string databaseId = "databaseId";
-            public readonly string reportType = "reportType";
         }
         static readonly ActionParamsClass_Report s_params_Report = new ActionParamsClass_Report();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -126,7 +117,7 @@ namespace AmvReporting.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Report
         {
-            public readonly string model = "model";
+            public readonly string query = "query";
         }
         static readonly ActionParamsClass_CleanseAndFormatSql s_params_CleanseAndFormatSql = new ActionParamsClass_CleanseAndFormatSql();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -135,14 +126,6 @@ namespace AmvReporting.Controllers
         public class ActionParamsClass_CleanseAndFormatSql
         {
             public readonly string sql = "sql";
-        }
-        static readonly ActionParamsClass_ParseHtml s_params_ParseHtml = new ActionParamsClass_ParseHtml();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_ParseHtml ParseHtmlParams { get { return s_params_ParseHtml; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ParseHtml
-        {
-            public readonly string rawData = "rawData";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -168,28 +151,27 @@ namespace AmvReporting.Controllers
         public T4MVC_PreviewController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void DataOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string sql, string databaseId, AmvReporting.Domain.Reports.ReportType reportType);
+        partial void DataOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid aggregateId, string sql);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Data(string sql, string databaseId, AmvReporting.Domain.Reports.ReportType reportType)
+        public override System.Web.Mvc.ActionResult Data(System.Guid aggregateId, string sql)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Data);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "aggregateId", aggregateId);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sql", sql);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "databaseId", databaseId);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "reportType", reportType);
-            DataOverride(callInfo, sql, databaseId, reportType);
+            DataOverride(callInfo, aggregateId, sql);
             return callInfo;
         }
 
         [NonAction]
-        partial void ReportOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.Preview.ViewModels.PreviewReportModel model);
+        partial void ReportOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.Preview.Queries.PreviewReportQuery query);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Report(AmvReporting.Domain.Preview.ViewModels.PreviewReportModel model)
+        public override System.Web.Mvc.ActionResult Report(AmvReporting.Domain.Preview.Queries.PreviewReportQuery query)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Report);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            ReportOverride(callInfo, model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "query", query);
+            ReportOverride(callInfo, query);
             return callInfo;
         }
 
@@ -202,18 +184,6 @@ namespace AmvReporting.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CleanseAndFormatSql);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sql", sql);
             CleanseAndFormatSqlOverride(callInfo, sql);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void ParseHtmlOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string rawData);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult ParseHtml(string rawData)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ParseHtml);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "rawData", rawData);
-            ParseHtmlOverride(callInfo, rawData);
             return callInfo;
         }
 

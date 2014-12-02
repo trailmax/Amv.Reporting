@@ -4,8 +4,8 @@ namespace AmvReporting.Infrastructure.Configuration
 {
     public interface IDomainConfiguration
     {
-        String GetDatabaseConnectionString();
         string GetRavenDataPath();
+        string GetBackupPath();
         bool EnableRavenStudio();
         String AdministratorRoleNames();
     }

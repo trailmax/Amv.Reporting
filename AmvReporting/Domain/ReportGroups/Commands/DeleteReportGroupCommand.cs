@@ -30,7 +30,7 @@ namespace AmvReporting.Domain.ReportGroups.Commands
         public ErrorList Errors { get; private set; }
         public bool IsValid(DeleteReportGroupCommand command)
         {
-            var childReports = ravenSession.Query<Report>().Where(r => r.ReportGroupId == command.Id).ToList();
+            var childReports = ravenSession.Query<ReportViewModel>().Where(r => r.ReportGroupId == command.Id).ToList();
             var childGroups = ravenSession.Query<ReportGroup>().Where(r => r.ParentReportGroupId == command.Id).ToList();
 
             if (childGroups.Any() || childReports.Any())

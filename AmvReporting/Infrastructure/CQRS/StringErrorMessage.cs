@@ -2,7 +2,7 @@
 
 namespace AmvReporting.Infrastructure.CQRS
 {
-    public class StringErrorMessage : IErrorMessage
+    public class StringErrorMessage
     {
         public string FieldName { get; set; }
         public string Message { get; set; }

@@ -2,6 +2,6 @@
 {
     public interface IDomainEventDispatcher
     {
-        void Dispatch<TEvent>(TEvent eventToDispatch) where TEvent : IDomainEvent;
+        void Dispatch<TEvent>(TEvent eventToDispatch) where TEvent : IEvent;
     }
 }

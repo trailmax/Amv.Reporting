@@ -88,6 +88,25 @@ namespace AmvReporting.Tests.ZeroFriction
         {
             var assertionList = new List<string>(); // list of error messages
 
+            if (expected == null && actual == null)
+            {
+                assertionList.Add("Both objects are null. Can't compare");
+                return assertionList;
+            }
+
+            if (expected == null)
+            {
+                assertionList.Add("Expected object is null. Can't compare");
+                return assertionList;
+            }
+
+            if (actual == null)
+            {
+                assertionList.Add("Actual object is null. Can't compare");
+                return assertionList;
+            }
+
+
             // if we try to compare objects that have equals defined on them, just use that!
             if (expected.Equals(actual))
             {

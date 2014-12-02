@@ -60,7 +60,7 @@ namespace AmvReporting.Infrastructure.ActionResults
                     returnModel.Success = false;
                     returnModel.FailureMessage = domainException.Message;
                 }
-                catch (Exception exception)
+                catch (Exception)
                 {
                     returnModel.Success = false;
                     returnModel.FailureMessage = "Unable to process command";

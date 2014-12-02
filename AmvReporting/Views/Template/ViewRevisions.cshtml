@@ -1,0 +1,44 @@
+﻿@model IEnumerable<AmvReporting.Domain.EventSourcing.AggregateRevision>
+
+@{
+    ViewBag.Title = "Revisions of Template";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Revisions for template "@ViewBag.Header"</h2>
+<div role="tabpanel" class="tabpanel">
+    <ul class="nav nav-tabs" role="tablist">
+        <li>@Html.ActionLink("Edit", MVC.Template.Update(Model.First().AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+        <li class="active">@Html.ActionLink("Revisions", MVC.Template.ViewRevisions(Model.First().AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+    </ul>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rev #</th>
+            <th>Date</th>
+            <th>User</th>
+            <th>Action</th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var revision in Model)
+    {
+        <tr>
+            <td>@revision.RevisionNumber</td>
+            <td title="@String.Format("{0:dd/MM/yyyy HH:mm:ss.fffffff}", revision.CommitDate)">@String.Format("{0:dd MMM yy}", revision.CommitDate)</td>
+            <td>@revision.Username</td>
+            <td>@revision.EventDescription</td>
+            <td>
+                @if (revision.RevisionNumber < Model.Max(r => r.RevisionNumber))
+                {
+                    @Html.ActionLink("Compare to Latest", MVC.Template.CompareToLatest(revision.AggregateId, revision.RevisionNumber), new { @class = "btn btn-sm btn-success" })
+                }
+                else
+                {
+                    <text>Latest</text>
+                }
+            </td>
+        </tr>
+    }
+</table>

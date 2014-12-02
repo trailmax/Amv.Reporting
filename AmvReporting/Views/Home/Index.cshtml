@@ -1,7 +1,7 @@
 ﻿@model MenuModel
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "List of Reports";
 }
 
 @Html.ActionLink("Admin", MVC.Report.Index(), new { @class = "admin-link btn btn-default btn-xs" })
@@ -16,8 +16,8 @@
     }
     @foreach (var report in Model.TopLevelReports)
     {
-        <tr data-tt-id="@report.Id">
-            <td><span class="file">@Html.ActionLink(report.Title, MVC.Home.Report(report.Id))</span></td>
+        <tr data-tt-id="@report.AggregateId">
+            <td><span class="file">@Html.ActionLink(report.Title, MVC.Home.ReportAggregate(report.AggregateId))</span></td>
         </tr>
     }
 </table>

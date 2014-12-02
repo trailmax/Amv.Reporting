@@ -1,0 +1,34 @@
+﻿@model AmvReporting.Domain.Reports.Commands.UpdateReportMetadataCommand
+
+@{
+    ViewBag.Title = "Edit Report Metadata";
+}
+
+
+<h2>Edit Report</h2>
+
+@Html.ActionLink("View Report", MVC.Home.ReportAggregate(Model.AggregateId), new { @class = "btn btn-default btn-xs", style = "position: absolute; right: 15px; top: 70px;", target = "_blank" })
+
+<!-- Nav tabs -->
+<div role="tabpanel" class="tabpanel">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active"><a class="tab-pane">Meta</a></li>
+        <li>@Html.ActionLink("Code", MVC.Report.UpdateCode(Model.AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+        <li>@Html.ActionLink("Revisions", MVC.ReportRevisions.ViewAllVersions(Model.AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+    </ul>
+</div>
+
+@using (Html.BeginForm(MVC.Report.UpdateMetadata(), FormMethod.Post, new { role = "form", @class = "submit-by-ajax" }))
+{
+    <div class="row">
+        @Html.ValidationSummary(false)
+        @Html.HiddenFor(m => m.AggregateId)
+
+        <div class="col-md-6">
+            @Html.Partial(MVC.Report.Views._Metadata, Model)
+
+            <input type="submit" value="Update" class="btn btn-default" />
+            @Html.ActionLink("Back To List", MVC.Report.Index(), new { @class = "btn btn-default" })
+        </div>
+    </div>
+}

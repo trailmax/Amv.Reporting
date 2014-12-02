@@ -1,0 +1,35 @@
+﻿@model IEnumerable<AmvReporting.Domain.Templates.Events.TemplateViewModel>
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "List of Report Templates";
+}
+
+<h2>List of Report Templates</h2>
+<p class="lead">Templates are pre-built types of report where you can specify the pre-defined JavaScript and HTML to go on the report.</p>
+<div class="row">
+    <div class="col-md-9">
+        <p>
+            @Html.ActionLink("New Template", MVC.Template.Create(), new { @class = "btn btn-primary btn-lg" })
+        </p>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>@Html.DisplayNameFor(m => m.Title)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="col-sm-2">
+                            @Html.ActionLink("Edit", MVC.Template.Update(item.AggregateId), new { @Class = "btn btn-default btn-sm" })
+                        </td>
+                        <td>@Html.DisplayFor(_ => item.Title)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

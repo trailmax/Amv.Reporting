@@ -1,0 +1,28 @@
+﻿@model AmvReporting.Domain.Templates.Commands.UpdateTemplateCommand
+
+@{
+    ViewBag.Title = "Update Report Template";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Update Report Template</h2>
+<div role="tabpanel" class="tabpanel">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">@Html.ActionLink("Edit", MVC.Template.Update(Model.AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+        <li>@Html.ActionLink("Revisions", MVC.Template.ViewRevisions(Model.AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+    </ul>
+</div>
+@using (Html.BeginForm(MVC.Template.Update(), FormMethod.Post, new { role = "form", @class = "submit-by-ajax" }))
+{
+    @Html.HiddenFor(m => m.AggregateId)
+    @Html.Partial(MVC.Template.Views._CreateEdit)
+    <div class="row">
+        <input type="submit" value="Update" class="btn btn-default" />
+        @Html.ActionLink("Back To List", MVC.Template.Index(), new { @class = "btn btn-default" })
+    </div>
+}
+
+@section scripts
+{
+    @Html.Partial(MVC.Template.Views._CommonScripts)
+}

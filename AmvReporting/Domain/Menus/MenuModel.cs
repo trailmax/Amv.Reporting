@@ -7,7 +7,7 @@ namespace AmvReporting.Domain.Menus
 {
     public class MenuModel
     {
-        public List<Report> TopLevelReports { get; set; }
+        public List<ReportViewModel> TopLevelReports { get; set; }
         public List<MenuNode> MenuNodes { get; set; }
     }
 
@@ -18,7 +18,7 @@ namespace AmvReporting.Domain.Menus
         public String ReportGroupId { get; set; }
         public String ReportGroupTitle { get; set; }
         public bool Enabled { get; set; }
-        public List<Report> Reports { get; set; }
+        public List<ReportViewModel> Reports { get; set; }
         public List<MenuNode> MenuNodes { get; set; }
     }
 }

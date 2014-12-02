@@ -1,52 +1,27 @@
-﻿@model ReportResultPreview
+﻿@model AmvReporting.Domain.Preview.Queries.ReportResultPreview
 @{
     Layout = null;
 }
 
 <style>
-    @Model.GlobalCss
-    @Model.Css
+    @Html.Raw(Model.GlobalCss)
 </style>
 
 <div id="javascriptError"></div>
 
-@{
-    if (!String.IsNullOrEmpty(Model.HtmlOverride))
-    {
-        @Html.Raw(Model.HtmlOverride)
-    }
-    else if (Model.ReportType == ReportType.Table)
-    {
-        <table id="report"></table>
-    }
-    else if (Model.ReportType == ReportType.LineChart)
-    {
-        <div id="report" style="height: 600px; width: 600px;"></div>
-    }
-    else if (Model.ReportType == ReportType.LineChartWithSelection)
-    {
-        <div id="report" style="height: 600px; width: 600px"></div>
-        <div id="choices"></div>
-    }
-    else if (Model.ReportType == ReportType.GoogleGraphs)
-    {
-        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-        <script>
-            // load google chart api
-            google.load('visualization', '1.0', { 'packages': ['corechart'] });
-        </script>
-        <div id="report" style="height: 600px; width: 600px"></div>
-    }
-}
+@Html.Raw(Model.TemplateHtml)
+@Html.Raw(Model.ReportHtml)
 
 <script type="text/javascript">
+    @Html.Raw(Model.GlobalJs)
+
     $(document).ready(function () {
         try {
             @Html.Raw(Model.Data)
 
-            @Html.Raw(Model.GlobalJs)
+            @Html.Raw(Model.TemplateJavascript)
 
-            @Html.Raw(Model.JavaScript)
+            @Html.Raw(Model.ReportJavaScript)
         } catch (e) {
             $('#javascriptError').html('<span class="glyphicon glyphicon-remove-circle"></span> JavaScript Error: ' + e.message).addClass('alert-danger javascriptError');
         }

@@ -1,0 +1,32 @@
+﻿@model ReportResult
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+@Html.ActionLink("Edit", MVC.Report.UpdateCode(Model.AggregateId), new { @class = "admin-link btn btn-default btn-xs" })
+
+@Html.ActionLink("Home", MVC.Home.Index(), new { @class = "btn btn-primary" })
+
+<h2>@Model.Title</h2>
+
+<h5>
+    @Model.Description
+</h5>
+
+@Html.Raw(Model.TemplateHtml)
+
+@Html.Raw(Model.ReportHtml)
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            @Html.Raw(Model.Data)
+
+            @Html.Raw(Model.TemplateJavascript)
+
+            @Html.Raw(Model.ReportJavaScript)
+        });
+    </script>
+}

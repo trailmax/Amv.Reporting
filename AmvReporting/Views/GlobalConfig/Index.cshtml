@@ -1,0 +1,69 @@
+﻿@model AmvReporting.Domain.ReportingConfigs.Commands.UpdateConfigurationCommand
+           
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Application Configuration";
+}
+
+
+<h2>Application Configuration</h2>
+
+<p class="lead">
+    This JS will be added on client pages. Admin pages are excluded from these for security reasons.
+    <br />
+    Also these will be added on report preview.
+</p>
+@using (Html.BeginForm(MVC.GlobalConfig.Index(), FormMethod.Post, new { role = "form", @class = "submit-by-ajax" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.GlobalJavascript, new { @class = "control-label" })
+        <p>Please wrap your JavaScript into <i>document.ready()</i> or into self-executing function. Nothing special is applied to this on runtime</p>
+        @Html.TextAreaFor(m => m.GlobalJavascript, new { @class = "form-control", rows = 10 })
+        @Html.ValidationMessageFor(m => m.GlobalJavascript)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.GlobalCss, new { @class = "control-label" })
+        <p>These are placed last, just before Body tag. So these will override everything above.</p>
+        @Html.TextAreaFor(m => m.GlobalCss, new { @class = "form-control", rows = 10 })
+        @Html.ValidationMessageFor(m => m.GlobalCss)
+    </div>
+    
+    <input type="submit" value="Save" class="btn btn-default" />
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var extraKeys = {
+                "F11": function (cm) {
+                    cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+                },
+                "Esc": function (cm) {
+                    if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+                },
+                "Ctrl-S": function (cm) {
+                    $('form').submit();
+                },
+                "Ctrl-L": "deleteLine",
+            };
+
+            codeMirrors.push(CodeMirror.fromTextArea(document.getElementById('@Html.ElementId(m => m.GlobalJavascript)'), {
+                lineNumbers: true,
+                mode: 'text/javascript',
+                matchBrackets: true,
+                smartIndent: true,
+                indentUnit: 4,
+                extraKeys: extraKeys,
+            }));
+
+            codeMirrors.push(CodeMirror.fromTextArea(document.getElementById('@Html.ElementId(m => m.GlobalCss)'), {
+                lineNumbers: true,
+                mode: 'text/css',
+                matchBrackets: true,
+                smartIndent: true,
+                indentUnit: 4,
+                extraKeys: extraKeys,
+            }));
+        });
+    </script>
+}

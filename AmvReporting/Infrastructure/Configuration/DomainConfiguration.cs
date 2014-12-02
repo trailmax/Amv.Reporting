@@ -5,17 +5,19 @@ namespace AmvReporting.Infrastructure.Configuration
 {
     public class DomainConfiguration : IDomainConfiguration
     {
-        public string GetDatabaseConnectionString()
-        {
-            var connectionString = ConfigurationManager.AppSettings["DatabaseConnectionString"];
-            return connectionString;
-        }
-
         public string GetRavenDataPath()
         {
             var dataPath = ConfigurationManager.AppSettings["RavenDataPath"];
             return dataPath;
         }
+
+
+        public string GetBackupPath()
+        {
+            var backupPath = ConfigurationManager.AppSettings["BackupPath"];
+            return backupPath;
+        }
+
 
         public bool EnableRavenStudio()
         {

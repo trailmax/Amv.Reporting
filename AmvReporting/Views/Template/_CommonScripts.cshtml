@@ -1,0 +1,37 @@
+﻿@model AmvReporting.Domain.Templates.Commands.CreateTemplateCommand
+
+<script>
+    $(document).ready(function () {
+        var extraKeys = {
+            "F11": function (cm) {
+                cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+            },
+            "Esc": function (cm) {
+                if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+            },
+            "Ctrl-S": function (cm) {
+                $('form').submit();
+            },
+            "Ctrl-L": "deleteLine",
+        };
+
+        codeMirrors.push(CodeMirror.fromTextArea(document.getElementById("@Html.ElementId(m => m.JavaScript)"), {
+            lineNumbers: true,
+            mode: 'text/javascript',
+            matchBrackets: true,
+            smartIndent: true,
+            indentUnit: 4,
+            extraKeys: extraKeys,
+        }));
+
+
+        codeMirrors.push(CodeMirror.fromTextArea(document.getElementById("@Html.ElementId(m => m.Html)"), {
+            lineNumbers: true,
+            mode: 'text/html',
+            matchBrackets: true,
+            smartIndent: true,
+            indentUnit: 4,
+            extraKeys: extraKeys,
+        }));
+    });
+</script>

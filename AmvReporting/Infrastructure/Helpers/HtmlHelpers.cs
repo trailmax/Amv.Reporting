@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Web.Mvc;
+using AmvReporting.Infrastructure.PageGeneration;
+
 
 namespace AmvReporting.Infrastructure.Helpers
 {
     public static class HtmlHelpers
     {
-        public static MvcHtmlString AjaxDeleteButton<T>(this UrlHelper urlHelper, ActionResult actionResult, T data, Expression<Func<T, String>> selector)
+        public static MvcHtmlString AjaxDeleteButton<T, TResult>(this UrlHelper urlHelper, ActionResult actionResult, T data, Expression<Func<T, TResult>> selector)
         {
             return AjaxDeleteButton(urlHelper, actionResult, ExpressionHelper.PropertyValue(data, selector),
                 ExpressionHelper.PropertyName(selector));
         }
+
 
         public static MvcHtmlString AjaxDeleteButton(this UrlHelper urlHelper, ActionResult actionResult, object data, String parameterName)
         {
@@ -25,6 +28,20 @@ namespace AmvReporting.Infrastructure.Helpers
             tagBuilder.MergeAttribute("data-url", urlHelper.Action(actionResult));
 
             return new MvcHtmlString(tagBuilder.ToString(TagRenderMode.Normal));
+        }
+
+        public static String ElementId<T, TResult>(this HtmlHelper<T> htmlHelper, Expression<Func<T, TResult>> selector)
+        {
+            var text = System.Web.Mvc.ExpressionHelper.GetExpressionText(selector);
+            var fullName = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(text);
+            var id = TagBuilder.CreateSanitizedId(fullName);
+
+            return id;
+        }
+
+        public static HtmlBuildersFactory<TModel> Domain<TModel>(this HtmlHelper<TModel> html)
+        {
+            return new HtmlBuildersFactory<TModel>(html);
         }
     }
 }

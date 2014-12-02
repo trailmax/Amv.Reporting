@@ -56,6 +56,12 @@ namespace AmvReporting.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ReportAggregate()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ReportAggregate);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Report()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Report);
@@ -77,6 +83,7 @@ namespace AmvReporting.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string ReportAggregate = "ReportAggregate";
             public readonly string Report = "Report";
         }
 
@@ -84,10 +91,19 @@ namespace AmvReporting.Controllers
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string ReportAggregate = "ReportAggregate";
             public const string Report = "Report";
         }
 
 
+        static readonly ActionParamsClass_ReportAggregate s_params_ReportAggregate = new ActionParamsClass_ReportAggregate();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ReportAggregate ReportAggregateParams { get { return s_params_ReportAggregate; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ReportAggregate
+        {
+            public readonly string id = "id";
+        }
         static readonly ActionParamsClass_Report s_params_Report = new ActionParamsClass_Report();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Report ReportParams { get { return s_params_Report; } }
@@ -108,11 +124,11 @@ namespace AmvReporting.Controllers
             {
                 public readonly string _ViewStart = "_ViewStart";
                 public readonly string Index = "Index";
-                public readonly string Report = "Report";
+                public readonly string ReportAggregate = "ReportAggregate";
             }
             public readonly string _ViewStart = "~/Views/Home/_ViewStart.cshtml";
             public readonly string Index = "~/Views/Home/Index.cshtml";
-            public readonly string Report = "~/Views/Home/Report.cshtml";
+            public readonly string ReportAggregate = "~/Views/Home/ReportAggregate.cshtml";
         }
     }
 
@@ -129,6 +145,18 @@ namespace AmvReporting.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             IndexOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ReportAggregateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ReportAggregate(System.Guid id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ReportAggregate);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ReportAggregateOverride(callInfo, id);
             return callInfo;
         }
 

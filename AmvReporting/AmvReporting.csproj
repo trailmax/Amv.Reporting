@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AmvReporting</RootNamespace>
     <AssemblyName>AmvReporting</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -22,6 +22,7 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -65,9 +66,18 @@
     <Reference Include="Microsoft.CSharp">
       <Private>True</Private>
     </Reference>
+    <Reference Include="NEventStore">
+      <HintPath>..\packages\NEventStore.5.1.0\lib\net40\NEventStore.dll</HintPath>
+    </Reference>
+    <Reference Include="NEventStore.Persistence.RavenDB">
+      <HintPath>..\packages\NEventStore.Persistence.RavenDB.5.0.0.86\lib\net40\NEventStore.Persistence.RavenDB.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Omu.ValueInjecter">
+      <HintPath>..\packages\valueinjecter.2.3.3\lib\net35\Omu.ValueInjecter.dll</HintPath>
     </Reference>
     <Reference Include="PoorMansTSqlFormatterLib35">
       <HintPath>..\packages\PoorMansTSQLFormatter.1.4.3.1\lib\net35\PoorMansTSqlFormatterLib35.dll</HintPath>
@@ -95,10 +105,13 @@
     <Reference Include="System.Data">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Spatial, Version=5.6.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\System.Spatial.5.6.3\lib\net40\System.Spatial.dll</HintPath>
     </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData">
       <Private>True</Private>
     </Reference>
@@ -111,9 +124,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations">
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Core">
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -127,9 +138,6 @@
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
     <Reference Include="System.Web">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.Extensions">
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Abstractions">
@@ -167,6 +175,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="T4MVCExtensions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\T4MVCExtensions.3.10.0\lib\net40\T4MVCExtensions.dll</HintPath>
@@ -180,20 +189,35 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ReportingConfigController.cs" />
+    <Compile Include="BackupsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\BackupsController.cs" />
+    <Compile Include="Controllers\MigrationController.cs" />
+    <Compile Include="Controllers\GlobalConfigController.cs" />
     <Compile Include="Controllers\ReportGroupController.cs" />
+    <Compile Include="Controllers\ReportRevisionsController.cs" />
+    <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="DatabaseController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Domain\Backup\AllBackupsQuery.cs" />
+    <Compile Include="Domain\Backup\Commands\CreateBackupCommand.cs" />
+    <Compile Include="Domain\Backup\Commands\RestoreBackupCommand.cs" />
+    <Compile Include="Domain\Preview\Queries\PreviewReportQuery.cs" />
+    <Compile Include="Domain\Templates\Queries\CompareTemplateToLatestQuery.cs" />
+    <Compile Include="GlobalConfigController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\Dropdowns\TemplatesDropdownQuery.cs" />
+    <Compile Include="Infrastructure\Helpers\TypeOnlyContractResolver.cs" />
+    <Compile Include="Domain\Migrations\EventStoreMigrationDictionaryQuery.cs" />
+    <Compile Include="Domain\Migrations\EventStoreMigrationDictonary.cs" />
     <Compile Include="Domain\ReportingConfigs\ReportingConfig.cs" />
     <Compile Include="Domain\ReportingConfigs\Queries\ReportingConfigQuery.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommand.cs" />
-    <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommandHandler.cs" />
-    <Compile Include="Domain\DatabaseConnections\Commands\CreateDatabaseDetailsCommandValidator.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\DeleteDatabaseCommand.cs" />
     <Compile Include="Domain\DatabaseConnections\Commands\EditDatabaseDetailsCommand.cs" />
-    <Compile Include="Domain\DatabaseConnections\Commands\EditDatabaseDetailsCommandHandler.cs" />
-    <Compile Include="Domain\DatabaseConnections\Commands\EditDatabaseDetailsCommandValidator.cs" />
     <Compile Include="Domain\DatabaseConnections\DatabaseConnection.cs" />
     <Compile Include="Domain\DatabaseConnections\Queries\AllDatabasesQuery.cs" />
     <Compile Include="Domain\DatabaseConnections\Queries\CheckDatabaseConnectivityQuery.cs" />
@@ -202,7 +226,6 @@
     <Compile Include="Domain\Menus\MenuModelQuery.cs" />
     <Compile Include="Domain\Preview\Queries\CleanseSqlQuery.cs" />
     <Compile Include="Domain\Preview\Queries\FormattedSqlQuery.cs" />
-    <Compile Include="Domain\Preview\Queries\RawHtmlInputQuery.cs" />
     <Compile Include="Domain\QueryResult.cs" />
     <Compile Include="Domain\ReportGroups\Commands\CreateReportGroupCommand.cs" />
     <Compile Include="Domain\ReportGroups\Commands\DeleteReportGroupCommand.cs" />
@@ -212,41 +235,57 @@
     <Compile Include="Domain\ReportGroups\Queries\GroupReorderQuery.cs" />
     <Compile Include="Domain\ReportGroups\Queries\ReportGroupQuery.cs" />
     <Compile Include="Domain\ReportGroups\ReportGroup.cs" />
-    <Compile Include="Domain\Preview\ViewModels\PreviewReportModel.cs" />
-    <Compile Include="Domain\Preview\ViewModels\ReportResultPreview.cs" />
     <Compile Include="Domain\ReportGroups\ReportGroupHelpers.cs" />
-    <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupIndexViewModel.cs" />
-    <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupIndexViewModelEnricher.cs" />
-    <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupViewModel.cs" />
-    <Compile Include="Domain\ReportGroups\ViewModels\ReportGroupViewModelEnricher.cs" />
     <Compile Include="Domain\ReportingConfigs\Commands\UpdateConfigurationCommand.cs" />
-    <Compile Include="Domain\Reports\Commands\CreateReportCommandHandler.cs" />
-    <Compile Include="Domain\Reports\Commands\DeleteReportCommandHandler.cs" />
-    <Compile Include="Domain\Reports\Events\ReportUpdatedEvent.cs" />
-    <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModel.cs" />
-    <Compile Include="Domain\Reports\ViewModels\ReportIndexViewModelEnricher.cs" />
+    <Compile Include="Domain\Reports\Commands\CloneReportCommand.cs" />
+    <Compile Include="Domain\Reports\Commands\UpdateReportCodeCommand.cs" />
+    <Compile Include="Domain\Reports\Commands\UpdateReportMetadataCommand.cs" />
+    <Compile Include="Domain\Reports\Events\ChangeReportListOrderEvent.cs" />
+    <Compile Include="Domain\Reports\Events\DeleteReportEvent.cs" />
+    <Compile Include="Domain\Reports\Events\ReportCodeUpdatedEvent.cs" />
+    <Compile Include="Domain\Reports\Events\ReportCreatedEvent.cs" />
+    <Compile Include="Domain\Reports\Events\ReportDenormaliser.cs" />
+    <Compile Include="Domain\Reports\Events\UpdateReportMetadaEvent.cs" />
+    <Compile Include="Domain\EventSourcing\AllAggregateRevisionsQuery.cs" />
+    <Compile Include="Domain\Reports\Queries\CompareReportToLatestQuery.cs" />
+    <Compile Include="Domain\Reports\ReportAggregate.cs" />
+    <Compile Include="Domain\Templates\Commands\CreateTemplateCommand.cs" />
+    <Compile Include="Domain\Templates\Commands\UpdateTemplateCommand.cs" />
+    <Compile Include="Domain\Templates\Events\CreateTemplateEvent.cs" />
+    <Compile Include="Domain\Templates\Events\TemplateDenormaliser.cs" />
+    <Compile Include="Domain\Templates\Events\UpdateTemplateEvent.cs" />
+    <Compile Include="Domain\Templates\Queries\AllTemplatesQuery.cs" />
+    <Compile Include="Domain\Templates\TemplateAggregate.cs" />
     <Compile Include="HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\CQRS\CachedDecoratorMediator.cs" />
-    <Compile Include="Infrastructure\Events\DomainEvents.cs" />
-    <Compile Include="Infrastructure\Events\EventDispatcher.cs" />
-    <Compile Include="Infrastructure\Events\IDomainEvent.cs" />
+    <Compile Include="Infrastructure\ActionResults\QueryResult.cs" />
+    <Compile Include="Infrastructure\Dropdowns\DatabaseDropdownQuery.cs" />
+    <Compile Include="Infrastructure\Dropdowns\IDropdownQuery.cs" />
+    <Compile Include="Infrastructure\Dropdowns\IDropdownQueryHandler.cs" />
+    <Compile Include="Infrastructure\Dropdowns\ReportGroupParentsDropdownQuery.cs" />
+    <Compile Include="Infrastructure\Dropdowns\ReportsGroupsDropdownQuery.cs" />
+    <Compile Include="Infrastructure\NEventStore\EventHandlingPipelineHook.cs" />
+    <Compile Include="Infrastructure\NEventStore\EventHeaderHelpers.cs" />
+    <Compile Include="Infrastructure\NEventStore\MyEventStoreRepository.cs" />
+    <Compile Include="Infrastructure\NEventStore\NEventStoreModule.cs" />
+    <Compile Include="Infrastructure\Caching\ICacheProvider.cs" />
+    <Compile Include="Infrastructure\Caching\MemoryCacheProvider.cs" />
+    <Compile Include="Infrastructure\CQRS\CachedQueryHandlerDecorator.cs" />
+    <Compile Include="Infrastructure\CQRS\ICachedQuery.cs" />
+    <Compile Include="Infrastructure\Events\IEvent.cs" />
     <Compile Include="Infrastructure\Events\IDomainEventDispatcher.cs" />
-    <Compile Include="Infrastructure\Events\IDomainEventHandler.cs" />
+    <Compile Include="Infrastructure\Events\IEventHandler.cs" />
     <Compile Include="Infrastructure\Filters\RoleAuthorizeFilter.cs" />
     <Compile Include="Infrastructure\Helpers\ObjectExtensions.cs" />
     <Compile Include="Infrastructure\Helpers\SqlDataSerialiserHelper.cs" />
     <Compile Include="Infrastructure\Helpers\SqlServerHelper.cs" />
     <Compile Include="Domain\Reports\Commands\CreateReportCommand.cs" />
     <Compile Include="Domain\Reports\Commands\DeleteReportCommand.cs" />
-    <Compile Include="Domain\Reports\Commands\EditReportCommand.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DatabaseController.cs" />
     <Compile Include="Controllers\PreviewController.cs" />
-    <Compile Include="Infrastructure\ActionResults\AutoMapViewResult.cs" />
-    <Compile Include="Infrastructure\ActionResults\EnrichViewResult.cs" />
-    <Compile Include="Infrastructure\ActionResults\FormActionResult.cs" />
+    <Compile Include="Infrastructure\ActionResults\ProcessCommandResult.cs" />
     <Compile Include="Infrastructure\ActionResults\JsonFormActionResult.cs" />
     <Compile Include="Infrastructure\Autofac\AmvReportingModule.cs" />
     <Compile Include="Infrastructure\Autofac\AutofacConfig.cs" />
@@ -258,13 +297,10 @@
     <Compile Include="Infrastructure\CQRS\IMediator.cs" />
     <Compile Include="Infrastructure\CQRS\IQuery.cs" />
     <Compile Include="Infrastructure\CQRS\IQueryHandler.cs" />
-    <Compile Include="Infrastructure\CQRS\IRedirectingCommand.cs" />
     <Compile Include="Infrastructure\CQRS\ErrorList.cs" />
     <Compile Include="Infrastructure\CQRS\ICommand.cs" />
     <Compile Include="Infrastructure\CQRS\ICommandHandler.cs" />
     <Compile Include="Infrastructure\CQRS\ICommandValidator.cs" />
-    <Compile Include="Infrastructure\CQRS\IErrorMessage.cs" />
-    <Compile Include="Infrastructure\CQRS\IErrorMessageFormatter.cs" />
     <Compile Include="Infrastructure\CQRS\NullObjectCommandValidator.cs" />
     <Compile Include="Infrastructure\CQRS\StringErrorMessage.cs" />
     <Compile Include="Controllers\ReportController.cs" />
@@ -273,19 +309,23 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\ConventionProvider.cs" />
-    <Compile Include="Infrastructure\CQRS\StringErrorMessageFormatter.cs" />
     <Compile Include="Infrastructure\Helpers\EnumerableExtensions.cs" />
     <Compile Include="Infrastructure\Helpers\EnumExtensions.cs" />
     <Compile Include="Infrastructure\Helpers\ExpressionHelper.cs" />
     <Compile Include="Infrastructure\Helpers\HtmlHelpers.cs" />
     <Compile Include="Infrastructure\Helpers\RavenIdResolver.cs" />
     <Compile Include="Infrastructure\Helpers\StringExtensions.cs" />
-    <Compile Include="Infrastructure\IModelEnricher.cs" />
-    <Compile Include="Domain\Reports\ViewModels\ReportDetailsViewModelEnricher.cs" />
-    <Compile Include="Infrastructure\RestoreModelStateAttribute.cs" />
+    <Compile Include="Infrastructure\NEventStore\AggregateFactory.cs" />
+    <Compile Include="Infrastructure\NEventStore\EmbeddedRavenStorageFractory.cs" />
+    <Compile Include="Infrastructure\NEventStore\RavenEmbeddedPersistenceWireup.cs" />
+    <Compile Include="Infrastructure\NEventStore\RavenPersistenceWireupExtensions.cs" />
+    <Compile Include="Infrastructure\PageGeneration\DropDownBuilder.cs" />
+    <Compile Include="Infrastructure\PageGeneration\HtmlBuildersFactory.cs" />
     <Compile Include="Domain\DomainException.cs" />
-    <Compile Include="Domain\Reports\Report.cs" />
-    <Compile Include="Domain\Reports\ReportType.cs" />
+    <Compile Include="Domain\Reports\ReportViewModel.cs" />
+    <Compile Include="MigrationController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="PreviewController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -293,16 +333,13 @@
     <Compile Include="Domain\Reports\Queries\AllReportsQuery.cs" />
     <Compile Include="Domain\Preview\Queries\PreviewDataQuery.cs" />
     <Compile Include="Domain\Reports\Queries\ReportResultQuery.cs" />
-    <Compile Include="Domain\Reports\Queries\SingleReportQuery.cs" />
-    <Compile Include="Domain\Reports\ViewModels\EditReportDetailsViewModel.cs" />
-    <Compile Include="Domain\Reports\ViewModels\ReportDetailsViewModel.cs" />
     <Compile Include="ReportController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="ReportGroupController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="ReportingConfigController.generated.cs">
+    <Compile Include="ReportRevisionsController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="SharedController.generated.cs">
@@ -313,6 +350,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="TemplateController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -321,6 +361,8 @@
     <Content Include="Content\Errors\page500.aspx" />
     <Content Include="Content\jquery.treetable.css" />
     <Content Include="Content\jquery.treetable.theme.default.css" />
+    <Content Include="Content\mergely.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="Examples\Google_Graphs.htm" />
     <Content Include="Examples\StackingTwoSeries.html" />
     <Content Include="Examples\Stacking.html" />
@@ -330,9 +372,107 @@
     <Content Include="Examples\TableTree.html" />
     <Content Include="Examples\Timesheet.htm" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\AdminScripts.js" />
     <Content Include="Scripts\amplify.store.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\CodeMirror\addon\comment\comment.js" />
+    <Content Include="Scripts\CodeMirror\addon\comment\continuecomment.js" />
+    <Content Include="Scripts\CodeMirror\addon\dialog\dialog.css" />
+    <Content Include="Scripts\CodeMirror\addon\dialog\dialog.js" />
+    <Content Include="Scripts\CodeMirror\addon\display\fullscreen.css" />
+    <Content Include="Scripts\CodeMirror\addon\display\fullscreen.js" />
+    <Content Include="Scripts\CodeMirror\addon\display\placeholder.js" />
+    <Content Include="Scripts\CodeMirror\addon\display\rulers.js" />
+    <Content Include="Scripts\CodeMirror\addon\edit\closebrackets.js" />
+    <Content Include="Scripts\CodeMirror\addon\edit\closetag.js" />
+    <Content Include="Scripts\CodeMirror\addon\edit\continuelist.js" />
+    <Content Include="Scripts\CodeMirror\addon\edit\matchbrackets.js" />
+    <Content Include="Scripts\CodeMirror\addon\edit\matchtags.js" />
+    <Content Include="Scripts\CodeMirror\addon\edit\trailingspace.js" />
+    <Content Include="Scripts\CodeMirror\addon\fold\brace-fold.js" />
+    <Content Include="Scripts\CodeMirror\addon\fold\comment-fold.js" />
+    <Content Include="Scripts\CodeMirror\addon\fold\foldcode.js" />
+    <Content Include="Scripts\CodeMirror\addon\fold\foldgutter.css" />
+    <Content Include="Scripts\CodeMirror\addon\fold\foldgutter.js" />
+    <Content Include="Scripts\CodeMirror\addon\fold\indent-fold.js" />
+    <Content Include="Scripts\CodeMirror\addon\fold\markdown-fold.js" />
+    <Content Include="Scripts\CodeMirror\addon\fold\xml-fold.js" />
+    <Content Include="Scripts\CodeMirror\addon\hint\anyword-hint.js" />
+    <Content Include="Scripts\CodeMirror\addon\hint\css-hint.js" />
+    <Content Include="Scripts\CodeMirror\addon\hint\html-hint.js" />
+    <Content Include="Scripts\CodeMirror\addon\hint\javascript-hint.js" />
+    <Content Include="Scripts\CodeMirror\addon\hint\python-hint.js" />
+    <Content Include="Scripts\CodeMirror\addon\hint\show-hint.css" />
+    <Content Include="Scripts\CodeMirror\addon\hint\show-hint.js" />
+    <Content Include="Scripts\CodeMirror\addon\hint\sql-hint.js" />
+    <Content Include="Scripts\CodeMirror\addon\hint\xml-hint.js" />
+    <Content Include="Scripts\CodeMirror\addon\lint\coffeescript-lint.js" />
+    <Content Include="Scripts\CodeMirror\addon\lint\css-lint.js" />
+    <Content Include="Scripts\CodeMirror\addon\lint\javascript-lint.js" />
+    <Content Include="Scripts\CodeMirror\addon\lint\json-lint.js" />
+    <Content Include="Scripts\CodeMirror\addon\lint\lint.css" />
+    <Content Include="Scripts\CodeMirror\addon\lint\lint.js" />
+    <Content Include="Scripts\CodeMirror\addon\lint\yaml-lint.js" />
+    <Content Include="Scripts\CodeMirror\addon\merge\merge.css" />
+    <Content Include="Scripts\CodeMirror\addon\merge\merge.js" />
+    <Content Include="Scripts\CodeMirror\addon\mode\loadmode.js" />
+    <Content Include="Scripts\CodeMirror\addon\mode\multiplex.js" />
+    <Content Include="Scripts\CodeMirror\addon\mode\multiplex_test.js" />
+    <Content Include="Scripts\CodeMirror\addon\mode\overlay.js" />
+    <Content Include="Scripts\CodeMirror\addon\mode\simple.js" />
+    <Content Include="Scripts\CodeMirror\addon\runmode\colorize.js" />
+    <Content Include="Scripts\CodeMirror\addon\runmode\runmode-standalone.js" />
+    <Content Include="Scripts\CodeMirror\addon\runmode\runmode.js" />
+    <Content Include="Scripts\CodeMirror\addon\runmode\runmode.node.js" />
+    <Content Include="Scripts\CodeMirror\addon\scroll\scrollpastend.js" />
+    <Content Include="Scripts\CodeMirror\addon\search\match-highlighter.js" />
+    <Content Include="Scripts\CodeMirror\addon\search\search.js" />
+    <Content Include="Scripts\CodeMirror\addon\search\searchcursor.js" />
+    <Content Include="Scripts\CodeMirror\addon\selection\active-line.js" />
+    <Content Include="Scripts\CodeMirror\addon\selection\mark-selection.js" />
+    <Content Include="Scripts\CodeMirror\addon\tern\tern.css" />
+    <Content Include="Scripts\CodeMirror\addon\tern\tern.js" />
+    <Content Include="Scripts\CodeMirror\addon\tern\worker.js" />
+    <Content Include="Scripts\CodeMirror\addon\wrap\hardwrap.js" />
+    <Content Include="Scripts\CodeMirror\codemirror.css" />
+    <Content Include="Scripts\CodeMirror\codemirror.js" />
+    <Content Include="Scripts\CodeMirror\mode\css.js" />
+    <Content Include="Scripts\CodeMirror\mode\htmlmixed.js" />
+    <Content Include="Scripts\CodeMirror\mode\javascript.js" />
+    <Content Include="Scripts\CodeMirror\mode\meta.js" />
+    <Content Include="Scripts\CodeMirror\mode\sql.js" />
+    <Content Include="Scripts\CodeMirror\mode\xml.js" />
+    <Content Include="Scripts\CodeMirror\theme\3024-day.css" />
+    <Content Include="Scripts\CodeMirror\theme\3024-night.css" />
+    <Content Include="Scripts\CodeMirror\theme\ambiance-mobile.css" />
+    <Content Include="Scripts\CodeMirror\theme\ambiance.css" />
+    <Content Include="Scripts\CodeMirror\theme\base16-dark.css" />
+    <Content Include="Scripts\CodeMirror\theme\base16-light.css" />
+    <Content Include="Scripts\CodeMirror\theme\blackboard.css" />
+    <Content Include="Scripts\CodeMirror\theme\cobalt.css" />
+    <Content Include="Scripts\CodeMirror\theme\eclipse.css" />
+    <Content Include="Scripts\CodeMirror\theme\elegant.css" />
+    <Content Include="Scripts\CodeMirror\theme\erlang-dark.css" />
+    <Content Include="Scripts\CodeMirror\theme\lesser-dark.css" />
+    <Content Include="Scripts\CodeMirror\theme\mbo.css" />
+    <Content Include="Scripts\CodeMirror\theme\mdn-like.css" />
+    <Content Include="Scripts\CodeMirror\theme\midnight.css" />
+    <Content Include="Scripts\CodeMirror\theme\monokai.css" />
+    <Content Include="Scripts\CodeMirror\theme\neat.css" />
+    <Content Include="Scripts\CodeMirror\theme\neo.css" />
+    <Content Include="Scripts\CodeMirror\theme\night.css" />
+    <Content Include="Scripts\CodeMirror\theme\paraiso-dark.css" />
+    <Content Include="Scripts\CodeMirror\theme\paraiso-light.css" />
+    <Content Include="Scripts\CodeMirror\theme\pastel-on-dark.css" />
+    <Content Include="Scripts\CodeMirror\theme\rubyblue.css" />
+    <Content Include="Scripts\CodeMirror\theme\solarized.css" />
+    <Content Include="Scripts\CodeMirror\theme\the-matrix.css" />
+    <Content Include="Scripts\CodeMirror\theme\tomorrow-night-eighties.css" />
+    <Content Include="Scripts\CodeMirror\theme\twilight.css" />
+    <Content Include="Scripts\CodeMirror\theme\vibrant-ink.css" />
+    <Content Include="Scripts\CodeMirror\theme\xq-dark.css" />
+    <Content Include="Scripts\CodeMirror\theme\xq-light.css" />
     <Content Include="Scripts\DataTables\extras\FixedHeader\FixedHeader.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -479,11 +619,15 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\mergely.js" />
+    <Content Include="Scripts\mergely.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\searchcursor.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Views\Database\_CommonScripts.cshtml" />
     <Content Include="Content\flot.css" />
     <Content Include="Examples\BarChart.html" />
@@ -491,6 +635,26 @@
     <Content Include="Examples\Table.html" />
     <Content Include="Views\Preview\Data.cshtml" />
     <Content Include="Views\Preview\Report.cshtml" />
+    <Content Include="Views\Migration\Index.cshtml" />
+    <Content Include="Views\Migration\_ViewStart.cshtml" />
+    <Content Include="Views\Backups\Index.cshtml" />
+    <Content Include="Views\Backups\_ViewStart.cshtml" />
+    <Content Include="Views\Backups\RestoreBackup.cshtml" />
+    <Content Include="Views\ReportRevisions\ViewAllVersions.cshtml" />
+    <Content Include="Views\ReportRevisions\ViewRevision.cshtml" />
+    <Content Include="Views\ReportRevisions\CompareToLatest.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdminContainerFree.cshtml" />
+    <Content Include="Views\Report\_Metadata.cshtml" />
+    <Content Include="Views\Report\UpdateCode.cshtml" />
+    <Content Include="Views\Template\Index.cshtml" />
+    <Content Include="Views\Template\Create.cshtml" />
+    <Content Include="Views\Template\Update.cshtml" />
+    <Content Include="Views\Template\_CreateEdit.cshtml" />
+    <Content Include="Views\Template\_CommonScripts.cshtml" />
+    <Content Include="Views\Template\ViewRevisions.cshtml" />
+    <Content Include="Views\Template\CompareToLatest.cshtml" />
+    <Content Include="Views\GlobalConfig\GlobalCss.cshtml" />
+    <Content Include="Views\GlobalConfig\GlobalJs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -570,9 +734,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Report\Create.cshtml" />
     <Content Include="Views\Report\Index.cshtml" />
-    <Content Include="Views\Report\Edit.cshtml" />
-    <Content Include="Views\Report\_CreateEdit.cshtml" />
-    <Content Include="Views\Home\Report.cshtml" />
+    <Content Include="Views\Report\UpdateMetadata.cshtml" />
+    <Content Include="Views\Home\ReportAggregate.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutMinimal.cshtml" />
     <Content Include="Views\Report\_ViewStart.cshtml" />
@@ -588,8 +751,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\MenuNode.cshtml" />
     <Content Include="Views\ReportGroup\Reorder.cshtml" />
-    <Content Include="Views\ReportingConfig\Index.cshtml" />
-    <Content Include="Views\ReportingConfig\_ViewStart.cshtml" />
+    <Content Include="Views\GlobalConfig\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

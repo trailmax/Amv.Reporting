@@ -2,22 +2,16 @@
 using System.Web.Mvc;
 using AmvReporting.Infrastructure.ActionResults;
 using AmvReporting.Infrastructure.CQRS;
+using AutoMapper;
+
 
 namespace AmvReporting.Controllers
 {
     public abstract partial class BaseController : Controller
     {
-        protected FormActionResult<TForm> ProcessForm<TForm>(TForm form, ActionResult both) where TForm : ICommand
+        protected ProcessCommandResult<TForm> ProcessCommand<TForm>(TForm form, ActionResult failure, ActionResult success) where TForm : ICommand
         {
-            return new FormActionResult<TForm>(form, both);
-        }
-        protected FormActionResult<TForm> ProcessForm<TForm>(TForm form, ActionResult failure, ActionResult success) where TForm : ICommand
-        {
-            return new FormActionResult<TForm>(form, failure, success);
-        }
-        protected FormActionResult<TForm> ProcessForm<TForm>(TForm form, ActionResult both, Func<string, ActionResult> redirector) where TForm : ICommand
-        {
-            return new FormActionResult<TForm>(form, both, redirector);
+            return new ProcessCommandResult<TForm>(form, failure, success);
         }
 
 
@@ -27,37 +21,30 @@ namespace AmvReporting.Controllers
         }
 
 
-        public EnrichViewResult<T> EnrichedView<T>(string viewName, T model) where T : class
+        public ActionResult MappedView<T>(object model) where T : class
         {
-            AssignModel(model);
-            return new EnrichViewResult<T>(viewName, ViewData, TempData);
-        }
-        public EnrichViewResult<T> EnrichedView<T>(T model) where T : class
-        {
-            AssignModel(model);
-            return new EnrichViewResult<T>(ViewData, TempData);
+            var mappeddata = Mapper.Map<T>(model);
+
+            return View(mappeddata);
         }
 
 
-        public AutoMapViewResult<T> AutoMappedView<T>(string viewName, object model) where T : class
+        /// <summary>
+        /// Add errors from ErrorList to ModelState
+        /// </summary>
+        /// <param name="errors"></param>
+        protected void AddErrorsToModelState(ErrorList errors)
         {
-            AssignModel(model);
-            return new AutoMapViewResult<T>(viewName, ViewData, TempData);
-        }
-
-        public AutoMapViewResult<T> AutoMappedView<T>(object model) where T : class
-        {
-            AssignModel(model);
-            return new AutoMapViewResult<T>(ViewData, TempData);
-        }
-
-
-        private void AssignModel(object model)
-        {
-            if (model != null)
+            foreach (var error in errors)
             {
-                ViewData.Model = model;
+                ModelState.AddModelError(error.FieldName, error.ToString());
             }
+        }
+
+
+        protected QueryResult<TResult> QueriedView<TResult>(IQuery<TResult> query)
+        {
+            return new QueryResult<TResult>(query, ViewData, TempData);
         }
     }
 }

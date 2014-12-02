@@ -13,7 +13,7 @@ namespace AmvReporting.Domain.ReportGroups.Queries
         public String ParentGroupTitle { get; set; }
         public String ParentGroupId { get; set; }
         public List<ReportGroup> Groups { get; set; }
-        public List<Report> Reports { get; set; }
+        public List<ReportViewModel> Reports { get; set; }
     }
 
     public class GroupReorderQuery : IQuery<GroupReorderModel>
@@ -37,7 +37,7 @@ namespace AmvReporting.Domain.ReportGroups.Queries
 
         public GroupReorderModel Handle(GroupReorderQuery query)
         {
-            var childReports = ravenSession.Query<Report>()
+            var childReports = ravenSession.Query<ReportViewModel>()
                 .Where(r => r.ReportGroupId == query.GroupId)
                 .ToList()
                 .OrderBy(r => r.ListOrder)

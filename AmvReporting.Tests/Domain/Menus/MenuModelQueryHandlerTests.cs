@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using AmvReporting.Domain.Menus;
 using AmvReporting.Domain.ReportGroups;
@@ -8,7 +7,7 @@ using AmvReporting.Tests.ZeroFriction;
 using Ploeh.AutoFixture;
 using Raven.Client;
 using Xunit;
-using Xunit.Sdk;
+
 
 namespace AmvReporting.Tests.Domain.Menus
 {
@@ -24,7 +23,7 @@ namespace AmvReporting.Tests.Domain.Menus
             ravenSession = fixture.Create<IDocumentSession>();
 
             // done
-            var groupLessReports = fixture.Build<Report>()
+            var groupLessReports = fixture.Build<ReportViewModel>()
                 .Without(r => r.ReportGroupId)
                 .CreateMany().ToList();
 
@@ -34,7 +33,7 @@ namespace AmvReporting.Tests.Domain.Menus
                 .CreateMany(2).ToList();
 
             // done
-            var topLevelReports = fixture.Build<Report>()
+            var topLevelReports = fixture.Build<ReportViewModel>()
                 .With(r => r.ReportGroupId, topLevelGroups.First().Id)
                 .CreateMany().ToList();
 
@@ -42,7 +41,7 @@ namespace AmvReporting.Tests.Domain.Menus
                 .With(g => g.ParentReportGroupId, topLevelGroups.First().Id)
                 .CreateMany(2).ToList();
 
-            var secondLevelReports = fixture.Build<Report>()
+            var secondLevelReports = fixture.Build<ReportViewModel>()
                 .With(r => r.ReportGroupId, secondLevelGroups.First().Id)
                 .CreateMany().ToList();
 
@@ -88,14 +87,14 @@ namespace AmvReporting.Tests.Domain.Menus
             result = sut.Handle(new MenuModelQuery(true));
         }
 
-        private void SaveDataToRaven(List<ReportGroup> topLevelGroups, List<ReportGroup> secondLevelGroups, List<Report> groupLessReports,
-            List<Report> topLevelReports, List<Report> secondLevelReports)
+        private void SaveDataToRaven(List<ReportGroup> topLevelGroups, List<ReportGroup> secondLevelGroups, List<ReportViewModel> groupLessReports,
+            List<ReportViewModel> topLevelReports, List<ReportViewModel> secondLevelReports)
         {
             var allGroups = new List<ReportGroup>();
             allGroups.AddRange(topLevelGroups);
             allGroups.AddRange(secondLevelGroups);
 
-            var allReports = new List<Report>();
+            var allReports = new List<ReportViewModel>();
             allReports.AddRange(groupLessReports);
             allReports.AddRange(topLevelReports);
             allReports.AddRange(secondLevelReports);
@@ -109,7 +108,7 @@ namespace AmvReporting.Tests.Domain.Menus
         [Fact]
         public void Handle_GroupLessReports_AreInTopLevel()
         {
-            AssertionHelpers.ListsAreEqual(expected.TopLevelReports.OrderBy(r => r.Id), result.TopLevelReports.OrderBy(r => r.Id));
+            AssertionHelpers.ListsAreEqual(expected.TopLevelReports.OrderBy(r => r.AggregateId), result.TopLevelReports.OrderBy(r => r.AggregateId));
         }
 
         [Fact]
@@ -129,8 +128,8 @@ namespace AmvReporting.Tests.Domain.Menus
         public void Handle_FirstLevelReports_Match()
         {
             //Arrange
-            var expectedSecondLevelReports = expected.MenuNodes.First().Reports.OrderBy(r => r.Id).ToList();
-            var resultingSecondLevelReports = result.MenuNodes.First().Reports.OrderBy(r => r.Id).ToList();
+            var expectedSecondLevelReports = expected.MenuNodes.First().Reports.OrderBy(r => r.AggregateId).ToList();
+            var resultingSecondLevelReports = result.MenuNodes.First().Reports.OrderBy(r => r.AggregateId).ToList();
 
             // Assert
             AssertionHelpers.ListsAreEqual(expectedSecondLevelReports, resultingSecondLevelReports);
@@ -157,8 +156,8 @@ namespace AmvReporting.Tests.Domain.Menus
         public void Handle_SecondLevelReports_Match()
         {
             //Arrange
-            var expectedSecondLevel = expected.MenuNodes.First().MenuNodes.First().Reports.OrderBy(r => r.Id);
-            var resultingSecondLevel = result.MenuNodes.First().MenuNodes.First().Reports.OrderBy(r => r.Id);
+            var expectedSecondLevel = expected.MenuNodes.First().MenuNodes.First().Reports.OrderBy(r => r.AggregateId);
+            var resultingSecondLevel = result.MenuNodes.First().MenuNodes.First().Reports.OrderBy(r => r.AggregateId);
 
             // Assert
             AssertionHelpers.ListsAreEqual(expectedSecondLevel, resultingSecondLevel);

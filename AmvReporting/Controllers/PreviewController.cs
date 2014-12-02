@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
 using AmvReporting.Domain.Preview.Queries;
-using AmvReporting.Domain.Preview.ViewModels;
-using AmvReporting.Domain.ReportingConfigs.Queries;
-using AmvReporting.Domain.Reports;
 using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Filters;
 
@@ -23,34 +20,19 @@ namespace AmvReporting.Controllers
 
 
         [HttpPost]
-        public virtual ActionResult Data(String sql, String databaseId, ReportType reportType)
+        public virtual ActionResult Data(Guid aggregateId, String sql)
         {
-            var query = new PreviewDataQuery(sql, databaseId, reportType);
-            var result = mediator.Request(query);
+            var result = mediator.Request(new PreviewDataQuery(aggregateId, sql));
 
             return PartialView(result);
         }
 
 
         [HttpPost]
-        public virtual ActionResult Report(PreviewReportModel model)
+        public virtual ActionResult Report(PreviewReportQuery query)
         {
-            var query = new PreviewDataQuery(model.Sql, model.DatabaseId, model.ReportType);
-            var queryResult = mediator.Request(query);
-            var config = mediator.Request(new ReportingConfigQuery());
-
-            var outModel = new ReportResultPreview()
-                           {
-                               Data = queryResult.Data,
-                               JavaScript = model.JavaScript,
-                               GlobalJs = config.GlobalJavascript,
-                               Css = model.Css,
-                               GlobalCss = config.GlobalCss,
-                               ReportType = model.ReportType,
-                               HtmlOverride = model.HtmlOverride,
-                           };
-
-            return PartialView(outModel);
+            var reportPreview = mediator.Request(query);
+            return PartialView(reportPreview);
         }
 
 
@@ -62,25 +44,6 @@ namespace AmvReporting.Controllers
             var formattedSql = mediator.Request(new FormattedSqlQuery(cleanedSql));
 
             return Json(formattedSql);
-        }
-
-
-        [HttpPost, ValidateInput(false)]
-        public virtual ActionResult ParseHtml(String rawData)
-        {
-            var sqlParsingResult = mediator.Request(new RawHtmlInputQuery(rawData));
-
-            if (!sqlParsingResult.IsSuccess)
-            {
-                return Json(sqlParsingResult);
-            }
-            var cleanedSql = mediator.Request(new CleanseSqlQuery(sqlParsingResult.Payload));
-
-            var formattedSql = mediator.Request(new FormattedSqlQuery(cleanedSql));
-
-            sqlParsingResult.Payload = formattedSql;
-
-            return Json(sqlParsingResult);
         }
     }
 }

@@ -1,0 +1,184 @@
+﻿@model AmvReporting.Domain.Reports.Commands.UpdateReportCodeCommand
+
+@{
+    ViewBag.Title = "Edit Report Metadata";
+}
+
+
+<h2>Edit Report</h2>
+
+@Html.ActionLink("View Report", MVC.Home.ReportAggregate(Model.AggregateId), new { @class = "btn btn-default btn-xs", style = "position: absolute; right: 15px; top: 70px;", target = "_blank" })
+
+<!-- Nav tabs -->
+<div role="tabpanel" class="tabpanel">
+    <ul class="nav nav-tabs" role="tablist">
+        <li>@Html.ActionLink("Meta", MVC.Report.UpdateMetadata(Model.AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+        <li class="active"><a class="tab-pane">Code</a></li>
+        <li>@Html.ActionLink("Revisions", MVC.ReportRevisions.ViewAllVersions(Model.AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
+    </ul>
+</div>
+
+<div class="row">
+    @using (Html.BeginForm(MVC.Report.UpdateCode(), FormMethod.Post, new { role = "form", @class = "submit-by-ajax", id = "code-form" }))
+    {
+        @Html.ValidationSummary(false)
+        @Html.HiddenFor(m => m.AggregateId)
+
+        <div class="col-md-6">
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.TemplateId, new { @class = "control-label" })
+                @Html.Domain().Dropdown(m => m.TemplateId, new TemplatesDropdownQuery())
+                @Html.ValidationMessageFor(m => m.TemplateId)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Sql, new { @class = "control-label" })
+                @Html.TextAreaFor(m => m.Sql, new { @class = "form-control", rows = 10 })
+                @Html.ValidationMessageFor(m => m.Sql)
+                <p>
+                    <a id="cleanseAndFormatSql"><span class="glyphicon glyphicon-check"></span> Cleanse and Format SQL</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a id="previewData">Preview Data <span class="glyphicon glyphicon-forward"></span></a>
+                </p>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.JavaScript, new { @class = "control-label" })
+                @Html.TextAreaFor(m => m.JavaScript, new { @class = "form-control", rows = 10 })
+                @Html.ValidationMessageFor(m => m.JavaScript)
+                <a id="previewFullReport">Preview Report <span class="glyphicon glyphicon-forward"></span></a>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.HtmlOverride, new { @class = "control-label" })
+                @Html.TextAreaFor(m => m.HtmlOverride, new { @class = "form-control", rows = 5 })
+                @Html.ValidationMessageFor(m => m.HtmlOverride)
+            </div>
+
+            <input type="submit" value="Update" class="btn btn-default" />
+            @Html.ActionLink("Back To List", MVC.Report.Index(), new { @class = "btn btn-default" })
+        </div>
+    }
+    <div class="col-md-6" id="previewContainer"></div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var extraKeys = {
+                "F11": function (cm) {
+                    cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+                },
+                "Esc": function (cm) {
+                    if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+                },
+                "Ctrl-S": function (cm) {
+                    $('form').submit();
+                },
+                "F5": function (cm) {
+                    $('#previewData').click();
+                },
+                "Ctrl-F5": function (cm) {
+                    $('#previewFullReport').click();
+                },
+                "Ctrl-L": "deleteLine",
+            };
+
+            var sqlCodeMirror = CodeMirror.fromTextArea(document.getElementById('@Html.ElementId(m => m.Sql)'), {
+                lineNumbers: true,
+                mode: 'text/x-sql',
+                matchBrackets: true,
+                smartIndent: true,
+                indentUnit: 4,
+                extraKeys: extraKeys,
+            });
+            codeMirrors.push(sqlCodeMirror);
+
+
+            codeMirrors.push(CodeMirror.fromTextArea(document.getElementById('@Html.ElementId(m => m.JavaScript)'), {
+                lineNumbers: true,
+                mode: 'text/javascript',
+                matchBrackets: true,
+                smartIndent: true,
+                indentUnit: 4,
+                extraKeys: extraKeys,
+            }));
+
+            codeMirrors.push(CodeMirror.fromTextArea(document.getElementById('@Html.ElementId(m => m.HtmlOverride)'), {
+                lineNumbers: true,
+                mode: 'text/html',
+                matchBrackets: true,
+                smartIndent: true,
+                indentUnit: 4,
+                extraKeys: extraKeys,
+            }));
+
+
+            var refreshPreview = function (data) {
+                $('#previewContainer').fadeOut(500, function () {
+                    $('#previewContainer').html(data);
+                    $('#previewContainer').fadeIn(500);
+                });
+            };
+
+
+            // on report create/edit show the data returned by the sql server
+            $('#previewData').on('click', function () {
+                saveMirrors();
+                var postData = {};
+                postData['sql'] = $('#@Html.ElementId(m => m.Sql)').val();
+                postData['aggregateId'] = $('#@Html.ElementId(m => m.AggregateId)').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action(MVC.Preview.Data())',
+                    data: postData,
+                    error: function () {
+                        showWarning('Communication Error: could not connect to the server');
+                    },
+                    success: refreshPreview,
+                });
+            });
+
+            // cleanse and format SQL string
+            $('#cleanseAndFormatSql').on('click', function () {
+                saveMirrors();
+                var postData = {};
+                postData['sql'] = $('#@Html.ElementId(m => m.Sql)').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action(MVC.Preview.CleanseAndFormatSql())',
+                    data: postData,
+                    error: function () {
+                        showWarning('Communication Error: could not connect to the server');
+                    },
+                    success: function (data) {
+                        sqlCodeMirror.setValue(data);
+                        showSuccess("Sql re-formatted");
+                    },
+                });
+            });
+
+
+            // on report create/edit show the actual report in the same window
+            $('#previewFullReport').on('click', function () {
+                saveMirrors();
+                var valid = $('form').valid();
+                if (valid) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action(MVC.Preview.Report())',
+                        data: $('form').serialize(),
+                        error: function () {
+                            showWarning('Communication Error: could not connect to the server');
+                        },
+                        success: refreshPreview,
+                    });
+                }
+            });
+        });
+    </script>
+}

@@ -3,6 +3,7 @@ using Autofac;
 using Raven.Client;
 using Raven.Client.Document;
 using Raven.Client.Embedded;
+using Raven.Database.Server;
 
 
 namespace AmvReporting.Infrastructure.Autofac
@@ -19,7 +20,7 @@ namespace AmvReporting.Infrastructure.Autofac
             // Register the session, opening a new session per lifetime scope.
             builder.Register(x => x.Resolve<IDocumentStore>().OpenSession())
                  .As<IDocumentSession>()
-                 .InstancePerLifetimeScope();
+                 .InstancePerDependency();
 
 
             base.Load(builder);
@@ -36,7 +37,8 @@ namespace AmvReporting.Infrastructure.Autofac
             if (ConfigurationContext.Current.EnableRavenStudio())
             {
                 store.UseEmbeddedHttpServer = true;
-                store.Configuration.VirtualDirectory = "db";
+                store.Configuration.VirtualDirectory = "raven_database";
+                NonAdminHttp.EnsureCanListenToWhenInNonAdminContext(80);
             }
 
             // on queries get all the written results.
