@@ -13,9 +13,9 @@
             @Html.ActionLink("Create New Group", MVC.ReportGroup.Create(), new { @class = "btn btn-primary btn-lg" })
         </p>
         <p>
-            <a class="expand-all btn btn-default btn-xs">Expand All</a>
-            <a class="collapse-all btn btn-default btn-xs">Collapse All</a>
-            @Html.ActionLink("Reorder Top Level", MVC.ReportGroup.Reorder(), new { @class = "btn btn-default btn-xs" })
+            <a class="expand-all btn btn-default btn-sm">Expand All</a>
+            <a class="collapse-all btn btn-default btn-sm">Collapse All</a>
+            @Html.ActionLink("Reorder Top Level", MVC.ReportGroup.Reorder(), new { @class = "btn btn-default btn-sm" })
         </p>
         <table id="treetable">
             @foreach (var menuNode in Model.MenuNodes)
@@ -31,9 +31,9 @@
                         </span>
                     </td>
                     <td class="col-md-2">
-                        @Html.ActionLink("View", MVC.Home.ReportAggregate(report.AggregateId), new { @class = "btn btn-default btn-xs" })
+                        @Html.ActionLink("View", MVC.Home.ReportAggregate(report.AggregateId), new { @class = "btn btn-default btn-sm" })
                         @Url.AjaxDeleteButton(MVC.Report.Delete(), report, i => i.AggregateId)
-                        @Html.ActionLink("Clone", MVC.Report.Clone(report.AggregateId), new { @class = "btn btn-default btn-xs" })
+                        @Html.ActionLink("Clone", MVC.Report.Clone(report.AggregateId), new { @class = "btn btn-default btn-sm" })
                     </td>
                 </tr>
             }

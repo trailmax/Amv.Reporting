@@ -3,9 +3,9 @@
 <tr data-tt-id="@Model.ReportGroupId" data-tt-parent-id="@Model.ReportGroupParentId">
     <td><span class='folder @(Model.Enabled ? "" : "disabled-report")'>@Model.ReportGroupTitle</span></td>
     <td>
-        @Html.ActionLink("Edit", MVC.ReportGroup.Edit(Model.ReportGroupId), new { @class = "btn btn-default btn-xs" })
+        @Html.ActionLink("Edit", MVC.ReportGroup.Edit(Model.ReportGroupId), new { @class = "btn btn-default btn-sm" })
         @Url.AjaxDeleteButton(MVC.ReportGroup.Delete(), Model.ReportGroupId, "Id")
-        @Html.ActionLink("Reorder", MVC.ReportGroup.Reorder(Model.ReportGroupId), new { @class = "btn btn-default btn-xs" })
+        @Html.ActionLink("Reorder", MVC.ReportGroup.Reorder(Model.ReportGroupId), new { @class = "btn btn-default btn-sm" })
     </td>
 </tr>
 @foreach (var menuNode in Model.MenuNodes)
@@ -21,9 +21,9 @@
             </span>
         </td>
         <td>
-            @Html.ActionLink("View", MVC.Home.ReportAggregate(report.AggregateId), new { @class = "btn btn-default btn-xs" })
+            @Html.ActionLink("View", MVC.Home.ReportAggregate(report.AggregateId), new { @class = "btn btn-default btn-sm" })
             @Url.AjaxDeleteButton(MVC.Report.Delete(), report, i => i.AggregateId)
-            @Html.ActionLink("Clone", MVC.Report.Clone(report.AggregateId), new { @class = "btn btn-default btn-xs" })
+            @Html.ActionLink("Clone", MVC.Report.Clone(report.AggregateId), new { @class = "btn btn-default btn-sm" })
         </td>
     </tr>
 }

@@ -67,7 +67,7 @@ namespace AmvReporting.Domain.Reports.Queries
             }
 
             var dbConnection = ravenSession.Load<DatabaseConnection>(report.DatabaseId);
-            var reportGroup = ravenSession.Load<ReportGroup>(report.ReportGroupId);
+            var reportGroup = ravenSession.Query<ReportGroup>().FirstOrDefault(g => g.Id == report.ReportGroupId);
             var template = ravenSession.Query<TemplateViewModel>()
                                        .SingleOrDefault(t => t.AggregateId == report.TemplateId);
 
