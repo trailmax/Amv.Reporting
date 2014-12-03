@@ -105,6 +105,12 @@ a {
     top: 15px;
 }
 
+.shortcuts {
+    position: absolute;
+    right: 15px;
+    top: 100px;
+}
+
 .FixedHeader_Cloned th {
     background-color: white;
 }

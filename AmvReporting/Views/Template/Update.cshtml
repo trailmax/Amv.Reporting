@@ -12,15 +12,24 @@
         <li>@Html.ActionLink("Revisions", MVC.Template.ViewRevisions(Model.AggregateId), new { role = "tabpanel", @class = "tab-pane" })</li>
     </ul>
 </div>
-@using (Html.BeginForm(MVC.Template.Update(), FormMethod.Post, new { role = "form", @class = "submit-by-ajax" }))
-{
-    @Html.HiddenFor(m => m.AggregateId)
-    @Html.Partial(MVC.Template.Views._CreateEdit)
-    <div class="row">
+<div class="shortcuts visible-lg-block well">
+    The following shortcuts are available in editors:
+    <ul>
+        <li><kbd>Ctrl-S</kbd> = Save</li>
+        <li><kbd>F11</kbd> = Full screen editor</li>
+        <li><kbd>Esc</kbd> = Exit full screen</li>
+        <li><kbd>Ctrl-L</kbd> = Delete line under cursor</li>
+    </ul>
+</div>
+<div class="row">
+    @using (Html.BeginForm(MVC.Template.Update(), FormMethod.Post, new { role = "form", @class = "submit-by-ajax" }))
+    {
+        @Html.HiddenFor(m => m.AggregateId)
+        @Html.Partial(MVC.Template.Views._CreateEdit)
         <input type="submit" value="Update" class="btn btn-default" />
         @Html.ActionLink("Back To List", MVC.Template.Index(), new { @class = "btn btn-default" })
-    </div>
-}
+    }
+</div>
 
 @section scripts
 {

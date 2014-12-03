@@ -6,14 +6,23 @@
 }
 
 <h2>Create Report Template</h2>
-@using (Html.BeginForm(MVC.Template.Create(), FormMethod.Post, new { role = "form" }))
-{
-    @Html.Partial(MVC.Template.Views._CreateEdit)
-    <div class="row">
+<div class="shortcuts visible-lg-block well">
+    The following shortcuts are available in editors:
+    <ul>
+        <li><kbd>Ctrl-S</kbd> = Save</li>
+        <li><kbd>F11</kbd> = Full screen editor</li>
+        <li><kbd>Esc</kbd> = Exit full screen</li>
+        <li><kbd>Ctrl-L</kbd> = Delete line under cursor</li>
+    </ul>
+</div>
+<div class="row">
+    @using (Html.BeginForm(MVC.Template.Create(), FormMethod.Post, new { role = "form" }))
+    {
+        @Html.Partial(MVC.Template.Views._CreateEdit)
         <input type="submit" value="Create" class="btn btn-default" />
         @Html.ActionLink("Back To List", MVC.Template.Index(), new { @class = "btn btn-default" })
-    </div>
-}
+    }
+</div>
 
 @section scripts
 {

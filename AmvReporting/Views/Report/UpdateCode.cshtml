@@ -18,13 +18,24 @@
     </ul>
 </div>
 
+<div class="shortcuts visible-lg-block well">
+    The following shortcuts are available in editors:
+    <ul>
+        <li><kbd>Ctrl-S</kbd> = Save</li>
+        <li><kbd>F5</kbd> = Preview data</li>
+        <li><kbd>Ctrl-F5</kbd> = Preview full report</li>
+        <li><kbd>F11</kbd> = Full screen editor</li>
+        <li><kbd>Esc</kbd> = Exit full screen</li>
+        <li><kbd>Ctrl-L</kbd> = Delete line under cursor</li>
+    </ul>
+</div>
 <div class="row">
-    @using (Html.BeginForm(MVC.Report.UpdateCode(), FormMethod.Post, new { role = "form", @class = "submit-by-ajax", id = "code-form" }))
-    {
-        @Html.ValidationSummary(false)
-        @Html.HiddenFor(m => m.AggregateId)
+    <div class="col-md-6">
+        @using (Html.BeginForm(MVC.Report.UpdateCode(), FormMethod.Post, new { role = "form", @class = "submit-by-ajax", id = "code-form" }))
+        {
+            @Html.ValidationSummary(false)
+            @Html.HiddenFor(m => m.AggregateId)
 
-        <div class="col-md-6">
 
             <div class="form-group">
                 @Html.LabelFor(m => m.TemplateId, new { @class = "control-label" })
@@ -59,8 +70,8 @@
 
             <input type="submit" value="Update" class="btn btn-default" />
             @Html.ActionLink("Back To List", MVC.Report.Index(), new { @class = "btn btn-default" })
-        </div>
-    }
+        }
+    </div>
     <div class="col-md-6" id="previewContainer"></div>
 </div>
 
