@@ -67,7 +67,6 @@ namespace AmvReporting.Domain.Reports.Queries
             }
 
             var dbConnection = ravenSession.Load<DatabaseConnection>(report.DatabaseId);
-            var reportGroup = ravenSession.Query<ReportGroup>().FirstOrDefault(g => g.Id == report.ReportGroupId);
             var template = ravenSession.Query<TemplateViewModel>()
                                        .SingleOrDefault(t => t.AggregateId == report.TemplateId);
 
@@ -80,8 +79,14 @@ namespace AmvReporting.Domain.Reports.Queries
                              ReportHtml = report.HtmlOverride,
                              TemplateJavascript = template.CheckForNull(t => t.JavaScript),
                              TemplateHtml = template.CheckForNull(t => t.Html),
-                             ReportGroupName = reportGroup.CheckForNull(g => g.Title),
                          };
+
+            if (!String.IsNullOrEmpty(report.ReportGroupId))
+            {
+                var reportGroup = ravenSession.Load<ReportGroup>(report.ReportGroupId);
+                result.ReportGroupName = reportGroup.CheckForNull(g => g.Title);
+            }
+
 
             using (var sqlServerHelper = new SqlServerHelper())
             {
