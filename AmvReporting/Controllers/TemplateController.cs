@@ -4,11 +4,13 @@ using AmvReporting.Domain.EventSourcing;
 using AmvReporting.Domain.Templates;
 using AmvReporting.Domain.Templates.Commands;
 using AmvReporting.Domain.Templates.Queries;
+using AmvReporting.Infrastructure.Filters;
 using CommonDomain.Persistence;
 
 
 namespace AmvReporting.Controllers
 {
+    [RoleAuthorizeFilter]
     public partial class TemplateController : BaseController
     {
         private readonly IRepository repository;

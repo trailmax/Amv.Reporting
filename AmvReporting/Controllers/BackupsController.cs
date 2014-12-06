@@ -4,10 +4,12 @@ using System.Web.Mvc;
 using AmvReporting.Domain.Backup;
 using AmvReporting.Domain.Backup.Commands;
 using AmvReporting.Infrastructure.CQRS;
+using AmvReporting.Infrastructure.Filters;
 
 
 namespace AmvReporting.Controllers
 {
+    [RoleAuthorizeFilter]
     public partial class BackupsController : BaseController
     {
         private readonly IMediator mediator;

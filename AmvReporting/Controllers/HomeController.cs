@@ -8,6 +8,7 @@ using AmvReporting.Infrastructure.CQRS;
 
 namespace AmvReporting.Controllers
 {
+    [AllowAnonymous]
     public partial class HomeController : BaseController
     {
         private readonly IMediator mediator;

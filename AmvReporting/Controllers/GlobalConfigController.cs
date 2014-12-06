@@ -7,7 +7,6 @@ using AmvReporting.Infrastructure.Filters;
 
 namespace AmvReporting.Controllers
 {
-    [RoleAuthorizeFilter]
     public partial class GlobalConfigController : BaseController
     {
         private readonly IMediator mediator;
@@ -18,6 +17,7 @@ namespace AmvReporting.Controllers
             this.mediator = mediator;
         }
 
+        [RoleAuthorizeFilter]
         public virtual ActionResult Index()
         {
             return QueriedView(new ReportingConfigQuery()).MapTo<UpdateConfigurationCommand>();
@@ -25,6 +25,7 @@ namespace AmvReporting.Controllers
 
 
         [HttpPost]
+        [RoleAuthorizeFilter]
         public virtual ActionResult Index(UpdateConfigurationCommand command)
         {
             if (HttpContext.Request.IsAjaxRequest())
@@ -35,7 +36,7 @@ namespace AmvReporting.Controllers
             return ProcessCommand(command, View(command), RedirectToAction(MVC.GlobalConfig.Index()));
         }
 
-
+        [AllowAnonymous]
         public virtual PartialViewResult GlobalCss()
         {
             var config = mediator.Request(new ReportingConfigQuery());
@@ -43,6 +44,7 @@ namespace AmvReporting.Controllers
             return PartialView(config);
         }
 
+        [AllowAnonymous]
         public virtual PartialViewResult GlobalJs()
         {
             var config = mediator.Request(new ReportingConfigQuery());

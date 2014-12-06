@@ -3,11 +3,13 @@ using System.Web.Mvc;
 using AmvReporting.Domain.EventSourcing;
 using AmvReporting.Domain.Reports;
 using AmvReporting.Domain.Reports.Queries;
+using AmvReporting.Infrastructure.Filters;
 using CommonDomain.Persistence;
 
 
 namespace AmvReporting.Controllers
 {
+    [RoleAuthorizeFilter]
     public partial class ReportRevisionsController : BaseController
     {
         private readonly IRepository repository;
