@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using AmvReporting.Infrastructure.Helpers;
 
 namespace AmvReporting.Infrastructure.Configuration
 {
@@ -37,6 +38,14 @@ namespace AmvReporting.Infrastructure.Configuration
         public string GetGoogleAnalyticsCode()
         {
             var result = ConfigurationManager.AppSettings["GoogleAnalyticsCode"];
+
+            return result;
+        }
+
+
+        public bool RequireHttps()
+        {
+            var result = ConfigurationManager.AppSettings["RequireHttps"].IsTrue();
 
             return result;
         }

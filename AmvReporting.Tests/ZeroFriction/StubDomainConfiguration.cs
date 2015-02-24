@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AmvReporting.Infrastructure.Configuration;
-
 
 namespace AmvReporting.Tests.ZeroFriction
 {
@@ -37,6 +32,11 @@ namespace AmvReporting.Tests.ZeroFriction
         public string GetGoogleAnalyticsCode()
         {
             throw new NotSupportedException();
+        }
+
+        public bool RequireHttps()
+        {
+            throw new NotImplementedException();
         }
     }
 }

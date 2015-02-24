@@ -58,5 +58,15 @@ namespace AmvReporting.Infrastructure.Helpers
 
             return htmlDecode;
         }
+
+        /// <summary>
+        /// Checks if string contains "true", case insensitive
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool IsTrue(this string value)
+        {
+            return string.Equals(value, "true", StringComparison.InvariantCultureIgnoreCase);
+        }
     }
 }

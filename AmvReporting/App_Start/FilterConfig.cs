@@ -1,5 +1,6 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using AmvReporting.Infrastructure.Configuration;
+using AmvReporting.Infrastructure.Filters;
 
 namespace AmvReporting
 {
@@ -8,6 +9,11 @@ namespace AmvReporting
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+
+            if (ConfigurationContext.Current.RequireHttps())
+            {
+                filters.Add(new RequireSecureConnectionFilter());
+            }
         }
     }
 }

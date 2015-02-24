@@ -9,5 +9,6 @@ namespace AmvReporting.Infrastructure.Configuration
         bool EnableRavenStudio();
         String AdministratorRoleNames();
         String GetGoogleAnalyticsCode();
+        bool RequireHttps();
     }
 }

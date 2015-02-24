@@ -212,6 +212,7 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Dropdowns\TemplatesDropdownQuery.cs" />
+    <Compile Include="Infrastructure\Filters\RequireSecureConnectionFilter.cs" />
     <Compile Include="Infrastructure\Helpers\TypeOnlyContractResolver.cs" />
     <Compile Include="Domain\Migrations\EventStoreMigrationDictionaryQuery.cs" />
     <Compile Include="Domain\Migrations\EventStoreMigrationDictonary.cs" />
