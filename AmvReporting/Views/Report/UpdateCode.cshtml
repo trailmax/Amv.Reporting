@@ -94,7 +94,7 @@
                 "Ctrl-F5": function (cm) {
                     $('#previewFullReport').click();
                 },
-                "Ctrl-L": "deleteLine",
+                "Ctrl-L": "deleteLine"
             };
 
             var sqlCodeMirror = CodeMirror.fromTextArea(document.getElementById('@Html.IdFor(m => m.Sql)'), {
@@ -103,7 +103,7 @@
                 matchBrackets: true,
                 smartIndent: true,
                 indentUnit: 4,
-                extraKeys: extraKeys,
+                extraKeys: extraKeys
             });
             codeMirrors.push(sqlCodeMirror);
 
@@ -114,7 +114,7 @@
                 matchBrackets: true,
                 smartIndent: true,
                 indentUnit: 4,
-                extraKeys: extraKeys,
+                extraKeys: extraKeys
             }));
 
             codeMirrors.push(CodeMirror.fromTextArea(document.getElementById('@Html.IdFor(m => m.HtmlOverride)'), {
@@ -123,7 +123,7 @@
                 matchBrackets: true,
                 smartIndent: true,
                 indentUnit: 4,
-                extraKeys: extraKeys,
+                extraKeys: extraKeys
             }));
 
 
@@ -149,7 +149,7 @@
                     error: function () {
                         showWarning('Communication Error: could not connect to the server');
                     },
-                    success: refreshPreview,
+                    success: refreshPreview
                 });
             });
 
@@ -169,7 +169,7 @@
                     success: function (data) {
                         sqlCodeMirror.setValue(data);
                         showSuccess("Sql re-formatted");
-                    },
+                    }
                 });
             });
 
@@ -186,7 +186,7 @@
                         error: function () {
                             showWarning('Communication Error: could not connect to the server');
                         },
-                        success: refreshPreview,
+                        success: refreshPreview
                     });
                 }
             });

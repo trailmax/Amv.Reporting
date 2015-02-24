@@ -29,14 +29,19 @@
 
 
 <h2>Results</h2>
+<div id="someTestingText"></div>
 <dl>
     @foreach (var result in Model.SearchResults)
     {
-        <dt>
-            @Html.ActionLink(result.Title, MVC.Report.UpdateCode(result.AggregateId))
-        </dt>
-        <dd>
-            @Html.DisplayFor(_ => result.Description)
-        </dd>
+        <div class="well">
+            <dt>
+                @Html.ActionLink(result.Title, MVC.Report.UpdateCode(result.AggregateId)) <span class="glyphicon glyphicon-chevron-down sql-data-toggle"></span>
+            </dt>
+            <dd>
+                @Html.DisplayFor(_ => result.Description)
+            </dd>
+            <div class="sql-code" style="display: none">@result.Sql.Trim()</div>
+            <div class="sql-code-placeholder"></div>
+        </div>
     }
 </dl>

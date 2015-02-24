@@ -12,7 +12,7 @@
 
     window.codeMirrors = [];
 
-    window.saveMirrors = function() {
+    window.saveMirrors = function () {
         window.codeMirrors.forEach(function (mirror) {
             mirror.save();
         });
@@ -84,5 +84,41 @@ $(document).ready(function () {
                 }
             }
         });
+    });
+
+    $('.sql-data-toggle').on('selectstart', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    });
+    $('.sql-data-toggle').on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $code = $(this).parent().nextAll('.sql-code');
+        var $placeholder = $(this).parent().nextAll('.sql-code-placeholder');
+
+
+        if ($(this).hasClass('glyphicon-chevron-down')) {
+
+            CodeMirror($placeholder[0], {
+                value: $code.html().trim(),
+                lineNumber: false,
+                readOnly: true,
+                mode: 'text/x-sql',
+                extraKeys: {
+                    "F11": function (cm) {
+                        cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+                    },
+                    "Esc": function (cm) {
+                        if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+                    }
+                }
+            });
+
+            $(this).removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+        } else {
+            $(this).removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+
+            $placeholder.html("");
+        }
     });
 });
