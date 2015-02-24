@@ -70,7 +70,7 @@ namespace AmvReporting.Controllers
         public virtual ActionResult UpdateCode(Guid id)
         {
             var report = repository.GetById<ReportAggregate>(id);
-
+            ViewBag.ReportTitle = report.Title;
             return MappedView<UpdateReportCodeCommand>(report);
         }
 

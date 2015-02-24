@@ -1,11 +1,11 @@
 ﻿@model AmvReporting.Domain.Reports.Commands.UpdateReportCodeCommand
 
 @{
-    ViewBag.Title = "Edit Report Metadata";
+    ViewBag.Title = "Edit Report: " + ViewBag.ReportTitle;
 }
 
 
-<h2>Edit Report</h2>
+<h2>Edit Report: @ViewBag.ReportTitle</h2>
 
 @Html.ActionLink("View Report", MVC.Home.ReportAggregate(Model.AggregateId), new { @class = "btn btn-default btn-xs", style = "position: absolute; right: 15px; top: 70px;", target = "_blank" })
 
