@@ -6,6 +6,7 @@ using AmvReporting.Domain.ReportingConfigs;
 using AmvReporting.Domain.ReportingConfigs.Commands;
 using AmvReporting.Domain.Reports;
 using AmvReporting.Domain.Reports.Commands;
+using AmvReporting.Domain.Search;
 using AmvReporting.Domain.Templates;
 using AmvReporting.Domain.Templates.Commands;
 using AutoMapper;
@@ -38,7 +39,7 @@ namespace AmvReporting.Infrastructure.Automappings
                 .ForMember(d => d.AggregateId, o => o.MapFrom(s => s.Id));
 
 
-            Mapper.AddGlobalIgnore("Possible");
+            Mapper.CreateMap<ReportViewModel, SearchResult>();
         }
     }
 }

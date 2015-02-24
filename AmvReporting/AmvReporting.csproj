@@ -197,6 +197,7 @@
     <Compile Include="Controllers\GlobalConfigController.cs" />
     <Compile Include="Controllers\ReportGroupController.cs" />
     <Compile Include="Controllers\ReportRevisionsController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="DatabaseController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -205,6 +206,7 @@
     <Compile Include="Domain\Backup\Commands\CreateBackupCommand.cs" />
     <Compile Include="Domain\Backup\Commands\RestoreBackupCommand.cs" />
     <Compile Include="Domain\Preview\Queries\PreviewReportQuery.cs" />
+    <Compile Include="Domain\Search\SearchQuery.cs" />
     <Compile Include="Domain\Templates\Queries\CompareTemplateToLatestQuery.cs" />
     <Compile Include="GlobalConfigController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -323,6 +325,7 @@
     <Compile Include="Infrastructure\PageGeneration\HtmlBuildersFactory.cs" />
     <Compile Include="Domain\DomainException.cs" />
     <Compile Include="Domain\Reports\ReportViewModel.cs" />
+    <Compile Include="Infrastructure\RavenIndexes\SearchIndex.cs" />
     <Compile Include="MigrationController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -340,6 +343,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="ReportRevisionsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SearchController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="SharedController.generated.cs">
@@ -655,6 +661,8 @@
     <Content Include="Views\Template\CompareToLatest.cshtml" />
     <Content Include="Views\GlobalConfig\GlobalCss.cshtml" />
     <Content Include="Views\GlobalConfig\GlobalJs.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Search\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

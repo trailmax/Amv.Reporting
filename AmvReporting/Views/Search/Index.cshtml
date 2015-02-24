@@ -1,0 +1,42 @@
+﻿@model AmvReporting.Controllers.SearchPageViewModel
+
+@{
+    ViewBag.Title = "Search Reports";
+}
+
+<h2>Search Reports</h2>
+
+@using (Html.BeginForm(MVC.Search.Index(), FormMethod.Post, new { role = "form" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(r => r.SearchTerms, new {@class = "control-label"})
+        @Html.TextBoxFor(m => m.SearchTerms, new { @class = "form-control" })
+        @Html.ValidationMessageFor(r => r.SearchTerms)
+    </div>
+    <input type="submit" value="Search" class="btn btn-default" />
+}
+
+@if (Model == null || Model.SearchResults == null)
+{
+    return;
+}
+
+@if (!Model.SearchResults.Any())
+{
+    <div>No results found</div>
+    return;
+}
+
+
+<h2>Results</h2>
+<dl>
+    @foreach (var result in Model.SearchResults)
+    {
+        <dt>
+            @Html.ActionLink(result.Title, MVC.Report.UpdateCode(result.AggregateId))
+        </dt>
+        <dd>
+            @Html.DisplayFor(_ => result.Description)
+        </dd>
+    }
+</dl>

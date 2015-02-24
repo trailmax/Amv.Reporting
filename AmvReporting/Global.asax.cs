@@ -6,7 +6,11 @@ using System.Web.Routing;
 using AmvReporting.Infrastructure;
 using AmvReporting.Infrastructure.Autofac;
 using AmvReporting.Infrastructure.Automappings;
+using AmvReporting.Infrastructure.RavenIndexes;
+using Autofac;
 using Autofac.Integration.Mvc;
+using Raven.Client;
+using Raven.Client.Indexes;
 
 
 namespace AmvReporting
@@ -27,6 +31,10 @@ namespace AmvReporting
 
             var container = AutofacConfig.Configure();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+
+            var store = container.Resolve<IDocumentStore>();
+
+            IndexCreation.CreateIndexes(typeof(SearchIndex).Assembly, store);
         }
 
 

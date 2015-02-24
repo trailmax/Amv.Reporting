@@ -34,6 +34,7 @@ public static partial class MVC
     public static AmvReporting.Controllers.ReportController Report = new AmvReporting.Controllers.T4MVC_ReportController();
     public static AmvReporting.Controllers.ReportGroupController ReportGroup = new AmvReporting.Controllers.T4MVC_ReportGroupController();
     public static AmvReporting.Controllers.ReportRevisionsController ReportRevisions = new AmvReporting.Controllers.T4MVC_ReportRevisionsController();
+    public static AmvReporting.Controllers.SearchController Search = new AmvReporting.Controllers.T4MVC_SearchController();
     public static AmvReporting.Controllers.TemplateController Template = new AmvReporting.Controllers.T4MVC_TemplateController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
