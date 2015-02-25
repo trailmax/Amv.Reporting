@@ -7,11 +7,12 @@
 
 <h2>Validate Reports Against Database</h2>
 
+<button class="btn btn-lg btn-primary" id="validate-all-reports">Validate All</button>
 <ul class="list-unstyled list-of-all-reports">
     @foreach (var report in Model)
     {
         <li>
-            <button class="btn btn-sm check-button" data-aggregateid="@report.AggregateId">Check</button>
+            <button class="btn btn-sm check-button" data-aggregateid="@report.AggregateId">Validate</button>
             <span class="result-holder"></span>
             @Html.ActionLink(report.Title, MVC.Report.UpdateCode(report.AggregateId))
         </li>
@@ -21,26 +22,42 @@
 @section scripts
 {
     <script>
-        function checkReportIntegrity($button) {
+        function checkReportIntegrity($button, executeNext) {
+            if (!$button) {
+                return;
+            }
             var aggregateId = $button.data('aggregateid');
+            if (!aggregateId) {
+                return;
+            }
+
             var postData = {};
             postData['aggregateId'] = aggregateId;
 
             var resultHolder = $button.next('.result-holder');
-            resultHolder.html('<span class="glyphicon glyphicon-refresh" style="color: black; font-weight: 800" aria-hidden="true"></span>');
-
+            resultHolder.html('<span class="glyphicon glyphicon-refresh" title="Validation is in progress..." style="color: orange; font-weight: 800" aria-hidden="true"></span>');
+            var startTime = new Date().getTime();
             $.ajax({
                 type: 'POST',
                 url: '@Url.Action(MVC.SqlValidation.CheckReport())',
                 data: postData,
                 error: function () {
                     showWarning('Communication Error: could not connect to the server');
+                    resultHolder.html('<span class="glyphicon glyphicon-exclamation-sign" title="Communication Error: could not connect to the server" style="color: red; font-weight: 800" aria-hidden="true"></span>');
+                    if (executeNext === true) {
+                        checkReportIntegrity($button.parent().next().children('.check-button'), true);
+                    }
                 },
                 success: function (data) {
+                    var endTime = new Date().getTime();
+                    var duration = (endTime - startTime) / 1000;
                     if (data.IsValid === true) {
-                        resultHolder.html('<span class="glyphicon glyphicon-check" title="Report has valid SQL" style="color: green; font-weight: 800" aria-hidden="true"></span>');
+                        resultHolder.html('<span class="glyphicon glyphicon-check" title="Report has valid SQL. Request duration: '+ duration +' sec" style="color: green; font-weight: 800" aria-hidden="true"></span>');
                     } else {
                         resultHolder.html('<span class="glyphicon glyphicon-ban-circle" title="' + data.Error + '" style="color: red; font-weight: 1800" aria-hidden="true"></span>');
+                    }
+                    if (executeNext === true) {
+                        checkReportIntegrity($button.parent().next().children('.check-button'), true);
                     }
                 }
             });
@@ -49,7 +66,19 @@
 
         $(document).ready(function() {
             $('.check-button').on('click', function () {
-                checkReportIntegrity($(this));
+                checkReportIntegrity($(this), false);
+            });
+
+            $('#validate-all-reports').on('click', function() {
+                var allReportButtons = $('.check-button');
+                for (var i = 0; i < allReportButtons.length; i++) {
+                    var $button = $(allReportButtons[i]);
+                    var resultHolder = $button.next('.result-holder');
+                    resultHolder.html('<span class="glyphicon glyphicon-repeat" title="Validation is in Queue" style="color: orange; font-weight: 800" aria-hidden="true"></span>');
+                }
+
+                var firstButton = $(allReportButtons[0]);
+                checkReportIntegrity(firstButton, true);
             });
         });
     </script>
