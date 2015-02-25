@@ -198,6 +198,7 @@
     <Compile Include="Controllers\ReportGroupController.cs" />
     <Compile Include="Controllers\ReportRevisionsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\SqlValidationController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="DatabaseController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -206,6 +207,7 @@
     <Compile Include="Domain\Backup\Commands\CreateBackupCommand.cs" />
     <Compile Include="Domain\Backup\Commands\RestoreBackupCommand.cs" />
     <Compile Include="Domain\Preview\Queries\PreviewReportQuery.cs" />
+    <Compile Include="Domain\SchemaValidation\SqlValidationQuery.cs" />
     <Compile Include="Domain\Search\SearchQuery.cs" />
     <Compile Include="Domain\Templates\Queries\CompareTemplateToLatestQuery.cs" />
     <Compile Include="GlobalConfigController.generated.cs">
@@ -350,6 +352,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SqlValidationController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4MVC.cs">
@@ -663,7 +668,7 @@
     <Content Include="Views\GlobalConfig\GlobalCss.cshtml" />
     <Content Include="Views\GlobalConfig\GlobalJs.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
-    <Content Include="Views\Search\_ViewStart.cshtml" />
+    <Content Include="Views\SqlValidation\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

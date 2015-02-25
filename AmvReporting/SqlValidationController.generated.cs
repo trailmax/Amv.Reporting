@@ -23,10 +23,10 @@ using System.Web.Routing;
 using T4MVC;
 namespace AmvReporting.Controllers
 {
-    public partial class SearchController
+    public partial class SqlValidationController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected SearchController(Dummy d) { }
+        protected SqlValidationController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -54,15 +54,21 @@ namespace AmvReporting.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult CheckReport()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CheckReport);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public SearchController Actions { get { return MVC.Search; } }
+        public SqlValidationController Actions { get { return MVC.SqlValidation; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Search";
+        public readonly string Name = "SqlValidation";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Search";
+        public const string NameConst = "SqlValidation";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -71,22 +77,24 @@ namespace AmvReporting.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string CheckReport = "CheckReport";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string CheckReport = "CheckReport";
         }
 
 
-        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
+        static readonly ActionParamsClass_CheckReport s_params_CheckReport = new ActionParamsClass_CheckReport();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
+        public ActionParamsClass_CheckReport CheckReportParams { get { return s_params_CheckReport; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Index
+        public class ActionParamsClass_CheckReport
         {
-            public readonly string query = "query";
+            public readonly string aggregateId = "aggregateId";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -100,14 +108,14 @@ namespace AmvReporting.Controllers
             {
                 public readonly string Index = "Index";
             }
-            public readonly string Index = "~/Views/Search/Index.cshtml";
+            public readonly string Index = "~/Views/SqlValidation/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_SearchController : AmvReporting.Controllers.SearchController
+    public partial class T4MVC_SqlValidationController : AmvReporting.Controllers.SqlValidationController
     {
-        public T4MVC_SearchController() : base(Dummy.Instance) { }
+        public T4MVC_SqlValidationController() : base(Dummy.Instance) { }
 
         [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -121,14 +129,14 @@ namespace AmvReporting.Controllers
         }
 
         [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.Search.SearchQuery query);
+        partial void CheckReportOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid aggregateId);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Index(AmvReporting.Domain.Search.SearchQuery query)
+        public override System.Web.Mvc.ActionResult CheckReport(System.Guid aggregateId)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "query", query);
-            IndexOverride(callInfo, query);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CheckReport);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "aggregateId", aggregateId);
+            CheckReportOverride(callInfo, aggregateId);
             return callInfo;
         }
 

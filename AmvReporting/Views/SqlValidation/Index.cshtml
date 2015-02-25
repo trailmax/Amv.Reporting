@@ -1,0 +1,48 @@
+﻿@model IOrderedEnumerable<ReportViewModel>
+
+@{
+    ViewBag.Title = "Validate SQL Reports";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Validate Reports Against Database</h2>
+
+<ul class="list-unstyled list-of-all-reports">
+    @foreach (var report in Model)
+    {
+        <li>
+            <button class="btn btn-sm check-button" data-aggregateid="@report.AggregateId">Check</button>
+            <span class="result-holder"></span>
+            @Html.ActionLink(report.Title, MVC.Report.UpdateCode(report.AggregateId))
+        </li>
+    }
+</ul>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $('.check-button').on('click', function() {
+                var aggregateId = $(this).data('aggregateid');
+                var postData = {};
+                postData['aggregateId'] = aggregateId;
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action(MVC.SqlValidation.CheckReport())',
+                    data: postData,
+                    error: function() {
+                        showWarning('Communication Error: could not connect to the server');
+                    },
+                    success: function(data) {
+                        if (data.IsValid === true) {
+                            $(this).next('.result-holder').html('OK');
+                        } else {
+                            $(this).next('.result-holder').html('Error');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}
