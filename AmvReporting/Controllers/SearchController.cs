@@ -1,52 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Web.Mvc;
 using AmvReporting.Domain.Search;
-using AmvReporting.Infrastructure.CQRS;
 using AmvReporting.Infrastructure.Filters;
+
 
 namespace AmvReporting.Controllers
 {
     [RoleAuthorizeFilter]
     public partial class SearchController : BaseController
     {
-        private readonly IMediator mediator;
-
-        public SearchController(IMediator mediator)
-        {
-            this.mediator = mediator;
-        }
-
         public virtual ActionResult Index()
         {
             return View();
         }
 
 
-        [HttpPost]
-        public virtual ActionResult Index(SearchQuery query)
+        public virtual ActionResult IndexSubmitted(String searchTerms, int pageNumber = 0)
         {
-            var searchResults = mediator.Request(query);
-
-            var model = new SearchPageViewModel()
+            var query = new SearchQuery()
             {
-                SearchTerms = query.SearchTerms,
-                SearchResults = searchResults.ToList(),
+                SearchTerms = searchTerms,
+                PageNumber = pageNumber,
             };
 
-
-            return View(model);
+            return QueriedView(query).ShowView("Index");
         }
-    }
-
-    public class SearchPageViewModel
-    {
-        [Required]
-        public String SearchTerms { get; set; }
-
-
-        public List<SearchResult> SearchResults { get; set; }
     }
 }

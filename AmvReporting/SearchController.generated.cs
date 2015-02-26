@@ -26,6 +26,9 @@ namespace AmvReporting.Controllers
     public partial class SearchController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public SearchController() { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected SearchController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -54,6 +57,12 @@ namespace AmvReporting.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult IndexSubmitted()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.IndexSubmitted);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public SearchController Actions { get { return MVC.Search; } }
@@ -71,22 +80,25 @@ namespace AmvReporting.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string IndexSubmitted = "IndexSubmitted";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string IndexSubmitted = "IndexSubmitted";
         }
 
 
-        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
+        static readonly ActionParamsClass_IndexSubmitted s_params_IndexSubmitted = new ActionParamsClass_IndexSubmitted();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
+        public ActionParamsClass_IndexSubmitted IndexSubmittedParams { get { return s_params_IndexSubmitted; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Index
+        public class ActionParamsClass_IndexSubmitted
         {
-            public readonly string query = "query";
+            public readonly string searchTerms = "searchTerms";
+            public readonly string pageNumber = "pageNumber";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -121,14 +133,15 @@ namespace AmvReporting.Controllers
         }
 
         [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, AmvReporting.Domain.Search.SearchQuery query);
+        partial void IndexSubmittedOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string searchTerms, int pageNumber);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Index(AmvReporting.Domain.Search.SearchQuery query)
+        public override System.Web.Mvc.ActionResult IndexSubmitted(string searchTerms, int pageNumber)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "query", query);
-            IndexOverride(callInfo, query);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.IndexSubmitted);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "searchTerms", searchTerms);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "pageNumber", pageNumber);
+            IndexSubmittedOverride(callInfo, searchTerms, pageNumber);
             return callInfo;
         }
 

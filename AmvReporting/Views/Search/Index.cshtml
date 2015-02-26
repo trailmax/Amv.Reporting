@@ -1,4 +1,4 @@
-﻿@model AmvReporting.Controllers.SearchPageViewModel
+﻿@model AmvReporting.Domain.Search.PagedSearchResult
 
 @{
     ViewBag.Title = "Search Reports";
@@ -7,7 +7,7 @@
 
 <h2>Search Reports</h2>
 
-@using (Html.BeginForm(MVC.Search.Index(), FormMethod.Post, new { role = "form" }))
+@using (Html.BeginForm(MVC.Search.IndexSubmitted(), FormMethod.Get, new { role = "form" }))
 {
     <div class="form-group">
         @Html.LabelFor(r => r.SearchTerms, new {@class = "control-label"})
@@ -17,12 +17,12 @@
     <input type="submit" value="Search" class="btn btn-default" />
 }
 
-@if (Model == null || Model.SearchResults == null)
+@if (Model == null || Model.Results == null)
 {
     return;
 }
 
-@if (!Model.SearchResults.Any())
+@if (!Model.Results.Any())
 {
     <div>No results found</div>
     return;
@@ -30,8 +30,11 @@
 
 
 <h2>Results</h2>
+<div>
+    Found @Model.TotalNumberOfResults results. Current page: @(Model.CurrentPage + 1)
+</div>
 <dl>
-    @foreach (var result in Model.SearchResults)
+    @foreach (var result in Model.Results)
     {
         <div class="well">
             <dt>
@@ -45,6 +48,39 @@
         </div>
     }
 </dl>
+
+@if (Model.NumberOfPages > 1)
+{
+    <nav>
+        <ul class="pagination">
+            @if (Model.PreviousPage.HasValue)
+            {
+                <li>
+                    <a href="@Url.Action(MVC.Search.IndexSubmitted(Model.SearchTerms, Model.PreviousPage.Value))" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+
+            @for (var i = 0; i <= Model.NumberOfPages; i++)
+            {
+                <li class="@(Model.CurrentPage == i ? "active" : "")">
+                    <a href="@Url.Action(MVC.Search.IndexSubmitted(Model.SearchTerms, i))">@(i + 1)</a>
+                </li>
+            }
+
+            @if (Model.NextPage.HasValue)
+            {
+                <li>
+                    <a href="@Url.Action(MVC.Search.IndexSubmitted(Model.SearchTerms, Model.NextPage.Value))" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+}
+
 
 @section scripts
 {

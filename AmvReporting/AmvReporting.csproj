@@ -231,7 +231,6 @@
     <Compile Include="Domain\Menus\MenuModelQuery.cs" />
     <Compile Include="Domain\Preview\Queries\CleanseSqlQuery.cs" />
     <Compile Include="Domain\Preview\Queries\FormattedSqlQuery.cs" />
-    <Compile Include="Domain\QueryResult.cs" />
     <Compile Include="Domain\ReportGroups\Commands\CreateReportGroupCommand.cs" />
     <Compile Include="Domain\ReportGroups\Commands\DeleteReportGroupCommand.cs" />
     <Compile Include="Domain\ReportGroups\Commands\EditReportGroupCommand.cs" />

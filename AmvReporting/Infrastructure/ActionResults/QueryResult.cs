@@ -12,6 +12,7 @@ namespace AmvReporting.Infrastructure.ActionResults
         private Type destinationType;
         private bool doJson;
         private bool jsonAllowGet;
+        private String viewName;
 
 
         public QueryResult(IQuery<TResult> query, ViewDataDictionary viewData, TempDataDictionary tempData)
@@ -28,6 +29,11 @@ namespace AmvReporting.Infrastructure.ActionResults
             return this;
         }
 
+        public QueryResult<TResult> ShowView(String view)
+        {
+            this.ViewName = view;
+            return this;
+        }
 
         public QueryResult<TResult> DoJson(bool allowGet = false)
         {
