@@ -20,7 +20,7 @@ namespace AmvReporting.Domain.Reports.Queries
 
         public IEnumerable<ReportViewModel> Handle(AllReportsQuery query)
         {
-            var reports = ravenSession.Query<ReportViewModel>()
+            var reports = ravenSession.Query<ReportViewModel>().Take(int.MaxValue)
                 .ToList();
 
             return reports;

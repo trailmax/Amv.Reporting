@@ -41,7 +41,7 @@ namespace AmvReporting.Controllers
         {
             new RavenDocumentsByEntityName().Execute(documentStore);
 
-            var allViewModelsCount = ravenSession.Query<ReportViewModel>().Count();
+            var allViewModelsCount = ravenSession.Query<ReportViewModel>().Take(int.MaxValue).Count();
 
             //var oldReports = documentStore.DatabaseCommands.Query(
             //    "Raven/DocumentsByEntityName",
@@ -50,7 +50,7 @@ namespace AmvReporting.Controllers
             //        Query = "Tag:[[Reports]]",
             //    }, null);
 
-            var oldReports = ravenSession.Query<Report>().Count();
+            var oldReports = ravenSession.Query<Report>().Take(int.MaxValue).Count();
 
             var migrationDictionary = mediator.Request(new EventStoreMigrationDictionaryQuery());
 
@@ -75,7 +75,7 @@ namespace AmvReporting.Controllers
             var migrationDictionary = mediator.Request(new EventStoreMigrationDictionaryQuery());
 
             var migratedDocumentsIds = migrationDictionary.Keys.ToList();
-            var oldReports = ravenSession.Query<Report>().ToList().Where(r => !migratedDocumentsIds.Contains(r.Id)).ToList();
+            var oldReports = ravenSession.Query<Report>().Take(int.MaxValue).ToList().Where(r => !migratedDocumentsIds.Contains(r.Id)).ToList();
 
             CreateTemplates();
 
@@ -194,13 +194,13 @@ namespace AmvReporting.Controllers
 
         public bool TemplateExists(String title)
         {
-            return ravenSession.Query<TemplateViewModel>().Any(t => t.Title == title);
+            return ravenSession.Query<TemplateViewModel>().Take(int.MaxValue).Any(t => t.Title == title);
         }
 
 
         private TemplateAggregate GetTemplate(string title)
         {
-            var viewModel = ravenSession.Query<TemplateViewModel>().FirstOrDefault(t => t.Title == title);
+            var viewModel = ravenSession.Query<TemplateViewModel>().Take(int.MaxValue).FirstOrDefault(t => t.Title == title);
             var template = repository.GetById<TemplateAggregate>(viewModel.AggregateId);
 
             return template;

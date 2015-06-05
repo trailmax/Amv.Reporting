@@ -38,7 +38,7 @@ namespace AmvReporting.Infrastructure.Dropdowns
 
         public IEnumerable<SelectListItem> Handle(ReportGroupParentsDropdownQuery query)
         {
-            var allGroups = ravenSession.Query<ReportGroup>()
+            var allGroups = ravenSession.Query<ReportGroup>().Take(int.MaxValue)
                 .Where(g => g.Id != query.GroupId)
                 .ToList();
 

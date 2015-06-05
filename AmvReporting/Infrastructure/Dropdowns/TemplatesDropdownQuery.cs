@@ -25,7 +25,7 @@ namespace AmvReporting.Infrastructure.Dropdowns
 
         public IEnumerable<SelectListItem> Handle(TemplatesDropdownQuery query)
         {
-            var templates = documentSession.Query<TemplateViewModel>().OrderBy(t => t.Title)
+            var templates = documentSession.Query<TemplateViewModel>().Take(int.MaxValue).OrderBy(t => t.Title)
                 .ToSelectListItems(t => t.Title, v => v.AggregateId);
 
             return templates;

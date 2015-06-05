@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Web.Mvc;
 
 
 namespace AmvReporting.Domain.Reports
 {
+    [DebuggerDisplay("{Title}")]
     public class ReportViewModel
     {
         public Guid AggregateId { get; set; }

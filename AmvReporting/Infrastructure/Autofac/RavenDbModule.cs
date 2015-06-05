@@ -32,6 +32,10 @@ namespace AmvReporting.Infrastructure.Autofac
             var store = new EmbeddableDocumentStore
                         {
                             DataDirectory = ConfigurationContext.Current.GetRavenDataPath(),
+                            Configuration =
+                            {
+                                MaxPageSize = int.MaxValue,
+                            },
                         };
 
             if (ConfigurationContext.Current.EnableRavenStudio())

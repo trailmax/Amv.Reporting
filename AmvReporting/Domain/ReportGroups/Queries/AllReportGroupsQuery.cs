@@ -20,7 +20,7 @@ namespace AmvReporting.Domain.ReportGroups.Queries
 
         public IEnumerable<ReportGroup> Handle(AllReportGroupsQuery query)
         {
-            var groups = ravenSession.Query<ReportGroup>().ToList();
+            var groups = ravenSession.Query<ReportGroup>().Take(int.MaxValue).ToList();
 
             return groups;
         }

@@ -25,7 +25,7 @@ namespace AmvReporting.Infrastructure.Dropdowns
 
         public IEnumerable<SelectListItem> Handle(ReportsGroupsDropdownQuery query)
         {
-            var groups = ravenSession.Query<ReportGroup>().ToList();
+            var groups = ravenSession.Query<ReportGroup>().Take(int.MaxValue).ToList();
 
             var result = groups
                 .ToSelectListItems(t => ReportGroupHelpers.GetParentPath(groups, t), v => v.Id)

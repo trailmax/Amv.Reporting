@@ -35,13 +35,13 @@ namespace AmvReporting.Domain.Menus
 
             if (query.ShowDisabledReports)
             {
-                allReports = ravenSession.Query<ReportViewModel>().ToList();
-                allGroups = ravenSession.Query<ReportGroup>().ToList();
+                allReports = ravenSession.Query<ReportViewModel>().Take(int.MaxValue).ToList();
+                allGroups = ravenSession.Query<ReportGroup>().Take(int.MaxValue).ToList();
             }
             else
             {
-                allReports = ravenSession.Query<ReportViewModel>().Where(r => r.Enabled).ToList();
-                allGroups = ravenSession.Query<ReportGroup>().Where(g => g.Enabled).ToList();
+                allReports = ravenSession.Query<ReportViewModel>().Take(int.MaxValue).Where(r => r.Enabled).ToList();
+                allGroups = ravenSession.Query<ReportGroup>().Take(int.MaxValue).Where(g => g.Enabled).ToList();
             }
 
             var menuModel = new MenuModel

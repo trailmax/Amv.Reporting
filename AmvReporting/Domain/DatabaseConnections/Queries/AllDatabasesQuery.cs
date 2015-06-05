@@ -20,7 +20,7 @@ namespace AmvReporting.Domain.DatabaseConnections.Queries
 
         public IEnumerable<DatabaseConnection> Handle(AllDatabasesQuery query)
         {
-            var allDatabases = ravenSession.Query<DatabaseConnection>().ToList();
+            var allDatabases = ravenSession.Query<DatabaseConnection>().Take(int.MaxValue).ToList();
 
             return allDatabases;
         }
