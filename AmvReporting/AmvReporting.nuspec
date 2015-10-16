@@ -1,0 +1,18 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>AMVReporting</id>
+    <title>AMV Reporting</title>
+    <version>$version$</version>
+    <authors>AMV Software Ltd.</authors>
+    <owners>AMV Software Ltd.</owners>
+    <licenseUrl>https://github.com/trailmax/Amv.Reporting</licenseUrl>
+    <projectUrl>https://github.com/trailmax/Amv.Reporting</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Little app to query sql server, convert result to json and spit out as JS graphing</description>
+    <releaseNotes>Little app to query sql server, convert result to json and spit out as JS graphing</releaseNotes>
+  </metadata>
+  <files>
+    <file src="bin\*.dll" target="bin"/>
+  </files>
+</package>

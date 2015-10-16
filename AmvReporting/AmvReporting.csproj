@@ -577,6 +577,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Scripts\DataTables\Buttons-1.0.3\css\common.scss" />
     <Content Include="Scripts\DataTables\Buttons-1.0.3\css\mixins.scss" />
+    <Content Include="AmvReporting.nuspec" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -674,11 +675,9 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\_ViewStart.cshtml" />
