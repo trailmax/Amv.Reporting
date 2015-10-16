@@ -6,7 +6,6 @@ namespace AmvReporting
 {
     public static class Bundles
     {
-        //public const String DataTablesJs = "~/bundles/clientjs";
         public const String ClientJs = "~/bundles/clientjs";
         public const String ClientCss = "~/bundles/clientcss";
 
@@ -43,12 +42,6 @@ namespace AmvReporting
                 "~/Content/bootstrap.css",
                 "~/Content/site.css",
                 "~/Scripts/Datatables/dataTables.css",
-                //"~/Scripts/Datatables/css/jquery.dataTables.css",
-                //"~/Scripts/Datatables/css/jquery.dataTables_themeroller.css",
-                //"~/Scripts/Datatables/extras/FixedHeader/FixedHeader.js",
-                //"~/Scripts/Datatables/extras/Scroller/css/dataTables.scroller.css",
-                //"~/Scripts/Datatables/extras/TableTools/css/TableTools.css",
-                //"~/Scripts/Datatables/extras/TableTools/css/TableTools_JUI.css",
                 "~/Content/jquery.treetable.css");
             clientStyleBundle.Include("~/Content/jquery.treetable.theme.default.css");
             bundles.Add(clientStyleBundle);
