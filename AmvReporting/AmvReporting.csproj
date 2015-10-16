@@ -484,133 +484,83 @@
     <Content Include="Scripts\CodeMirror\theme\vibrant-ink.css" />
     <Content Include="Scripts\CodeMirror\theme\xq-dark.css" />
     <Content Include="Scripts\CodeMirror\theme\xq-light.css" />
-    <Content Include="Scripts\DataTables\extras\FixedHeader\FixedHeader.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\FixedHeader\FixedHeader.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\Scroller\css\dataTables.scroller.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\Scroller\images\loading-background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\Scroller\js\dataTables.scroller.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\Scroller\js\dataTables.scroller.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\TableTools\css\TableTools.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\TableTools\css\TableTools_JUI.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\TableTools\images\background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\TableTools\images\collection.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\TableTools\images\collection_hover.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\TableTools\images\copy.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\TableTools\images\copy_hover.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\TableTools\images\csv.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\TableTools\images\csv_hover.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\TableTools\images\pdf.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\TableTools\images\pdf_hover.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\TableTools\images\print.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\TableTools\images\print_hover.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\TableTools\images\xls.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\TableTools\images\xls_hover.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\TableTools\js\TableTools.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\TableTools\js\TableTools.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\TableTools\js\ZeroClipboard.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\TableTools\swf\copy_csv_xls.swf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\TableTools\swf\copy_csv_xls_pdf.swf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\css\jquery.dataTables.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\css\jquery.dataTables_themeroller.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\images\back_disabled.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\images\back_enabled.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\images\back_enabled_hover.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\images\favicon.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\images\forward_disabled.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\images\forward_enabled.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\images\forward_enabled_hover.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\images\sort_asc.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\images\sort_asc_disabled.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\images\sort_both.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\images\sort_desc.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\images\sort_desc_disabled.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\js\jquery.dataTables.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\js\jquery.dataTables.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\version.txt" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\css\buttons.bootstrap.css" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\css\buttons.bootstrap.min.css" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\css\buttons.dataTables.css" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\css\buttons.dataTables.min.css" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\css\buttons.foundation.css" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\css\buttons.foundation.min.css" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\css\buttons.jqueryui.css" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\css\buttons.jqueryui.min.css" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\js\buttons.bootstrap.js" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\js\buttons.bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\js\buttons.colVis.js" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\js\buttons.colVis.min.js" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\js\buttons.flash.js" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\js\buttons.flash.min.js" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\js\buttons.foundation.js" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\js\buttons.foundation.min.js" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\js\buttons.html5.js" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\js\buttons.html5.min.js" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\js\buttons.jqueryui.js" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\js\buttons.jqueryui.min.js" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\js\buttons.print.js" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\js\buttons.print.min.js" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\js\dataTables.buttons.js" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\js\dataTables.buttons.min.js" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\swf\flashExport.swf" />
+    <Content Include="Scripts\DataTables\DataTables-1.10.9\css\dataTables.bootstrap.css" />
+    <Content Include="Scripts\DataTables\DataTables-1.10.9\css\dataTables.bootstrap.min.css" />
+    <Content Include="Scripts\DataTables\DataTables-1.10.9\css\dataTables.foundation.css" />
+    <Content Include="Scripts\DataTables\DataTables-1.10.9\css\dataTables.foundation.min.css" />
+    <Content Include="Scripts\DataTables\DataTables-1.10.9\css\dataTables.jqueryui.css" />
+    <Content Include="Scripts\DataTables\DataTables-1.10.9\css\dataTables.jqueryui.min.css" />
+    <Content Include="Scripts\DataTables\DataTables-1.10.9\css\jquery.dataTables.css" />
+    <Content Include="Scripts\DataTables\DataTables-1.10.9\css\jquery.dataTables.min.css" />
+    <Content Include="Scripts\DataTables\DataTables-1.10.9\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Scripts\DataTables\DataTables-1.10.9\images\sort_asc.png" />
+    <Content Include="Scripts\DataTables\DataTables-1.10.9\images\sort_asc_disabled.png" />
+    <Content Include="Scripts\DataTables\DataTables-1.10.9\images\sort_both.png" />
+    <Content Include="Scripts\DataTables\DataTables-1.10.9\images\sort_desc.png" />
+    <Content Include="Scripts\DataTables\DataTables-1.10.9\images\sort_desc_disabled.png" />
+    <Content Include="Scripts\DataTables\DataTables-1.10.9\js\dataTables.bootstrap.js" />
+    <Content Include="Scripts\DataTables\DataTables-1.10.9\js\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\DataTables-1.10.9\js\dataTables.foundation.js" />
+    <Content Include="Scripts\DataTables\DataTables-1.10.9\js\dataTables.foundation.min.js" />
+    <Content Include="Scripts\DataTables\DataTables-1.10.9\js\dataTables.jqueryui.js" />
+    <Content Include="Scripts\DataTables\DataTables-1.10.9\js\dataTables.jqueryui.min.js" />
+    <Content Include="Scripts\DataTables\DataTables-1.10.9\js\jquery.dataTables.js" />
+    <Content Include="Scripts\DataTables\DataTables-1.10.9\js\jquery.dataTables.min.js" />
+    <Content Include="Scripts\DataTables\datatables.css" />
+    <Content Include="Scripts\DataTables\datatables.js" />
+    <Content Include="Scripts\DataTables\datatables.min.css" />
+    <Content Include="Scripts\DataTables\datatables.min.js" />
+    <Content Include="Scripts\DataTables\datetime-moment.js" />
+    <Content Include="Scripts\DataTables\FixedHeader-3.0.0\css\fixedHeader.bootstrap.css" />
+    <Content Include="Scripts\DataTables\FixedHeader-3.0.0\css\fixedHeader.bootstrap.min.css" />
+    <Content Include="Scripts\DataTables\FixedHeader-3.0.0\css\fixedHeader.dataTables.css" />
+    <Content Include="Scripts\DataTables\FixedHeader-3.0.0\css\fixedHeader.dataTables.min.css" />
+    <Content Include="Scripts\DataTables\FixedHeader-3.0.0\css\fixedHeader.foundation.css" />
+    <Content Include="Scripts\DataTables\FixedHeader-3.0.0\css\fixedHeader.foundation.min.css" />
+    <Content Include="Scripts\DataTables\FixedHeader-3.0.0\css\fixedHeader.jqueryui.css" />
+    <Content Include="Scripts\DataTables\FixedHeader-3.0.0\css\fixedHeader.jqueryui.min.css" />
+    <Content Include="Scripts\DataTables\FixedHeader-3.0.0\js\dataTables.fixedHeader.js" />
+    <Content Include="Scripts\DataTables\FixedHeader-3.0.0\js\dataTables.fixedHeader.min.js" />
+    <Content Include="Scripts\DataTables\JSZip-2.5.0\jszip.js" />
+    <Content Include="Scripts\DataTables\JSZip-2.5.0\jszip.min.js" />
+    <Content Include="Scripts\DataTables\KeyTable-2.0.0\css\keyTable.bootstrap.css" />
+    <Content Include="Scripts\DataTables\KeyTable-2.0.0\css\keyTable.bootstrap.min.css" />
+    <Content Include="Scripts\DataTables\KeyTable-2.0.0\css\keyTable.dataTables.css" />
+    <Content Include="Scripts\DataTables\KeyTable-2.0.0\css\keyTable.dataTables.min.css" />
+    <Content Include="Scripts\DataTables\KeyTable-2.0.0\css\keyTable.foundation.css" />
+    <Content Include="Scripts\DataTables\KeyTable-2.0.0\css\keyTable.foundation.min.css" />
+    <Content Include="Scripts\DataTables\KeyTable-2.0.0\css\keyTable.jqueryui.css" />
+    <Content Include="Scripts\DataTables\KeyTable-2.0.0\css\keyTable.jqueryui.min.css" />
+    <Content Include="Scripts\DataTables\KeyTable-2.0.0\js\dataTables.keyTable.js" />
+    <Content Include="Scripts\DataTables\KeyTable-2.0.0\js\dataTables.keyTable.min.js" />
+    <Content Include="Scripts\DataTables\pdfmake-0.1.18\build\pdfmake.js" />
+    <Content Include="Scripts\DataTables\pdfmake-0.1.18\build\pdfmake.min.js" />
+    <Content Include="Scripts\DataTables\pdfmake-0.1.18\build\vfs_fonts.js" />
     <Content Include="Scripts\flot\jquery.flot.stack.patched.js" />
     <Content Include="Scripts\ie8.js" />
     <Content Include="Scripts\jquery-migrate-1.2.1.min.js">
@@ -625,6 +575,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\css\common.scss" />
+    <Content Include="Scripts\DataTables\Buttons-1.0.3\css\mixins.scss" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -633,6 +585,7 @@
     <Content Include="Scripts\mergely.js" />
     <Content Include="Scripts\mergely.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -674,18 +627,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Properties\PublishProfiles\Package.pubxml" />
-    <Content Include="Scripts\DataTables\extras\TableTools\as3\lib\AlivePDF.swc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\TableTools\as3\ZeroClipboard.as">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\extras\TableTools\as3\ZeroClipboardPdf.as">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\DataTables\images\Sorting icons.psd">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\flot\excanvas.js" />
     <Content Include="Scripts\flot\excanvas.min.js" />
