@@ -13,6 +13,10 @@
     <title>@ViewBag.Title</title>
     @Styles.Render(Bundles.ClientCss)
     @RenderSection("css", required: false)
+
+    @Scripts.Render(Bundles.ClientJs)
+    @RenderSection("scripts", required: false)
+
 </head>
 <body>
 
@@ -20,7 +24,7 @@
 
 
 
-    @Scripts.Render(Bundles.ClientJs)
+
 
 <script type="text/javascript" language="javascript">
 
@@ -42,6 +46,5 @@
 
 </script>
 
-    @RenderSection("scripts", required: false)
 </body>
 </html>
