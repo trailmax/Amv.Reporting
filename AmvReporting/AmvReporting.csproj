@@ -15,11 +15,6 @@
     <AssemblyName>AmvReporting</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication>disabled</IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
-    <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <TargetFrameworkProfile />
@@ -561,7 +556,11 @@
     <Content Include="Scripts\DataTables\pdfmake-0.1.18\build\pdfmake.js" />
     <Content Include="Scripts\DataTables\pdfmake-0.1.18\build\pdfmake.min.js" />
     <Content Include="Scripts\DataTables\pdfmake-0.1.18\build\vfs_fonts.js" />
+    <Content Include="Scripts\es5-shim.js" />
+    <Content Include="Scripts\es5-shim.min.js" />
     <Content Include="Scripts\flot\jquery.flot.stack.patched.js" />
+    <Content Include="Scripts\html5shiv.js" />
+    <Content Include="Scripts\html5shiv.min.js" />
     <Content Include="Scripts\ie8.js" />
     <Content Include="Scripts\jquery-migrate-1.2.1.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
